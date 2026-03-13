@@ -1,0 +1,13 @@
+package geoforge.lib
+
+builtin long as java long
+builtin string as java java.lang.String
+builtin Date as java java.time.LocalDate
+builtin Areal as java no.ngu.geojson.Geometry
+builtin Posisjon as java no.ngu.geojson.Geometry
+
+data type Identifikasjon {
+  id : string
+  namespace? : string
+  version? : long
+}

@@ -1,0 +1,16 @@
+{
+    "projectName": "Geoforge",
+    "languages": [
+        {
+            "id": "geoforge",
+            "grammar": "src/geoforge.langium",
+            "fileExtensions": [
+                "geoforge"
+            ],
+            "textMate": {
+                "out": "syntaxes/geoforge.tmLanguage.json"
+            }
+        }
+    ],
+    "out": "src/generated"
+}

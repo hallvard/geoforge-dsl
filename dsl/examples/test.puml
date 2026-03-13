@@ -1,0 +1,17 @@
+@startuml "ngu.nadag"
+class GeotekniskUnders {
+    identifikasjon: Identifikasjon
+    område: Areal
+}
+class Identifikasjon {
+    id: string
+    namespace: string
+    version: long
+}
+class GB {
+    identifikasjon: Identifikasjon
+    opprettetDato: Date
+    posisjon: Posisjon
+}
+GeotekniskUnders  *->  GB: borehull
+@enduml

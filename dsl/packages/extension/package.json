@@ -1,0 +1,69 @@
+{
+    "name": "vscode-geoforge-lang",
+    "description": "The extension specific package",
+    "version": "0.0.1",
+    "displayName": "geoforge-lang",
+    "publisher": "NGU",
+    "icon": "packages/extension/images/geonorge.png",
+    "keywords": [
+        "geoforge",
+        "langium",
+        "ngu",
+        "geonorge"
+    ],
+    "type": "module",
+    "engines": {
+        "vscode": "^1.67.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "geoforge",
+            "aliases": ["geoforge", "geoforge"],
+            "extensions": [".geoforge"],
+            "configuration": "./language-configuration.json",
+            "icon": {
+              "light": "./images/geonorge.png",
+              "dark": "./images/geonorge.png"
+            }
+        }],
+        "grammars": [{
+            "language": "geoforge",
+            "scopeName": "source.geoforge",
+            "path": "syntaxes/geoforge.tmLanguage.json"
+        }],
+        "commands": [{
+            "command": "geoforge.generatePlantuml",
+            "title": "Generate PlantUML",
+            "category": "geoforge"
+        }]
+    },
+    "activationEvents": [
+        "onLanguage:geoforge"
+    ],
+    "main": "./out/extension/main.cjs",
+    "scripts": {
+        "clean": "shx rm -fr *.tsbuildinfo out syntaxes",
+        "vscode:prepublish": "npm run build",
+        "build:prepare": "shx mkdir -p ./syntaxes/ && shx cp -f ../language/syntaxes/geoforge.tmLanguage.json ./syntaxes/geoforge.tmLanguage.json",
+        "build": "npm run build:prepare && tsc -b tsconfig.json && node esbuild.mjs",
+        "build:clean": "npm run clean && npm run build",
+        "watch": "npm run build:prepare && concurrently -n tsc,esbuild -c blue,yellow \"tsc -b tsconfig.json --watch\" \"node esbuild.mjs --watch\""
+    },
+    "dependencies": {
+        "geoforge-language": "0.0.1",
+        "geoforge-cli": "0.0.1",
+        "vscode-languageclient": "~9.0.1",
+        "vscode-languageserver": "~9.0.1"
+    },
+    "devDependencies": {
+        "@types/vscode": "~1.67.0",
+        "concurrently": "~8.2.1",
+        "esbuild": "~0.25.5"
+    },
+    "vsce": {
+      "dependencies": false
+    }
+}

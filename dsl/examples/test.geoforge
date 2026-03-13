@@ -1,0 +1,13 @@
+model ngu.nadag
+
+import geoforge.lib
+
+type GeotekniskUnders {
+  identity identifikasjon : Identifikasjon
+  geometry område: Areal
+  borehull*: type GB {
+    identity identifikasjon : Identifikasjon
+    opprettetDato: Date
+    geometry posisjon: Posisjon
+  }
+}

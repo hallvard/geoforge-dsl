@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="geoforge" nsURI="http://www.example.org/geoforge" nsPrefix="geoforge">
+  <eClassifiers xsi:type="ecore:EClass" name="Named">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDefs" upperBound="-1"
+        eType="#//TypeDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="namespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="#//Version"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="crs" eType="#//Crs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Version" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Crs" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDef" abstract="true" eSuperTypes="#//Named"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectType" abstract="true" eSuperTypes="#//TypeDef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//AbstractProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuiltinType" eSuperTypes="#//TypeDef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
+        eType="#//PlatformTypeMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlatformTypeMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="platformName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="platformTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeometryType" eSuperTypes="#//BuiltinType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//GeometryKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GeometryKind">
+    <eLiterals name="Point"/>
+    <eLiterals name="MultiPoint" value="1"/>
+    <eLiterals name="LineString" value="2"/>
+    <eLiterals name="MultiLineString" value="3"/>
+    <eLiterals name="Polygon" value="4"/>
+    <eLiterals name="MultiPolygon" value="5"/>
+    <eLiterals name="GeometryCollection" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureType" eSuperTypes="#//ObjectType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbologi" eType="#//Symbologi"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ObjectType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractProperty" abstract="true" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//PropertyType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyType" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyTypeRef" eSuperTypes="#//PropertyType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeRef" lowerBound="1"
+        eType="#//TypeDef"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyTypeDef" eSuperTypes="#//PropertyType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDef" eType="#//TypeDef"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdentityProperty" eSuperTypes="#//AbstractProperty"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//AbstractProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="#//Multiplicity"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//Property">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//RelationKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="#//Relation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RelationKind">
+    <eLiterals name="containment"/>
+    <eLiterals name="container" value="1"/>
+    <eLiterals name="relation" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplicity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Symbologi">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Color"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pointSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineWidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillOpacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Color" instanceClassName="java.lang.String"/>
+</ecore:EPackage>

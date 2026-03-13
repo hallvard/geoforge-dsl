@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<geoforge:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:geoforge="http://www.example.org/geoforge" xsi:schemaLocation="http://www.example.org/geoforge geoforge.ecore" name="Common" namespace="no.ngu" version="1.0.0">
+  <typeDefs xsi:type="geoforge:BuiltinType" name="String">
+    <mappings platformName="java" platformTypeName="java.lang.String"/>
+    <mappings platformName="typescript" platformTypeName="string"/>
+  </typeDefs>
+  <typeDefs xsi:type="geoforge:BuiltinType" name="Int">
+    <mappings platformName="java" platformTypeName="int"/>
+    <mappings platformName="typescript" platformTypeName="number"/>
+  </typeDefs>
+  <typeDefs xsi:type="geoforge:BuiltinType" name="Date">
+    <mappings platformName="java" platformTypeName="java.time.LocalDate"/>
+    <mappings platformName="typescript" platformTypeName="Date"/>
+  </typeDefs>
+  <typeDefs xsi:type="geoforge:GeometryType" name="Point"/>
+  <typeDefs xsi:type="geoforge:GeometryType" name="MultiPoint" kind="MultiPoint"/>
+  <typeDefs xsi:type="geoforge:GeometryType" name="Polygon" kind="Polygon"/>
+  <typeDefs xsi:type="geoforge:GeometryType" name="MultiPolygon" kind="MultiPolygon"/>
+  <typeDefs xsi:type="geoforge:GeometryType" name="LineString"/>
+  <typeDefs xsi:type="geoforge:GeometryType" name="MultiLineString" kind="MultiLineString"/>
+  <typeDefs xsi:type="geoforge:GeometryType" name="GeometryCollection" kind="GeometryCollection"/>
+</geoforge:Model>
