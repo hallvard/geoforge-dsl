@@ -24,6 +24,7 @@
         "npm": "10.8.2"
     },
     "workspaces": [
+        "packages/model",
         "packages/language",
         "packages/cli",
         "packages/extension"

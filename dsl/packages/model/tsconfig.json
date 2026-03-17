@@ -6,12 +6,6 @@
         "declarationDir": "out"
     },
     "references": [
-        {
-            "path": "../model/tsconfig.json"
-        },
-        {
-            "path": "../language/tsconfig.src.json"
-        }
     ],
     "include": [
         "src/**/*.ts"

@@ -20,9 +20,6 @@ Name returns string: (ID | STRING);
 QName returns string:
   Name ('.' Name)*;
 
-QName2 returns string:
-  Name ('.' Name)+;
-
 TypeDef: BuiltinType | CompositeType | EnumType;
 
 CompositeType:
@@ -37,7 +34,7 @@ CompositeType:
   '}'
   ;
 
-PropertyKind returns string: ('geometry' | 'identity' | 'parent' | 'relation');
+PropertyKind returns string: ('geometry' | 'identity' | 'parent' | 'child');
 
 PropertyType: TypeDef | TypeRef;
 
@@ -65,19 +62,19 @@ BuiltinType:
   'builtin'
   (description = STRING)?
   name = Name (title = STRING)?
-  (mappings += DomainMapping)*
+  ('(' (params += BuiltinParam (',' params += BuiltinParam)*)? ')')?
   (tags += Tag)*
   ;
 
-DomainMapping:
-  'as' domain = QName target = (QName | STRING);
+BuiltinParam: name = Name ('!'? | ('=' value = BuiltinParamValue));
+
+BuiltinParamValue: StringValue | DecimalValue | IntValue | NameValue;
 
 EnumType:
   'codelist'
   (description = STRING)?
   (tags += Tag)*
   name = Name (title = STRING)?
-  (mappings += DomainMapping)*
   '{'
     (properties += EnumProperty)+
   '}'
@@ -117,7 +114,7 @@ DecimalLiteral returns number: INT '.' INT;
 NameValue: value = QName;
 
 hidden terminal WS: /\s+/;
-terminal ID: /[\p{L}][\p{L}0-9_]*/u;
+terminal ID: /[\p{L}_][\p{L}0-9_]*/u;
 terminal STRING: /"(\\.|[^"\\])*"|'(\\.|[^'\\])*'/;
 terminal UUID: /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
 terminal INT returns number: /[0-9]+/;

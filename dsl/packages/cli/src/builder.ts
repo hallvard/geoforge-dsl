@@ -1,4 +1,4 @@
-import { BuiltinType, CompositeType, DomainMapping, EnumType, isBuiltinType, isCompositeType, isEnumType, isNamespace, isOneOrMoreMultiplicity, isSomeMultiplicity, isTypeDef, isTypeRef, isZeroOrOneMultiplicity, Model, Multiplicity, Property, Tag, TypeDef } from "geoforge-language";
+import { BuiltinType, CompositeType, EnumType, isBuiltinType, isCompositeType, isEnumType, isNamespace, isOneOrMoreMultiplicity, isSomeMultiplicity, isTypeDef, isTypeRef, isZeroOrOneMultiplicity, Model, Multiplicity, Property, Tag, TypeDef } from "geoforge-language";
 import { propertyName } from "geoforge-language/geoforge-utils";
 import {
   BuiltinType as BuiltingeoforgeType,
@@ -8,12 +8,11 @@ import {
   isCompositeType as isCompositegeoforgeType,
   nameString,
   PropertyKind,
-  DomainMapping as geoforgeDomainMapping,
   Multiplicity as geoforgeMultiplicity,
   GeoForgeModel,
   Tag as geoforgeTag,
   GeoForgeType
-} from "./model.js";
+} from "geoforge-model/model";
 
 interface BuilderContext {
   typeMap: Map<string, GeoForgeType>;
@@ -24,7 +23,7 @@ function typeQname(type: TypeDef): string[] {
   while (! isNamespace(parent)) {
     parent = parent.$container.$container;
   }
-  return [parent.name, type.name];
+  return [parent.name, type.name ?? 'X'];
 }
 
 export function buildModel(model: Model): GeoForgeModel {
@@ -80,21 +79,22 @@ function buildCompositeType(type: CompositeType, context: BuilderContext): Compo
       superType = geoforgeType;
     }
   }
+  const typeName = type.name ?? 'X';
   const compositeType: CompositegeoforgeType = {
     elementType: 'compositeType',
-    name: string2Qname(type.name),
+    name: string2Qname(typeName),
     title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
     isAbstract: type.isAbstract ?? false,
     kind: type.kind ?? 'layer',
     superType: superType ? {
-      qname: superType.name,
+      qName: superType.name,
       element: superType
     } : undefined,
     properties: type.properties.map(prop => buildCompositeTypeProperty(prop, context))
   };
-  context.typeMap.set(type.name, compositeType);
+  context.typeMap.set(typeName, compositeType);
   return compositeType;
 }
 
@@ -115,8 +115,6 @@ function buildCompositeTypeProperty(prop: Property, context: BuilderContext): Co
     kind = 'id';
   } else if (prop.kind == 'parent') {
     kind = 'container';
-  } else if (prop.kind == 'relation') {
-    kind = 'association';
   }
   return {
     elementType: 'compositeTypeProperty',
@@ -125,7 +123,7 @@ function buildCompositeTypeProperty(prop: Property, context: BuilderContext): Co
     tags: buildTags(prop.tags),
     kind: kind,
     type: {
-      qname: propType!.name,
+      qName: propType!.name,
       element: propType!
     },
     multiplicity: buildMultiplicity(prop.multiplicity)
@@ -151,30 +149,21 @@ function buildMultiplicity(multiplicity: Multiplicity | undefined): geoforgeMult
 }
 
 function buildBuiltinType(type: BuiltinType): BuiltingeoforgeType {
+  const typeName = type.name ?? 'X';
   const geoforgeType: BuiltingeoforgeType = {
     elementType: 'builtinType',
-    name: [type.name],
+    name: [typeName],
     description: type.description,
-    tags: buildTags(type.tags),
-    mappings: type.mappings.map(mapping => ({
-      domain: string2Qname(mapping.domain),
-      target: string2Qname(mapping.target)
-    }))
+    tags: buildTags(type.tags)
   }
   return geoforgeType;
 }
 
-function buildDomainMappings(mappings: DomainMapping[]): geoforgeDomainMapping[] {
-  return mappings.map(mapping => ({
-      domain: string2Qname(mapping.domain),
-      target: string2Qname(mapping.target)
-  }));
-}
-
 function buildEnumType(type: EnumType): EnumgeoforgeType {
+  const typeName = type.name ?? 'X';
   const geoforgeType: EnumgeoforgeType = {
     elementType: 'enumType',
-    name: [type.name],
+    name: [typeName],
     description: type.description,
     tags: buildTags(type.tags),
     properties: type.properties.map(prop => ({
@@ -183,8 +172,7 @@ function buildEnumType(type: EnumType): EnumgeoforgeType {
       description: prop.description,
       tags: buildTags(prop.tags),
       value: prop.value?.value
-    })),
-    mappings: buildDomainMappings(type.mappings)
+    }))
   };
   return geoforgeType;
 }

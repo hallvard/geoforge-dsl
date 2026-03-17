@@ -54,6 +54,8 @@ export interface GeoForgePackage extends Namespace {
 }
 
 export interface GeoForgeType extends ModelElement {
+  // limit scope
+  owner?: QName;
 }
 
 export type CompositeTypeKind = 'datatype' | 'layer';
@@ -66,18 +68,18 @@ export interface CompositeType extends GeoForgeType {
   properties: CompositeTypeProperty[];
 }
 
-export type PropertyKind = 'id' | 'geometry' | 'association' | 'containment' | 'container';
+export type PropertyKind = 'id' | 'geometry' | 'containment' | 'container';
 
 export interface CompositeTypeProperty extends ModelElement {
   elementType: 'compositeTypeProperty';
-  kind: PropertyKind;
+  kind?: PropertyKind;
   type: TypeRef<GeoForgeType>;
   multiplicity: Multiplicity;
-  defaultValue?: string | number | Date | boolean;
+  defaultValue?: SimpleType;
 }
 
 export interface Ref<T extends ModelElement = ModelElement> {
-  qname: QName;
+  qName: QName;
   element: T | undefined;
 }
 
@@ -91,21 +93,22 @@ export interface Multiplicity {
 
 export interface BuiltinType extends GeoForgeType {
   elementType: 'builtinType';
-  mappings: DomainMapping[];
+  params?: BuiltinParam[];
 }
 
-export interface DomainMapping {
-  domain: QName;
-  target: QName;
+export type SimpleType = string | number | boolean;
+
+export interface BuiltinParam {
+  name: string;
+  value?: SimpleType;
 }
 
 export interface EnumType extends GeoForgeType {
   elementType: 'enumType';
   properties: EnumProperty[];
-  mappings: DomainMapping[];
 }
 
 export interface EnumProperty extends ModelElement {
   elementType: 'enumProperty';
-  value: string | number | undefined;
+  value?: SimpleType;
 }

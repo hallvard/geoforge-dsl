@@ -1,5 +1,5 @@
 import { expandToNode, Generated, GeneratorNode, joinToNode } from 'langium/generate';
-import { CompositeType, CompositeTypeProperty, isBuiltinType, isCompositeType, name, simpleName, GeoForgeModel, GeoForgeType } from 'geoforge-model/model';
+import { CompositeType, CompositeTypeProperty, isBuiltinType, isCompositeType, name, simpleName, GeoForgeModel, GeoForgeType } from './model.js';
 
 export type PlantumlGenerateOptions = {
     destination?: string;

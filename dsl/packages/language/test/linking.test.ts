@@ -27,10 +27,10 @@ describe('Linking tests', () => {
     document = await parse(`
             model ngu.nadag
 
-            builtin String as java String
-            builtin Timestamp as java long
-            builtin Posisjon as java geo.Geometry
-            builtin Areal as java geo.Geometry
+            builtin String
+            builtin Timestamp
+            builtin Posisjon
+            builtin Areal
 
             datatype Id {
               name: String

@@ -26,14 +26,14 @@ describe('Parsing tests', () => {
             ngu.nadag
             $version=1.0
 
-            builtin "Native String" string as java java.lang.String
-            builtin long as java long
+            builtin "Native String" string
+            builtin long
 
-            builtin Posisjon as java geo.Geometry
-            builtin Areal as java geo.Geometry
-            builtin DateTime as java java.time.LocalDateTime
-            builtin Date as java java.time.LocalDate
-            builtin UUID as java java.util.UUID
+            builtin Posisjon
+            builtin Areal
+            builtin DateTime
+            builtin Date
+            builtin UUID
 
             codelist Kode {
                 UKJENT = 0
@@ -69,7 +69,7 @@ describe('Parsing tests', () => {
               geometry "område" "Område": Areal
               status: Kode
               borehull*: layer GB extends StedfestetEntitet {
-                undersoekelser*: layer GBU extends StedfestetEntitet {
+                undersoekelser*: layer _ extends StedfestetEntitet {
                 }
               }
             }
