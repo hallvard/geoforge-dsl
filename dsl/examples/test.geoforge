@@ -2,11 +2,17 @@ model ngu.nadag
 
 import geoforge.lib
 
+codelist HoleType {
+  UNKNOWN = 0
+  DRILLED = 1
+}
+
 layer GeotekniskUnders {
   identity identifikasjon : Identifikasjon
   geometry område: Areal
   borehull*: layer GB {
     identity identifikasjon : Identifikasjon
+    holeType: HoleType
     opprettetDato: Date
     geometry posisjon: Posisjon
   }

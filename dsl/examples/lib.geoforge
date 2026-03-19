@@ -1,13 +1,13 @@
 package geoforge.lib
 
 builtin long
-builtin string
+builtin String
 builtin Date
 builtin Areal
 builtin Posisjon
 
 datatype Identifikasjon {
-  id : string
-  namespace? : string
+  id : String
+  namespace? : String
   version? : long
 }

@@ -24,6 +24,10 @@
         "./plantuml-generator": {
             "types": "./out/plantuml-generator.d.ts",
             "default": "./out/plantuml-generator.js"
+        },
+        "./java-generator": {
+            "types": "./out/java-generator.d.ts",
+            "default": "./out/java-generator.js"
         }
     },
     "typesVersions": {
@@ -33,6 +37,9 @@
             ],
             "plantuml-generator": [
                 "out/plantuml-generator"
+            ],
+            "java-generator": [
+                "out/java-generator"
             ]
         }
     },

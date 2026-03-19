@@ -6,6 +6,7 @@ import { GeoForgeLanguageMetaData } from 'geoforge-language';
 import { dslToModelAction } from './dsl-to-model.js';
 import { generatePlantumlAction } from './generator.js';
 import { modelToDslAction } from './model-to-dsl.js';
+import { modelToJavaAction } from './model-to-java.js';
 import { modelToPlantumlAction } from './model-to-plantuml.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -58,6 +59,14 @@ export default function(): void {
         .option('-d, --destination <dir>', 'destination directory of generating')
         .description('translates a GeoForge model JSON file to PlantUML')
         .action(modelToPlantumlAction);
+
+    program
+        .command('model-to-java')
+        .alias('model2java')
+        .argument('<file>', 'source model file in JSON format')
+        .option('-d, --destination <dir>', 'destination directory of generating')
+        .description('translates a GeoForge model JSON file to Java source code')
+        .action(modelToJavaAction);
 
     program.parse(process.argv);
 }

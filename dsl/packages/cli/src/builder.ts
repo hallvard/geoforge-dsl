@@ -21,6 +21,7 @@ import {
   isTypeDef,
   isTypeRef,
   isUuidValue,
+  isZeroOrMoreMultiplicity,
   isZeroOrOneMultiplicity,
   LiteralValue,
   Model,
@@ -191,11 +192,17 @@ function buildCompositeTypeProperty(prop: Property, context: BuilderContext): Co
 }
 
 function buildMultiplicity(multiplicity: Multiplicity | undefined): geoforgeMultiplicity {
-  var geoforgeMultiplicity = { lower: 0, upper: -1 };
+  var geoforgeMultiplicity = { lower: 1, upper: 1 };
+  if (isZeroOrMoreMultiplicity(multiplicity)) {
+    geoforgeMultiplicity.lower = 0;
+    geoforgeMultiplicity.upper = -1;
+  }
   if (isOneOrMoreMultiplicity(multiplicity)) {
     geoforgeMultiplicity.lower = 1;
+    geoforgeMultiplicity.upper = -1;
   }
   if (isZeroOrOneMultiplicity(multiplicity)) {
+    geoforgeMultiplicity.lower = 0;
     geoforgeMultiplicity.upper = 1;
   }
   if (isSomeMultiplicity(multiplicity)) {
