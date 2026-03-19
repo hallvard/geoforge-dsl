@@ -36,7 +36,15 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         await runGeoforgeCli(['model2plantuml', filePath], filePath);
     });
 
-    context.subscriptions.push(generatePlantumlCommand, dslToModelCommand, modelToPlantumlCommand);
+    const modelToJavaCommand = vscode.commands.registerCommand('geoforge.modelToJava', async () => {
+        const filePath = await pickModelJsonFile();
+        if (!filePath) {
+            return;
+        }
+        await runGeoforgeCli(['model2java', filePath], filePath);
+    });
+
+    context.subscriptions.push(generatePlantumlCommand, dslToModelCommand, modelToPlantumlCommand, modelToJavaCommand);
 }
 
 // This function is called when the extension is deactivated.

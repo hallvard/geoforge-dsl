@@ -46,13 +46,18 @@
             "command": "geoforge.modelToPlantuml",
             "title": "Model To PlantUML",
             "category": "geoforge"
+        }, {
+            "command": "geoforge.modelToJava",
+            "title": "Model To Java",
+            "category": "geoforge"
         }]
     },
     "activationEvents": [
         "onLanguage:geoforge",
         "onCommand:geoforge.generatePlantuml",
         "onCommand:geoforge.dslToModel",
-        "onCommand:geoforge.modelToPlantuml"
+        "onCommand:geoforge.modelToPlantuml",
+        "onCommand:geoforge.modelToJava"
     ],
     "main": "./out/extension/main.cjs",
     "scripts": {
