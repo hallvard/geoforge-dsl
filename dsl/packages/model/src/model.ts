@@ -12,8 +12,16 @@ export function isA(element: ModelElement, elementType: string): boolean {
   return element.elementType === elementType;
 }
 
+export function isDataType(element?: ModelElement): element is DataType {
+  return element !== undefined && isA(element, 'dataType');
+}
+
+export function isLayerType(element?: ModelElement): element is LayerType {
+  return element !== undefined && isA(element, 'layerType');
+}
+
 export function isCompositeType(element?: ModelElement): element is CompositeType {
-  return element !== undefined && isA(element, 'compositeType');
+  return isDataType(element) || isLayerType(element);
 }
 
 export function isBuiltinType(element?: ModelElement): element is BuiltinType {
@@ -58,14 +66,19 @@ export interface GeoForgeType extends ModelElement {
   owner?: QName;
 }
 
-export type CompositeTypeKind = 'datatype' | 'layer';
-
 export interface CompositeType extends GeoForgeType {
   elementType: 'compositeType';
   isAbstract: boolean;
-  kind: CompositeTypeKind;
   superType?: TypeRef<CompositeType>;
   properties: CompositeTypeProperty[];
+}
+
+export interface DataType extends GeoForgeType {
+  elementType: 'dataType';
+}
+
+export interface LayerType extends GeoForgeType {
+  elementType: 'layerType';
 }
 
 export type PropertyKind = 'id' | 'geometry' | 'containment' | 'container';
