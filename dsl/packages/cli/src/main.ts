@@ -3,7 +3,10 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import { GeoForgeLanguageMetaData } from 'geoforge-language';
+import { dslToModelAction } from './dsl-to-model.js';
 import { generatePlantumlAction } from './generator.js';
+import { modelToDslAction } from './model-to-dsl.js';
+import { modelToPlantumlAction } from './model-to-plantuml.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const packagePath = path.resolve(__dirname, '..', 'package.json');
@@ -32,6 +35,29 @@ export default function(): void {
         .option('-d, --destination <dir>', 'destination directory of generating')
         .description('generates Plantuml code corresponding to the types in our specification')
         .action(generatePlantumlAction);
+
+    program
+        .command('dsl-to-model')
+        .alias('dsl2model')
+        .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
+        .option('-d, --destination <dir>', 'destination directory of generating')
+        .description('translates a DSL file to GeoForge model JSON')
+        .action(dslToModelAction);
+
+    program
+        .command('model2dsl')
+        .argument('<file>', 'source model file in JSON format')
+        .option('-d, --destination <dir>', 'destination directory of generating')
+        .description('translates a GeoForge model JSON file to DSL text')
+        .action(modelToDslAction);
+
+    program
+        .command('model-to-plantuml')
+        .alias('model2plantuml')
+        .argument('<file>', 'source model file in JSON format')
+        .option('-d, --destination <dir>', 'destination directory of generating')
+        .description('translates a GeoForge model JSON file to PlantUML')
+        .action(modelToPlantumlAction);
 
     program.parse(process.argv);
 }

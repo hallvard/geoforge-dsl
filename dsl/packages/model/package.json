@@ -20,12 +20,19 @@
         "./model": {
             "types": "./out/model.d.ts",
             "default": "./out/model.js"
+        },
+        "./plantuml-generator": {
+            "types": "./out/plantuml-generator.d.ts",
+            "default": "./out/plantuml-generator.js"
         }
     },
     "typesVersions": {
         "*": {
             "model": [
                 "out/model"
+            ],
+            "plantuml-generator": [
+                "out/plantuml-generator"
             ]
         }
     },

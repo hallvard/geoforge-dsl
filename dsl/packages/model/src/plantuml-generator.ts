@@ -1,5 +1,5 @@
 import { expandToNode, Generated, GeneratorNode, joinToNode } from 'langium/generate';
-import { CompositeType, CompositeTypeProperty, isBuiltinType, isCompositeType, name, simpleName, GeoForgeModel, GeoForgeType } from './model.js';
+import { CompositeType, CompositeTypeProperty, GeoForgeModel, GeoForgeType, isBuiltinType, isCompositeType, isDataType, isLayerType, name, simpleName } from './model.js';
 
 export type PlantumlGenerateOptions = {
     destination?: string;
@@ -42,7 +42,7 @@ function addTypes(type: GeoForgeType, allTypes: Map<string, GeoForgeType>): void
 
 interface PlantumlClass {
   name: string;
-  isAbstract: boolean;
+  abstract: boolean;
   stereotype?: string;
   properties: PlantumlProperty[];
 }
@@ -64,8 +64,8 @@ function plantumlClassForType(type: GeoForgeType): PlantumlClass | undefined {
   if (isCompositeType(type)) {
     return {
       name: simpleName(type),
-      isAbstract: type.isAbstract,
-      stereotype: isCompositeType(type) ? type.kind : undefined,
+      abstract: type.abstract,
+      stereotype: isDataType(type) ? 'datatype' : 'layer',
       properties: type.properties
           .map(plantumlPropertyForProperty)
           .filter(p => p !== undefined) as PlantumlProperty[],
@@ -76,7 +76,7 @@ function plantumlClassForType(type: GeoForgeType): PlantumlClass | undefined {
 
 function plantumlPropertyForProperty(prop: CompositeTypeProperty): PlantumlProperty | undefined {
   const propType = prop.type.element;
-  if (isBuiltinType(propType) || (isCompositeType(propType) && 'datatype' == propType.kind)) {
+  if (isBuiltinType(propType) || isDataType(propType)) {
     return {
       name: simpleName(prop),
       type: simpleName(prop.type.element!)
@@ -96,7 +96,7 @@ function plantumRelationsForType(type: GeoForgeType): PlantumlRelation[] | undef
 
 function plantumlRelationForProperty(prop: CompositeTypeProperty, owner: CompositeType): PlantumlRelation | undefined {
   const propType = prop.type.element;
-  if (isCompositeType(propType) && 'datatype' !== propType.kind) {
+  if (isLayerType(propType)) {
     return {
       source: simpleName(owner),
       sourceLabel: undefined,

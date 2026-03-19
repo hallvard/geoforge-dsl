@@ -1,36 +1,42 @@
 import * as path from 'node:path';
-import { generatePlantumlAction } from 'geoforge-cli/generator';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import * as vscode from 'vscode';
 import type { LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node.js';
 import { LanguageClient, TransportKind } from 'vscode-languageclient/node.js';
 
 let client: LanguageClient;
+const execFileAsync = promisify(execFile);
 
 // This function is called when the extension is activated.
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     client = await startLanguageClient(context);
     
-    // Register PlantUML generation command
     const generatePlantumlCommand = vscode.commands.registerCommand('geoforge.generatePlantuml', async () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor || editor.document.languageId !== 'geoforge') {
-            vscode.window.showErrorMessage('Please open a .geoforge file');
+        const filePath = await pickGeoforgeFile();
+        if (!filePath) {
             return;
         }
-
-        const filePath = editor.document.uri.fsPath;
-        const workspaceFolder = vscode.workspace.getWorkspaceFolder(editor.document.uri);
-        const destination = workspaceFolder?.uri.fsPath;
-                
-        try {
-            await generatePlantumlAction(filePath, { destination });
-            vscode.window.showInformationMessage(`PlantUML generated to ${destination}`);
-        } catch (error) {
-            vscode.window.showErrorMessage(`Failed to generate PlantUML: ${error}`);
-        }
+        await runGeoforgeCli(['plantuml', filePath], filePath);
     });
-    
-    context.subscriptions.push(generatePlantumlCommand);
+
+    const dslToModelCommand = vscode.commands.registerCommand('geoforge.dslToModel', async () => {
+        const filePath = await pickGeoforgeFile();
+        if (!filePath) {
+            return;
+        }
+        await runGeoforgeCli(['dsl2model', filePath], filePath);
+    });
+
+    const modelToPlantumlCommand = vscode.commands.registerCommand('geoforge.modelToPlantuml', async () => {
+        const filePath = await pickModelJsonFile();
+        if (!filePath) {
+            return;
+        }
+        await runGeoforgeCli(['model2plantuml', filePath], filePath);
+    });
+
+    context.subscriptions.push(generatePlantumlCommand, dslToModelCommand, modelToPlantumlCommand);
 }
 
 // This function is called when the extension is deactivated.
@@ -71,4 +77,70 @@ async function startLanguageClient(context: vscode.ExtensionContext): Promise<La
     // Start the client. This will also launch the server
     await client.start();
     return client;
+}
+
+async function runGeoforgeCli(args: string[], sourceFilePath: string): Promise<void> {
+    const workspaceRoot = getWorkspaceRoot(sourceFilePath);
+    if (!workspaceRoot) {
+        vscode.window.showErrorMessage('No workspace folder found for the selected file.');
+        return;
+    }
+
+    const cliPath = path.join(workspaceRoot, 'packages', 'cli', 'bin', 'cli.js');
+    try {
+        const { stdout, stderr } = await execFileAsync(process.execPath, [cliPath, ...args], {
+            cwd: workspaceRoot
+        });
+        const message = stdout.trim() || 'GeoForge command finished.';
+        if (stderr.trim()) {
+            vscode.window.showWarningMessage(`${message}\n${stderr.trim()}`);
+        } else {
+            vscode.window.showInformationMessage(message);
+        }
+    } catch (error) {
+        const err = error as { message?: string; stdout?: string; stderr?: string };
+        const details = [err.stderr, err.stdout, err.message].filter(Boolean).join('\n');
+        vscode.window.showErrorMessage(`GeoForge command failed. ${details}`);
+    }
+}
+
+function getWorkspaceRoot(filePath: string): string | undefined {
+    const uri = vscode.Uri.file(filePath);
+    const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
+    if (workspaceFolder) {
+        return workspaceFolder.uri.fsPath;
+    }
+    return vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+}
+
+async function pickGeoforgeFile(): Promise<string | undefined> {
+    const editor = vscode.window.activeTextEditor;
+    if (editor?.document.languageId === 'geoforge') {
+        return editor.document.uri.fsPath;
+    }
+
+    const selected = await vscode.window.showOpenDialog({
+        canSelectMany: false,
+        filters: {
+            'GeoForge files': ['geoforge']
+        },
+        openLabel: 'Select GeoForge file'
+    });
+    return selected?.[0]?.fsPath;
+}
+
+async function pickModelJsonFile(): Promise<string | undefined> {
+    const editor = vscode.window.activeTextEditor;
+    if (editor && editor.document.uri.fsPath.endsWith('.geoforge.json')) {
+        return editor.document.uri.fsPath;
+    }
+
+    const selected = await vscode.window.showOpenDialog({
+        canSelectMany: false,
+        filters: {
+            'GeoForge model files': ['json']
+        },
+        openLabel: 'Select GeoForge model JSON'
+    });
+    return selected?.[0]?.fsPath;
 }

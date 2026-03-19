@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, test } from "vitest";
 import { EmptyFileSystem, type LangiumDocument } from "langium";
 import { expandToString as s } from "langium/generate";
 import { parseHelper } from "langium/test";
-// import type { Diagnostic } from "vscode-languageserver-types";
+import type { Diagnostic } from "vscode-languageserver-types";
 import type { Model } from "geoforge-language";
 import { creategeoforgeServices, isModel } from "geoforge-language";
 
@@ -51,9 +51,33 @@ describe('Validating', () => {
             //  'checkDocumentValid()' to sort out (critical) typos first,
             // and then evaluate the diagnostics by converting them into human readable strings;
             // note that 'toHaveLength()' works for arrays and strings alike ;-)
-            checkDocumentValid(document)
+          checkDocumentValid(document) || document?.diagnostics?.map(diagnosticToString)?.join('\n') || undefined
         ).toBeUndefined();
     });
+
+      test('reject cross-kind supertype', async () => {
+        document = await parse(`
+          model ngu.nadag
+
+          datatype BaseData {}
+          layer BadLayer extends BaseData {}
+        `);
+
+        const errors = (document.diagnostics ?? []).filter(d => d.severity === 1);
+        expect(errors.some(d => d.message.includes('cannot extend'))).toBe(true);
+      });
+
+      test('allow same-kind supertype', async () => {
+        document = await parse(`
+          model ngu.nadag
+
+          layer BaseLayer {}
+          layer GoodLayer extends BaseLayer {}
+        `);
+
+        const errors = (document.diagnostics ?? []).filter(d => d.severity === 1);
+        expect(errors).toHaveLength(0);
+      });
 });
 
 function checkDocumentValid(document: LangiumDocument): string | undefined {
@@ -66,6 +90,6 @@ function checkDocumentValid(document: LangiumDocument): string | undefined {
         || undefined;
 }
 
-// function diagnosticToString(d: Diagnostic) {
-//     return `[${d.range.start.line}:${d.range.start.character}..${d.range.end.line}:${d.range.end.character}]: ${d.message}`;
-// }
+    function diagnosticToString(d: Diagnostic) {
+      return `[${d.range.start.line}:${d.range.start.character}..${d.range.end.line}:${d.range.end.character}]: ${d.message}`;
+    }

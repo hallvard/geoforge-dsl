@@ -1,13 +1,45 @@
-import { BuiltinType, CompositeType, EnumType, isBuiltinType, isCompositeType, isEnumType, isNamespace, isOneOrMoreMultiplicity, isSomeMultiplicity, isTypeDef, isTypeRef, isZeroOrOneMultiplicity, Model, Multiplicity, Property, Tag, TypeDef } from "geoforge-language";
-import { propertyName } from "geoforge-language/geoforge-utils";
+import {
+  BuiltinParamValue,
+  BuiltinType,
+  CompositeType,
+  EnumType,
+  EnumValue,
+  isBuiltinType,
+  isCompositeType,
+  isDateTimeValue,
+  isDateValue,
+  isDecimalValue,
+  isEnumType,
+  isIntValue,
+  isModel,
+  isNameValue,
+  isOneOrMoreMultiplicity,
+  isPackage,
+  isSomeMultiplicity,
+  isStringValue,
+  isTimeValue,
+  isTypeDef,
+  isTypeRef,
+  isUuidValue,
+  isZeroOrOneMultiplicity,
+  LiteralValue,
+  Model,
+  Multiplicity,
+  Property,
+  Tag,
+  TypeDef
+} from "geoforge-language";
+import { propertyName, typeName } from "geoforge-language/geoforge-utils";
 import {
   BuiltinType as BuiltingeoforgeType,
   CompositeType as CompositegeoforgeType,
   CompositeTypeProperty,
-  CodeListType as EnumgeoforgeType,
+  CodeListType as CodeListgeoforgeType,
   isCompositeType as isCompositegeoforgeType,
   nameString,
   PropertyKind,
+  SimpleType,
+  BuiltinParam as geoforgeBuiltinParam,
   Multiplicity as geoforgeMultiplicity,
   GeoForgeModel,
   Tag as geoforgeTag,
@@ -19,22 +51,26 @@ interface BuilderContext {
 }
 
 function typeQname(type: TypeDef): string[] {
-  var parent = type.$container;
-  while (! isNamespace(parent)) {
-    parent = parent.$container.$container;
+  let parent: unknown = type.$container;
+  while (parent && !isModel(parent) && !isPackage(parent)) {
+    parent = (parent as { $container?: unknown }).$container;
   }
-  return [parent.name, type.name ?? 'X'];
+  const localTypeName = typeName(type);
+  if (parent && (isModel(parent) || isPackage(parent))) {
+    return [...string2Qname(parent.name), localTypeName];
+  }
+  return [localTypeName];
 }
 
 export function buildModel(model: Model): GeoForgeModel {
-  const typeMap = new Map<string, GeoForgeType>();
+  const context: BuilderContext = { typeMap: new Map<string, GeoForgeType>() };
   return {
-    elementType: 'model',
+    entityType: 'model',
     name: string2Qname(model.name),
     title: model.title,
     description: model.description,
     tags: buildTags(model.tags),
-    types: model.types.map(type => buildType(type, { typeMap }))
+    types: model.types.map(type => buildReferencedType(type, context))
   };
 }
 
@@ -44,27 +80,36 @@ function string2Qname(str: string): string[] {
 
 function buildTags(tags: Tag[]): geoforgeTag[] {
   return tags.map(tag => ({
-    name: string2Qname(tag.name),
-    value: tag.value ? tag.value.value : true
+    name: tag.name,
+    value: tag.value ? buildSimpleValue(tag.value) : true
   }));
 }
 
 function buildType(type: TypeDef, context: BuilderContext): GeoForgeType {
-  console.log("Processing type: " + nameString(typeQname(type)));
+  const qName = typeQname(type);
+  const qnameString = nameString(qName);
+  const existing = context.typeMap.get(qnameString);
+  if (existing) {
+    return existing;
+  }
+
   if (isBuiltinType(type)) {
-    return buildBuiltinType(type);
+    const geoforgeType = buildBuiltinType(type, qName);
+    context.typeMap.set(qnameString, geoforgeType);
+    return geoforgeType;
   } else if (isEnumType(type)) {
-    return buildEnumType(type);
+    const geoforgeType = buildEnumType(type, qName);
+    context.typeMap.set(qnameString, geoforgeType);
+    return geoforgeType;
   } else if (isCompositeType(type)) {
     return buildCompositeType(type, context);
   }
   throw new Error("Unsupported type: " + type);
 }
 
-function buildReferencedType<T extends TypeDef>(type: TypeDef, context: BuilderContext): GeoForgeType {
+function buildReferencedType(type: TypeDef, context: BuilderContext): GeoForgeType {
   const qnameString = nameString(typeQname(type));
-  console.log("Processing referenced type: " + qnameString);
-  if (! context.typeMap.has(qnameString)) {
+  if (!context.typeMap.has(qnameString)) {
     const geoforgeType = buildType(type, context);
     context.typeMap.set(qnameString, geoforgeType);
   }
@@ -72,63 +117,77 @@ function buildReferencedType<T extends TypeDef>(type: TypeDef, context: BuilderC
 }
 
 function buildCompositeType(type: CompositeType, context: BuilderContext): CompositegeoforgeType {
-  let superType = undefined;
-  if (type.extends && isTypeDef(type.extends.ref)) {
-    const geoforgeType = buildReferencedType(type.extends.ref, context);
-    if (isCompositegeoforgeType(geoforgeType)) {
-      superType = geoforgeType;
-    }
+  const typeQName = typeQname(type);
+  const typeQNameString = nameString(typeQName);
+  const existing = context.typeMap.get(typeQNameString);
+  if (existing && isCompositegeoforgeType(existing)) {
+    return existing;
   }
-  const typeName = type.name ?? 'X';
+
   const compositeType: CompositegeoforgeType = {
-    elementType: 'compositeType',
-    name: string2Qname(typeName),
+    entityType: type.kind === 'datatype' ? 'dataType' : 'layerType',
+    name: typeQName,
     title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
-    isAbstract: type.isAbstract ?? false,
-    kind: type.kind ?? 'layer',
-    superType: superType ? {
-      qName: superType.name,
-      element: superType
-    } : undefined,
-    properties: type.properties.map(prop => buildCompositeTypeProperty(prop, context))
+    abstract: type.isAbstract ?? false,
+    superType: undefined,
+    properties: []
   };
-  context.typeMap.set(typeName, compositeType);
+  context.typeMap.set(typeQNameString, compositeType);
+
+  if (type.extends && isTypeDef(type.extends.ref)) {
+    const geoforgeType = buildReferencedType(type.extends.ref, context);
+    if (isCompositegeoforgeType(geoforgeType)) {
+      compositeType.superType = {
+        qName: geoforgeType.name,
+        element: geoforgeType
+      };
+    }
+  }
+
+  compositeType.properties = type.properties.map(prop => buildCompositeTypeProperty(prop, context));
   return compositeType;
 }
 
 function buildCompositeTypeProperty(prop: Property, context: BuilderContext): CompositeTypeProperty {
-  console.log("...processing property: " + propertyName(prop));
-  var propType: GeoForgeType | null = null;
+  let propType: GeoForgeType | null = null;
   if (isTypeRef(prop.type)) {
     if (isTypeDef(prop.type.typeRef.ref)) {
       propType = buildReferencedType(prop.type.typeRef.ref, context);
     }
   } else if (isTypeDef(prop.type)) {
-    propType = buildType(prop.type, context);
+    propType = buildReferencedType(prop.type, context);
   }
-  var kind: PropertyKind = 'containment';
+  if (!propType) {
+    throw new Error(`Property '${propertyName(prop)}' has an unresolved type.`);
+  }
+
+  let kind: PropertyKind = 'containment';
   if (prop.kind == 'geometry') {
     kind = 'geometry';
   } else if (prop.kind == 'identity') {
     kind = 'id';
   } else if (prop.kind == 'parent') {
     kind = 'container';
+  } else if (prop.kind == 'child') {
+    kind = 'containment';
   }
+
   return {
-    elementType: 'compositeTypeProperty',
+    entityType: 'compositeTypeProperty',
     name: string2Qname(prop.name),
+    title: prop.title,
     description: prop.description,
     tags: buildTags(prop.tags),
-    kind: kind,
+    kind,
     type: {
-      qName: propType!.name,
-      element: propType!
+      qName: propType.name,
+      element: propType
     },
-    multiplicity: buildMultiplicity(prop.multiplicity)
+    multiplicity: buildMultiplicity(prop.multiplicity),
+    defaultValue: buildSimpleValue(prop.defaultValue)
   };
-  throw new Error("Unsupported property: " + prop);
 }
 
 function buildMultiplicity(multiplicity: Multiplicity | undefined): geoforgeMultiplicity {
@@ -141,38 +200,63 @@ function buildMultiplicity(multiplicity: Multiplicity | undefined): geoforgeMult
   }
   if (isSomeMultiplicity(multiplicity)) {
     geoforgeMultiplicity.lower = multiplicity.lower;
-    if (multiplicity.upper) {
+    if (multiplicity.upper !== undefined) {
       geoforgeMultiplicity.upper = multiplicity.upper;
     }
   }
   return geoforgeMultiplicity;
 }
 
-function buildBuiltinType(type: BuiltinType): BuiltingeoforgeType {
-  const typeName = type.name ?? 'X';
+function buildBuiltinType(type: BuiltinType, qName: string[]): BuiltingeoforgeType {
   const geoforgeType: BuiltingeoforgeType = {
-    elementType: 'builtinType',
-    name: [typeName],
+    entityType: 'builtinType',
+    name: qName,
+    title: type.title,
     description: type.description,
-    tags: buildTags(type.tags)
-  }
+    tags: buildTags(type.tags),
+    params: type.params.map(buildBuiltinParam)
+  };
   return geoforgeType;
 }
 
-function buildEnumType(type: EnumType): EnumgeoforgeType {
-  const typeName = type.name ?? 'X';
-  const geoforgeType: EnumgeoforgeType = {
-    elementType: 'enumType',
-    name: [typeName],
+function buildBuiltinParam(param: { name: string; value?: BuiltinParamValue }): geoforgeBuiltinParam {
+  return {
+    name: param.name,
+    value: buildSimpleValue(param.value)
+  };
+}
+
+function buildEnumType(type: EnumType, qName: string[]): CodeListgeoforgeType {
+  const geoforgeType: CodeListgeoforgeType = {
+    entityType: 'codeListType',
+    name: qName,
+    title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
-    properties: type.properties.map(prop => ({
-      elementType: 'enumProperty',
+    items: type.properties.map(prop => ({
+      entityType: 'codeListItem',
       name: [prop.name],
+      title: prop.title,
       description: prop.description,
       tags: buildTags(prop.tags),
-      value: prop.value?.value
+      value: buildSimpleValue(prop.value)?.toString()
     }))
   };
   return geoforgeType;
+}
+
+function buildSimpleValue(value?: LiteralValue | EnumValue | BuiltinParamValue): SimpleType | undefined {
+  if (!value) {
+    return undefined;
+  }
+  if (isStringValue(value) || isNameValue(value) || isUuidValue(value)) {
+    return value.value;
+  }
+  if (isIntValue(value) || isDecimalValue(value)) {
+    return value.value;
+  }
+  if (isDateValue(value) || isTimeValue(value) || isDateTimeValue(value)) {
+    return value.value.toISOString();
+  }
+  return undefined;
 }

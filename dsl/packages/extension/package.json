@@ -38,10 +38,21 @@
             "command": "geoforge.generatePlantuml",
             "title": "Generate PlantUML",
             "category": "geoforge"
+        }, {
+            "command": "geoforge.dslToModel",
+            "title": "DSL To Model",
+            "category": "geoforge"
+        }, {
+            "command": "geoforge.modelToPlantuml",
+            "title": "Model To PlantUML",
+            "category": "geoforge"
         }]
     },
     "activationEvents": [
-        "onLanguage:geoforge"
+        "onLanguage:geoforge",
+        "onCommand:geoforge.generatePlantuml",
+        "onCommand:geoforge.dslToModel",
+        "onCommand:geoforge.modelToPlantuml"
     ],
     "main": "./out/extension/main.cjs",
     "scripts": {

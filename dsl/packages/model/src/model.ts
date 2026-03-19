@@ -1,15 +1,15 @@
 export type QName = string[];
 
 interface ModelElement {
-  elementType: string;
+  entityType: string;
   name: QName;
   title?: string;
   description?: string;
   tags: Tag[];
 }
 
-export function isA(element: ModelElement, elementType: string): boolean {
-  return element.elementType === elementType;
+export function isA(element: ModelElement, entityType: string): boolean {
+  return element.entityType === entityType;
 }
 
 export function isDataType(element?: ModelElement): element is DataType {
@@ -45,8 +45,8 @@ export function simpleName(modelElement: ModelElement): string {
 }
 
 export interface Tag {
-  name: QName;
-  value?: string | Date | number | boolean;
+  name: string;
+  value?: SimpleType;
 }
 
 interface Namespace extends ModelElement {
@@ -54,11 +54,11 @@ interface Namespace extends ModelElement {
 }
 
 export interface GeoForgeModel extends Namespace {
-  elementType: 'model';
+  entityType: 'model';
 }
 
 export interface GeoForgePackage extends Namespace {
-  elementType: 'package';
+  entityType: 'package';
 }
 
 export interface GeoForgeType extends ModelElement {
@@ -66,25 +66,25 @@ export interface GeoForgeType extends ModelElement {
   owner?: QName;
 }
 
-export interface CompositeType extends GeoForgeType {
-  elementType: 'compositeType';
-  isAbstract: boolean;
-  superType?: TypeRef<CompositeType>;
+export interface CompositeType<TSuper extends CompositeType<any> = CompositeType<any>> extends GeoForgeType {
+  entityType: 'dataType' | 'layerType';
+  abstract: boolean;
+  superType?: TypeRef<TSuper>;
   properties: CompositeTypeProperty[];
 }
 
-export interface DataType extends GeoForgeType {
-  elementType: 'dataType';
+export interface DataType extends CompositeType<DataType> {
+  entityType: 'dataType';
 }
 
-export interface LayerType extends GeoForgeType {
-  elementType: 'layerType';
+export interface LayerType extends CompositeType<LayerType> {
+  entityType: 'layerType';
 }
 
 export type PropertyKind = 'id' | 'geometry' | 'containment' | 'container';
 
 export interface CompositeTypeProperty extends ModelElement {
-  elementType: 'compositeTypeProperty';
+  entityType: 'compositeTypeProperty';
   kind?: PropertyKind;
   type: TypeRef<GeoForgeType>;
   multiplicity: Multiplicity;
@@ -105,7 +105,7 @@ export interface Multiplicity {
 }
 
 export interface BuiltinType extends GeoForgeType {
-  elementType: 'builtinType';
+  entityType: 'builtinType';
   params?: BuiltinParam[];
 }
 
@@ -117,11 +117,11 @@ export interface BuiltinParam {
 }
 
 export interface CodeListType extends GeoForgeType {
-  elementType: 'codeListType';
-  properties: CodeListItem[];
+  entityType: 'codeListType';
+  items: CodeListItem[];
 }
 
 export interface CodeListItem extends ModelElement {
-  elementType: 'codeListItem';
-  value?: SimpleType;
+  entityType: 'codeListItem';
+  value?: string;
 }
