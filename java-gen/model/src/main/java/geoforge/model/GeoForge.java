@@ -29,12 +29,16 @@ public class GeoForge {
 
   public record ModelElementInfo(QName name, String title, String description, List<Tag> tags) {
 
+    public ModelElementInfo(List<String> name, String title, String description) {
+      this(new QName(name), title, description, new ArrayList<>());
+    }
+    
     public ModelElementInfo(String name, String title, String description) {
       this(new QName(name), title, description, new ArrayList<>());
     }
 
-    public ModelElementInfo(List<String> name, String title, String description) {
-      this(new QName(name), title, description, new ArrayList<>());
+    public ModelElementInfo(String name) {
+      this(new QName(name), null, null, new ArrayList<>());
     }
 
     public String nameString() {
@@ -232,7 +236,8 @@ public class GeoForge {
 
   @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "entityType")
   @JsonSubTypes({
-    @JsonSubTypes.Type(value = CompositeType.class, name = "compositeType"),
+    @JsonSubTypes.Type(value = DataType.class, name = "dataType"),
+    @JsonSubTypes.Type(value = LayerType.class, name = "layerType"),
     @JsonSubTypes.Type(value = EnumType.class, name = "enumType"),
     @JsonSubTypes.Type(value = BuiltinType.class, name = "builtinType"),
   })
@@ -283,53 +288,32 @@ public class GeoForge {
       super(nameString);
     }
   }
-
-  public enum CompositeTypeKind {
-    DATATYPE, LAYER
-  }
   
-  public static class CompositeType extends GeoForgeType {
+  public static abstract class CompositeType<T extends CompositeType<T>> extends GeoForgeType {
 
     private boolean isAbstract;
-    private CompositeTypeKind kind;
-    private TypeRef<? extends GeoForgeType> superType;
+    private TypeRef<? extends T> superType;
     private final List<CompositeTypeProperty> properties;
     
-    public CompositeType(ModelElementInfo info, boolean isAbstract, CompositeTypeKind kind,
-        TypeRef<GeoForgeType> superType, List<CompositeTypeProperty> properties) {
+    protected CompositeType(ModelElementInfo info, boolean isAbstract, TypeRef<? extends T> superType,
+        List<CompositeTypeProperty> properties) {
       super(info);
       this.isAbstract = isAbstract;
-      this.kind = kind;
       this.superType = superType;
       this.properties = new ArrayList<>(properties);
     }
 
-    @JsonCreator
-    public static CompositeType of(
-        @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
-        @JsonProperty("description") String description,
-        @JsonProperty("tags") List<Tag> tags,
-        @JsonProperty("abstract") boolean isAbstract,
-        @JsonProperty("kind") CompositeTypeKind kind,
-        @JsonProperty("superType") TypeRef<GeoForgeType> superType,
-        @JsonProperty("properties") List<CompositeTypeProperty> properties
-    ) {
-      var compositeType = new CompositeType(new ModelElementInfo(name, title, description), isAbstract, kind, superType, properties);
-      compositeType.tags().addAll(tags);
-      return compositeType;
+    protected CompositeType(String name, boolean isAbstract, TypeRef<? extends T> superType,
+        List<CompositeTypeProperty> properties) {
+      this(new ModelElementInfo(name), isAbstract, superType, properties);
     }
 
     public boolean isAbstract() {
       return isAbstract;
     }
 
-    public CompositeTypeKind kind() {
-      return kind;
-    }
-
     @JsonProperty("superType")
-    public TypeRef<? extends GeoForgeType> superType() {
+    public TypeRef<? extends T> superType() {
       return superType;
     }
 
@@ -339,19 +323,80 @@ public class GeoForge {
     }
   }
 
+  public static class DataType extends CompositeType<DataType> {
+
+    public DataType(ModelElementInfo info, boolean isAbstract, TypeRef<DataType> superType, List<CompositeTypeProperty> properties) {
+      super(info, isAbstract, superType, properties);
+    }
+
+    public DataType(String name, boolean isAbstract, TypeRef<DataType> superType, List<CompositeTypeProperty> properties) {
+      this(new ModelElementInfo(name), isAbstract, superType, properties);
+    }
+
+    @JsonCreator
+    public static DataType of(
+        @JsonProperty("name") List<String> name,
+        @JsonProperty("title") String title,
+        @JsonProperty("description") String description,
+        @JsonProperty("tags") List<Tag> tags,
+        @JsonProperty("abstract") boolean isAbstract,
+        @JsonProperty("superType") TypeRef<DataType> superType,
+        @JsonProperty("properties") List<CompositeTypeProperty> properties
+    ) {
+      var compositeType = new DataType(new ModelElementInfo(name, title, description), isAbstract, superType, properties);
+      compositeType.tags().addAll(tags);
+      return compositeType;
+    }
+  }
+
+  public static class LayerType extends CompositeType<LayerType> {
+
+    public LayerType(ModelElementInfo info, boolean isAbstract, TypeRef<LayerType> superType, List<CompositeTypeProperty> properties) {
+      super(info, isAbstract, superType, properties);
+    }
+
+    public LayerType(String name, boolean isAbstract, TypeRef<LayerType> superType, List<CompositeTypeProperty> properties) {
+      this(new ModelElementInfo(name), isAbstract, superType, properties);
+    }
+
+    @JsonCreator
+    public static LayerType of(
+        @JsonProperty("name") List<String> name,
+        @JsonProperty("title") String title,
+        @JsonProperty("description") String description,
+        @JsonProperty("tags") List<Tag> tags,
+        @JsonProperty("abstract") boolean isAbstract,
+        @JsonProperty("superType") TypeRef<LayerType> superType,
+        @JsonProperty("properties") List<CompositeTypeProperty> properties
+    ) {
+      var compositeType = new LayerType(new ModelElementInfo(name, title, description), isAbstract, superType, properties);
+      compositeType.tags().addAll(tags);
+      return compositeType;
+    }
+  }
+
   public static class CompositeTypeProperty extends ModelElement {
 
-    private CompositeTypePropertyKind kind;
+  public enum Kind {
+    ID, GEOMETRY, CONTAINMENT, CONTAINER
+  }
+
+
+    private Kind kind;
     private TypeRef<GeoForgeType> type;
     private Multiplicity multiplicity;
     private SimpleValue defaultValue;
   
-    public CompositeTypeProperty(ModelElementInfo info, CompositeTypePropertyKind kind, TypeRef<GeoForgeType> type, Multiplicity multiplicity, SimpleValue defaultValue) {
+    public CompositeTypeProperty(ModelElementInfo info, Kind kind, TypeRef<GeoForgeType> type, Multiplicity multiplicity, SimpleValue defaultValue) {
       super(info);
       this.kind = kind;
       this.type = type;
       this.multiplicity = multiplicity;
       this.defaultValue = defaultValue;
+    }
+
+    public CompositeTypeProperty(String name, Kind kind, TypeRef<GeoForgeType> type, Multiplicity multiplicity, SimpleValue defaultValue) {
+      this(new ModelElementInfo(name), kind, type, multiplicity, defaultValue);
     }
 
     @JsonCreator
@@ -360,7 +405,7 @@ public class GeoForge {
         @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
-        @JsonProperty("kind") CompositeTypePropertyKind kind,
+        @JsonProperty("kind") Kind kind,
         @JsonProperty("type") TypeRef<GeoForgeType> type,
         @JsonProperty("multiplicity") Multiplicity multiplicity,
         @JsonProperty("defaultValue") String defaultValue
@@ -371,7 +416,7 @@ public class GeoForge {
     }
 
     @JsonProperty("kind")
-    public CompositeTypePropertyKind kind() {
+    public Kind kind() {
       return kind;
     }
     
@@ -391,10 +436,6 @@ public class GeoForge {
     }
   }
 
-  public enum CompositeTypePropertyKind {
-    ID, GEOMETRY, CONTAINMENT, CONTAINER
-  }
-
   public record Multiplicity(int lower, int upper) {
 
     public static final Multiplicity ZERO_OR_ONE = new Multiplicity(0, 1);
@@ -412,8 +453,16 @@ public class GeoForge {
       this.params = Collections.unmodifiableList(params);
     }
 
+    public BuiltinType(String name, List<BuiltinParam> params) {
+      this(new ModelElementInfo(name), params);
+    }
+
     public BuiltinType(ModelElementInfo info) {
       this(info, Collections.emptyList());
+    }
+
+    public BuiltinType(String name) {
+      this(new ModelElementInfo(name));
     }
 
     @JsonCreator
@@ -447,6 +496,10 @@ public class GeoForge {
     public EnumType(ModelElementInfo info, List<EnumProperty> properties) {
       super(info);
       this.properties = Collections.unmodifiableList(properties);
+    }
+
+    public EnumType(String name, List<EnumProperty> properties) {
+      this(new ModelElementInfo(name), properties);
     }
 
     @JsonCreator

@@ -4,8 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import geoforge.model.GeoForge.BuiltinType;
+import geoforge.model.GeoForge.CompositeTypeProperty;
+import geoforge.model.GeoForge.DataType;
+import geoforge.model.GeoForge.EnumType;
+import geoforge.model.GeoForge.EnumProperty;
+import geoforge.model.GeoForge.GeoForgeType;
+import geoforge.model.GeoForge.LayerType;
 import geoforge.model.GeoForge.Model;
-import java.util.ArrayList;
+import geoforge.model.GeoForge.ModelElementInfo;
+import geoforge.model.GeoForge.Multiplicity;
+import geoforge.model.GeoForge.Tag;
+import geoforge.model.GeoForge.TypeRef;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -13,47 +23,66 @@ public class GeoForgeTest {
   
   private ObjectMapper objectMapper = new ObjectMapper();
 
-  private GeoForge.BuiltinType stringType = new GeoForge.BuiltinType(new GeoForge.ModelElementInfo("string", "String", "A string type"));
+  private BuiltinType stringType = new BuiltinType(new ModelElementInfo("string"));
 
-  private GeoForge.BuiltinType intType = new GeoForge.BuiltinType(new GeoForge.ModelElementInfo("integer", "Integer", "An integer type"));
+  private BuiltinType intType = new BuiltinType(new ModelElementInfo("integer"));
 
-  private GeoForge.EnumType enumType = new GeoForge.EnumType(
-      new GeoForge.ModelElementInfo("TestEnum", "Test Enum", "A test enum type"),
+  private EnumType enumType = new EnumType(
+      new ModelElementInfo("TestEnum"),
       List.of(
-          new GeoForge.EnumProperty(new GeoForge.ModelElementInfo("LITERAL1", "Literal 1", "First literal"), "LITERAL1"),
-          new GeoForge.EnumProperty(new GeoForge.ModelElementInfo("LITERAL2", "Literal 2", "Second literal"), "LITERAL2")
+          new EnumProperty(new ModelElementInfo("LITERAL1"), "LITERAL1"),
+          new EnumProperty(new ModelElementInfo("LITERAL2"), "LITERAL2")
       )
   );
 
   private Model createSampleModel() {
-    var dataType = new GeoForge.CompositeType(
-        new GeoForge.ModelElementInfo("TestType", "Test Type", "A test composite type"),
+    var dataType = new DataType(
+        "DataType1",
         false,
-        GeoForge.CompositeTypeKind.DATATYPE,
         null,
-        new ArrayList<>()
+        List.of(new CompositeTypeProperty(
+            "name",
+            null,
+            new TypeRef<GeoForge.GeoForgeType>(stringType.nameString()),
+            GeoForge.Multiplicity.EXACTLY_ONE,
+            null
+          ),
+          new CompositeTypeProperty(
+            "age",
+            null,
+            new TypeRef<GeoForgeType>(intType.nameString()),
+            Multiplicity.ZERO_OR_ONE,
+            null
+          )
+        )
     );
-    dataType.properties().add(new GeoForge.CompositeTypeProperty(
-        new GeoForge.ModelElementInfo("name", "Name", "The name property"),
+    var layerType = new LayerType(
+        "LayerType1",
+        false,
         null,
-        new GeoForge.TypeRef<GeoForge.GeoForgeType>(stringType.nameString()),
-        GeoForge.Multiplicity.EXACTLY_ONE,
-        null
-    ));
-    dataType.properties().add(new GeoForge.CompositeTypeProperty(
-        new GeoForge.ModelElementInfo("age", "Age", "The age property"),
-        null,
-        new GeoForge.TypeRef<GeoForge.GeoForgeType>(intType.nameString()),
-        GeoForge.Multiplicity.ZERO_OR_ONE,
-        null
-    ));
+        List.of(new CompositeTypeProperty(
+            "id",
+            CompositeTypeProperty.Kind.ID,
+            new TypeRef<GeoForge.GeoForgeType>(stringType.nameString()),
+            GeoForge.Multiplicity.EXACTLY_ONE,
+            null
+          ), new CompositeTypeProperty(
+            "data",
+            null,
+            new TypeRef<GeoForge.GeoForgeType>(dataType.nameString()),
+            GeoForge.Multiplicity.ZERO_OR_ONE,
+            null
+          )
+        )
+    );
 
-    var model = new GeoForge.Model(new GeoForge.ModelElementInfo("test.Model", "Test Model", "A test model"));
+    var model = new Model(new ModelElementInfo("test.Model"));
     model.addType(stringType);
     model.addType(intType);
-    model.addType(dataType);
     model.addType(enumType);
-    model.tags().add(GeoForge.Tag.of("tag", "value"));
+    model.addType(dataType);
+    model.addType(layerType);
+    model.tags().add(Tag.of("tag", "value"));
     return model;
   }
 
@@ -75,8 +104,8 @@ public class GeoForgeTest {
   @Test
   public void testJsonDeserialization() throws JsonProcessingException {
     var json = objectMapper
-    .writerWithDefaultPrettyPrinter()
-    .writeValueAsString(createSampleModel());
+        .writerWithDefaultPrettyPrinter()
+        .writeValueAsString(createSampleModel());
     System.out.println(json);
     var model = objectMapper.readValue(json, GeoForge.Namespace.class);
     System.out.println(model);
