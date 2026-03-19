@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import geoforge.model.GeoForge.BuiltinType;
 import geoforge.model.GeoForge.CompositeTypeProperty;
 import geoforge.model.GeoForge.DataType;
-import geoforge.model.GeoForge.EnumType;
-import geoforge.model.GeoForge.EnumProperty;
+import geoforge.model.GeoForge.CodeListType;
+import geoforge.model.GeoForge.CodeListItem;
 import geoforge.model.GeoForge.GeoForgeType;
 import geoforge.model.GeoForge.LayerType;
 import geoforge.model.GeoForge.Model;
@@ -27,11 +27,11 @@ public class GeoForgeTest {
 
   private BuiltinType intType = new BuiltinType(new ModelElementInfo("integer"));
 
-  private EnumType enumType = new EnumType(
+  private CodeListType enumType = new CodeListType(
       new ModelElementInfo("TestEnum"),
       List.of(
-          new EnumProperty(new ModelElementInfo("LITERAL1"), "LITERAL1"),
-          new EnumProperty(new ModelElementInfo("LITERAL2"), "LITERAL2")
+          new CodeListItem(new ModelElementInfo("LITERAL1"), "LITERAL1"),
+          new CodeListItem(new ModelElementInfo("LITERAL2"), "LITERAL2")
       )
   );
 

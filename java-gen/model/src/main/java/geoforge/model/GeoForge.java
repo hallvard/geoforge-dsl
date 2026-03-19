@@ -238,7 +238,7 @@ public class GeoForge {
   @JsonSubTypes({
     @JsonSubTypes.Type(value = DataType.class, name = "dataType"),
     @JsonSubTypes.Type(value = LayerType.class, name = "layerType"),
-    @JsonSubTypes.Type(value = EnumType.class, name = "enumType"),
+    @JsonSubTypes.Type(value = CodeListType.class, name = "codeListType"),
     @JsonSubTypes.Type(value = BuiltinType.class, name = "builtinType"),
   })
   public static abstract class GeoForgeType extends ModelElement {
@@ -489,58 +489,58 @@ public class GeoForge {
   public record BuiltinParam(String name, SimpleValue value) {
   }
 
-  public static class EnumType extends GeoForgeType {
+  public static class CodeListType extends GeoForgeType {
 
-    private final List<EnumProperty> properties;
+    private final List<CodeListItem> items;
 
-    public EnumType(ModelElementInfo info, List<EnumProperty> properties) {
+    public CodeListType(ModelElementInfo info, List<CodeListItem> items) {
       super(info);
-      this.properties = Collections.unmodifiableList(properties);
+      this.items = Collections.unmodifiableList(items);
     }
 
-    public EnumType(String name, List<EnumProperty> properties) {
-      this(new ModelElementInfo(name), properties);
+    public CodeListType(String name, List<CodeListItem> items) {
+      this(new ModelElementInfo(name), items);
     }
 
     @JsonCreator
-    public static EnumType of(
+    public static CodeListType of(
         @JsonProperty("name") List<String> name,
         @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
-        @JsonProperty("properties") List<EnumProperty> properties
+        @JsonProperty("items") List<CodeListItem> items
     ) {
-      var enumType = new EnumType(new ModelElementInfo(name, title, description), properties);
+      var enumType = new CodeListType(new ModelElementInfo(name, title, description), items);
       enumType.tags().addAll(tags);
       return enumType;
     }
 
-    @JsonProperty("properties")
-    public List<EnumProperty> properties() {
-      return properties;
+    @JsonProperty("items")
+    public List<CodeListItem> items() {
+      return items;
     }
   }
 
-  public static class EnumProperty extends ModelElement {
+  public static class CodeListItem extends ModelElement {
 
     private final String value;
 
-    public EnumProperty(ModelElementInfo info, String value) {
+    public CodeListItem(ModelElementInfo info, String value) {
       super(info);
       this.value = value;
     }
 
     @JsonCreator
-    public static EnumProperty of(
+    public static CodeListItem of(
         @JsonProperty("name") List<String> name,
         @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("value") String value
     ) {
-      var property = new EnumProperty(new ModelElementInfo(name, title, description), value);
-      property.tags().addAll(tags);
-      return property;
+      var item = new CodeListItem(new ModelElementInfo(name, title, description), value);
+      item.tags().addAll(tags);
+      return item;
     }
 
     public String value() {

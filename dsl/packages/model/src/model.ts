@@ -28,8 +28,8 @@ export function isBuiltinType(element?: ModelElement): element is BuiltinType {
   return element !== undefined && isA(element, 'builtinType');
 }
 
-export function isEnumType(element?: ModelElement): element is EnumType {
-  return element !== undefined && isA(element, 'enumType');
+export function isCodeListType(element?: ModelElement): element is CodeListType {
+  return element !== undefined && isA(element, 'codeListType');
 }
 
 export function nameString(name: QName): string {
@@ -116,12 +116,12 @@ export interface BuiltinParam {
   value?: SimpleType;
 }
 
-export interface EnumType extends GeoForgeType {
-  elementType: 'enumType';
-  properties: EnumProperty[];
+export interface CodeListType extends GeoForgeType {
+  elementType: 'codeListType';
+  properties: CodeListItem[];
 }
 
-export interface EnumProperty extends ModelElement {
-  elementType: 'enumProperty';
+export interface CodeListItem extends ModelElement {
+  elementType: 'codeListItem';
   value?: SimpleType;
 }

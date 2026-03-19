@@ -4,7 +4,7 @@ import {
   BuiltinType as BuiltingeoforgeType,
   CompositeType as CompositegeoforgeType,
   CompositeTypeProperty,
-  EnumType as EnumgeoforgeType,
+  CodeListType as EnumgeoforgeType,
   isCompositeType as isCompositegeoforgeType,
   nameString,
   PropertyKind,
