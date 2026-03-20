@@ -1,0 +1,1899 @@
+model ngu.nadag
+
+builtin Boolean
+
+builtin CharacterString
+
+builtin Date
+
+builtin DateTime
+
+builtin Flate
+
+builtin GM_MultiSurface
+
+builtin GM_Surface
+
+builtin Integer
+
+builtin Kurve
+
+builtin Punkt
+
+builtin Real
+
+abstract layer "metode som brukes i en geoteknisk borhullundersøkelse for å observere og måle egenskaper til de forskjellige jordlag <engelsk>method used in a geotechnical borehole investigation to observe and measure properties of the different soil layers</engelsk>"
+  GeotekniskInsituTest "GeotechnicalInsituTest" extends Geotekniskmetode {
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>"
+    fraBorlengde?: Real
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>"
+    tilBorlengde?: Real
+  "tidspunkt for start av in situ prøvningen<engelsk>start time for in situ testing</engelsk>"
+    insituTestStartTidspunkt "investigationStartDate"?: DateTime
+  "tidspunkt for stopp av in situ prøvningen<engelsk>stop time for in situ testing</engelsk>"
+    insituTestSluttTidspunkt "investigationEndDate"?: DateTime
+}
+
+abstract layer "geografisk punkt hvor det er utført målinger <engelsk> geographical location where measurements have been performed </engelsk>"
+  GeotekniskObservasjon "Observation" extends GeotekniskObservasjon_NADAG {
+  parent tilhørerGB?: GeotekniskBorehull
+}
+
+abstract layer "geografisk punkt hvor det er utført observasjoner <engelsk>geographical location where observations have been carried out</engelsk>"
+  GeotekniskObservasjon_NADAG "GeotechnicalBoreholeInvestigation" extends GeovitenskapeligObservasjon {
+  boreBeskrivelse "description"?: CharacterString
+  "vinkelen mellom en referansevektor i et referanseplan og en annen vektor i det samme planet som peker mot noe av interesse"
+    boretAzimuth?: Real
+  "helning hvor  90 grader er vertikalt , 0 grader er horisontalt"
+    boretHelningsgrad "inclination, slope"?: Real
+  "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring"
+    boretLengde "boringLength (Depth),"?: Real
+  "dybde til fjell som ikke er målt men basert på tolkning"
+    boretLengdeTilBerg?: BorlengdeTilBerg
+  "avstanden fra måleutstyret og ned til det punkt på jordoverflaten hvor boring/måling faktisk starter\r\n\r\nMerknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er utført fra flåte,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da være avstanden fra måleutstyrets senter (0 dybde) og ned til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen faktisk starter fra).\r\n\r\n<engelsk>\r\ndistance from the drill or measure equipment down to the vertical level where the borehole/measurement actually begins\r\n\r\nNote: This is important to specify if the drilling/sounding is performed from e.g. a raft, ship or from ice. The depth will then be the depth from the measuring equipments origin (0 depth) and down to where drilling/sounding actually begins (on the sea surface, bottom of a lake or river, etc.)\r\n\r\n</engelsk>"
+    dybdeFraGittPosisjon "depthFromRaft"?: Real
+  "den lengden hvor sonderingsutstyret befinner seg i vann"
+    dybdeFraVannoverflaten "freeWaterDepth"?: Real
+  "Lenke til mer informasjon (URL)"
+    lenkeTilTileggsinfo?: CharacterString
+  "beskrivelse av værforhold under utførelsen av borehullundersøkelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
+    værforholdVedBoring "weatherConditions"?: CharacterString
+  "Høyde for observasjon ved start observasjon [m]"
+    høyde?: Real
+  "Referansesystem for høydeangivelse, som EPSG-kode."
+    høydeReferanse?: NADAG_Hoeyderef
+  "Nummer på observasjon benyttet i den geotekniske undersøkelsen"
+    undersøkelseNr "surveyNo"?: CharacterString
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige levernadør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternIdentifikasjon?: EksternIdentifikasjon
+  "Når objektet ble opprettet i database (Nadag)"
+    opprettetDato: DateTime
+  "dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the level in the ground where all voids are saturated with water, and where the pore pressure starts to increase</engelsk>"
+    dybdeGrunnvannstand "groundWaterDept, groundWaterLevel"?: Real
+  "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter (mm)     of a predrilled hole in a borehole investigation</engelsk>"
+    forboretDiameter "preBoringDiameter"?: Real
+  "Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of a predrilled borehole in a borehole investigation<engelsk>"
+    forboretLengde "preBoringLength"?: Real
+  "metode brukt til boring uten registrering av data<engelsk>pre boring method</engelsk>"
+    forboringMetode "preBoringmethod"?: CharacterString
+  "tosifret tall som benyttes for å angi årsak til avslutning av borehullundersøkelse<engelsk>code used to explain the reason for termination of a borehole investigation<engelsk>"
+    stoppKode "terminationCode"?: GeotekniskStoppkode
+  "startlengde[m] for hvor forboring startet i en borhullundersøkelse <engelsk>start depth[m] where the predrilling in the  borehole investigation started<engelsk>"
+    forboretStartLengde "preBoringStartLength"?: Real
+}
+
+abstract layer "innsamling av fysisk prøvemateriale som inndeles i prøvedeler hvor det for hver prøvedel kan utføres ett eller flere geotekniske laboratorieforsøk <engelsk>sampling of physical material separated into sample parts, where one or several laboratory tests can be carried out on each part</engelsk>"
+  GeotekniskProevetaking "GeotechnicalSampling" extends Geotekniskmetode {
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>"
+    fraBorlengde?: Real
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>"
+    tilBorlengde?: Real
+  "klassifisering av fysisk prøvemateriale, avhengig av type prøvetaking og jordart<engelsk>classification of sampled material, depending on type of sampling and soil type</engelsk>"
+    prøvetype?: ProevetakingType
+  "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space (kg/m3)</engelsk>"
+    densitetPrøvetaking?: Real
+  "beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description and results from environmental investigation<engelsk>"
+    miljøtekniskUndersøkelse?: CharacterString
+}
+
+abstract layer "metode som brukes i en grunnundersøkelse for å måle penetrasjonsmotstanden i de forskjellige jordlag <engelsk>method used in a ground investigation to measure the penetration resistance of various soil layers</engelsk>"
+  GeotekniskSondering "GeotechnicalSounding" extends Geotekniskmetode {
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>"
+    fraBorlengde?: Real
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>"
+    tilBorlengde?: Real
+  "tykkelse på torvlag i meter [m] <engelsk>thickness of peat in meter</engelsk>"
+    torvTykkelse?: Real
+}
+
+abstract layer "Abstrakt objekttype for å samle felles-egenskaper for en del geotekniske prøver."
+  Geotekniskmetode {
+  "unik identifikasjon av et objekt"
+    identity identifikasjon: Identifikasjon
+}
+
+abstract layer "andre typer observasjoner som ikke er samlet inn via fysiske borehull\r\n\r\n<engelsk>\r\nobservations collected by other features, i.e. not borehole.\r\n</engelsk>"
+  GeovitenskapeligObservasjon "GeoScientificObservation" extends Supertype_Geotekn_obj_pkt {
+  "sted objektet eksisterer på\r\n\r\n<engelsk>\r\nthe actual position determined by measuring device\r\n</engelsk>"
+    geometry posisjon: Punkt
+  "startdato for observasjon\r\n\r\n<engelsk>\r\nstarting date of the observation\r\n</engelsk>"
+    observasjonStart?: DateTime
+  "sluttdato for observasjon\r\n\r\n<engelsk>\r\nending date of the observation\r\n</engelsk>"
+    observasjonSlutt?: DateTime
+  "identifikasjon av operatøren som utfører observasjonen\r\n\r\n<engelsk>\r\nIdentification of the operator performing the observation\r\n</engelsk>"
+    observatør?: CharacterString
+  "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\n\r\n<engelsk>\r\nreference to copyright, source, organization/publication source\r\n\r\nNote: May also include name of person and cause of update\r\n\r\n</engelsk>"
+    opphav?: CharacterString
+}
+
+abstract layer "geovitenskaplig undersøkelse som utføres innen for et gitt område og tidsperiode og som ofte er knyttet til et prosjekt \r\n\r\n<engelsk>\r\nsoil geoscientific investigation of a given area and time period and usually with a connection to a specific project \r\n</engelsk>"
+  GeovitenskapeligUndersoekelse "GeoScientificInvestigation" extends Supertype_Geotekn_obj_omr {
+  "beskrivelse av de geovitenskaplige undersøkelsene\r\n\r\n<engelsk>\r\ndescription of the geoscientific investigations\r\n</engelsk>"
+    beskrivelse?: CharacterString
+  "areal som er gjenstand for undersøkelse\r\n\r\n<engelsk> \r\narea coverd by the investigation \r\n</engelsk>"
+    geometry område?: GM_Surface
+  "identifikasjon av bestiller (kunde) og dennes organisasjon\r\n\r\n<engelsk>\r\nidentifikation of the the customer organisation\r\n</engelsk>"
+    oppdragsgiver?: CharacterString
+  "identifikasjon av utførende organisasjon\r\n\r\n<engelsk>\r\nidentification of the the organisation responsible for carrying out the project\r\n</engelsk>"
+    oppdragstaker?: CharacterString
+  "prosjekt navn og/eller nummer\r\n\r\n<engelsk>\r\nname or number of the project - e.g. projectnumber\r\n</engelsk>"
+    prosjektNavn?: CharacterString
+  "startdato for undersøkelsen\r\n\r\n<engelsk>\r\nstarting date of the investigation\r\n</engelsk>"
+    undersøkelsePeriodeFra?: DateTime
+  "areal som er gjenstand for undersøkelse\r\n\r\n<engelsk> \r\narea coverd by the investigation \r\n</engelsk>"
+    geometry sammensattområde?: GM_MultiSurface
+  "sluttdato for undersøkelsen\r\n\r\n<engelsk>\r\nending date of the investigation\r\n</engelsk>"
+    undersøkelsePeriodeTil?: DateTime
+}
+
+abstract layer "del av et undersøkelsesområde hvor det pågår, skal gjøres eller er gjort geovitenskapelige undersøkelser  \r\n\r\nMerknad: Typisk brukt offshore hvor et undersøkelsesområde er delt i flere mindre lokaliteter.  \r\n\r\n<engelsk> area where geoscientific investigations are planned, in progress or performed. Note: This feature is typically used offshore where an investigation is split into smaller parts</engelsk>"
+  GeovitenskapeligUndersoekelseDelomraade "GeoScientificInvestigationSubarea" extends Supertype_Geotekn_obj_omr {
+  "forklaring til objektet\r\n<engelsk>\r\ndescription of object\r\n</engelsk>"
+    beskrivelse?: CharacterString
+  "objektets utstrekning\r\n<engelsk>\r\nextent of object\r\n</engelsk>"
+    geometry område: Flate
+}
+
+abstract layer "avgrensning av et delområde innenfor en geovitenskapelig undersøkelse\r\n\r\n<engelsk>boundary of a subarea within a geoscientific investigation</engelsk>"
+  GeovitenskapeligUndersoekelseDelomraadeGrense "GeoScientificInvestigationSubareaBorder" {
+  "forløp som følger overgang mellom ulike fenomener"
+    geometry grense: Kurve
+}
+
+abstract layer "avgrensning av et område for en geovitenskapelig undersøkelse \r\n\r\n<engelsk>boundary of geoscientific investigation</engelsk>"
+  GeovitenskapeligUndersoekelseGrense "GeoScientificInvestigationBorder" {
+  "forløp som følger overgang mellom ulike fenomener"
+    geometry grense: Kurve
+}
+
+abstract layer "område representert ved et punkt hvor det skal foretas en eller flere borehullundersøkelser - også kalt logisk borehull i motsetning til borhullundersøkelse som representerer hvert fysiske borehull\r\n\r\nMerknad: Det logiske borehullet har en posisjon som representerer de fysiske borhullundersøkelsene foretatt i området \r\n\r\n<engelsk>\r\nborehole consists of one or more physical borehole investigations. The borehole has a position, representing a collection of borehole investigations. The position of the borehole is often given the same position as one of the asscoated borehole investigations. The associated borehole investigations should be in a reasonable short distance (e.g. 0,5 m) from the position of the borehole.\r\n</engelsk>"
+  GeovitenskapligBorehull "GeoScientificBorehole" extends Supertype_Geotekn_obj_pkt {
+  "antall borehullsundersøkeelser i borehullets område \r\n\r\nMerknad: Borhullet er et logisk borhull hvor det innen et lite område er foretatt flere fysiske borhullsundersøkelser som tilhører det samme borehull.\r\n\r\n<engelsk>\r\nNumber of boreholeInvestigations (virtual boreholes) performed at the location of the borehole\r\n\r\nNote: A virtual borehole is a fictitious feature for all boreholes/soundings performed within an reasonable small area (e.g. <5 m or so)</engelsk>"
+    antallBorehullUndersøkelser "numberOfBoreholeInvestigations"?: Integer
+  "forklaring til objektet og undersøkelser utført på lokaliteten\r\n\r\n<engelsk>\r\na short description of the investigations at the location of the borehole</engelsk>"
+    beskrivelse?: CharacterString
+  "dybde til berg som ikke er målt men basert på tolkning\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
+    boretLengdeTilBerg?: BorlengdeTilBerg
+  "material som er gjennomboret \r\n\r\nMerknad: spesifisert ved å bruke kodeliste GjennomboretMedium. \r\n\r\n<engelsk>\r\nmaterial penetrated by the borehole\r\n\r\nNote: Specified by using codes from codelist: GjennomboretMedium\r\n</engelsk>"
+    gjennomboretMedium "examinedMaterial, drilledMaterial .."*: GjennomboretMedium
+  "sted objektet eksisterer på bestemt av måleutstyr\r\n\r\n<engelsk>\r\nthe actual position of the object determined by a measuring device</engelsk>"
+    geometry posisjon: Punkt
+}
+
+abstract layer "et enkelt fysisk undersøkelsespunkt som inneholder beskrivelsen av borehullforløpet  \r\n\r\nMerknad: Flere undersøkelser kan tilhøre det samme borehullet, men det er undersøkelsen som representerer de enkelte sonderinger / boringer. \r\n\r\n<engelsk>a pysical borehole which contain a description of the borehole geometry Note: Several investigations can belong to the same borehole, and it is the investigation which contain the geometry along the borehole. </engelsk>"
+  GeovitenskapligBorehullUndersoekelse "GeoScientificBoreholeInvestigation" extends Supertype_Geotekn_obj_pkt {
+  "objektets utstrekning gitt i x,y,z. \r\n\r\nMerknad: Den virkelige posisjonen til denne borehullsundersøkelsen.\r\n\r\n<engelsk>\r\nThe position of the investigation, determined by its x,y and z. \r\n\r\nNote: The origin (coordinate system/projection) of the position must be specified.\r\n</engelsk>"
+    geometry posisjon: Punkt
+  "forklaring av hva som er utført og/eller observert i denne undersøkelsen\r\n\r\n<engelsk>\r\na general description of actions performed and/or observed in this investigation\r\n</engelsk>"
+    boreBeskrivelse "description"?: CharacterString
+  "detaljert beskrivelse av borhullets geometri, dvs. et en-dimensjonalt referansesystem nedover i senterlinjen av borehullet\r\n\r\n<engelsk>\r\ndetailed description of the borehole geometry, i.e. a one-dimensional reference system along the borehole centerline\r\n</engelsk>"
+    geometry borehullForløp "drilledCurve,  geometryCurve..."?: Kurve
+  "vinkelen mellom en referansevektor i et referanseplan og en annen vektor i det samme planet som peker mot noe av interesse [°]\r\n\r\n<engelsk>\r\nThe vector from an observer (origin) to a point of interest is projected perpendicularly onto a reference plane, the angle between the projected vector and the reference vector on the reference plane is called the azimuth\r\n</engelsk>"
+    boretAzimuth?: Real
+  "helning hvor 90 grader er vertikalt, 0 grader er horisontalt [°]\r\n\r\n<engelsk>\r\nthe inclination of the borehole\r\n\r\nNote: 90 degrees represent the vertical inclination and 0 degrees the horizontal\r\n</engelsk>"
+    boretHelningsgrad "inclination, slope"?: Real
+  "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]\r\n\r\n<engelsk>\r\ntotal length of the investigation in the physical borehole, the same as depth in a vertical borehole\r\n</engelsk>"
+    boretLengde "boringLength (Depth),"?: Real
+  "dybde til fjell som ikke er målt men basert på tolkning\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
+    boretLengdeTilBerg?: BorlengdeTilBerg
+  "avstanden fra måleutstyret og ned til det punkt på jordoverflaten hvor boring/måling faktisk starter [m]\r\n\r\nMerknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er utført fra flåte,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da være avstanden fra måleutstyrets senter (0 dybde) og ned til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen faktisk starter fra).\r\n\r\n<engelsk>\r\ndistance from the drill or measure equipment down to the vertical level where the borehole/measurement actually begins\r\n\r\nNote: This is important to specify if the drilling/sounding is performed from e.g. a raft, ship or from ice. The depth will then be the depth from the measuring equipments origin (0 depth) and down to where drilling/sounding actually begins (on the sea surface, bottom of a lake or river, etc.)\r\n\r\n</engelsk>"
+    dybdeFraGittPosisjon "depthFromRaft"?: Real
+  "den lengden hvor sonderingsutstyret befinner seg i vann [m]\r\n\r\nMerknad: Av spesiell interesse hvis boring er utført fra is eller fra flåte/skip.\r\n\r\n<engelsk>\r\nfree water depth at the location of the sounding [m] \r\n\r\nNote: Of special interest if drilling is performed from raft or ice.\r\n</engelsk>"
+    dybdeFraVannoverflaten "freeWaterDepth"?: Real
+  "lenke til hvor en finner tilleggsinformasjon om borehullsundersøkelsen\r\n\r\nMerknad: URL/URI for aktuelt dokument, bilde, video etc. \r\n\r\n<engelsk>\r\nlink to extra information about the borehole investigation\r\nNote: URL/URI for the particular document, picture, video \r\n</engelsk>"
+    lenkeTilTileggsinfo?: CharacterString
+  "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\n\r\n<engelsk>\r\nreference to copyright, source, organization/publication source\r\n\r\nNote: May also include name of person and cause of update\r\n\r\n</engelsk>"
+    opphav "serialNumber"?: CharacterString
+  "tidspunkt for stopp av undersøkelsen\r\n<engelsk>\r\nend time/date for the investigation\r\n</engelsk>"
+    undersøkelseSlutt "investigationEndDate"?: DateTime
+  "tidspunkt for start av undersøkelsen\r\n<engelsk>\r\nstart time/date for the investigation\r\n</engelsk>"
+    undersøkelseStart "investigationStartDate"?: DateTime
+  "beskrivelse av værforhold under utførelsen av borehullundersøkelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
+    værforholdVedBoring "weatherConditions"?: CharacterString
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen."
+  Supertype_Geotekn_obj_omr {
+  "unik identifikasjon av et objekt \r\n\r\nMerknad: Bør bruke UUID.  se http://en.wikipedia.org/wiki/UUID\r\nDe som ikke benytter UUID må selv sørge for at denne er globalt unik."
+    identity identifikasjon: Identifikasjon
+  "dato for siste endring på objektetdataene \r\n\r\nMerknad: \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set."
+    oppdateringsdato?: DateTime
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen."
+  Supertype_Geotekn_obj_pkt {
+  "dato når objektet siste gang ble registrert/observert/målt i terrenget\r\n\r\nMerknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.\r\nVed førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato."
+    datafangstdato?: DateTime
+  "kartmålestokk registreringene/ datene er hentet fra/ registrert på\r\n\r\nEksempel: 1:50 000 = 50000."
+    digitaliseringsmålestokk?: Integer
+  "unik identifikasjon av et objekt \r\n\r\nMerknad: Bør bruke UUID.  se http://en.wikipedia.org/wiki/UUID\r\nDe som ikke benytter UUID må selv sørge for at denne er globalt unik."
+    identity identifikasjon: Identifikasjon
+  "beskrivelse av kvaliteten på stedfestingen"
+    kvalitet?: PosisjonskvalitetNADAG
+  "dato for siste endring på objektetdataene \r\n\r\nMerknad: \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set."
+    oppdateringsdato?: DateTime
+}
+
+datatype "dybde til fjell som ikke er målt men basert på tolkning\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
+  BorlengdeTilBerg {
+  "beskriver om dybden til berg er antatt eller påvist med en sikker metode\r\n\r\n<engelsk> \r\ndefines the quality of the depth information either assumed or confirmed by a secure method\r\n</engelsk>"
+    borlengdeKvalitet: KvalitetBorlengdeTilBerg
+  "dybde til fjell som ikke er målt men basert på tolkning [m]\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
+    borlengdeTilBerg: Real
+}
+
+datatype "data fra måling av setning ved angitt måletidspunkt<engelsk>data from measurements of settlements at a given time</engelsk>"
+  DeformasjonMaaleData "SettingMesurementData" {
+  "dato for utførelse av målingen<engelsk>date for measurements</engelsk>"
+    måleDato "observationDate"?: Date
+  "tidspunkt for gjennomføring av målingen<engelsk>time for measurements</engelsk>"
+    måleTidspunkt "observationTime"?: DateTime
+  "observasjonskoder for markering av hendelser i setningsmålingen<engelsk>observation codes for marking of incidents during the measurements</engelsk>"
+    deformasjonObservasjonKode?: DeformasjonObservasjonKode
+  "merknad til observasjoner i setningsmålingen<engelsk>remarks to observations made during the measurements</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "vertikal komponent av målt deformasjon. observert høydenivå (z) for setningsmåling [m] <engelsk>vertical component of measured deformation. observed reference level (z) for the settlements</engelsk>"
+    setning "setting"?: Real
+  "deformasjonskomponent i x-retning. observert høydenivå (z) for setningen [m]<engelsk>deformation component in x-direction. observed reference level (z) for the settlements</engelsk>"
+    deformasjonX "setting"?: Real
+  "deformasjonskomponent i y-retning. observert høydenivå (z) for setningen [m]<engelsk>deformation component in y-direction. observed reference level (z) for the settlements</engelsk>"
+    deformasjonY "setting"?: Real
+  "deformasjonskomponent i z-retning. observert høydenivå (z) for setningen [m]<engelsk>deformation component in z-direction. observed reference level (z) for the settlements</engelsk>"
+    deformasjonZ "setting"?: Real
+  "gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity of data, if false only to be used as information</engelsk>"
+    erGyldig "isValid"?: Boolean
+  "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>"
+    boretLengde "length"?: Real
+  "observasjonskoder for markering av hendelser. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode?: CharacterString
+}
+
+datatype "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or any other supervision data</engelsk>"
+  DeformasjonOvervaakningData {
+  "kriterium for alarmtilstand, nedre grense for måleverdi [m] <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>"
+    nedreAlarmNivå "alarmLowerLevel"?: Real
+  "kriterium for alarmtilstand, øvre grense for måleverdi [m] <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>"
+    øvreAlarmNivå "alarmUpperlevel"?: Real
+  "dato for utførelse av målingen\r\n<engelsk>date for measurements</engelsk>"
+    måleDato "observationDate"?: Date
+  "tidspunkt for gjennomføring av målingen<engelsk>time for measurements</engelsk>"
+    måleTidspunkt "observationTime"?: DateTime
+  "merknad til observasjoner i setningsmålingen<engelsk>remarks to observations made during the measurements</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "grunnvannsmagasin <engelsk>aquifer (ground water reservoir)</engelsk>"
+    akvifer "aquifer"?: AkviferType
+}
+
+datatype "en enkel innretning, formet som et flatt blad designet for å trykkes ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\n<engelsk>a simple device, shaped in the form of a flat blade designed to be pushed into the ground Note: It was developed to evaluate the soil modulus.</engelsk>"
+  DilatometerTestData "DilatometerTestData" {
+  "dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon er satt til 0. Angir hvor dypt det er boret [m] \r\n<engelsk>depth from zero level, the z value of investigation start point is 0. drilling depth\r\n</engelsk>"
+    boretDybde "depth"?: Real
+  "tekst som beskriver observasjonen <engelsk>description of the observation</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "kode som angir observasjonen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "gasstrykk når membran ikke lenger har kontakt [kPa] <engelsk>membrane lift-off pressure</engelsk>"
+    kontaktTrykkP0?: Real
+  "gasstrykk når senter av membran har flyttet seg 1,1 mm [kPa] <engelsk>gass pressure when membrane has moved 1,1 mm</engelsk>"
+    ekspansjonTrykkP1?: Real
+  "horisontal last [kN] <engelsk>horizontal load</engelsk>"
+    horisontalKraft "sidePressure"?: Real
+  "trykket i porevannet angitt som kraft pr. flateenhet, med atmosfæretrykket som nullpunkt [kPa]\r\n<engelsk>registered pore pressure (kPa)</engelsk>"
+    poretrykk "porePressure"?: Real
+}
+
+datatype "data fra måling av dissipasjon (drenasje) i felt, aktuelt ved utførelse av dissipasjonstest i CPTU<engelsk>data fra måling av dissipasjon (drenasje) i felt, aktuelt ved utførelse av dissipasjonstest i CPTU</engelsk>"
+  DissipasjonData "DissipationData" {
+  "nivå for utførelse av dissipasjonstest [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>"
+    boretDybde "depth"?: Real
+  "reduksjon av poretrykk i filterposisjon 1 (spiss) som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure at filter location 1 (tip) as a function of time in a dissipation test</engelsk>"
+    dissipasjonsPoretrykkU1 "dissipationPorePressureU1"?: Real
+  "reduksjon av poretrykk i filterposisjon 2 (bak spiss) som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure at filter location 2 (behind the tip) as a function of time in a dissipation test</engelsk>"
+    dissipasjonsPoretrykkU2 "dissipationPorePressureU2"?: Real
+  "reduksjon av poretrykk i filterposisjon 3 (bak friksjonshylse) som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure at filter location 3 (behind the friction sleeve) as a function of time in a dissipation test</engelsk>"
+    dissipasjonsPoretrykkU3 "dissipationPorePressureU3"?: Real
+  "angitt tidspunkt i dissipasjonstest<engelsk>given time in a dissipation test</engelsk>"
+    dissipasjonsTidspunkt "dissipationTime"?: DateTime
+  "målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av friksjonshylse) [kPa] <engelsk>measured sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve)</engelsk>"
+    friksjon "frictionalResistance"?: Real
+  "observasjonskoder for markering av hendelser i dissipasjonstesten. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during dissipation. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode?: CharacterString
+  "merknad til observasjoner i dissipasjonstesten <engelsk>remarks to observations made during dissipation</engelsk>"
+    observasjonMerknad?: CharacterString
+  "poretrykk som utvikles i filterposisjon 1 (spiss) ved nedpressing av trykksonde [kPa] <engelsk>pore pressure generated at filter position 1 (tip) during penetration of the probe</engelsk>"
+    poretrykk1 "porePressure1"?: Real
+  "poretrykk som utvikles i filterposisjon 2 (bak spiss) ved nedpressing av trykksonde [kPa] <engelsk>pore pressure generated at filter position 2 (behind the tip) during penetration of the probe</engelsk>"
+    poretrykk2 "porePressure2"?: Real
+  "poretrykk som utvikles i filterposisjon 3 (bak friksjonshylse) ved nedpressing av trykksonde  [kPa] <engelsk>pore pressure generated at filter position 3 (behind the sleeve) during penetration of the probe</engelsk>"
+    poretrykk3 "porepressure3"?: Real
+  "målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured cone resistance during penetration of the probe (point load divided by cross-sectional area of probe)</engelsk>"
+    spissmotstand "pointPressure"?: Real
+}
+
+datatype "innsamlede data for utførelse og registrering ved gjennomføring av slagsondering\r\n<engelsk>collected data for performance of and recordings during percussion sounding</engelsk>"
+  DynamiskSonderingData "DynamicSoundingData" {
+  "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>"
+    boretLengde "depth": Real
+  "anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av stangsystemet [kNm] <engelsk>torque applied on the rod system during penetration and rotation of the drill string</engelsk>"
+    dreieMoment "torsionMoment"?: Real
+  "høyde for slagenhet over topp av stangsystemet i sonderingen [m] <engelsk>level of the percussive unit above the top of the rod system during sounding</engelsk>"
+    fallHøyde?: Real
+  "markering av rotasjon ved penetrasjon av borstreng\r\n<engelsk>marking of rotation during penetration of the drill string</engelsk>"
+    harRotasjon "hasTurning"?: Boolean
+  "tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m] <engelsk> time record during penetration of the rod system, referring to the previous depth /engelsk>"
+    nedpressingTid "penetrationTime"?: Integer
+  "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i sonderingen\r\n<engelsk>remarks to observations made during sounding</engelsk>"
+    observasjonMerknad "remark, obervationRemark"?: CharacterString
+  "markering av prøvenummer ved opptak av fysisk prøvemateriale under sonderingen<engelsk>marking of sample number in collection of sampled material during sounding</engelsk>"
+    prøveuttakNummer?: CharacterString
+  "penetrasjonsmotstand mot ramming av borstrengen uttrykt i synk per antall påførte slag [slag/0,2m] <engelsk>penetration resistance on the hammered drill string expressed in sink per number of applied strokes</engelsk>"
+    ramMotstand?: Real
+  "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit during penetration of the drill string</engelsk>"
+    rotasjonHastighet "rateOfTurning"?: Real
+  "slagfrekvens ved anvendelse av slag på borstrengen [slag/min] <engelsk>stroke frequency during application of strokes on the drill string in rock control mode, defined by the number of strokes per time unit</engelsk>"
+    slagFrekvens "rateOfPiling ..."?: Real
+}
+
+datatype "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør inn til NADAG."
+  EksternIdentifikasjon "Identification" {
+  "lokal identifikator, tildelt av ekstern leverendør. \r\nDet er data leverendørens ansvar å sørge for at denne eksterne identifikatoren er unik innenfor navnerommet."
+    eksternId "externalId"?: CharacterString
+  "navnerom som identifiserer datakilden/leverandør til objektet"
+    eksternNavnerom "externalNamespace"?: CharacterString
+  "identifikasjon av en spesiell versjon av et geografisk objekt  Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen."
+    eksternVersjonId "externalVersionid"?: CharacterString
+  "Når objektet ble levert til database (Nadag)"
+    eksternLeveringDato "externalDeliveryDate"?: DateTime
+}
+
+datatype "resultater fra gassmålinger<engelsk>results from gas measurements</engelsk>"
+  GassData "GasData" {
+  "innhold av metangass i poreluften<engelsk>content of methane gass in pore air</engelsk>"
+    CH4?: Real
+  "innhold av kvikksølv i poreluften<engelsk>content of mercury in pore air</engelsk>"
+    HG?: Real
+}
+
+layer "delprøve av en  prøveserie<engelsk> Soil test part </engelsk>"
+  GeotekniskProeveseriedel "SoilTestPart" {
+  "metode benyttet for å ta prøven<engelsk>method identifier</engelsk>"
+    prøveMetode "method"?: CharacterString
+  "navn på prøveseriedelen<engelsk>name</engelsk>"
+    prøveseriedelNavn "name"?: CharacterString
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>the start length, the depth at top of the specimen[m]</engelsk>"
+    fraLengde "startLength"?: Real
+  "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>the length of the stop, the lower depth limitation of the sample [m]</engelsk>"
+    tilLengde "stopLength"?: Real
+  "Primærnøkkel for relasjon"
+    identity prøveseriedelId: CharacterString
+  parent tilhørerPrøveserie?: GeotekniskProeveserie
+  harData*: GeotekniskProeveseriedelData
+}
+
+datatype "Data som tilhører en geoteknisk prøveseriedel <engelsk>Data for a soil test part </engelsk>"
+  GeotekniskProeveseriedelData "SoilTestPartProtocolData" {
+  "i hvilken del av prøvedelen som det er gjort undersøkelser"
+    lagPosisjon "layerComposition"?: LagPosisjon
+  "metode benyttet for å ta prøven<engelsk>method identifier</engelsk>"
+    prøveMetode "method"?: CharacterString
+  "angis i [%] <engelsk> the axial deformation (bruddef) %</engelsk>"
+    aksielDeformasjon "axialDeformation"?: Real
+  "bestemmelse av udrenert skjærfasthet ved enaksial trykkprøving i laboratoriet [kPa] <engelsk>the axial shear strength, the undrained shear strength by unconfined compression testing (sue) [kPa].</engelsk>"
+    skjærfasthetUdrenert "axialShearStrength"?: Real
+  "tekst som beskriver lagsammensetningen <engelsk>the detailed layer composition, a text containing a detailed layer composition</engelsk>"
+    detaljertLagSammensetning "detailedLayerComposition"?: CharacterString
+  "skjærfasthet for en kohesjonsjordart med fullstendig omrørt struktur [kPa] <engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>"
+    skjærfasthetOmrørt "disturbedShearStrength"?: Real
+  "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space (kg/m3)</engelsk>"
+    densitetPrøvetaking "gravity"?: Real
+  "om prøvserien er omrørt<engelsk>indicating whether a soil test is disturbed</engelsk>"
+    erOmrørt "isDistubed"?: Boolean
+  "om prøven har blitt analysert på laboratorium\r\n<engelsk> indicating whether the soil test has been analyzed at laboratory</engelsk>"
+    labAnalyse "isLab"?: Boolean
+  "bestemmelse av flytegrense ved hjelp av støt- eller konusmetode i laboratoriet [%] Merknad: Flytegrensen angir det vanninnhold der en omrørt leire går over fra å være flytende til å bli plastisk (formbar) <engelsk>determination of liquid limit flytegrense by percussionor fall cone method in the laboratory Note:The liquid limit corresponds to a water content where the remoulded material goes from a liquid to a plastic state</engelsk>"
+    flyteGrense "liquidLimit"?: Real
+  "angis i [%] <engelsk>the loss on ignition, the loss of mass (% left of initial mass) due to heating</engelsk>"
+    glødeTap "lossOfIgnition"?: Real
+  "bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode [%]  Merknad: Også kalt utrullingsgrense som angir det vanninnhold der en omrørt leire går over fra plastisk (formbar) til smuldrende konsistens <engelsk>determination of the plasticity limit by a hand rolling method Note: Expresses the water content where a remoulded clay leaves the plastic state and starts to crumble</engelsk>"
+    plastitetsGrense "plasticityLimit"?: Real
+  "forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive soils</engelsk>"
+    sensitivitet "sensitivity"?: Real
+  "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt struktur [kPa] <engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>"
+    skjærfasthetUforstyrret "undisturbedShearStrength"?: Real
+  "boret lengde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>"
+    boretLengde "length"?: Real
+  "undersøkelse for bestemmelse av prøvematerialets vanninnhold ved tørking. Angir forholdet mellom masse vann og masse fast stoff [%] <engelsk>determination of the water content of the sample by oven drying. Corresponds to the ratio between mass of water and the mass of solid particles</engelsk>"
+    vanninnhold "waterContent"?: Real
+  "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+}
+
+datatype "data fra måling av grunnvannstand, med observasjonskoder, kommentarer og tidsstempel for angitt måletidspunkt<engelsk>data from measurement of ground water level, with observation codes, comments and time for measurements</engelsk>"
+  GrunnvannData "GroundWaterMeasurementData" {
+  "dato for utførelse av grunnvannsmålingen<engelsk>date for measurements</engelsk>"
+    måleDato "measureDate"?: Date
+  "angivelse av vannstand i grunnen og/eller i målerør (z-nivå) [m] <engelsk>water level in the ground and / or inside a measurement tube (z-level)</engelsk>"
+    dybdeGrunnvannstand "groundWaterDept, groundWaterLevel"?: Real
+  "tidspunkt for gjennomføring av grunnvannsmålingen<engelsk>time for measurements</engelsk>"
+    måleTidspunkt "measureTime"?: DateTime
+  "observasjonskoder for markering av hendelser i grunnvannsmålingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation codes for marking of incidents during ground water measurements. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i grunnvannsmålingen<engelsk>remarks to observations made during ground water measurements</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "surhetsgrad <engelsk><measure of acidity>"
+    pH?: Real
+  "hydraulisk ledningsevne [uS/cm] <engelsk>hydraulic conductivity</engelsk>"
+    ledningsevne?: Real
+  "innhold av oksygen [ml] <engelsk>oxygen content</engelsk>"
+    oksygenInnhold?: Real
+  "temperatur [°C] <engelsk>temperature [°C]</engelsk>"
+    temperatur?: Real
+  "red-oks-potensiale [mV] <engelsk>redox potential</engelsk>"
+    redoks?: Real
+  "angir gjennomsnittlig partikkelinnhold [NTU] <engelsk>average particle content</engelsk>"
+    turbiditet?: Real
+  "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>"
+    boretLengde "length"?: Real
+  "observasjonskoder for grunnvann"
+    grunnvannObservasjonKode "GroundwaterObservationCode"?: GeotekniskGrunnvannObservasjonKode
+  "gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity of data, if false only to be used as information</engelsk>"
+    erGyldig "isValid"?: Boolean
+}
+
+datatype "data fra måling av vannstrømning, vannhastighetsbestemmelse og hydraulisk splitting i felt.             <engelsk>data from measurements of water flow, water velocity, pumping tests and hydraulic splitting in the field.                                                         </engelsk>"
+  HydrauliskeData "HydraulicData" {
+  "dato for utførelse av målingen<engelsk>date for measurements</engelsk>"
+    måleDato "measureDate"?: Date
+  "tidspunkt for utførelse av målingen<engelsk>time for measurements</engelsk>"
+    måleTidspunkt "measureTime"?: DateTime
+  "merknad til observasjoner i hydraulisk test<engelsk>remarks to observations made during hydraulic testing</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "jordparameter som beskriver hydraulisk ledningsevne [m/s] <engelsk>soil parameter which describes hydraulic conductivity</engelsk>"
+    hydrauliskKonduktivitet?: HydrauliskKonduktivitet
+  "angivelse av vannstand i grunnen og/eller i målerør [m] <engelsk>water level in the ground and / or inside a measurement tube</engelsk>"
+    dybdeGrunnvannstand "groundWaterDept, groundWaterLevel"?: Real
+}
+
+datatype "Data som tilhører en Kjerneboring"
+  KjerneBoringData "KjerneBoringData" {
+  "boret lengde i forhold til terrengoverflaten eller annet angitt\r\nreferansenivå<engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>"
+    boretLengde "length"?: Real
+  forvitringsgrad "rockWeatheringDegree"?: CharacterString
+  geologiskMaterialTekst "materialText"?: CharacterString
+  geologiskMaterialType "materialType"?: CharacterString
+  "Prosent av siste kjerne som er opptatt<engelsk> the total core recovery, percent received core of the previous section [%]</engelsk>"
+    kjerneOpptak_Prosent "totalCoreRecovery"?: Integer
+  materialStruktur "materialStructure"?: CharacterString
+  "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  opptrekk "uptake"?: CharacterString
+  "Tall for sprekkefylling"
+    QVerdi_Ja "QValue_Ja"?: Real
+  "Tall for sprekkesett"
+    QVerdi_Jn "QValue_Jn"?: Real
+  "Sprekkeruhetstall"
+    QVerdi_Jr "QValue_Jr"?: Real
+  "Sprekkevannstall"
+    QVerdi_Jw "QValue_Jw"?: Real
+  "Q=(RQD/Jn)*(Jr/Ja)*(Jw/SRF)"
+    QVerdi_Q "QValue_Q"?: Real
+  "om Q-verdiet er beregnet basert på de øvrige leverte verdier eller kommer fra annen kilde <engelsk>indicating whether the Q-value is computed from the associated values or is external</engelsk>"
+    QVerdi_QErBeregnet "QValue_QIsComputed"?: Boolean
+  "Oppsprekkingstall (Rock Quality Designation)"
+    QVerdi_RQD "QValue_RQD"?: Real
+  "Spenningsfaktor (Stress Reduction Factor)"
+    QVerdi_SRF "QValue_SRF"?: Real
+  RockMassRating "RockMassRating"?: Integer
+  "indeks (1-10) som beskriver ruhet og friksjon<engelsk> the roughness and frictional characteristics [index (1-10)] </engelsk>"
+    ruhetsindeks "roughness"?: Integer
+  sprekkeFrekvens "fractureFrequency"?: Real
+  sprekkeMaterialTekst "fractureFillingText"?: CharacterString
+  sprekkeMaterialType "fractureFilling"?: CharacterString
+  "Måleverdi for måling utført i bergartens vertikalplan (fallretning) Merknad: Målt i grader (0-90°) på observasjonspunkt. Enhet [°]. Verdien sees i sammenheng med måling av strøk i horisontalplanet."
+    strøkFall_Fall "strikeDip_Dip"?: Integer
+  "Måleverdi for måling utført i bergartens horisontalplan (retning, strøk) Merknad: Målt i grader (0-360°) på observasjonspunkt, med eventuelt fall mot høyre. Enhet [°]. Verdien sees i sammenheng med måling av fall i vertikalplanet."
+    strøkFall_Strøk "strikeDip_Strike"?: Integer
+}
+
+datatype "innsamlede data for utførelse og registrering ved gjennomføring av totalsondering<engelsk>collected data for performance of and recordings made during total sounding</engelsk>"
+  KombinasjonSonderingData "CombinationSoundingData" {
+  "anvendt nedpressingskraft registrert på overflaten under sonderingen [kN] <engelsk>applied penetration force recorded on the surface</engelsk>"
+    anvendtLast "appliedLoad"?: Real
+  "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>"
+    boretLengde "depth": Real
+  "anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av stangsystemet [kNm] <engelsk>torque applied on the rod system during penetration and rotation of the drill string</engelsk>"
+    dreieMoment "torsionMoment"?: Real
+  "penetrasjonshastighet for stangsystemet ved nedpressing [m/min] <engelsk>penetration of the rod system per unit time (rate of penetration)</engelsk>"
+    nedpressingHastighet "rateOfPenetration"?: Real
+  "nedpressingskraft påført stangsystemet ved penetrasjon og rotasjon av borstrengen [kN] <engelsk>penetration force applied on the rod system during penetration and rotation of the drill string</engelsk>"
+    nedpressingKraft "penetrationPressure"?: Real
+  "tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m] <engelsk> time record during penetration of the rod system, referring to the previous depth </engelsk>"
+    nedpressingTid "penetrationTime"?: Integer
+  "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit during penetration of the drill string</engelsk>"
+    rotasjonHastighet "rateOfTurning"?: Real
+  "slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus, angitt ved antall slag per tidsenhet [slag/min] <engelsk>stroke frequency during application of strokes on the drill string in rock control mode, defined by the number of strokes per time unit</engelsk>"
+    slagFrekvens "rateOfPiling"?: Real
+  "volum spylevæske ved anvendelse av spyling gjennom borkronen i fjellkontrollmodus [l/min] <engelsk>volume of flushing fluid when flushing through the drill bit in rock control mode</engelsk>"
+    spyleMengde "flushing<mediaFlow"?: Real
+  "trykk på spylevæske ved anvendelse av spyling gjennom borkronen i fjellkontrollmodus [MPa) <engelsk>pressure in the flushing fluid through the drill bit in rock control mode</engelsk>"
+    spyleTrykk "flushingMediaPressure"?: Real
+}
+
+datatype "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or any other supervision data</engelsk>"
+  OvervaakningData "SurveilanceData" {
+  "grunnvannsmagasin <engelsk>aquifer (ground water reservoir)</engelsk>"
+    akvifer?: AkviferType
+  "tidspunkt for gjennomføring av målingen <engelsk>time for measurements</engelsk>"
+    måleTidspunkt "measureTime"?: DateTime
+  "kriterium for alarmtilstand, nedre grense for måleverdi [m] <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>"
+    nedreAlarmNivå "alarmLowerLevel"?: Real
+  "kriterium for alarmtilstand, øvre grense for måleverdi [m] <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>"
+    øvreAlarmNivå "alarmUpperlevel"?: Real
+  "dato for utførelse av målingen\r\n<engelsk>date for measurements</engelsk>"
+    måleDato "observationDate"?: Date
+  "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or any other supervision data</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+}
+
+datatype "data fra måling av in situ deformasjons- og konsolideringsegenskaper i friksjonsjordarter.<engelsk>data from measurements of in situ deformation- and consolidation properties in friction soils.</engelsk>"
+  PlatebelastningData "PlateBearingData" {
+  "tid fra start av prøvingen [minutter]<engelsk>time from the start of testing (minutes)</engelsk>"
+    tidFraStart?: Integer
+  "last overført til skruplate gjennom stangsystemet [kN]<engelsk>load transferred to the screw plate through the rod system</engelsk>"
+    anvendtLast "appliedLoad,belastning"?: Real
+  "nedpressingshastighet av skruplate ved gjennomføring av prøving [m/min] <engelsk>settlement rate for the screw plate during testing</engelsk>"
+    nedpressingHastighet "rateOfPenetration"?: Real
+  "endring i form som følge av tilført kraft [mm] <engelsk>change in shape because of force </engelsk>"
+    deformasjon?: Real
+}
+
+datatype "data fra måling av poretrykk <engelsk>data from measurements of pore pressure</engelsk>"
+  PoretrykkData "PorePressureData" {
+  "nullavlesning for poretrykksmåler [kPa] <engelsk>zero reading for pore pressure transducer</engelsk>"
+    avlesing0Kontroll "reading0Control"?: Real
+  "kontrollverdi for nullavlesning etter utført måling [kPa] <engelsk>control value for zero reading after completed test\r\n</engelsk>"
+    avlesingEtter0Kontroll "readingAfter0Control"?: Real
+  "kontrollverdi for nullavlesning før utført måling [kPa] <engelsk>control value of zero reading before testing</engelsk>"
+    avlesingFør0Kontroll "readingBefore0Control"?: Real
+  "distanse mellom manometer (trykkmåler) på toppen av røret og filterspiss [m] <engelsk>distance between manometer (pressure gauge) on top of the measuring hose and the filter tip</engelsk>"
+    avstandManometerFilterspiss "heightManometerFilterPoint"?: Real
+  "distanse mellom topp måleslange til vannstand i slangen [m]\r\n<engelsk>distance between top of measuring hose and the water level in the hose</engelsk>"
+    avstandToppSlangeTilVannstand "heightTopTubeWater.."?: Real
+  "trykkmåler for avlesning av lufttrykk (atmosfæretrykk) [kPa] \r\n<engelsk>pressure gauge for recording of atmospheric pressure</engelsk>"
+    barometerTrykk "barometerPressure"?: Real
+  "dybde til grunnvannsnivå (vannstand i slangen), regnet fra terrengnivå eller annet angitt referansenivå [m]\r\n<engelsk>depth to the ground water table (water level in the hose), referring to the terrain level or any other given reference level</engelsk>"
+    dybdeGrunnvannstand "groundWaterDept, groundWaterLevel"?: Real
+  "dato for utførelse av målingen\r\n<engelsk>date for measurements</engelsk>"
+    måleDato "oservationDate"?: Date
+  "tidspunkt for gjennomføring av målingen\r\n<engelsk>time for measurements</engelsk>"
+    måleTidspunkt?: DateTime
+  "observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore pressure measurements. The codes are (0..*)     numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode "remarkCode, observationCode"?: CharacterString
+  "merknad til observasjoner i poretrykksmålingen\r\n<engelsk>remarks to observations made during pore pressure measurements</engelsk>"
+    observasjonMerknad "remark, observationRemark"?: CharacterString
+  "vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa] <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>"
+    poretrykk "porePressure"?: Real
+  "stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge av trykknivå i porevannet, gitt ved avstand mellom vannstand i slangen og filternivå [mm] <engelsk>Elevation head (mm water column) in an open water pipe due to the pressure level in the pore water, defined by the distance between the water level in the hose and the filter level</engelsk>"
+    trykkhøyde "pressureHeight.."?: Real
+}
+
+datatype "data fra måling av trykktilstanden i porevannet, angitt som kraft pr. flateenhet og med atmosfæretrykket som referanse<engelsk>data from measurements of pore pressure, given as force per area unit, with the atmospheric pressure as reference</engelsk>"
+  PoretrykkDataInsitu "PorePressureInsituData" {
+  "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>\r\n\r\n<engelsk>\r\ndepth from zero level, the z value of investigation start point is 0. drilling depth[m]\r\n</engelsk>"
+    boretDybde "depth"?: Real
+  "<engelsk></engelsk>"
+    enhetsvekt "?"?: Real
+  "observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore pressure measurements. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+    observasjonKode "remarkCode"?: GeotekniskBoreObservasjonskode
+  "merknad til observasjoner i poretrykksmålingen\r\n<engelsk>remarks to observations made during pore pressure measurements</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa] <engelsk>pore water pressure in the ground, with the atmospheric pressure as reference</engelsk>"
+    poretrykk "porePressure"?: Real
+  "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>"
+    boretLengde "length": Real
+  "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space (kN/m3)"
+    tyngde?: Real
+}
+
+datatype "Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for Grunnundersøkelser).\r\n(En realisering av den generelle Posisjonskvalitet)"
+  PosisjonskvalitetNADAG {
+  "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss"
+    målemetode: Maalemetode
+  "metode for å måle høyden"
+    målemetodeHøyde?: MaalemetodeHoeyde
+  "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\r\nMerknad:\r\nOppgitt i [cm]"
+    nøyaktighet?: Integer
+  "nøyaktighet for høyden i [cm]"
+    nøyaktighetHøyde?: Integer
+}
+
+datatype "innsamlede data for utførelse og registrering ved gjennomføring av statisk sondering <engelsk>collected data for performance and recordings in static sounding</engelsk>"
+  StatiskSonderingData "StaticSoundingData" {
+  "anvendt nedpressingskraft registrert på overflaten under sonderingen [kN] <engelsk>applied penetration force recorded on the surface during sounding</engelsk>"
+    anvendtlast "appliedLoad"?: Real
+  "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>"
+    boretLengde "depth": Real
+  "antall halve omdreininger av stangsystemet, regnet fra forrige dybde <engelsk>number of half turns of the rod system, referring to the previous depth</engelsk>"
+    halveOmdreininger "halfTurns"?: Real
+  "markering av slag på borstrengen under sonderingen<engelsk>marking of strokes on the drill rods during sounding</engelsk>"
+    medSlag "hasPiling"?: Boolean
+  "tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m] <engelsk> time record during penetration of the rod system, referring to the previous depth </engelsk>"
+    nedpressingTid "penetrationTime"?: Integer
+  "nedpressing av stangsystemet per tidsenhet [m/min] <engelsk>penetration of the rod system per unit time (rate of penetration)  </engelsk>"
+    nedsynkningHastighet "rateOfPiling"?: Real
+  "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit, during penetration of the drill string</engelsk>"
+    rotasjonHastighet "rateOfTurning"?: Real
+  "<engelsk>Gets or sets the has turning, that indicates if rotation is logged while penetration of soil.\r\n@value The has turning.</engelsk>"
+    harRotasjon "hasTurning"?: Boolean
+  "<engelsk>Gets or sets the sleeve friction, the measured sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve [kPa].</engelsk>"
+    sideFriksjon "sleeveFriction"?: Real
+  "slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus, angitt ved antall slag per tidsenhet [slag/m]"
+    slagFrekvens "rateOfPiling"?: Real
+}
+
+datatype "data fra utførelse av trykksondering (med poretrykksmåling) CPT(U)<engelsk>data fra performance of cone penetration test (with pore pressure measurements) CPT(U)</engelsk>"
+  TrykksonderingData "PressureSoundingData" {
+  "anvendt last på overflaten for nedpressing av trykksonde med stenger [kN] <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>"
+    anvendtLast "appliedLoad"?: Real
+  "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>"
+    boretDybde "depth"?: Real
+  "lengde langs borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>length along the physical borehole, the same as depth in a vertical borehole</engelsk>"
+    boretLengde "depth": Real
+  "målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av friksjonshylse) [kPa] <engelsk>measured sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve)</engelsk>"
+    friksjon "frictionalresistance"?: Real
+  "vinkelavvik mellom nedpressingsretning for trykksonde og vertikalaksen [°] <engelsk>deviation between the penetration axis and the vertical axis</engelsk>"
+    helning "inclination,slope"?: Real
+  "initielt poretrykk ved start av dissipasjonstest i CPTU [kPa] <engelsk>initial pore pressure at the start of the dissipation test in CPTU</engelsk>"
+    initieltPoretrykk "initialPorePressure"?: Real
+  "elektrisk motstand når den går gjennom et materiale, måles ved gjennomføring av RCPTU-forsøk. Måles i [Ωm] (ohm-meter). <engelsk>electrical resistivity, measured in a RCPTU-test (?m) </engelsk>"
+    resistivitet "resistivity"?: Real
+  "korrigert sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av friksjonshylse, korrigert for poretrykkseffekter) [MPa] <engelsk>corrected sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve, corrected for pore pressure effects)</engelsk>"
+    korrigertFriksjon "correctedFrictionalResistance"?: Real
+  "korrigert last på overflaten for nedpressing av trykksonde med stenger [kN] <engelsk>corrected load on the surface for penetration of the test rods and probe</engelsk>"
+    korrigertNedpressningsKraft "correctedPointPressure"?: Real
+  "nedpressingsdistanse for trykksonde per tidsenhet (standard er 2 cm/sek) [m/min] <engelsk>penetration rate for probe (2 cm/sec)</engelsk>"
+    nedpressingHastighet "rateOfPenetration"?: Real
+  "anvendt last på overflaten for nedpressing av trykksonde med stenger [kN] <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>"
+    nedpressingsKraft "rateOfPenetration"?: Real
+  "tid for nedpressing av sonden til ønsket eller annen angitt dybde, regnet fra forrige dybde [sek]\r\n<engelsk>time for penetration of the probe to the requested or any other given depth. Referring to the previous depth</engelsk>"
+    nedpressingsTid "penetrationTime"?: Integer
+  "observasjonskoder for markering av hendelser i trykksonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.  <engelsk>observation codes for marking of incidents during penetration. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i trykksonderingen <engelsk>remarks to observations made during penetration</engelsk>"
+    observasjonMerknad "remark"?: CharacterString
+  "vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa] <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>"
+    poretrykk "porePressure"?: Real
+  "hastighet til s-bølge [m/s] <engelsk>velocity of s-wave</engelsk>"
+    skjærbølgeHastighet?: Real
+  "temperatur i jord og/eller luft ved gjennomføring av trykksonderingen [°C] <engelsk>temperature in soil and/or air during the testing</engelsk>"
+    temperatur "temperature"?: Real
+  "målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured cone resistance during penetration of the probe (point load divided by cross-sectional area of probe) [MPa].</engelsk>"
+    nedpressingTrykk "PenetrationPressure"?: Real
+}
+
+datatype "data fra utførelse og tolkning av vingeboring<engelsk>data from performance and interpretation of vane tests</engelsk>"
+  VingeboringData "VaneTestData" {
+  "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>\r\n<engelsk> depth from zero level, the z value of investigation start point is 0. drilling depth[m]</engelsk>"
+    boretDybde "depth"?: Real
+  "densitet for jordlagene, redusert for oppdriftseffekter [kg/m3] <engelsk>density for soil layers, reduced for buoyancy effects</engelsk>"
+    effektivDensitet "effectiveDensity"?: Real
+  "skjærfasthet korrigert for plastisitet og effektivt overlagringstrykk [kPa] <engelsk>shear strength corrected for plasticity and effective overburden stress</engelsk>"
+    korrigertSkjærfasthet "correctedShearStrength"?: Real
+  "observasjonskoder for markering av hendelser i vingeboringen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents during vane testing. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+    observasjonKode "remarkCode"?: CharacterString
+  "merknad til observasjoner i vingeboringen\r\n<engelsk>remarks to observations made during vane testing</engelsk>"
+    observasjonMerknad?: CharacterString
+  "skjærfasthet for en kohesjonsjordart med fullstendig omrørt struktur [kPa] <engelsk>shear strength for a cohesive soil with completely remoulded structure</engelsk>"
+    omrørtSkjærfasthet "disturbedShearStrength"?: Real
+  "målt vridningsmoment ved måling av vingeborrotasjon i en kohesjonsjordart med fullstendig omrørt struktur [kNm] <engelsk>measured torque during vane rotation in cohesive soil with completely remoulded structure</engelsk>"
+    omrørtTorsjonMoment "disturbedTorsionMoment"?: Real
+  "forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for kohesjonsjord  <engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive soil</engelsk>"
+    sensitivitet "sensitivity"?: Real
+  "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt struktur [kPa] <engelsk>shear strength for a cohesive soil with intact, undisturbed structure</engelsk>"
+    uomrørtSkjærfasthet "undisturbedShearStrength"?: Real
+  "målt vridningsmoment ved måling av vingeborrotasjon i en kohesjonsjordart med uforstyrret, intakt struktur [kNm] <engelsk>measured torque during vane rotation in cohesive soil with intact, undisturbed structure</engelsk>"
+    uomrørtTorsjonMoment "undisturbedTorsionMoment"?: Real
+  "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>"
+    boretLengde "length": Real
+  "Numerisk forskjell mellom flyte- og plastisitetsgrense for finstoffholdige jordarter, angir utstrekningen på det plastiske området for jordarten i prosent vanninnhold [%] <engelsk>Gets or sets the index of the plasticy, the difference between the liquid and plastic limits for a remoulded clay sample, which defines the plastic area of the clay in % water content </engelsk>"
+    plastisitetIndeks "plasticyIndex"?: Real
+}
+
+layer "fysisk prøvemateriale manuelt skjært ut fra bunnen av en utgravning eller ved hjelp av spesialutviklet prøvetakingsutstyr\r\n\r\n<engelsk>physical sample manually cut from the bottom of a ditch or with special sample equipment</engelsk>"
+  BlokkProeve "BlockSample" extends GeotekniskProevetaking {
+}
+
+layer "undersøkelse for måling av setninger og deformasjoner i felt<engelsk>investigation for measurement of settlements and deformations in the field</engelsk>"
+  DeformasjonMaaling "DeformationMeasurement" extends GeotekniskObservasjon {
+  "verdi for målt bevegelse, uten angitt forteg<engelsk>value for measured deformation, without sign</engelsk>"
+    absoluttverdi "absolutValues"?: Boolean
+  "tidspunktet måleren ble installert<engelsk>time of installation for the settlement gauge</engelsk>"
+    installasjonTidspunkt?: DateTime
+  "dybdemåleren er installert i og det punkt der setningen måles (z-nivå installasjon) [m] <engelsk>depth of the settlement gauge where settlements are recorded (z-level installation)</engelsk>"
+    installasjonNivå?: Real
+  "type setningsmåler (setningsplate, setningsbolt, slange)<engelsk>type of settlement gauge (settlement plate, bolt, settlement hose)</engelsk>"
+    målertype?: CharacterString
+  "registrering av referansepunkt for setningsmåling (z-nivå måling). Kan avvike fra installasjonsnivå [m] <engelsk>recording of reference level for settlements (z-level measurements). My deviate from installation level</engelsk>"
+    målepunkt "measuringPoint"?: Real
+  harOvervåkningObservasjon*: DeformasjonOvervaakningData
+  harSetningObservasjon*: DeformasjonMaaleData
+}
+
+layer "en enkel innretning, formet som et flatt blad designet for å trykkes ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\n<engelsk>a simple device, shaped in the form of a flat blade designed to be pushed into the ground Note: It was developed to evaluate the soil modulus.</engelsk>"
+  DilatometerTest "DilatometerTest" extends GeotekniskInsituTest {
+  "materialindeks<engelsk>material index</engelsk>"
+    materialIndeks?: Real
+  "horisontalspenning index<engelsk>horizontal stress index</engelsk>"
+    horisontalSpenningIndeks?: Real
+  "dilatometer modulus (enhetsløs) <engelsk>dilatometer modulus</engelsk>"
+    dilatometerModulus?: Real
+  dilatometerObservasjon*: DilatometerTestData
+}
+
+layer "sondering som benytter slag på borstrengen ved penetrasjon, benevnes også som ramsondering, flere liknende metoder aktuelle<engelsk>sounding using strokes on the drill string during penetration, several similar methods are applicable</engelsk>"
+  DynamiskSondering "DynamicSounding" extends GeotekniskSondering {
+  "antall prøver av fysisk prøvemateriale som er tatt opp under sonderingen<engelsk>number of samples retrieved during sounding</engelsk>"
+    antPrøveuttakForstyrretMatr?: Integer
+  dynamiskSonderingObservasjon*: DynamiskSonderingData
+}
+
+layer "måling av  gass<engelsk>measurement of gas</engelsk>"
+  GassMaaling "GasMeasurement" extends GeotekniskInsituTest {
+  "beskrivelse av plassering<engelsk>description of location</engelsk>"
+    plassering?: CharacterString
+  "nummer som identifiserer bygg<engelsk>number that identifies building</engelsk>"
+    byggNummer?: CharacterString
+  gassObservasjon*: GassData
+}
+
+layer "gassprøve fra poreluft<engelsk>gas sample from pore air</engelsk>"
+  GassProeve "GasSample" extends GeotekniskProevetaking {
+}
+
+layer "geografisk område representert ved et punkt som er den logiske enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag <engelsk>geographical area represented by a location which is the logical unit for interpretation of stratification and properties for the different strata </engelsk>"
+  GeotekniskBorehull "GeotechnicalBorehole" extends GeovitenskapligBorehull {
+  "Nummer på borehull benyttet i den geotekniske undersøkelsen"
+    boreNr "boreholeNr"?: CharacterString
+  "Terrenghøyde ved start borehull [m]"
+    høyde?: Real
+  "Referansesystem for høydeangivelse, som EPSG-kode."
+    høydeReferanse?: NADAG_Hoeyderef
+  "Når objektet ble opprettet i database (Nadag)"
+    opprettetDato "entryDate": DateTime
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternIdentifikasjon?: EksternIdentifikasjon
+  "Grad av sikkerhet for påvisning av kvikkleire (omrørt skjærfasthet mindre eller lik 0,5 kPa) eller sprøbruddmateriale (omrørt skjærfasthet mindre enn 2 kPa)"
+    kvikkleirePåvisning?: KvikkleirePaavisningKode
+  "opprinneligGeotekniskUndersID - LokalID fra opprinnelig Geoteknisk undersøkelse. \r\nBenyttes for å identifisere orginal undersøkelse med rapporter etc. ved bruk av samme GeotekniskBorehull i flere undersøkelser."
+    opprinneligGeotekniskUndersID "originalGeotechnicalInvestigationID"?: CharacterString
+  "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde"
+    opphav?: CharacterString
+  "Lengste boret lengde for borehullsundersøkelsene i dette borhullet [m]"
+    maksBoretLengde?: Real
+  child harUndersøkelse*: GeotekniskBorehullUnders
+  parent undersOmr*: GeotekniskUnders
+}
+
+layer "geografisk punkt hvor det er utført feltforsøk, prøvetaking, måling av poretrykk osv. med tilhørende observasjoner <engelsk>geographical location where field tests, sampling, pore pressure measurements etc. with corresponding observations have been carried out</engelsk>"
+  GeotekniskBorehullUnders "GeotechnicalBoreholeInvestigation" extends GeovitenskapligBorehullUndersoekelse {
+  "Terrenghøyde ved start borehullsundersøkelse [m]"
+    høyde?: Real
+  "Referansesystem for høydeangivelse, som EPSG-kode."
+    høydeReferanse?: NADAG_Hoeyderef
+  "Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen"
+    undersøkelseNr "surveyNo"?: CharacterString
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternIdentifikasjon?: EksternIdentifikasjon
+  "Når objektet ble opprettet i database (Nadag)"
+    opprettetDato: DateTime
+  "Metoder benyttet ved geotekniske borehullundersøkelser"
+    geotekniskMetode: GeotekniskMetodeKode
+  "dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the level in the ground where all voids are saturated with water, and where the pore pressure starts to increase</engelsk>"
+    dybdeGrunnvannstand "groundWaterDept, groundWaterLevel"?: Real
+  "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter (mm) of a predrilled hole in a borehole investigation</engelsk>"
+    forboretDiameter "preBoringDiameter"?: Real
+  "Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of a predrilled borehole in a borehole investigation<engelsk>"
+    forboretLengde "preBoringLength"?: Real
+  "metode brukt til boring uten registrering av data<engelsk>pre boring method</engelsk>"
+    forboringMetode "preBoringmethod"?: CharacterString
+  "tosifret tall som benyttes for å angi årsak til avslutning av borehullundersøkelse<engelsk>code used to explain the reason for termination of a borehole investigation<engelsk>"
+    stoppKode "terminationCode"?: GeotekniskStoppkode
+  "startlengde[m] for hvor forboring startet i en borhullundersøkelse <engelsk>start depth[m] where the predrilling in the  borehole investigation started<engelsk>"
+    forboretStartLengde "preBoringStartLength"?: Real
+  child metode*: Geotekniskmetode
+  parent undersPkt?: GeotekniskBorehull
+}
+
+layer "dokument(er) tilhørende geotekniske undersøkelsesområder og borehull <engelsk>accompanying documents to geotechnical investigation areas and boreholes</engelsk>"
+  GeotekniskDokument {
+  "Unik nøkkel for dokument."
+    dokumentID?: CharacterString
+  "Benyttes til å angi nøkkelverdi ved kall til Web-api."
+    dokumentNøkkel?: CharacterString
+  "Type dokument. Feks. Geoteknisk rapport, Profilbilde"
+    dokumentType: NADAG_DokumentType
+  "Filnavn på dokumentet."
+    dokumentFilnavn?: CharacterString
+  "Komplett URL for dokument med id."
+    dokumentURL?: CharacterString
+  "Type dokumentformat, feks. Image/png, pdf"
+    innholdType?: CharacterString
+  "Kort informasjon om dokumentet"
+    beskrivelse?: CharacterString
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternIdentifikasjon?: EksternIdentifikasjon
+  "Navn på dokument"
+    dokumentNavn?: CharacterString
+  "Når objektet ble opprettet i database (Nadag)"
+    opprettetDato "entryDate"?: DateTime
+  "Feks. rapportNr."
+    dokumentNr?: CharacterString
+  "Dato når dokument ble opprettet"
+    dokumentDato "dokumentDato"?: DateTime
+  parent tilhørerFeltUnders?: GeotekniskFeltUnders
+  parent tilhørerGU?: GeotekniskUnders
+  parent tilhørerGB?: GeotekniskBorehull
+  parent tilhørerGBU?: GeotekniskBorehullUnders
+}
+
+layer "Geoteknisk feltundersøkelse"
+  GeotekniskFeltUnders {
+  "unik identifikasjon av et objekt"
+    identifikasjon: Identifikasjon
+  "sted objektet eksisterer på bestemt av måleutstyr"
+    geometry posisjon: Punkt
+  "Metoder benyttet ved geotekniske feltundersøkelser"
+    geotekniskFeltUndersMetode?: GeotekniskFeltUndersMetodeKode
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternidentifikasjon?: EksternIdentifikasjon
+  "Når objektet ble opprettet i database (Nadag)"
+    opprettetDato "entryDate"?: DateTime
+  feltundersType?: FeltUndersTypeKode
+  "Metoder benyttet for tolkning av geotekniske feltundersøkelser"
+    tolkningMetode?: TolkningMetodeKode
+  "Høyde på observert fjell [m]"
+    høydeFjell?: Real
+  "Terrenghøyde ved start feltundersøkelse [m]"
+    høyde?: Real
+  "Referansesystem for høydeangivelse, som EPSG-kode."
+    høydeReferanse?: NADAG_Hoeyderef
+  "Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen"
+    feltundersNr?: CharacterString
+  parent tilhørerGU?: GeotekniskUnders
+}
+
+layer "Undersøkelse gjort i et borehull i form av en prøveserie<engelsk> Soil     test </engelsk>"
+  GeotekniskProeveserie "SoilTest" extends GeotekniskProevetaking {
+  "om det er benyttet prøvegrop<engelsk> indicating whether a soil test has a bag sample</engelsk>"
+    prøvegrop "hasPgData"?: Boolean
+  "om det kun er benyttet prøvegrop<engelsk>indicating whether a soil test has only a bag sample</engelsk>"
+    prøvegropKun "hasPgDataOnly"?: Boolean
+  "om det er benyttet skovlprøve<engelsk>indicating whether a soil test has grab (Skv) sample</engelsk>"
+    skovelprøve "hasSkvData"?: Boolean
+  "om det kun er benyttet skovlprøve<engelsk> indicating whether a soil test has only a grab (Skv) sample</engelsk>"
+    skovelprøveKun "hasSkvDataOnly"?: Boolean
+  "om prøvserien er omrørt<engelsk>indicating whether a soil test is disturbed</engelsk>"
+    erOmrørt "isDisturbed"?: Boolean
+  "om prøvserien er uforstyrret<engelsk>indicating whether a soil test is undisturbed</engelsk>"
+    erUforstyrret "isUndisturbed"?: Boolean
+}
+
+layer "Lag med geoteknisk tolkning"
+  GeotekniskTolketLag {
+  "Unik nøkkel for tolktet lag"
+    tolketLagID?: CharacterString
+  "oversikt over klassifiseringsmetoder for bestemmelse av grunnforhold"
+    klassifiseringMetode?: KlassifiseringsMetode
+  "oversikt over lagdeling og jordart for klassifisering og identifisering av grunnforhold"
+    hovedLagKlassifiseringsKode?: HovedLagKlassifisering
+  "Beskrivelse av tolket lag feks. Sand"
+    lagBeskrivelse?: CharacterString
+  "Hvem som har gjort tolkning"
+    tolketAv?: CharacterString
+  "Når tolkning ble utført"
+    tolketTidspunkt?: DateTime
+  "Kommentar til tolkning"
+    tolkningMerknad?: CharacterString
+  "Navn på tolket lag"
+    navn?: CharacterString
+  "Om tolkning er på terrengoverflate"
+    påTerrengOverflate?: Boolean
+  "Hvor sikker tolkning er, med  0=Udefinert,5=Sikker og glidende skala imellom."
+    vurdering?: Real
+  "Om tolkning er under terrengoverflate"
+    underTerrengOverflate?: Boolean
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternIdentifikasjon?: EksternIdentifikasjon
+  "objektets utstrekning gitt i x.y,z."
+    geometry posisjon: Punkt
+  "Laghøyde for tolkning [m]"
+    høyde?: Real
+  "referansesystem for høydeangivelse, som EPSG-kode."
+    høydeReferanse?: NADAG_Hoeyderef
+  parent tilhørerTolketPunkt?: GeotekniskTolketPunkt
+}
+
+layer "Punkt med geoteknisk tolkning i GeotekniskTolketLag"
+  GeotekniskTolketPunkt {
+  "unik identifikasjon av et objekt"
+    identifikasjon: Identifikasjon
+  "Hvem som har tolket punktet"
+    tolketAv?: CharacterString
+  "Når tolkning ble utført"
+    tolketTidspunkt?: DateTime
+  "Navn på tolket punkt"
+    navn?: CharacterString
+  "objektets utstrekning gitt i x.y,z."
+    geometry posisjon: Punkt
+  "Terrenghøyde overflate for punkt med tolkning(/er)[m]"
+    høyde: Real
+  "Referansesystem for høydeangivelse, som EPSG-kode."
+    høydeReferanse: NADAG_Hoeyderef
+  "kartmålestokk registreringene/ datene er hentet fra/ registrert på\r\n\r\nEksempel: 1:50 000 = 50000."
+    digitaliseringsmålestokk?: Integer
+  "beskrivelse av kvaliteten på stedfestingen"
+    kvalitet?: PosisjonskvalitetNADAG
+  "dato for siste endring på objektetdataene \r\n\r\nMerknad: \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set."
+    oppdateringsdato?: DateTime
+  "kort tilleggsinformasjon om punktet for tolkning/er \r\n<engelsk>\r\na short description</engelsk>"
+    beskrivelse?: CharacterString
+  parent tilhørerGU?: GeotekniskUnders
+  parent tilhørerGB?: GeotekniskBorehull
+}
+
+layer "geografisk område hvor det finnes eller er planlagt geotekniske borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are planned geotechnical boreholes for a given project</engelsk>"
+  GeotekniskUnders "GeotechnicalInvestigation" extends GeovitenskapeligUndersoekelse {
+  "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet."
+    eksternIdentifikasjon?: EksternIdentifikasjon
+  "Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse fysisk representerer."
+    representasjonKvalitet?: RepresentasjonKvalitet
+  "Når objektet ble opprettet i database (Nadag)"
+    opprettetDato "entryDate": DateTime
+  "Nummer på prosjekt benyttet for den geotekniske undersøkelsen"
+    prosjektNr?: CharacterString
+  "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde"
+    opphav?: CharacterString
+  "Antatt år for gjennomføring av den geotekniske undersøkelsen. For største delen av de leverte dataene har det vært dårlig infomasjon i egenskapene for undersøkelseperiode og derfor utvides det med denne egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og avhengig av hva for leveranser det er varierer usikkerheten på på det antatte årstallet."
+    undersøkelseÅrAntatt?: Integer
+  child undersPkt*: GeotekniskBorehull
+}
+
+layer "avgrensning av et område for geotekniske undersøkelser. Merk: Benyttes kun for de formater som krever egen geometri for avgrensning av flate. <engelsk>demarcation of an area with soil investigations. Only used for delivery formats that requier it.</engelsk>"
+  GeotekniskUndersoekelseGrense "GeotechnicalInvestigationBorder" extends GeovitenskapeligUndersoekelseGrense {
+}
+
+layer "omrørt fysisk prøvemateriale manuelt gravd ut fra sjakt eller grøft <engelsk>disturbed physical soil sample manually digged from a ditch or pit</engelsk>"
+  GraveProeve "DigSample" extends GeotekniskProevetaking {
+}
+
+layer "måling av grunnvannstand i felt<engelsk>measurement of the ground water table in the field</engelsk>"
+  GrunnvannMaaling "GroundWaterMeasurement" extends GeotekniskInsituTest {
+  "indikerer varighet av måleperiode ved langtidsmåling\r\n<engelsk>indicates duration of the test period in long-term measurements</engelsk>"
+    erLangtidsobservasjon "isLongTimeObservation": Boolean
+  "dybde til midten av filteret i forhold til rørTopp [m]\r\n<engelsk> depth to center of filter in relation to height at top of pipe [m] </engelsk>"
+    filterDyp "filterLength"?: Real
+  "lengde av filter i målerør [m] <engelsk>length of the filter in measurement tube</engelsk>"
+    filterLengde "filterLength"?: Real
+  "type filter i målerør<engelsk>type of filter in measurement tube</engelsk>"
+    filterType "filterType"?: CharacterString
+  "type og størrelse av grunnvannsreservoir<engelsk>\r\ntype and size of groundwater reservoir</engelsk>"
+    grunnvannAkvifer "groundWaterAquifer"?: AkviferType
+  "nivå (høyde) for bunn av målerør [m] <engelsk>level (height) for the base of the measurement tube</engelsk>"
+    rørBunn "bottomOfTube"?: Real
+  "nivå (høyde) for topp av målerør [m] <engelsk>level (height) for the top of the measurement tube</engelsk>"
+    rørTopp "topOfTube"?: Real
+  "type målerør for utførelse av hydraulisk måling<engelsk>\r\ntype of measurement tube for performance of groundwater measurements</engelsk>"
+    rørType "pipeType"?: CharacterString
+  grunnvannObservasjon*: GrunnvannData
+  overvåkningObervasjon*: OvervaakningData
+}
+
+layer "måling av vannstrømning, vannhastighetsbestemmelse og hydraulisk splitting i felt <engelsk>measurement of hydraulic tests (i.e. water flow, pulse tests and hydraulic fracturing tests) in the field</engelsk>"
+  HydrauliskTest "HydraulicTest" extends GeotekniskInsituTest {
+  "nivå (høyde) for bunn av målerør [m] <engelsk>level (height) for the base of the measurement tube</engelsk>"
+    rørBunn "bottomOfTube"?: Real
+  "nivå (høyde) for topp av målerør [m] <engelsk>level (height) for the top of the measurement tube</engelsk>"
+    rørTopp "topOfTube"?: Real
+  "type målerør for utførelse av hydraulisk måling<engelsk>type of measurement tube for hydraulic measurements</engelsk>"
+    rørType "pipeType"?: CharacterString
+  hydrauliskObservasjon*: HydrauliskeData
+}
+
+layer "omrørt fysisk prøvemateriale tatt i organiske materialer eller bløte leirer med enkelt håndoperert utstyr\r\n\r\n<engelsk>disturbed physical soil sample taken from organic material or soft clays with simple hand operated equipment</engelsk>"
+  KanneProeve "CanSample" extends GeotekniskProevetaking {
+}
+
+layer "kjerneprøve tatt i fast berg/fjell ved kjerneboring. Ofte dype boringer og normalt ikke relevant for geoteknikk. Tatt med i denne produktspesifikasjon pga. at data kan finnes sammen med geoteknikkleveranser. Blir eventuelt overført til annen database/produktspek senere. <engelsk>core drilling</engelsk>"
+  KjerneBoring "CoreDrilling" extends GeotekniskProevetaking {
+  "dybde til bergoverflaten som ikke er målt men basert på tolkning<engelsk>depth to the rock surface based on interpretation and not measurements\r\n</engelsk>"
+    boretLengdeTilBerg?: BorlengdeTilBerg
+  harData*: KjerneBoringData
+}
+
+layer "kjerneprøve tatt i faste masser eller løst berg <engelsk>core sample</engelsk>"
+  KjerneProeve "CoreSample" extends GeotekniskProevetaking {
+  "dybde til bergoverflaten som ikke er målt men basert på tolkning<engelsk>depth to the rock surface based on interpretation and not measurements\r\n</engelsk>"
+    boretLengdeTilBerg?: BorlengdeTilBerg
+}
+
+layer "kombinasjon av boremetodene totalsondering og fjellkontrollboring som gjør det mulig å bore både i løsmasse og berg<engelsk>combination of the boring methods rotary pressure sounding and rock control boring which enables drilling in both soils and rock.</engelsk>"
+  KombinasjonSondering "CombinationSounding" extends GeotekniskSondering {
+  "boret dybde til bergoverflaten [m] <engelsk>drilled depth to the rock surface</engelsk>"
+    boretLengdeIBerg "drillDepthRock"?: Real
+  "dybde til bergoverflaten som ikke er målt men basert på tolkning [m] <engelsk>depth to the rock surface based on interpretation and not measurements</engelsk>"
+    boretLengdeTilBerg?: BorlengdeTilBerg
+  "maksimal nedpressingskraft registrert på overflaten [kN] <engelsk>maximum penetration force recorded on the surface</engelsk>"
+    maksLast "maxLoad"?: Real
+  kombinasjonSonderingObservasjon*: KombinasjonSonderingData
+}
+
+layer "miljøundersøkelse<engelsk>environmental investigation</engelsk>"
+  MiljoeUndersoekelse "EnvironmentalSample" extends GeotekniskProevetaking {
+}
+
+layer "geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical sampling where disturbed samples are colleced</engelsk>"
+  NaverProeve "AugerSample" extends GeotekniskProevetaking {
+}
+
+layer "undersøkelse for måling av in situ deformasjons- og konsolideringsegenskaper i friksjonsjordarter<engelsk>investigation for measurement of in situ deformation- and consolidation properties in friction soils</engelsk>"
+  Platebelastning "Plate-bearing test" extends GeotekniskInsituTest {
+  "antall belastningstrinn i en målesekvens<engelsk>number of load steps in a test sequence</engelsk>"
+    lasttrinnAntall?: Integer
+  "areal av skruplate for fordeling av tilleggslast [m2]<engelsk>area of screw plate for distribution of additional load</engelsk>"
+    arealPlate?: Real
+  platebelastningObservasjon*: PlatebelastningData
+}
+
+layer "måling av poretrykkforhold i grunnen foretatt i løpet av en tidsperiode og / eller i flere dybder. poretrykk er trykket i porevannet angitt som kraft pr. flateenhet, og med atmosfæretrykket som referanse<engelsk>measurement of pore pressure in the groundwater during a time period and / or in several depths. the pore pressure is the pressure in the pore water given as force per area unit, with the atmospheric pressure as reference</engelsk>"
+  PoretrykkMaaling "PorePressureSounding" extends GeotekniskInsituTest {
+  "tidspunktet poretrykksmåleren ble installert<engelsk>time of installation of the pore pressure device</engelsk>"
+    installasjonTidspunkt?: DateTime
+  "lengde på  filter i poretrykksmåler [m]<engelsk>length of filter in the pore pressure device</engelsk>"
+    filterLengde "filterLength"?: Real
+  "kotenivå for spiss av poretrykksmåler [m]<engelsk>elevation for the tip of the pore pressure device</engelsk>"
+    koteSpiss "depthPointFilter"?: Real
+  "type filter i poretrykksmåler<engelsk>type of filter in the pore pressure device</engelsk>"
+    filterType "filterType"?: CharacterString
+  "høyde z-verdi ved filterets topp i forhold til vertikal referanse[m]\r\n\r\n<engelsk>\r\nheight Z-level at the top of filter in relation to vertical reference  (m)  </engelsk>"
+    rørToppFilter "topOfTube"?: Real
+  "høyde z-verdi ved slangens topp i forhold til vertikal referanse [m] \r\n\r\n<engelsk>\r\nheight Z-level at the top of tube in relation to vertical reference (m)  </engelsk>"
+    rørToppSlange?: Real
+  "høyde z-verdi ved rørets topp i forhold til vertikal referanse [m] \r\n\r\n<engelsk>\r\nheight Z-level at the top of pipe in relation to vertical reference (m) </engelsk>"
+    rørTopp "topOfTube"?: Real
+  "høyde z-verdi ved rørets bunn i forhold til vertikal referanse [m]\r\n\r\n<engelsk>\r\nheight Z-level at the bottom of pipe in relation to vertical reference  (m) </engelsk>"
+    rørBunn "bottomOfTube"?: Real
+  "identifikasjon av poretrykksmåler/måleapparat<engelsk>identification of the pore pressure device/measuring unit</engelsk>"
+    målerspissNummer "measurePointNumber"?: CharacterString
+  "kategori poretrykksmåler (åpen, hydraulisk, elektrisk<engelsk>cathegory of the pore pressure device (open, hydraulic, electrical</engelsk>"
+    målerKategori "measureType"?: PoretrykkMaaleKategori
+  "type poretrykksmåler (fabrikat, produsent)<engelsk>type of pore pressure device</engelsk>"
+    målerType "measureType"?: CharacterString
+  poretrykkObservasjon*: PoretrykkData
+}
+
+layer "geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede masser <engelsk>geotechnical sampling where a sylinder is rammed into compact soil</engelsk>"
+  RamProeve "PercussionSample" extends GeotekniskProevetaking {
+}
+
+layer "sedimentprøve<engelsk>sediment sample</engelsk>"
+  SedimentProeve "SedimentSample" extends GeotekniskProevetaking {
+}
+
+layer "geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical sampling where disturbed samples are colleced</engelsk>"
+  SkovlProeve "BucketSample" extends GeotekniskProevetaking {
+}
+
+layer "sonderingstype som brukes for å bestemme lagdeling i løsmasser og dybde til fast grunn, og utføres med en konstant nedpressingshastighet og rotasjonshatighet.<engelsk>sounding method used for identification of soil stratification and depth to firm layers, performed with constant penetration and rotation rate</engelsk>"
+  StatiskSondering "StaticSounding" extends GeotekniskSondering {
+  "dybde for angivelse av telefront ved sondering i frosset jord [m] <engelsk>depth to frost front for sounding in frozen soils </engelsk>"
+    telenivå "groundFrostDepth"?: Real
+  statiskSonderingObservasjon*: StatiskSonderingData
+}
+
+layer "geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede masser, og hvor sylinder holdes stengt inntil ønsket dybde\r\n<engelsk>geotechnical sampling where a sylinder is rammed into compact soil, and where the sylinder is kept closed until the desired depth</engelsk>"
+  StempelProeve "PistonSample" extends GeotekniskProevetaking {
+}
+
+layer "penetrasjon av en trykksonde på enden av en serie med sylindriske trykksonderingsstenger ned i grunnen med konstant hastighet, brukes for å bestemme lagdeling og jordart i løsmasser, samt mekaniske egenskaper for jorden<engelsk>penetration of a probe at the end of a series with cylindrical rods into the ground at the constant rate of penetration, used to determine stratification and soil type, together with mechanical properties of the soil</engelsk>"
+  Trykksondering "PenetrationTest" extends GeotekniskInsituTest {
+  "arealforhold for trykksonde for korreksjon av målt spissmotstand for poretrykkseffekter<engelsk>area ratio for CPT probe for correction of measured cone resistance for pore pressure effects</engelsk>"
+    alpha?: Real
+  "øvrige faktorer for korreksjon av trykksonderingsdata, for eksempel korreksjon av målt sidefriksjon<engelsk>other factors for correction of CPT data, for example correction of measured sleeve friction</engelsk>"
+    cptKorreksjonsFaktor "initialFrictionalResistance (?)"?: Real
+  "type filter for måling av poretrykk (porøst filter, ferdigmettet, spaltefilter)<engelsk>type of filter for measurement of pore pressure (porous filter, pre-saturated filter, slot filter)</engelsk>"
+    filterType "filterType"?: CharacterString
+  "referanseverdi for spissmotstand ved start av måling (eksempel ved start dissipasjonstest) [MPa] <engelsk>reference value cone resistance at the start of the test (e.g. at the start of a dissipation test)</engelsk>"
+    initiellSpissmotstand "initialPointPressure"?: Real
+  "medium som benyttes for metting av målesystem for poretrykk<engelsk>medium used for saturation of measuring system for pore pressure</engelsk>"
+    metningsMedium "saturationMedium"?: CharacterString
+  "kapasitet for anvendt nedpressingsutstyr [kN] <engelsk>capacity for applied thrust machine</engelsk>"
+    nedpressingsKapasitet?: NedpressingsKapasitet
+  "nedpressingshastighet ved penetrasjon av trykksonderingsstenger (standard er 20 mm/s ± 5 mm/s) [mm/s] <engelsk>rate of penetration for rod system (standard is 20 mm/s ± 5 mm/s)</engelsk>"
+    nedpressningsHastighet "rateOfPenetration"?: Real
+  "korreksjon for registrert nullpunktsavvik før og etter sondering <engelsk>correction for recorded zero load drift before and after sounding</engelsk>"
+    nullpunktsKorreksjon "initialPorePressure, zeroPointCorrection,"?: Real
+  "korreksjonsfaktor for bruk av friksjonsreduksjonsring <engelsk>correction factor for use of friction reducer</engelsk>"
+    rørKappeKorreksjonsFaktor "mantelareaFaktor,sleeveAreaFactor"?: Real
+  "korreksjon av målt sidefriksjon på grunn av poretrykkseffekter<engelsk>correction of measured sleeve friction due to pore pressure effects</engelsk>"
+    sidefriksjonKorreksjon "sideFrictionCorrection"?: Real
+  "identifikasjon av trykksonde ved hjelp av ID-nummer <engelsk>identification of probe by an ID-number</engelsk>"
+    sondeIdentifikasjon?: CharacterString
+  "dato for kalibrering av trykksonde, oppgis på kalibreringssertifikat<engelsk>date for calibration of probe, given on the calibration certificate</engelsk>"
+    sondeKalibreringDato?: DateTime
+  "kvalitetsklasse for målenøyaktighet for en trykksonde ved gjennomføring av anbefalt prøvingsprosedyre <engelsk>application class for test accuracy for test performance according to a recommended test procedure</engelsk>"
+    sondeKvalitetKlasse?: SondeKvalitetsKlasse
+  "korreksjonsfaktor for trykksonde ved korreksjon av målt spissmotstand for poretrykkseffekter<engelsk>correction factor for measured cone resistance for pore pressure effects</engelsk>"
+    spissKorreksjonFaktor "pointAreaFactor"?: Real
+  "type trykksonde, avhengig av størrelse og instrumentering<engelsk>type of probe, depending on size and instrumentation</engelsk>"
+    spissType "pointType"?: CharacterString
+  "<engelsk>Gets or sets the atmospheric pressure correction [MPa].\r\n@value The atmospheric pressure correction.</engelsk>"
+    atmosferiskTrykkKorreksjon "AtmosphericPressureCorrection"?: Real
+  "<engelsk>Gets or sets the sleeve distance correction [m].\r\n@value The sleeve distance correction.</engelsk>"
+    hylseRadieKorreksjon "sleeveDistanceCorrection"?: Real
+  inSituPoretrykkObservasjon*: PoretrykkDataInsitu
+  trykksonderingObservasjon*: TrykksonderingData
+  dissipasjonObservasjon*: DissipasjonData
+}
+
+layer "vannprøve<engelsk>water sample</engelsk>"
+  VannProeve "WaterSample" extends GeotekniskProevetaking {
+  "angir kilden til vannprøve<engelsk>define the source of the water sample</engelsk>"
+    vannPrøveType?: VannProeveKilde
+}
+
+layer "undersøkelse for måling av in situ udrenert skjærfasthet for uforstyrret og omrørt materiale i kohesjonsjordarter<engelsk>investigation for measurements of in situ undrained shear strength for undisturbed and remoulded material in cohesive soils</engelsk>"
+  Vingeboring "VaneTest" extends GeotekniskInsituTest {
+  "vannstand i borehull etter vingeboring i felt<engelsk>water level in a borehole after vane testing</engelsk>"
+    vannstandIBorehull "waterLevelBoreHole"?: Real
+  "diameter for vingekors [mm] <engelsk>diameter of the vane<engelsk>"
+    vingeDiameter "vaneDiameter"?: Real
+  "høyde for vingekors [mm] <engelsk>height of the vane</engelsk>"
+    vingeHøyde "vaneHight"?: Real
+  "identifikasjon for anvendt vingeborutstyr<engelsk>identification of applied vane test equipment</engelsk>"
+    vingeIdentitet "vaneIdentity"?: CharacterString
+  vingeboringObservasjon*: VingeboringData
+}
+
+datatype "Unik identifikasjon av et objekt, ivaretatt av den ansvarlige produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet. \r\n\r\nNOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som f.eks bygningsnummer. \r\n\r\nNOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid."
+  Identifikasjon "Identification" {
+  "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.\r\n\r\nNOTE: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet."
+    identity lokalId "localId": CharacterString
+  "navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  (\"_\") dersom data produsenten ikke er assosiert med bare et land.\r\n\r\nNOTE 1 : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i \"INSPIRE external  Object Identifier Namespaces Register\"\r\n\r\nEksempel: NO for Norge."
+    navnerom "namespace": CharacterString
+  "identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen. \r\n\r\nNOTE Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId."
+    versjonId "versionId"?: CharacterString
+}
+
+datatype "angivelse av at objektet er hentet fra en kopi av originaldata\r\n\r\nMerknad: \r\nKan benyttes dersom man gjør et uttak av en database som ikke inneholder originaldataene."
+  Kopidata {
+  "identifikasjon av område som dataene dekker\r\n\r\nMerknad: Kan angis med kommunenummer eller fylkesnummer. Disse bør spesifiseres nærmere."
+    områdeId: Integer
+  "ansvarlig etat for forvaltning av data"
+    originalDatavert: CharacterString
+  "dato når objektet ble kopiert fra originaldatasettet  \r\n\r\nMerknad:\r\nEr en del av egenskapen Kopidata. Brukes i de tilfeller hvor en kopidatabase brukes til distribusjon.\r\nÅ kopiere et datasett til en kopidatabase skal ikke føre til at Oppdateringsdato blir endret.\r\nEventuell redigering av data i et kopidatasett medfører ny Oppdateringsdato, Datafangstdato og/eller Verifiseringsdato."
+    kopidato: DateTime
+}
+
+codelist "metode som ligger til grunn for registrering av posisjon\r\n\r\n\r\n-- Definition - - \r\nmethod on which registration of position is based"
+  Maalemetode "MeasuringMethod" {
+  Terrengmålt "Measured in terrain"
+  Totalstasjon "Total station"
+  Teodolitt_med_elektronisk_avstandsmåler "Theodolite with electronic rangefinder"
+  Teodolitt_med_målebånd "Theodolite with measuring tape"
+  Ortogonalmetoden "Orthogonal method"
+  "Punkt beregnet på bakgrunn av andre punkter, slik som to avstander eller avstand + retning\r\n\r\n-- Definition -- \r\nPoint calculated on the basis of other items, such as two distances or distance + direction."
+    Utmål "MeasureOut"
+  Tatt_fra_plan "Taken from plan"
+  "Annet"
+    Annet_denne_har_ingen_mening_bør_fjernes_
+  Stereoinstrument "Stereo instrument"
+  "(Pkt. beregnet v/ aerotriangulering)\r\n\r\n-- Definition -- \r\nPoint calculated by aerotriangulation"
+    Aerotriangulert "Aerotriangulated"
+  Analytisk_plotter "Analytical plotter"
+  Autograf_vanlig_registrering "Autograph - normal registration"
+  Digitalt_stereoinstrument "Digital stereo instrument"
+  Scannet_fra_kart "Scanned from map"
+  Scannet_fra_blyantoriginal "Scannet from pencilled original"
+  Scannet_fra_rissefolie "Scanned from ??scribing folio"
+  Scannet_fra_transparent_folie_god_kvalitet "Scanned from transparency folio - good quality"
+  Scannet_fra_transparent_folie_mindre_god_kvalitet "Scanned from transparency folio - inferior quality"
+  Scannet_fra_papirkopi "Scannet from paper / hard copy"
+  Flybåren_laserscanner "Airbourne laser scanner"
+  Digitalisert_på_dig_bord_fra_ortofoto_flybilde "Digitised on dig.table from orthophoto/aerial photo"
+  Digitalisert_fra_ortofoto_film "Digitised from orthophoto - film"
+  Digitalisert_fra_ortofoto_fotokopi "Digitised from orthophoto - photocopy"
+  Digitalisert_fra_flybilde_monodigitalisert_fra_film "Digitised from aerial photo - mono-digitised from film"
+  Digitalisert_fra_flybilde_monodigitalisert_fra_fotokopi "Digitised from aerial photo - mono-digitised from photocopy"
+  Digitalisert_fra_ortofoto "Digitised from orthophoto"
+  Digitalisert_på_skjerm_fra_satellittbilde "Digitised on screen from satellite photo"
+  Digitalisert_på_dig_bord_fra_strek_kart "Digitised on dig.table from line-map"
+  Digitalisert_på_dig_bord_fra_blyantoriginal "Digitised on dig.table from pencilled original"
+  Digitalisert_på_dig_bord_fra_rissefolie "Digitised on dig.table from ??scribing folio"
+  Digitalisert_på_dig_bord_fra_transparent_film_god_kvalitet "Digitised on dig.table from transparency film - good quality"
+  Digitalisert_på_dig_bord_fra_transparent_film_mindre_god_kvalitet "Digitised on dig.table from transparency film - lower quality"
+  Digitalisert_på_dig_bord_fra_papirkopi "Digitised on dig.table from paper copy"
+  "(Raster)"
+    Dig_på_skjerm_fra_scannet_samkopi "Digitised on screen from scanned photographic combination"
+  Genererte_data_interpolasjon_ "Generated data (interpolation)"
+  Generert_i_terrengmodell "Generated in terrain model"
+  Vektet_middel "Weighted mean"
+  Generert_sirkelgeometri "Generated circular geometry"
+  Generalisert "Generalised"
+  Generert_sentralpunkt "Generated central point"
+  Sammenknytningspunkt_randpunkt "Connection point/edge point"
+  Koordinater_hentet_fra_GAB "Coordinates retrieved from GAB"
+  Koordinater_hentet_fra_JREG "Coordinates retrieved from JREG"
+  Beregnet "Calculated"
+  Spesielle_metoder "Special methods"
+  Målt_med_stikkstang "Measured with range pole"
+  Målt_med_waterstang "Measured with"
+  Målt_med_målehjul "Measured with measuring wheel"
+  Målt_med_stigningsmåler "Measured with rate of climb indicator"
+  "punkt fastsatt ut fra et grunnlag f.eks ved partenes enighet ved oppmålingsforretning."
+    Fastsatt_punkt
+  Fastsatt_ved_dom_eller_kongelig_resolusjon "Stipulated by court decision or royal decree"
+  "Annet (spesifiseres i filhode)"
+    Annet_spesifiseres_i_filhode_bør_vel_fjernes_blir_borte_ved_overføring_mellom_systemer_ "????"
+  Frihåndstegning "Free-hand drawing"
+  Digitalisert_fra_krokering_på_kart "Digitised from sketching on map"
+  Direkte_innlagt_på_skjerm "Directly input on screen"
+  Treghetsstedfesting "Inertial ??positioning/localization"
+  "Tidligere GPS-Differensiell, pseudorange\r\n\r\n-- Definition -- \r\nPrevious GPS differential, pseudorange"
+    GPS_Kodemåling_relative_målinger "GPS code measurement, relatively measurements"
+  "Tidligere GPS, Absolutt, pseudorange\r\n\r\n-- Definition -- \r\nPrevious GPS, absolute, pseudorange"
+    GPS_Kodemåling_enkeltmålinger "GPS code measurement, individual measurements"
+  "Tidligere GPS, Differensiell\r\n\r\n-- Definition -- \r\nPrevious GPS, differential"
+    GPS_Fasemåling_statisk_måling "GPS phase measurement, static measurement"
+  "(utenom RTK). Tidligere GPS-Absolutt, fase\r\n\r\n-- Definition -- \r\n(not including RTK). Previous Absolute GPS, phase"
+    GPS_Fasemåling_andre_metoder "GPS phase measurement, other methods"
+  Kombinasjon_av_GPS_Treghet "Combination of GPS/Inertia"
+  "(Realtids kinematisk måling). Tidligere GPS kinematisk (Real time kinematic)\r\n\r\n-- Definition -- \r\n(Real time kinematic measurement). Previous GPS kinematic (Real time kinematic)"
+    GPS_Fasemåling_RTK "GPS phase measurement RTK"
+  GPS_Fasemåling_float_løsning "GPS phase measurement, float solution"
+  Ukjent_målemetode "Unknown measurement method"
+}
+
+codelist "metode for å måle objekttypens høydeverdi"
+  MaalemetodeHoeyde {
+  Terrengmålt
+  Totalstasjon
+  Teodolitt_med_elektronisk_avstandsmåler
+  Teodolitt_med_målebånd
+  Ortogonalmetoden
+  Nivellement
+  Tatt_fra_plan
+  Annet
+  Stereoinstrument
+  Aerotriangulert
+  Analytisk_plotter
+  Autograf_vanlig_registrering
+  Digitalt_stereoinstrument
+  Flybåren_laserscanning
+  Genererte_data_interpolasjon_
+  Generert_i_terrengmodell
+  Vektet_middel
+  Generert_sirkelgeometri
+  Generalisert
+  Sammenknytningspunkt_randpunkt
+  Koordinater_hentet_fra_GAB
+  Koordinater_hentet_fra_JREG_
+  Beregnet_
+  Spesielle_metoder
+  Målt_med_stigningsmåler
+  Fastsatt_ved_dom_eller_kongelig_resolusjon
+  Annet_spesifiseres_i_filhode_
+  Treghetsstedfesting
+  GPS_Kodemåling_relative_målinger_
+  GPS_Kodemåling_enkeltpunktbestemmelser
+  GPS_Fasemåling_statisk_måling_
+  GPS_Fasemåling_andre_metoder
+  Kombinasjon_av_GPS_Treghet
+  GPS_Fasemåling_RTK
+  Ukjent_målemetode
+}
+
+datatype "beskrivelse av kvaliteten på stedfestingen"
+  Posisjonskvalitet {
+  "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss"
+    målemetode: Maalemetode
+  "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\r\n\r\nMerknad:\r\nOppgitt i cm"
+    nøyaktighet?: Integer
+  "hvor godt den kartlagte detalj var synbar ved kartleggingen"
+    synbarhet?: Synbarhet
+  "metode for å måle høyden"
+    målemetodeHøyde?: MaalemetodeHoeyde
+  "nøyaktighet for høyden i cm"
+    nøyaktighetHøyde?: Integer
+  "absolutt toleranse for geometriske avvik"
+    maksimaltAvvik?: Integer
+}
+
+codelist "hvor godt den kartlagte detalj var synbar ved kartleggingen"
+  Synbarhet {
+  "Default"
+    Fullt_ut_synlig_gjenfinnbar_i_terrenget
+  "Forøvrig grei å innmåle. (Benyttes bl.a. for innmåling av ledninger på lukket grøft)"
+    Dårlig_gjenfinnbar_i_terreng
+  "Middels synlig i flybilde/modell"
+    Middels_synlig_i_flybilde_modell
+  "Dårlig/ikke synlig i flybilde/modell"
+    Dårlig_ikke_synlig_i_flybilde_modell
+}
+
+codelist "oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview of possible aquifer types for ground water measurements</engelsk>"
+  AkviferType {
+  "grunnvannsmagasin med artesisk trykk (poreovertrykk)<engelsk>aquifer with artesian pressure (excess pore pressure)</engelsk>"
+    Artesisk
+  "lukket (avskjermet) grunnvannsmagasin<engelsk>closed (protected) aquifer</engelsk>"
+    Lukket
+  "utett (drenert) grunnvannsmagasin<engelsk>drained aquifer</engelsk>"
+    Utett
+  "åpent grunnvannsmagasin<engelsk>open aquifer</engelsk>"
+    Åpen
+  "informasjon mangler <engelsk>not specified</engelsk>"
+    Ikke_angitt
+}
+
+codelist "Kodeliste for å angi deformasjonsobservasjon"
+  DeformasjonObservasjonKode {
+  IkkeSpesifisert
+  Hindring
+  Skadet
+  Usikkert
+}
+
+codelist "Kodeliste for feltundersøkelsestype"
+  FeltUndersTypeKode {
+  FeltUndersMetode
+  TolketBerghøyde
+  Tolket
+}
+
+codelist "oversikt over koder for observasjoner som gjøres ved utførelse av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai 2024 ble gjort om til tekststreng fra å være knyttet til denne kodelisten. Tekstrengen kan inneholde mer enn 1 kode. <engelsk>overview of codes for observations conducted during an GeotechnicalBoreholeInvestigation. Used in the \"observasjonKode\" attribute, which in May 2024 was changed to a text string from being linked to this code list. The text string can contain more than 1 code. </engelsk>"
+  GeotekniskBoreObservasjonskode {
+  "kode for påvisning av grunnvannstand\r\n<engelsk>code for detection of the ground water table\r\n</engelsk>"
+    AntattGrunnvann
+  "kode for avslutning av boring\r\n<engelsk>code for termination of boring</engelsk>"
+    Avsluttet
+  "kode for avslutning av boring i blokk\r\n<engelsk>code for termination of boring in blocks</engelsk>"
+    BlokkSlutt
+  "kode for bøyd sonderingsstang\r\n<engelsk>code for curved sounding rods</engelsk>"
+    BøydSonderingsstang
+  "kode for avslutning av boring i berg med slag\r\n<engelsk>code for termination of boring in rock with strokes</engelsk>"
+    FjellMedSlag
+  "kode for angivelse av dybde for bergoverflate\r\n<engelsk>code for identification of depth to the rock surface</engelsk>"
+    Fjellnivå
+  "kode for markering av feil i forrige angitte kode<engelsk>code for marking errors in previously given code</engelsk>"
+    ForrigeKodeFeil
+  "kode for boring i friksjonsjord<engelsk>code for boring in friction soils</engelsk>"
+    Friksjonsjord
+  "kode for boring i frosset materiale<engelsk>code for boring in frozen soils</engelsk>"
+    Frosset
+  "kode for angivelse av boring i frostisoleringsmateriale<engelsk>code for boring in frost-insulation materials</engelsk>"
+    Frostisolering
+  "kode for markering av ikke-godkjent funksjon<engelsk>code for marking of non-approved function</engelsk>"
+    FunksjonskontrollIkkeOk
+  "kode for markering av godkjent funksjon<engelsk>code for marking of approved function</engelsk>"
+    FunksjonskontrollOk
+  "kode for boring i fylling<engelsk>code for boring in fills and embankments</engelsk>"
+    Fylling
+  "kode for gjennomboring av blokk eller stein<engelsk>code for penetration of block or stone</engelsk>"
+    GjennomborretBlokkEllerStein
+  "kode for angivelse av hindring<engelsk>code for information of hindrances</engelsk>"
+    Hindring
+  "kode for boring gjennom ikke-merkbare sprekker<engelsk>code for boring through non-recordable cracks and fissures</engelsk>"
+    IkkeMerkbareSprekker
+  "kode for markering av manglende registrering <engelsk>code for marking of lacking registration</engelsk>"
+    IngenRegistrering
+  "kode for markering av manglende vurdering<engelsk>code for marking of lacking evaluation</engelsk>"
+    IngenVurdering
+  "kode for boring gjennom jord med grus<engelsk>code for boring through soil with gravel</engelsk>"
+    JordMedGrus
+  "kode for boring gjennom jord med sand<engelsk>code for boring through soil with sand</engelsk>"
+    JordMedSand
+  "kode for boring gjennom jord med stein<engelsk>code for boring through soil with stones</engelsk>"
+    JordMedStein
+  "kode for boring gjennom jord med kull og aske<engelsk>code for boring through soil with coal and ashes</engelsk>"
+    KullAske
+  "kode for boring gjennom leire<engelsk>code for boring through clay</engelsk>"
+    Leire
+  "kode for boring gjennom finstoffholdig morene<engelsk>code for boring through clayey moraine and till</engelsk>"
+    LeirMorene
+  "kode for markering av tilleggsinformasjon<engelsk>code for marking of additional information</engelsk>"
+    MerInformasjon
+  "kode for boring gjennom morenejord<engelsk>code for boring through morainic soil</engelsk>"
+    MoreneJord
+  "kode for markering av overgang til ny metode<engelsk>code for marking of transition to new method</engelsk>"
+    NyMetode
+  "kode for markering av opphold i boringen<engelsk>code for marking of halt in the boring</engelsk>"
+    Opphold
+  "kode for boring gjennom oppsprukket berg<engelsk>code for boring through cracked rock</engelsk>"
+    OppsprukketFjell
+  "kode for boring gjennom organisk materiale<engelsk>code for boring through organic materials</engelsk>"
+    OrganiskJord
+  "kode for markering av pumping med borstengene (repetert vertikal opptrekking og nedpressing av stangsystemet)<engelsk>code for marking of pumping wth drill rods (repeated sequences of vertical hoisting and pushing of the rod system)</engelsk>"
+    Pumping
+  "kode for avslutning av pumping<engelsk>code for termination of pumping</engelsk>"
+    PumpingSlutt
+  "kode for boring gjennom sand med grus<engelsk>code for boring through soil with sand and gravel</engelsk>"
+    SandmedGrus
+  "kode for boring gjennom silt<engelsk>code for boring through silt</engelsk>"
+    Silt
+  "kode for markering av skade på borutstyr<engelsk>code for marking of damage of drilling equipment</engelsk>"
+    Skadet
+  "kode for markering av stangskjøting (svensk terminologi)<engelsk>code for marking of added rods (swedish terminology)</engelsk>"
+    Skarv
+  "kode for markering av slag på borstenger<engelsk>code for marking of strokes on drill rods</engelsk>"
+    Slag
+  "kode for markering av slag på borstenger og spyling gjennom borkrone<engelsk>code for marking of strokes on the drill rods and/or flushing through the drill bit</engelsk>"
+    SlagSpyl
+  "kode for markering av avslutning av slag på borstenger og spyling gjennom borkrone<engelsk>code for marking of termination of strokes on the drill rods and/or flushing through the drill bit</engelsk>"
+    SlagSpylSlutt
+  "kode for markering av avslutning av slag på borstenger<engelsk>code for marking of termination of strokes on the drill rods</engelsk>"
+    SluttSlag
+  "kode for avslutning av vridning av borstenger<engelsk>code for termination of rotation of the drill rods</engelsk>"
+    SluttVridning
+  "kode for demontering av borstang<engelsk>code for demounting of a drill rod</engelsk>"
+    SonderingstangAv
+  "kode for angivelse av dybde for borspiss<engelsk>code for identification of depth for the drill bit</engelsk>"
+    SpissDyp
+  "kode for markering av spyling gjennom borkrone<engelsk>code for marking of flushing through the drill bit</engelsk>"
+    Spyling
+  "kode for avslutning av spyling gjennom borkrone<engelsk>code for termination of flushing through the drill bit</engelsk>"
+    SpylingSlutt
+  "kode for angivelse av startnivå<engelsk>code for given start level</engelsk>"
+    Startnivå
+  "kode for start av slag på borstenger<engelsk>code for start of strokes on the drill rods</engelsk>"
+    StartSlag
+  "kode for start av vridning på borstenger<engelsk>code for start of rotation of the drill rods</engelsk>"
+    StartVridning
+  "kode for boring gjennom svært oppsprukket berg<engelsk>code for boring through very cracked rock</engelsk>"
+    SværtOppsprukketFjell
+  "code for angivelse av synk for 0 vekt (dreiesondering)<engelsk>code for given sink of drill rods for 0 load (rotary weight sounding)</engelsk>"
+    SynkVekt0
+  "kode for angivelse av synk for 0.64 vekt (dreiesondering) <engelsk>code for given sink of drill rods for 0.64 load (rotary weight sounding)</engelsk>"
+    SynkVekt0_64
+  "kode for markering av terrengoverflate <engelsk>code for marking of the terrain surface</engelsk>"
+    Terrengoverflate
+  "kode for markering av tidligere stopp i boringen <engelsk>code for marking of previous stops in the boring</engelsk>"
+    TidligereStopp
+  "kode for angivelse av tid <engelsk>code for time</engelsk>"
+    Tidsangivelse
+  "code for boring gjennom torv\r\n<engelsk>code for boring through peat</engelsk>"
+    Torv
+  "kode for boring gjennom tørrskorpe\r\n<engelsk>code for boring through dry crust</engelsk>"
+    Tørrskorpe
+  "kode for boring gjennom ubestemt jordart <engelsk>code for boring through undetermined soil</engelsk>"
+    UbestemtJordart
+  "kode for boring gjennom uorganisk kohesjonsjord\r\n<engelsk>code for boring through inorganic cohesive soil</engelsk>"
+    UorganiskKohesjonsjord
+  "kode for boring gjennom inhomogen makadam (pukk) <engelsk>code for boring through inhomogenous macadam (blasted rock)</engelsk>"
+    UrenMakadam
+  "kode for boring uten vridning (rotasjon) av borstenger<engelsk>code for boring without rotation of the drill rods</engelsk>"
+    UtenVridning
+  "kode for boring med vridning (rotasjon) av borstenger<engelsk>code for boring with rotation of the drill rods</engelsk>"
+    Vridning
+}
+
+codelist "Koder for metoder benyttet ved geotekniske feltundersøkelser"
+  GeotekniskFeltUndersMetodeKode {
+  Ramsondering
+  BelastningTest
+  SetningMåling
+  Skrueplate
+  SPT
+  PermeabilitetMåling
+  ElektriskSondering
+  HelningMåling
+  Skovlboring
+}
+
+codelist "oversikt over observasjonskoder for grunnvann"
+  GeotekniskGrunnvannObservasjonKode "GroundwaterObservationCode" {
+  IkkeSpesifisert
+  Tørr
+  Vannstrøm
+  Erstattet
+  Ferdig
+  Stikk
+  FunksjonSjekkOk
+  FunksjonSjekkFeilet
+  Spylet
+  Frosset
+}
+
+codelist "Kode for metoder benyttet ved geotekniske borehullundersøkelser"
+  GeotekniskMetodeKode {
+  Bergkontrollboring
+  Gassprøve
+  Blokkprøve
+  Dilatometertest
+  Dreiesondering_manuell
+  Dreiesondering_maskinell
+  Dreietrykksondering
+  Dynamisk_sondering_uspesifisert
+  Enkel_sondering
+  Gassmåling
+  Graveprøve
+  Grunnvannsmåling
+  Hejarsondering_A
+  Hejarsondering_B
+  HK_sondering
+  Hydraulisk_test
+  Ikke_angitt
+  Jord_berg_sondering_1
+  Jord_berg_sondering_2
+  Jord_berg_sondering_3
+  Kanneprøve
+  Kjerneprøve
+  Kombinasjonssondering_uspesifisert
+  Kombisondering
+  Naverprøve
+  Platebelastning
+  Poretrykksmåling
+  Ramprøve
+  Ramsondering
+  Ramsondering_A
+  Ramsondering_B
+  Sedimentprøve
+  Skovlprøve
+  Slagsondering
+  SPT
+  Statisk_sondering_uspesifisert
+  Stempelprøve
+  Stikksondering
+  Totalsondering_Norge
+  Totalsondering_Sverige
+  Trykksondering_CPT_CPTU_
+  Vannprøve
+  Vektsondering_manuell
+  Vektsondering_maskinell
+  Vingeboring
+  Dreiesondering_uspesifisert
+  Prøve_uspesifisert
+  Prøveserie_uspesifisert
+  Miljøundersøkelse
+  Elektrisk_sondering
+  Kjerneboring
+}
+
+codelist "oversikt over koder for stopp av boring ved utførelse av en grunnundersøkelse <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>"
+  GeotekniskStoppkode {
+  "kode for avslutning av boring i antatt berg <engelsk>code for termination of boring in presumed rock</engelsk>"
+    AntattBerg
+  "kode for avslutning av boring i antatt stein eller blokk <engelsk>code for termination of boring in presumed stone or block</engelsk>"
+    AntattSteinBlokk
+  "kode for avslutning av boring ved brudd i borstang eller borspiss <engelsk>code for termination of boring due to failure of drill rod or drill bit</engelsk>"
+    BruddBorstangSpiss
+  "kode for avslutning av boring ved oppnådd boredybde i berg <engelsk>code for termination of boring after assumed depth in rock</engelsk>"
+    DybdeIBergOppnådd
+  "kode for avslutning av boring ved oppnådd boredybde i berg større enn 3 m <engelsk>code for termination of boring after assumed depth in rock greater than 3 m</engelsk>"
+    DybdeIFjellMerEnn3Meter
+  "kode for avslutning av boring ved feil på borustyr <engelsk>code for termination of boring due to equipment errors</engelsk>"
+    MaterialEllerMaskinFeil
+  "kode for avslutning av boring ved avbrutt sondering <engelsk>code for termination of boring due to interrupted sounding</engelsk>"
+    SonderingAvbrutt
+  "kode for avslutning av boring i fast grunn <engelsk>code for termination of boring in firm ground</engelsk>"
+    SonderingAvbruttFastGrunn
+  "kode for avslutning av sondering uten stopp <engelsk>code for termination of sounding without stop</engelsk>"
+    SonderingAvsluttetUtenStopp
+  "kode for avslutning av boring i stein, blokk eller berg <engelsk>code for termination of boring in presumed stone, block or rock</engelsk>"
+    SteinBlokkFjell
+  "kode for avslutning av boring ved uspesifisert årsak <engelsk>code for termination of boring due to unspecified reasons</engelsk>"
+    Uspesifisert
+  "Det har blitt tatt ut en kjerneprøve på minimum 3 meter<engelsk> core drilling min 3 meter</engelsk>"
+    KjerneBoringMerEnn3Meter
+  "kode for avslutning av boring ved oppnådd boredybde i berg større enn 3 m og borestøv har blitt analysert <engelsk>code for termination of boring after assumed depth in rock greater than 3 m and the drill cuttings have been analysed</engelsk>"
+    DybdeIFjellMerEnn3MeterMedAnalyse
+}
+
+codelist "angir hvilket medium en boring er foretatt i\r\n\r\n<engelsk> \r\ndefine what kind of medium/material the borehole has penetrated.</engelsk>"
+  GjennomboretMedium {
+  "berggrunn/fjell\r\n\r\n<engelsk> \r\nbedrock\r\n</engelsk>"
+    Berg
+  "is\r\n\r\n<engelsk> \r\nice\r\n</engelsk>"
+    Is
+  "luft\r\n\r\n<engelsk> \r\nair\r\n</engelsk>"
+    Luft
+  "løsmasse\r\n\r\n<engelsk> \r\nuncompacted material\r\n</engelsk>"
+    Løsmasse
+  "medium/material er ikke angitt\r\n\r\n<engelsk> \r\nmedium/material is undefined\r\n</engelsk>"
+    Uspesifisert
+  "vann\r\n\r\n<engelsk> \r\nwater\r\n</engelsk>"
+    Vann
+}
+
+codelist "oversikt over lagdeling og jordart for klassifisering og identifisering av grunnforhold<engelsk>overview of stratification and soil type for classification and identification of ground conditions</engelsk>"
+  HovedLagKlassifisering "MainLayerClassification" {
+  "antatt forurenset materiale<engelsk>assumed contaminated material</engelsk>"
+    AntattForurensning "Cs"
+  "blokk (fraksjoner større enn 200 mm)<engelsk>boulders (fractions > 200 mm</engelsk>"
+    Blokk "Bl"
+  "dy (Dy består av vannavsatte plante- og dyrerester og er en strukturløs masse)<engelsk>organic material consisting of plant and animal debris sedimented in water. The material is not showing a special structure</engelsk>"
+    Dy "Dy"
+  "matjord <engelsk>humus</engelsk>"
+    Matjord "Topsoil"
+  "berg<engelsk>rock</engelsk>"
+    Berg "B"
+  "forvitret torv (Torv er mer eller mindre omvandlede planterester, klassifiseres etter von Post skala)<engelsk>weathered peat (Peat is more or less transformed plant debris and is classified according to the von Post scale)</engelsk>"
+    ForvitretTorv "Th"
+  "oppsprukket berg<engelsk>jointed rock</engelsk>"
+    OppsprukketBerg "Br"
+  "gytje (Gytje består av vannavsatte plante- og dyrerester og viser vanligvis organisk struktur)<engelsk>organic material consisting of plant and animal debris. The material usually shows a special structure</engelsk>"
+    Gytje "Gy"
+  "leirblandet gytje (organisk materiale )<engelsk>organic material consisting of plant, animal debris and clay.</engelsk>"
+    GytjeOgLeire "GyLe"
+  "humus (Humus er en fellesbetegnelse på organisk materiale i jordarter)<engelsk>common denotation of organic matter in soils</engelsk>"
+    Humus "Mu"
+  "kull<engelsk>coal</engelsk>"
+    Kull "Coal"
+  "leire (materiale med mer enn 30 % i leirfraksjonen < 2 µm)<engelsk>clay (material with more than 30 % in the clay fraction < 2 µm)</engelsk>"
+    Leire "Le"
+  "annet organisk materiale<engelsk>other organic materials</engelsk>"
+    AnnetOrganiskMateriale "Organic"
+  "Sand (fraksjoner mellom 0,063 og 2,0 mm)<engelsk>sand (fractions between  0,063 and 2,0 mm</engelsk>"
+    Sand "Sa"
+  "silt (fraksjoner mellom 0,002 og 0,063 mm)<engelsk>silt (fractions between 0,002 and 0,063 mm</engelsk>"
+    Silt "Si"
+  "skjellgrus<engelsk>coquina</engelsk>"
+    Skjellgrus "Skgr"
+  "skjellsand<engelsk>shellsand</engelsk>"
+    Skjellsand "Sksa"
+  "suldidholdig sand<engelsk>sulphide sand</engelsk>"
+    SulfidholdigJord "Su"
+  "torv<engelsk>peat</engelsk>"
+    Torv "T"
+  "tørrskorpe leire<engelsk>crusty clay</engelsk>"
+    TørrskorpeLeire "Let"
+  "uspesifisert materiale<engelsk>unspecified material</engelsk>"
+    UspesifisertMateriale "NotSpecified"
+  "fyllmasse<engelsk>fill mass</engelsk>"
+    Fyllmasse "F"
+  "grus (fraksjoner mellom 2,0 og 63 mm)<engelsk>gravel (fractions between 2,0 and 63 mm</engelsk>"
+    Grus "Gr"
+  "kvikkleire (omrørt skjærfasthet < 0,5 kPa)<engelsk>quick clay (remoulded shear strength < 0,5 kPa)</engelsk>"
+    Kvikkleire "kLe"
+  "morene<engelsk>glacial deposit</engelsk>"
+    Morene "Mn"
+  "friksjonsjord<engelsk>non-cohesive soil </engelsk>"
+    Friksjonsjord "Fr"
+  Kohesjonsjord "Cohesive"
+  "planterester<engelsk>plant remnants</engelsk>"
+    Planterester "Vx"
+  "Blokkig og steinig morene <engelsk>Boulder and Cobble till </engelsk>"
+    BlokkigOgSteinigMorene "BlMn"
+  "Ukjent materiale <engelsk>Unknown material</engelsk>"
+    UkjentMateriale "X"
+  "Jord<engelsk>soil</engelsk>"
+    Jord "J"
+  "Steinig morene<engelsk>Cobble till</engelsk>"
+    SteinigMorene "StMn"
+  "Grussig morene<engelsk>Gravel till</engelsk>"
+    GrusigMorene "GrMn"
+  "Sandig morene<engelsk>Sand till</engelsk>"
+    SandigMorene "SaMn"
+  "Siltig morene<engelsk>Silt till</engelsk>"
+    SiltigMorene "SiMn"
+  "Leirig morene<engelsk>Clay till</engelsk>"
+    LeirigMorene "LeMn"
+  "Skjell<engelsk>Shells</engelsk>"
+    Skjell "Sk"
+  "Fibrig torv. Fibrig struktur, lett gjenkjennelig plantestruktur, viser noe styrke,<engelsk> Fibrous peat</engelsk>"
+    FibrigTorv "Tl"
+  "Delvis fibrig torv. Gjenkjennelig plantestruktur, ingen styrke i planterestene<engelsk>Pseudo-fibrous peat</engelsk>"
+    DelvisFibrigTorv "Tm"
+  "Stein<engelsk>Cobbles</engelsk>\r\nstein (fraksjoner mellom 63 og 200 mm)<engelsk>cobbles (fractions between 63 and 200 mm</engelsk>"
+    Stein "St"
+  "Berg eller blokk<engelsk>Rock or boulders</engelsk>"
+    BergEllerBlokk "BelBl"
+}
+
+codelist "proporsjonalitetskonstant som relaterer vannstrømningsrate gjennom et medium til gradienten\r\n\r\nMerknad: Kalles også hydraulisk ledningsevne og avhenger av både vannets og mediets egenskaper.\r\n\r\n<engelsk>proportionality constant which relates water permeability through a medium with the gradient</engelsk>"
+  HydrauliskKonduktivitet {
+  "dårlig vanngiver  <engelsk>poor water source</engelsk>"
+    Dårlig_vanngiver
+  "ganske dårlig vanngiver <engelsk>pretty poor water source</engelsk>"
+    Ganske_dårlig_vanngiver
+  "god vanngiver <engelsk>good water source</engelsk>"
+    God_vanngiver
+  "meget dårlig vanngiver <engelsk>very poor water source</engelsk>"
+    Meget_dårlig_vanngiver
+  "meget god vanngiver <engelsk>very good water source</engelsk>"
+    Meget_god_vanngiver
+}
+
+codelist "oversikt over klassifiseringsmetoder for bestemmelse av grunnforhold<engelsk>overview of classification methods for determination of ground conditions</engelsk>"
+  KlassifiseringsMetode "ClassificationMethod" {
+  "tolket fra observasjon<engelsk>interpreted from observation</engelsk>"
+    Observasjon
+  "tolket fra sondering i felt<engelsk>interpreted from sounding in the field</engelsk>"
+    TolketFeltsondering
+  "tolket fra boring i berg<engelsk>interpreted from drilling in rock</engelsk>"
+    TolketBergBoring
+  "tolket fra boring 3 m inn i berg<engelsk>interpreted from boring 3 m into rock</engelsk>"
+    TolketBergBoring3Meter
+  "tolket fra prøving i laboratoriet<engelsk>interpreted from testing in the laboratory</engelsk>"
+    TolketLab
+  "tolket fra tegning<engelsk>interpreted from drawing</engelsk>"
+    TolketTegning
+  "uspesifisert tolkningskilde<engelsk>unspecified source of interpretation</engelsk>"
+    Uspesifisert
+  "beregnet størrelse fra terrengoverflaten<engelsk>calculated from the terrain surface</engelsk>"
+    BeregnetFraTerrengoverflaten
+  "tolket fra prøvetaking i felt<engelsk>interpreted from sampling in the field</engelsk>"
+    TolketPrøvetak
+}
+
+codelist "beskriver om borlengde til berg er antatt eller påvist med en sikker metode\r\n\r\n<engelsk> \r\ndefines the quality of the depth information either assumed or confirmed by a secure method\r\n</engelsk>"
+  KvalitetBorlengdeTilBerg "QualityBoreholeLenghtToRock" {
+  "usikker angivelse av dybde til berg\r\n\r\n<engelsk> \r\nuncertain depth to rock\r\n</engelsk>"
+    antatt
+  "sikker angivelse av dybde til berg\r\n\r\n<engelsk> \r\nconfirmed depth to rock\r\n</engelsk>"
+    påvist
+}
+
+codelist "Koder for grad av sikkerhet for påvisning av kvikkleire eller sprøbruddmateriale"
+  KvikkleirePaavisningKode {
+  "Benyttes ved sondering"
+    Antatt
+  IkkeVurdert
+  "Kan kun benyttes der kvikkleire eller sprøbruddmateriale er påvist ved prøvetaking"
+    Sikker
+  "Benyttes ved sondering"
+    Usikker
+  "Benyttes ved sondering"
+    AntattIkkeKvikk
+}
+
+codelist "kodeliste som brukes for å fortelle i hvilken del av prøvedelen som det er gjort undersøkelser"
+  LagPosisjon "LayerComposition" {
+  IkkeAngitt
+  Venstre
+  Midten
+  Høyre
+}
+
+codelist "Typer av dokument brukt i NADAG forvaltningsløsning."
+  NADAG_DokumentType {
+  Uspesifisert_dokumenttype
+  Opptegningssymbol
+  Bilde
+  Rådatafil
+  Labrapport
+  Geoteknisk_rapport
+  Plantegning
+  Profiltegning
+  Tegning
+  Modell
+  Andre_vedlegg_til_borehull
+  Digitalisert_DWG_tegning
+  Bilde_koblet_til_digitalisert_DWG_tegning
+  Bilde_borehullsprofil
+  Vurderingsrapport
+}
+
+codelist "Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder benyttes."
+  NADAG_Hoeyderef {
+  NN2000
+  NN54
+  Ukjent_høydereferanse
+}
+
+codelist "oversikt over lastkapasiteter for vanlige trykksonder i CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>"
+  NedpressingsKapasitet {
+  "trykksonde med lastkapasitet 1 tonn <engelsk>probe with vertical load capacity 1 ton</engelsk>"
+    _10_kN
+  "trykksonde med lastkapasitet 10 tonn <engelsk>probe with vertical load capacity 10 tons</engelsk>"
+    _100_kN
+  "trykksonde med lastkapasitet 5 tonn <engelsk>probe with vertical load capacity 5 tons</engelsk>"
+    _50_kN
+}
+
+codelist "oversikt over aktuelle typer poretrykksmålere<engelsk>overview of possible types of pore pressure measurement devices</engelsk>"
+  PoretrykkMaaleKategori {
+  "elektrisk poretrykksmåler<engelsk>electrical piezometer</engelsk>"
+    Elektrisk
+  "hydraulisk poretrykksmåler<engelsk>hydraulic piezometer</engelsk>"
+    Hydraulisk
+}
+
+codelist "inndeling av fysisk prøvemateriale i prøvetype, avhengig av prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample type classes, depending on sampling method and/or storage method for the sampled material</engelsk>"
+  ProevetakingType {
+  "blokkprøve, normalt med uforstyrret eller noe forstyrret prøvemateriale<engelsk>block sample, normally of undisturbed or slightly disturbed quality</engelsk>"
+    Blokk
+  "plastrør<engelsk>plastic tube>"
+    Plastrør
+  "poseprøve, normalt med omrørt eller meget forstyrret materiale<engelsk>bag sample, normally of remoulded or very disturbed quality</engelsk>"
+    Poseprøve
+  "ren  flaske <engelsk>clean bottle</engelsk>"
+    Ren_flaske
+  "steril flaske <engelsk>antiseptic bottle</engelsk>"
+    Steril_flaske
+  "sylinder, normalt med lett forstyrret til meget forstyrret materiale<engelsk>cylinder, normally of slightly to somewhat disturbed quality</engelsk>"
+    Sylinder
+}
+
+codelist "Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse fysisk representerer."
+  RepresentasjonKvalitet {
+  "Hva avvgrensing av geoteknisk undersøkelse representerer er ikke kjent."
+    Ukjent
+  "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et mindre område, opptil ca 10 mål."
+    Representasjonspunkt_for_mindre_GU_område_Opptil_ca_10_mål_
+  "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et større område, over ca 10 mål eller lenger enn ca. 0,5km."
+    Representasjonspunkt_for_større_GU_område_Over_ca_10_mål_eller_lengre_enn_ca_0_5_km
+  "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et område som er av kommunal/regional størrelse."
+    Representasjonspunkt_for_kommunalt_regionalt_GU_område_
+  "Avgrensning av en geoteknisk undersøkelse som i hovedsak avgrenser inngående borehull."
+    Polygon_som_avgrenser_borehull_i_GU_
+  "Polygon for GU med kun et enkelt borehull (100x100m)."
+    Polygon_for_GU_med_kun_et_enkelt_borehull_100x100m_
+  Polygon_hentet_fra_borehull_i_GU_min_og_maks_koordinater_
+  "Avgrensning av en geoteknisk undersøkelse som representerer prosjektområde."
+    Polygon_som_representerer_prosjektområde_
+}
+
+codelist "oversikt over aktuelle kvalitetsklasser (Anvendelsesklasser) for CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>"
+  SondeKvalitetsKlasse {
+  "anvendelsesklasse 1 for CPTU med høyeste krav til målenøyaktighet<engelsk>application Class 1 for CPTU with the highest accuracy</engelsk>"
+    Klasse_1
+  "anvendelsesklasse 2 for CPT/CPTU <engelsk>application Class 2 for CPT/CPTU</engelsk>"
+    Klasse_2
+  "anvendelsesklasse 3 for CPT/CPTU <engelsk>application Class 3 for CPT/CPTU</engelsk>"
+    Klasse_3
+  "anvendelsesklasse 4 for CPT med laveste krav til målenøyaktighet<engelsk>application Class 4 for CPT with the lowest accuracy.</engelsk>"
+    Klasse_4
+}
+
+codelist "Metoder benyttet for tolkning av geotekniske feltundersøkelser"
+  TolkningMetodeKode {
+  F
+  BG
+  BH
+  _Le
+}
+
+codelist "angir kilden til vannprøve<engelsk>define the source of the water sample</engelsk>"
+  VannProeveKilde {
+  "grunnvann <engelsk>ground water</engelsk>"
+    Grunnvann
+  "overflatevann<engelsk>surface water</engelsk>"
+    Overflatevann
+  "porevann <engelsk>pore water</engelsk>"
+    Porevann
+  "sigevann <engelsk>seepage water </engelsk>"
+    Sigevann
+}

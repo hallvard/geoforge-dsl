@@ -1,0 +1,628 @@
+@startuml "ngu.nadag"
+class GeotekniskInsituTest {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    insituTestStartTidspunkt: DateTime
+    insituTestSluttTidspunkt: DateTime
+}
+class GeotekniskObservasjon {
+}
+class GeotekniskBorehull {
+    boreNr: CharacterString
+    høyde: Real
+    opprettetDato: DateTime
+    eksternIdentifikasjon: EksternIdentifikasjon
+    opprinneligGeotekniskUndersID: CharacterString
+    opphav: CharacterString
+    maksBoretLengde: Real
+}
+class EksternIdentifikasjon {
+    eksternId: CharacterString
+    eksternNavnerom: CharacterString
+    eksternVersjonId: CharacterString
+    eksternLeveringDato: DateTime
+}
+class GeotekniskBorehullUnders {
+    høyde: Real
+    undersøkelseNr: CharacterString
+    eksternIdentifikasjon: EksternIdentifikasjon
+    opprettetDato: DateTime
+    dybdeGrunnvannstand: Real
+    forboretDiameter: Real
+    forboretLengde: Real
+    forboringMetode: CharacterString
+    forboretStartLengde: Real
+}
+class Geotekniskmetode {
+    identifikasjon: Identifikasjon
+}
+class Identifikasjon {
+    lokalId: CharacterString
+    navnerom: CharacterString
+    versjonId: CharacterString
+}
+class GeotekniskUnders {
+    eksternIdentifikasjon: EksternIdentifikasjon
+    opprettetDato: DateTime
+    prosjektNr: CharacterString
+    opphav: CharacterString
+    undersøkelseÅrAntatt: Integer
+}
+class GeotekniskObservasjon_NADAG {
+    boreBeskrivelse: CharacterString
+    boretAzimuth: Real
+    boretHelningsgrad: Real
+    boretLengde: Real
+    boretLengdeTilBerg: BorlengdeTilBerg
+    dybdeFraGittPosisjon: Real
+    dybdeFraVannoverflaten: Real
+    lenkeTilTileggsinfo: CharacterString
+    værforholdVedBoring: CharacterString
+    høyde: Real
+    undersøkelseNr: CharacterString
+    eksternIdentifikasjon: EksternIdentifikasjon
+    opprettetDato: DateTime
+    dybdeGrunnvannstand: Real
+    forboretDiameter: Real
+    forboretLengde: Real
+    forboringMetode: CharacterString
+    forboretStartLengde: Real
+}
+class BorlengdeTilBerg {
+    borlengdeTilBerg: Real
+}
+class GeotekniskProevetaking {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    densitetPrøvetaking: Real
+    miljøtekniskUndersøkelse: CharacterString
+}
+class GeotekniskSondering {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    torvTykkelse: Real
+}
+class GeovitenskapeligObservasjon {
+    posisjon: Punkt
+    observasjonStart: DateTime
+    observasjonSlutt: DateTime
+    observatør: CharacterString
+    opphav: CharacterString
+}
+class GeovitenskapeligUndersoekelse {
+    beskrivelse: CharacterString
+    område: GM_Surface
+    oppdragsgiver: CharacterString
+    oppdragstaker: CharacterString
+    prosjektNavn: CharacterString
+    undersøkelsePeriodeFra: DateTime
+    sammensattområde: GM_MultiSurface
+    undersøkelsePeriodeTil: DateTime
+}
+class GeovitenskapeligUndersoekelseDelomraade {
+    beskrivelse: CharacterString
+    område: Flate
+}
+class GeovitenskapeligUndersoekelseDelomraadeGrense {
+    grense: Kurve
+}
+class GeovitenskapeligUndersoekelseGrense {
+    grense: Kurve
+}
+class GeovitenskapligBorehull {
+    antallBorehullUndersøkelser: Integer
+    beskrivelse: CharacterString
+    boretLengdeTilBerg: BorlengdeTilBerg
+    posisjon: Punkt
+}
+class GeovitenskapligBorehullUndersoekelse {
+    posisjon: Punkt
+    boreBeskrivelse: CharacterString
+    borehullForløp: Kurve
+    boretAzimuth: Real
+    boretHelningsgrad: Real
+    boretLengde: Real
+    boretLengdeTilBerg: BorlengdeTilBerg
+    dybdeFraGittPosisjon: Real
+    dybdeFraVannoverflaten: Real
+    lenkeTilTileggsinfo: CharacterString
+    opphav: CharacterString
+    undersøkelseSlutt: DateTime
+    undersøkelseStart: DateTime
+    værforholdVedBoring: CharacterString
+}
+class Supertype_Geotekn_obj_omr {
+    identifikasjon: Identifikasjon
+    oppdateringsdato: DateTime
+}
+class Supertype_Geotekn_obj_pkt {
+    datafangstdato: DateTime
+    digitaliseringsmålestokk: Integer
+    identifikasjon: Identifikasjon
+    kvalitet: PosisjonskvalitetNADAG
+    oppdateringsdato: DateTime
+}
+class PosisjonskvalitetNADAG {
+    nøyaktighet: Integer
+    nøyaktighetHøyde: Integer
+}
+class DeformasjonMaaleData {
+    måleDato: Date
+    måleTidspunkt: DateTime
+    observasjonMerknad: CharacterString
+    setning: Real
+    deformasjonX: Real
+    deformasjonY: Real
+    deformasjonZ: Real
+    erGyldig: Boolean
+    boretLengde: Real
+    observasjonKode: CharacterString
+}
+class DeformasjonOvervaakningData {
+    nedreAlarmNivå: Real
+    øvreAlarmNivå: Real
+    måleDato: Date
+    måleTidspunkt: DateTime
+    observasjonMerknad: CharacterString
+}
+class DilatometerTestData {
+    boretDybde: Real
+    observasjonMerknad: CharacterString
+    observasjonKode: CharacterString
+    kontaktTrykkP0: Real
+    ekspansjonTrykkP1: Real
+    horisontalKraft: Real
+    poretrykk: Real
+}
+class DissipasjonData {
+    boretDybde: Real
+    dissipasjonsPoretrykkU1: Real
+    dissipasjonsPoretrykkU2: Real
+    dissipasjonsPoretrykkU3: Real
+    dissipasjonsTidspunkt: DateTime
+    friksjon: Real
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    poretrykk1: Real
+    poretrykk2: Real
+    poretrykk3: Real
+    spissmotstand: Real
+}
+class DynamiskSonderingData {
+    boretLengde: Real
+    dreieMoment: Real
+    fallHøyde: Real
+    harRotasjon: Boolean
+    nedpressingTid: Integer
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    prøveuttakNummer: CharacterString
+    ramMotstand: Real
+    rotasjonHastighet: Real
+    slagFrekvens: Real
+}
+class GassData {
+    CH4: Real
+    HG: Real
+}
+class GeotekniskProeveseriedel {
+    prøveMetode: CharacterString
+    prøveseriedelNavn: CharacterString
+    fraLengde: Real
+    tilLengde: Real
+    prøveseriedelId: CharacterString
+    harData*: GeotekniskProeveseriedelData
+}
+class GeotekniskProeveserie {
+    prøvegrop: Boolean
+    prøvegropKun: Boolean
+    skovelprøve: Boolean
+    skovelprøveKun: Boolean
+    erOmrørt: Boolean
+    erUforstyrret: Boolean
+}
+class GeotekniskProeveseriedelData {
+    prøveMetode: CharacterString
+    aksielDeformasjon: Real
+    skjærfasthetUdrenert: Real
+    detaljertLagSammensetning: CharacterString
+    skjærfasthetOmrørt: Real
+    densitetPrøvetaking: Real
+    erOmrørt: Boolean
+    labAnalyse: Boolean
+    flyteGrense: Real
+    glødeTap: Real
+    plastitetsGrense: Real
+    sensitivitet: Real
+    skjærfasthetUforstyrret: Real
+    boretLengde: Real
+    vanninnhold: Real
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+}
+class GrunnvannData {
+    måleDato: Date
+    dybdeGrunnvannstand: Real
+    måleTidspunkt: DateTime
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    pH: Real
+    ledningsevne: Real
+    oksygenInnhold: Real
+    temperatur: Real
+    redoks: Real
+    turbiditet: Real
+    boretLengde: Real
+    erGyldig: Boolean
+}
+class HydrauliskeData {
+    måleDato: Date
+    måleTidspunkt: DateTime
+    observasjonMerknad: CharacterString
+    dybdeGrunnvannstand: Real
+}
+class KjerneBoringData {
+    boretLengde: Real
+    forvitringsgrad: CharacterString
+    geologiskMaterialTekst: CharacterString
+    geologiskMaterialType: CharacterString
+    kjerneOpptak_Prosent: Integer
+    materialStruktur: CharacterString
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    opptrekk: CharacterString
+    QVerdi_Ja: Real
+    QVerdi_Jn: Real
+    QVerdi_Jr: Real
+    QVerdi_Jw: Real
+    QVerdi_Q: Real
+    QVerdi_QErBeregnet: Boolean
+    QVerdi_RQD: Real
+    QVerdi_SRF: Real
+    RockMassRating: Integer
+    ruhetsindeks: Integer
+    sprekkeFrekvens: Real
+    sprekkeMaterialTekst: CharacterString
+    sprekkeMaterialType: CharacterString
+    strøkFall_Fall: Integer
+    strøkFall_Strøk: Integer
+}
+class KombinasjonSonderingData {
+    anvendtLast: Real
+    boretLengde: Real
+    dreieMoment: Real
+    nedpressingHastighet: Real
+    nedpressingKraft: Real
+    nedpressingTid: Integer
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    rotasjonHastighet: Real
+    slagFrekvens: Real
+    spyleMengde: Real
+    spyleTrykk: Real
+}
+class OvervaakningData {
+    måleTidspunkt: DateTime
+    nedreAlarmNivå: Real
+    øvreAlarmNivå: Real
+    måleDato: Date
+    observasjonMerknad: CharacterString
+}
+class PlatebelastningData {
+    tidFraStart: Integer
+    anvendtLast: Real
+    nedpressingHastighet: Real
+    deformasjon: Real
+}
+class PoretrykkData {
+    avlesing0Kontroll: Real
+    avlesingEtter0Kontroll: Real
+    avlesingFør0Kontroll: Real
+    avstandManometerFilterspiss: Real
+    avstandToppSlangeTilVannstand: Real
+    barometerTrykk: Real
+    dybdeGrunnvannstand: Real
+    måleDato: Date
+    måleTidspunkt: DateTime
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    poretrykk: Real
+    trykkhøyde: Real
+}
+class PoretrykkDataInsitu {
+    boretDybde: Real
+    enhetsvekt: Real
+    observasjonMerknad: CharacterString
+    poretrykk: Real
+    boretLengde: Real
+    tyngde: Real
+}
+class StatiskSonderingData {
+    anvendtlast: Real
+    boretLengde: Real
+    halveOmdreininger: Real
+    medSlag: Boolean
+    nedpressingTid: Integer
+    nedsynkningHastighet: Real
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    rotasjonHastighet: Real
+    harRotasjon: Boolean
+    sideFriksjon: Real
+    slagFrekvens: Real
+}
+class TrykksonderingData {
+    anvendtLast: Real
+    boretDybde: Real
+    boretLengde: Real
+    friksjon: Real
+    helning: Real
+    initieltPoretrykk: Real
+    resistivitet: Real
+    korrigertFriksjon: Real
+    korrigertNedpressningsKraft: Real
+    nedpressingHastighet: Real
+    nedpressingsKraft: Real
+    nedpressingsTid: Integer
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    poretrykk: Real
+    skjærbølgeHastighet: Real
+    temperatur: Real
+    nedpressingTrykk: Real
+}
+class VingeboringData {
+    boretDybde: Real
+    effektivDensitet: Real
+    korrigertSkjærfasthet: Real
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    omrørtSkjærfasthet: Real
+    omrørtTorsjonMoment: Real
+    sensitivitet: Real
+    uomrørtSkjærfasthet: Real
+    uomrørtTorsjonMoment: Real
+    boretLengde: Real
+    plastisitetIndeks: Real
+}
+class BlokkProeve {
+}
+class DeformasjonMaaling {
+    absoluttverdi: Boolean
+    installasjonTidspunkt: DateTime
+    installasjonNivå: Real
+    målertype: CharacterString
+    målepunkt: Real
+    harOvervåkningObservasjon*: DeformasjonOvervaakningData
+    harSetningObservasjon*: DeformasjonMaaleData
+}
+class DilatometerTest {
+    materialIndeks: Real
+    horisontalSpenningIndeks: Real
+    dilatometerModulus: Real
+    dilatometerObservasjon*: DilatometerTestData
+}
+class DynamiskSondering {
+    antPrøveuttakForstyrretMatr: Integer
+    dynamiskSonderingObservasjon*: DynamiskSonderingData
+}
+class GassMaaling {
+    plassering: CharacterString
+    byggNummer: CharacterString
+    gassObservasjon*: GassData
+}
+class GassProeve {
+}
+class GeotekniskDokument {
+    dokumentID: CharacterString
+    dokumentNøkkel: CharacterString
+    dokumentFilnavn: CharacterString
+    dokumentURL: CharacterString
+    innholdType: CharacterString
+    beskrivelse: CharacterString
+    eksternIdentifikasjon: EksternIdentifikasjon
+    dokumentNavn: CharacterString
+    opprettetDato: DateTime
+    dokumentNr: CharacterString
+    dokumentDato: DateTime
+}
+class GeotekniskFeltUnders {
+    identifikasjon: Identifikasjon
+    posisjon: Punkt
+    eksternidentifikasjon: EksternIdentifikasjon
+    opprettetDato: DateTime
+    høydeFjell: Real
+    høyde: Real
+    feltundersNr: CharacterString
+}
+class GeotekniskTolketLag {
+    tolketLagID: CharacterString
+    lagBeskrivelse: CharacterString
+    tolketAv: CharacterString
+    tolketTidspunkt: DateTime
+    tolkningMerknad: CharacterString
+    navn: CharacterString
+    påTerrengOverflate: Boolean
+    vurdering: Real
+    underTerrengOverflate: Boolean
+    eksternIdentifikasjon: EksternIdentifikasjon
+    posisjon: Punkt
+    høyde: Real
+}
+class GeotekniskTolketPunkt {
+    identifikasjon: Identifikasjon
+    tolketAv: CharacterString
+    tolketTidspunkt: DateTime
+    navn: CharacterString
+    posisjon: Punkt
+    høyde: Real
+    digitaliseringsmålestokk: Integer
+    kvalitet: PosisjonskvalitetNADAG
+    oppdateringsdato: DateTime
+    beskrivelse: CharacterString
+}
+class GeotekniskUndersoekelseGrense {
+}
+class GraveProeve {
+}
+class GrunnvannMaaling {
+    erLangtidsobservasjon: Boolean
+    filterDyp: Real
+    filterLengde: Real
+    filterType: CharacterString
+    rørBunn: Real
+    rørTopp: Real
+    rørType: CharacterString
+    grunnvannObservasjon*: GrunnvannData
+    overvåkningObervasjon*: OvervaakningData
+}
+class HydrauliskTest {
+    rørBunn: Real
+    rørTopp: Real
+    rørType: CharacterString
+    hydrauliskObservasjon*: HydrauliskeData
+}
+class KanneProeve {
+}
+class KjerneBoring {
+    boretLengdeTilBerg: BorlengdeTilBerg
+    harData*: KjerneBoringData
+}
+class KjerneProeve {
+    boretLengdeTilBerg: BorlengdeTilBerg
+}
+class KombinasjonSondering {
+    boretLengdeIBerg: Real
+    boretLengdeTilBerg: BorlengdeTilBerg
+    maksLast: Real
+    kombinasjonSonderingObservasjon*: KombinasjonSonderingData
+}
+class MiljoeUndersoekelse {
+}
+class NaverProeve {
+}
+class Platebelastning {
+    lasttrinnAntall: Integer
+    arealPlate: Real
+    platebelastningObservasjon*: PlatebelastningData
+}
+class PoretrykkMaaling {
+    installasjonTidspunkt: DateTime
+    filterLengde: Real
+    koteSpiss: Real
+    filterType: CharacterString
+    rørToppFilter: Real
+    rørToppSlange: Real
+    rørTopp: Real
+    rørBunn: Real
+    målerspissNummer: CharacterString
+    målerType: CharacterString
+    poretrykkObservasjon*: PoretrykkData
+}
+class RamProeve {
+}
+class SedimentProeve {
+}
+class SkovlProeve {
+}
+class StatiskSondering {
+    telenivå: Real
+    statiskSonderingObservasjon*: StatiskSonderingData
+}
+class StempelProeve {
+}
+class Trykksondering {
+    alpha: Real
+    cptKorreksjonsFaktor: Real
+    filterType: CharacterString
+    initiellSpissmotstand: Real
+    metningsMedium: CharacterString
+    nedpressningsHastighet: Real
+    nullpunktsKorreksjon: Real
+    rørKappeKorreksjonsFaktor: Real
+    sidefriksjonKorreksjon: Real
+    sondeIdentifikasjon: CharacterString
+    sondeKalibreringDato: DateTime
+    spissKorreksjonFaktor: Real
+    spissType: CharacterString
+    atmosferiskTrykkKorreksjon: Real
+    hylseRadieKorreksjon: Real
+    inSituPoretrykkObservasjon*: PoretrykkDataInsitu
+    trykksonderingObservasjon*: TrykksonderingData
+    dissipasjonObservasjon*: DissipasjonData
+}
+class VannProeve {
+}
+class Vingeboring {
+    vannstandIBorehull: Real
+    vingeDiameter: Real
+    vingeHøyde: Real
+    vingeIdentitet: CharacterString
+    vingeboringObservasjon*: VingeboringData
+}
+class Kopidata {
+    områdeId: Integer
+    originalDatavert: CharacterString
+    kopidato: DateTime
+}
+class Posisjonskvalitet {
+    nøyaktighet: Integer
+    nøyaktighetHøyde: Integer
+    maksimaltAvvik: Integer
+}
+Geotekniskmetode <|-- GeotekniskInsituTest
+GeotekniskObservasjon_NADAG <|-- GeotekniskObservasjon
+GeotekniskObservasjon *-> GeotekniskBorehull: tilhørerGB
+GeovitenskapligBorehull <|-- GeotekniskBorehull
+GeotekniskBorehull *-> "*" GeotekniskBorehullUnders: harUndersøkelse
+GeotekniskBorehull *-> "*" GeotekniskUnders: undersOmr
+GeovitenskapligBorehullUndersoekelse <|-- GeotekniskBorehullUnders
+GeotekniskBorehullUnders *-> "*" Geotekniskmetode: metode
+GeotekniskBorehullUnders *-> GeotekniskBorehull: undersPkt
+GeovitenskapeligUndersoekelse <|-- GeotekniskUnders
+GeotekniskUnders *-> "*" GeotekniskBorehull: undersPkt
+GeovitenskapeligObservasjon <|-- GeotekniskObservasjon_NADAG
+Geotekniskmetode <|-- GeotekniskProevetaking
+Geotekniskmetode <|-- GeotekniskSondering
+Supertype_Geotekn_obj_pkt <|-- GeovitenskapeligObservasjon
+Supertype_Geotekn_obj_omr <|-- GeovitenskapeligUndersoekelse
+Supertype_Geotekn_obj_omr <|-- GeovitenskapeligUndersoekelseDelomraade
+Supertype_Geotekn_obj_pkt <|-- GeovitenskapligBorehull
+Supertype_Geotekn_obj_pkt <|-- GeovitenskapligBorehullUndersoekelse
+GeotekniskProeveseriedel *-> GeotekniskProeveserie: tilhørerPrøveserie
+GeotekniskProevetaking <|-- GeotekniskProeveserie
+GeotekniskProevetaking <|-- BlokkProeve
+GeotekniskObservasjon <|-- DeformasjonMaaling
+GeotekniskInsituTest <|-- DilatometerTest
+GeotekniskSondering <|-- DynamiskSondering
+GeotekniskInsituTest <|-- GassMaaling
+GeotekniskProevetaking <|-- GassProeve
+GeotekniskDokument *-> GeotekniskFeltUnders: tilhørerFeltUnders
+GeotekniskDokument *-> GeotekniskUnders: tilhørerGU
+GeotekniskDokument *-> GeotekniskBorehull: tilhørerGB
+GeotekniskDokument *-> GeotekniskBorehullUnders: tilhørerGBU
+GeotekniskFeltUnders *-> GeotekniskUnders: tilhørerGU
+GeotekniskTolketLag *-> GeotekniskTolketPunkt: tilhørerTolketPunkt
+GeotekniskTolketPunkt *-> GeotekniskUnders: tilhørerGU
+GeotekniskTolketPunkt *-> GeotekniskBorehull: tilhørerGB
+GeovitenskapeligUndersoekelseGrense <|-- GeotekniskUndersoekelseGrense
+GeotekniskProevetaking <|-- GraveProeve
+GeotekniskInsituTest <|-- GrunnvannMaaling
+GeotekniskInsituTest <|-- HydrauliskTest
+GeotekniskProevetaking <|-- KanneProeve
+GeotekniskProevetaking <|-- KjerneBoring
+GeotekniskProevetaking <|-- KjerneProeve
+GeotekniskSondering <|-- KombinasjonSondering
+GeotekniskProevetaking <|-- MiljoeUndersoekelse
+GeotekniskProevetaking <|-- NaverProeve
+GeotekniskInsituTest <|-- Platebelastning
+GeotekniskInsituTest <|-- PoretrykkMaaling
+GeotekniskProevetaking <|-- RamProeve
+GeotekniskProevetaking <|-- SedimentProeve
+GeotekniskProevetaking <|-- SkovlProeve
+GeotekniskSondering <|-- StatiskSondering
+GeotekniskProevetaking <|-- StempelProeve
+GeotekniskInsituTest <|-- Trykksondering
+GeotekniskProevetaking <|-- VannProeve
+GeotekniskInsituTest <|-- Vingeboring
+@enduml
