@@ -1,0 +1,12 @@
+{
+  "destinationFolder": "src/main/generated-sources/geoforge",
+  "packagePrefix": "no.ngu.generated",
+  "builtinTypeMappings": {
+    "Text": "java.lang.String",
+    "Date": "java.time.LocalDate",
+    "DateTime": "java.time.ZonedDateTime",
+    "Integer": "java.lang.Integer",
+    "Decimal": "java.math.BigDecimal",
+    "Boolean": "java.lang.Boolean"
+  }
+}

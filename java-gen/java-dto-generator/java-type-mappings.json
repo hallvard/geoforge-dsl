@@ -1,0 +1,15 @@
+{
+  "builtinTypeMappings": {
+    "Boolean": "boolean",
+    "Integer": "long",
+    "Real": "double",
+    "CharacterString": "java.lang.String",
+    "Date": "java.time.LocalDate",
+    "DateTime": "java.time.ZonedDateTime",
+    "Punkt": "no.ngu.geojson.Geometry.Point",
+    "Kurve": "no.ngu.geojson.Geometry.LineString",
+    "Flate": "no.ngu.geojson.Geometry.Polygon",
+    "GM_Surface": "no.ngu.geojson.Geometry.Polygon",
+    "GM_MultiSurface": "no.ngu.geojson.Geometry.MultiPolygon"
+  }
+}

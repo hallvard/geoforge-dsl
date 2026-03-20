@@ -34,7 +34,7 @@ async function readModelFile(fileName: string): Promise<GeoForgeModel> {
   }
 
   if (!isGeoForgeModel(parsed)) {
-    console.error(chalk.red('Input JSON must be a GeoForge model with entityType="model", name and types.'));
+    console.error(chalk.red('Input JSON must be a GeoForge model with elementType="model", name and types.'));
     process.exit(1);
   }
 
@@ -45,8 +45,8 @@ function isGeoForgeModel(value: unknown): value is GeoForgeModel {
   if (!value || typeof value !== 'object') {
     return false;
   }
-  const candidate = value as { entityType?: unknown; name?: unknown; types?: unknown };
-  return candidate.entityType === 'model' && Array.isArray(candidate.name) && Array.isArray(candidate.types);
+  const candidate = value as { elementType?: unknown; name?: unknown; types?: unknown };
+  return candidate.elementType === 'model' && Array.isArray(candidate.name) && Array.isArray(candidate.types);
 }
 
 async function writePlantumlFile(model: GeoForgeModel, sourceFilePath: string, destination?: string): Promise<string> {
@@ -66,7 +66,7 @@ async function writePlantumlFile(model: GeoForgeModel, sourceFilePath: string, d
 function extractDestinationAndName(filePath: string, destination: string | undefined): { destination: string; name: string } {
   const absolute = path.resolve(filePath);
   return {
-    destination: destination ?? path.join(path.dirname(absolute), 'generated'),
+    destination: destination ?? path.dirname(absolute),
     name: path.basename(absolute, path.extname(absolute))
   };
 }

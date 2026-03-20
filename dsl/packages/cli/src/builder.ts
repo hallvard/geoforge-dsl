@@ -66,7 +66,7 @@ function typeQname(type: TypeDef): string[] {
 export function buildModel(model: Model): GeoForgeModel {
   const context: BuilderContext = { typeMap: new Map<string, GeoForgeType>() };
   return {
-    entityType: 'model',
+    elementType: 'model',
     name: string2Qname(model.name),
     title: model.title,
     description: model.description,
@@ -126,7 +126,7 @@ function buildCompositeType(type: CompositeType, context: BuilderContext): Compo
   }
 
   const compositeType: CompositegeoforgeType = {
-    entityType: type.kind === 'datatype' ? 'dataType' : 'layerType',
+    elementType: type.kind === 'datatype' ? 'dataType' : 'layerType',
     name: typeQName,
     title: type.title,
     description: type.description,
@@ -176,7 +176,7 @@ function buildCompositeTypeProperty(prop: Property, context: BuilderContext): Co
   }
 
   return {
-    entityType: 'compositeTypeProperty',
+    elementType: 'compositeTypeProperty',
     name: string2Qname(prop.name),
     title: prop.title,
     description: prop.description,
@@ -216,7 +216,7 @@ function buildMultiplicity(multiplicity: Multiplicity | undefined): geoforgeMult
 
 function buildBuiltinType(type: BuiltinType, qName: string[]): BuiltingeoforgeType {
   const geoforgeType: BuiltingeoforgeType = {
-    entityType: 'builtinType',
+    elementType: 'builtinType',
     name: qName,
     title: type.title,
     description: type.description,
@@ -235,13 +235,13 @@ function buildBuiltinParam(param: { name: string; value?: BuiltinParamValue }): 
 
 function buildEnumType(type: EnumType, qName: string[]): CodeListgeoforgeType {
   const geoforgeType: CodeListgeoforgeType = {
-    entityType: 'codeListType',
+    elementType: 'codeListType',
     name: qName,
     title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
     items: type.properties.map(prop => ({
-      entityType: 'codeListItem',
+      elementType: 'codeListItem',
       name: [prop.name],
       title: prop.title,
       description: prop.description,

@@ -6,7 +6,6 @@ import { GeoForgeLanguageMetaData } from 'geoforge-language';
 import { dslToModelAction } from './dsl-to-model.js';
 import { generatePlantumlAction } from './generator.js';
 import { modelToDslAction } from './model-to-dsl.js';
-import { modelToJavaAction } from './model-to-java.js';
 import { modelToPlantumlAction } from './model-to-plantuml.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -24,6 +23,19 @@ const packageContent = await fs.readFile(packagePath, 'utf-8');
 //     destination?: string;
 // }
 
+type PlantumlCliOptions = {
+    destination?: string;
+};
+
+async function plantumlSmartAction(fileName: string, opts: PlantumlCliOptions): Promise<void> {
+    const extension = path.extname(fileName).toLowerCase();
+    if (extension === '.json') {
+        await modelToPlantumlAction(fileName, opts);
+        return;
+    }
+    await generatePlantumlAction(fileName, opts);
+}
+
 export default function(): void {
     const program = new Command();
 
@@ -32,10 +44,10 @@ export default function(): void {
     const fileExtensions = GeoForgeLanguageMetaData.fileExtensions.join(', ');
     program
         .command('plantuml')
-        .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
+        .argument('<file>', `source file (.json model or possible DSL extensions: ${fileExtensions})`)
         .option('-d, --destination <dir>', 'destination directory of generating')
-        .description('generates Plantuml code corresponding to the types in our specification')
-        .action(generatePlantumlAction);
+        .description('generates PlantUML from DSL or GeoForge model JSON based on input file extension')
+        .action(plantumlSmartAction);
 
     program
         .command('dsl-to-model')
@@ -51,22 +63,6 @@ export default function(): void {
         .option('-d, --destination <dir>', 'destination directory of generating')
         .description('translates a GeoForge model JSON file to DSL text')
         .action(modelToDslAction);
-
-    program
-        .command('model-to-plantuml')
-        .alias('model2plantuml')
-        .argument('<file>', 'source model file in JSON format')
-        .option('-d, --destination <dir>', 'destination directory of generating')
-        .description('translates a GeoForge model JSON file to PlantUML')
-        .action(modelToPlantumlAction);
-
-    program
-        .command('model-to-java')
-        .alias('model2java')
-        .argument('<file>', 'source model file in JSON format')
-        .option('-d, --destination <dir>', 'destination directory of generating')
-        .description('translates a GeoForge model JSON file to Java source code')
-        .action(modelToJavaAction);
 
     program.parse(process.argv);
 }

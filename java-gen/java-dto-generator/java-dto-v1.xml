@@ -1,0 +1,28 @@
+<ShapeChangeConfiguration xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1 http://shapechange.net/resources/schema/ShapeChangeConfiguration.xsd">
+  <input>
+    <parameter name="inputModelType" value="SCXML" />
+		<parameter name="inputFile" value="INPUT/Fra_prodspek_komplett_20251217-utf8.xml"/>
+    <parameter name="appSchemaNameRegex" value=""/>
+    <parameter name="appSchemaNamespaceRegex" value=""/>
+    <parameter name="excludedPackages" value=""/>
+    <parameter name="addTaggedValues" value="*"/>
+    <parameter name="addStereotypes" value="*"/>
+    <!--
+    <xi:include href="http://shapechange.net/resources/config/StandardAliases.xml"/>
+    -->
+  </input>
+  <targets>
+  <!--
+    <TargetXmlSchema class="de.interactive_instruments.ShapeChange.Target.XmlSchema.XmlSchema" mode="enabled">
+    </TargetXmlSchema>
+  -->
+    <Target class="no.ngu.nadag.innmelding.dtogen.JavaDtoClassesTarget" mode="enabled">
+      <targetParameter name="sourceOutputDirectory" value="target/generated-sources" />
+      <targetParameter name="basePackage" value="no.ngu.nadag.innmelding.v1.api.dto" />
+    </Target>
+  </targets>
+  <log>
+    <parameter name="reportLevel" value="INFO" />
+    <!-- <parameter name="logFile" value="./log.xml" /> -->
+  </log>
+</ShapeChangeConfiguration>

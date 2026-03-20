@@ -1,0 +1,17 @@
+{
+    "destinationFolder": "generated-sources",
+    "packagePrefix": "no.ngu.nadag",
+    "builtinTypeMappings": {
+      "Boolean": "boolean",
+      "CharacterString": "String",
+      "Date": "java.time.LocalDate",
+      "DateTime": "java.time.ZonedDateTime",
+      "Flate": "no.ngu.geojson.Geometry.Polygon",
+      "GM_MultiSurface": "GM_MultiSurface",
+      "GM_Surface": "GM_Surface",
+      "Integer": "long",
+      "Kurve": "no.ngu.geojson.Geometry.LineString",
+      "Punkt": "no.ngu.geojson.Geometry.Point",
+      "Real": "double"
+    }
+}

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import geoforge.model.GeoForge.ModelElementInfo;
+import geoforge.model.GeoForge.SimpleValue;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -127,6 +129,17 @@ public class GeoForge {
     }
   }
 
+  @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "elementType")
+  @JsonSubTypes({
+    @JsonSubTypes.Type(value = Model.class, name = "model"),
+    @JsonSubTypes.Type(value = Package.class, name = "package"),
+    @JsonSubTypes.Type(value = DataType.class, name = "dataType"),
+    @JsonSubTypes.Type(value = LayerType.class, name = "layerType"),
+    @JsonSubTypes.Type(value = CompositeTypeProperty.class, name = "compositeTypeProperty"),
+    @JsonSubTypes.Type(value = CodeListType.class, name = "codeListType"),
+    @JsonSubTypes.Type(value = CodeListItem.class, name = "codeListItem"),
+    @JsonSubTypes.Type(value = BuiltinType.class, name = "builtinType")
+  })
   public static abstract class ModelElement {
 
     private final ModelElementInfo info;
@@ -171,11 +184,6 @@ public class GeoForge {
     }
   }
 
-  @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "entityType")
-  @JsonSubTypes({
-    @JsonSubTypes.Type(value = Model.class, name = "model"),
-    @JsonSubTypes.Type(value = Package.class, name = "package")
-  })
   public static class Namespace extends ModelElement {
 
     private final List<GeoForgeType> types;
@@ -234,13 +242,6 @@ public class GeoForge {
     }
   }
 
-  @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "entityType")
-  @JsonSubTypes({
-    @JsonSubTypes.Type(value = DataType.class, name = "dataType"),
-    @JsonSubTypes.Type(value = LayerType.class, name = "layerType"),
-    @JsonSubTypes.Type(value = CodeListType.class, name = "codeListType"),
-    @JsonSubTypes.Type(value = BuiltinType.class, name = "builtinType"),
-  })
   public static abstract class GeoForgeType extends ModelElement {
 
     public GeoForgeType(ModelElementInfo info) {
@@ -378,7 +379,14 @@ public class GeoForge {
   public static class CompositeTypeProperty extends ModelElement {
 
   public enum Kind {
-    ID, GEOMETRY, CONTAINMENT, CONTAINER
+    @JsonProperty("id")
+    ID,
+    @JsonProperty("geometry")
+    GEOMETRY,
+    @JsonProperty("containment")
+    CONTAINMENT,
+    @JsonProperty("container")
+    CONTAINER
   }
 
 
@@ -481,6 +489,7 @@ public class GeoForge {
       return builtinType;
     }
 
+    @JsonProperty("params")
     public List<BuiltinParam> params() {
       return params;
     }

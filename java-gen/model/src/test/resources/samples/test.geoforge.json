@@ -1,0 +1,449 @@
+{
+  "elementType": "model",
+  "name": [
+    "ngu",
+    "nadag"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "codeListType",
+      "name": [
+        "ngu",
+        "nadag",
+        "HoleType"
+      ],
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UNKNOWN"
+          ],
+          "tags": [],
+          "value": "0"
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "DRILLED"
+          ],
+          "tags": [],
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "ngu",
+        "nadag",
+        "GeotekniskUnders"
+      ],
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Identifikasjon"
+            ],
+            "element": {
+              "elementType": "dataType",
+              "name": [
+                "geoforge",
+                "lib",
+                "Identifikasjon"
+              ],
+              "tags": [],
+              "abstract": false,
+              "properties": [
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "id"
+                  ],
+                  "tags": [],
+                  "kind": "containment",
+                  "type": {
+                    "qName": [
+                      "geoforge",
+                      "lib",
+                      "String"
+                    ],
+                    "element": {
+                      "elementType": "builtinType",
+                      "name": [
+                        "geoforge",
+                        "lib",
+                        "String"
+                      ],
+                      "tags": [],
+                      "params": []
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 1,
+                    "upper": 1
+                  }
+                },
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "namespace"
+                  ],
+                  "tags": [],
+                  "kind": "containment",
+                  "type": {
+                    "qName": [
+                      "geoforge",
+                      "lib",
+                      "String"
+                    ],
+                    "element": {
+                      "elementType": "builtinType",
+                      "name": [
+                        "geoforge",
+                        "lib",
+                        "String"
+                      ],
+                      "tags": [],
+                      "params": []
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 0,
+                    "upper": 1
+                  }
+                },
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "version"
+                  ],
+                  "tags": [],
+                  "kind": "containment",
+                  "type": {
+                    "qName": [
+                      "geoforge",
+                      "lib",
+                      "long"
+                    ],
+                    "element": {
+                      "elementType": "builtinType",
+                      "name": [
+                        "geoforge",
+                        "lib",
+                        "long"
+                      ],
+                      "tags": [],
+                      "params": []
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 0,
+                    "upper": 1
+                  }
+                }
+              ]
+            }
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "område"
+          ],
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Areal"
+            ],
+            "element": {
+              "elementType": "builtinType",
+              "name": [
+                "geoforge",
+                "lib",
+                "Areal"
+              ],
+              "tags": [],
+              "params": []
+            }
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "borehull"
+          ],
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "ngu",
+              "nadag",
+              "GB"
+            ],
+            "element": {
+              "elementType": "layerType",
+              "name": [
+                "ngu",
+                "nadag",
+                "GB"
+              ],
+              "tags": [],
+              "abstract": false,
+              "properties": [
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "identifikasjon"
+                  ],
+                  "tags": [],
+                  "kind": "id",
+                  "type": {
+                    "qName": [
+                      "geoforge",
+                      "lib",
+                      "Identifikasjon"
+                    ],
+                    "element": {
+                      "elementType": "dataType",
+                      "name": [
+                        "geoforge",
+                        "lib",
+                        "Identifikasjon"
+                      ],
+                      "tags": [],
+                      "abstract": false,
+                      "properties": [
+                        {
+                          "elementType": "compositeTypeProperty",
+                          "name": [
+                            "id"
+                          ],
+                          "tags": [],
+                          "kind": "containment",
+                          "type": {
+                            "qName": [
+                              "geoforge",
+                              "lib",
+                              "String"
+                            ],
+                            "element": {
+                              "elementType": "builtinType",
+                              "name": [
+                                "geoforge",
+                                "lib",
+                                "String"
+                              ],
+                              "tags": [],
+                              "params": []
+                            }
+                          },
+                          "multiplicity": {
+                            "lower": 1,
+                            "upper": 1
+                          }
+                        },
+                        {
+                          "elementType": "compositeTypeProperty",
+                          "name": [
+                            "namespace"
+                          ],
+                          "tags": [],
+                          "kind": "containment",
+                          "type": {
+                            "qName": [
+                              "geoforge",
+                              "lib",
+                              "String"
+                            ],
+                            "element": {
+                              "elementType": "builtinType",
+                              "name": [
+                                "geoforge",
+                                "lib",
+                                "String"
+                              ],
+                              "tags": [],
+                              "params": []
+                            }
+                          },
+                          "multiplicity": {
+                            "lower": 0,
+                            "upper": 1
+                          }
+                        },
+                        {
+                          "elementType": "compositeTypeProperty",
+                          "name": [
+                            "version"
+                          ],
+                          "tags": [],
+                          "kind": "containment",
+                          "type": {
+                            "qName": [
+                              "geoforge",
+                              "lib",
+                              "long"
+                            ],
+                            "element": {
+                              "elementType": "builtinType",
+                              "name": [
+                                "geoforge",
+                                "lib",
+                                "long"
+                              ],
+                              "tags": [],
+                              "params": []
+                            }
+                          },
+                          "multiplicity": {
+                            "lower": 0,
+                            "upper": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 1,
+                    "upper": 1
+                  }
+                },
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "holeType"
+                  ],
+                  "tags": [],
+                  "kind": "containment",
+                  "type": {
+                    "qName": [
+                      "ngu",
+                      "nadag",
+                      "HoleType"
+                    ],
+                    "element": {
+                      "elementType": "codeListType",
+                      "name": [
+                        "ngu",
+                        "nadag",
+                        "HoleType"
+                      ],
+                      "tags": [],
+                      "items": [
+                        {
+                          "elementType": "codeListItem",
+                          "name": [
+                            "UNKNOWN"
+                          ],
+                          "tags": [],
+                          "value": "0"
+                        },
+                        {
+                          "elementType": "codeListItem",
+                          "name": [
+                            "DRILLED"
+                          ],
+                          "tags": [],
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 1,
+                    "upper": 1
+                  }
+                },
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "opprettetDato"
+                  ],
+                  "tags": [],
+                  "kind": "containment",
+                  "type": {
+                    "qName": [
+                      "geoforge",
+                      "lib",
+                      "Date"
+                    ],
+                    "element": {
+                      "elementType": "builtinType",
+                      "name": [
+                        "geoforge",
+                        "lib",
+                        "Date"
+                      ],
+                      "tags": [],
+                      "params": []
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 1,
+                    "upper": 1
+                  }
+                },
+                {
+                  "elementType": "compositeTypeProperty",
+                  "name": [
+                    "posisjon"
+                  ],
+                  "tags": [],
+                  "kind": "geometry",
+                  "type": {
+                    "qName": [
+                      "geoforge",
+                      "lib",
+                      "Posisjon"
+                    ],
+                    "element": {
+                      "elementType": "builtinType",
+                      "name": [
+                        "geoforge",
+                        "lib",
+                        "Posisjon"
+                      ],
+                      "tags": [],
+                      "params": []
+                    }
+                  },
+                  "multiplicity": {
+                    "lower": 1,
+                    "upper": 1
+                  }
+                }
+              ]
+            }
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": -1
+          }
+        }
+      ]
+    }
+  ]
+}

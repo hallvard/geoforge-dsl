@@ -14,8 +14,13 @@ import geoforge.model.GeoForge.LayerType;
 import geoforge.model.GeoForge.Model;
 import geoforge.model.GeoForge.ModelElementInfo;
 import geoforge.model.GeoForge.Multiplicity;
+import geoforge.model.GeoForge.Namespace;
 import geoforge.model.GeoForge.Tag;
 import geoforge.model.GeoForge.TypeRef;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +112,20 @@ public class GeoForgeTest {
         .writerWithDefaultPrettyPrinter()
         .writeValueAsString(createSampleModel());
     System.out.println(json);
-    var model = objectMapper.readValue(json, GeoForge.Namespace.class);
+    var model = objectMapper.readValue(json, Namespace.class);
+    System.out.println(model);
+  }
+  
+  private Namespace loadJson(String source) throws IOException,JsonProcessingException {
+    URL url = (source.indexOf(":") > 3) ? URI.create(source).toURL() : getClass().getResource(source);
+    try (var inputStream = url.openStream()) {
+      return objectMapper.readValue(inputStream, Namespace.class);
+    }
+  }
+
+  @Test
+  public void testJsonDeserializationFromFile() throws IOException, JsonProcessingException {
+    var model = loadJson("/samples/test.geoforge.json");
     System.out.println(model);
   }
 }

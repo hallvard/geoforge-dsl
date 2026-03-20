@@ -13,11 +13,11 @@ export function generatePlantuml(spec: GeoForgeModel, writer: (node: GeneratorNo
   }
 
   const plantumlClasses = Array.from(allTypes.values())
-      .map(type => plantumlClassForType(type))
+      .map(type => plantumlClassForType(type, allTypes))
       .filter(clazz => clazz !== undefined) as PlantumlClass[];
 
   const plantumlRelations = Array.from(allTypes.values())
-      .flatMap(type => plantumRelationsForType(type))
+      .flatMap(type => plantumRelationsForType(type, allTypes))
       .filter(rel => rel !== undefined) as PlantumlRelation[];
 
   const fileNode = expandToNode`
@@ -30,7 +30,11 @@ export function generatePlantuml(spec: GeoForgeModel, writer: (node: GeneratorNo
 }
 
 function addTypes(type: GeoForgeType, allTypes: Map<string, GeoForgeType>): void {
-  allTypes.set(simpleName(type), type);
+  const key = name(type);
+  if (allTypes.has(key)) {
+    return;
+  }
+  allTypes.set(key, type);
   if (isCompositeType(type)) {
     for (const prop of type.properties) {
       if (prop.type.element) {
@@ -50,6 +54,7 @@ interface PlantumlClass {
 interface PlantumlProperty {
   name: string;
   type: string;
+  multiple?: boolean;
 }
 
 interface PlantumlRelation {
@@ -57,55 +62,111 @@ interface PlantumlRelation {
   sourceLabel?: string;
   target: string;
   targetLabel?: string;
-  label: string;
+  label?: string;
+  arrow: string;
 }
 
-function plantumlClassForType(type: GeoForgeType): PlantumlClass | undefined {
+function plantumlClassForType(type: GeoForgeType, allTypes: Map<string, GeoForgeType>): PlantumlClass | undefined {
   if (isCompositeType(type)) {
     return {
       name: simpleName(type),
       abstract: type.abstract,
       stereotype: isDataType(type) ? 'datatype' : 'layer',
       properties: type.properties
-          .map(plantumlPropertyForProperty)
+          .map(prop => plantumlPropertyForProperty(prop, allTypes))
           .filter(p => p !== undefined) as PlantumlProperty[],
     }
   }
   return undefined;
 }
 
-function plantumlPropertyForProperty(prop: CompositeTypeProperty): PlantumlProperty | undefined {
-  const propType = prop.type.element;
-  if (isBuiltinType(propType) || isDataType(propType)) {
+function plantumlPropertyForProperty(prop: CompositeTypeProperty,
+    allTypes: Map<string, GeoForgeType>): PlantumlProperty | undefined {
+  const propType = resolvePropType(prop, allTypes);
+  if (isBuiltinType(propType) || isDataType(propType) || isBuiltinTypeRef(prop)) {
     return {
       name: simpleName(prop),
-      type: simpleName(prop.type.element!)
+      type: propType ? simpleName(propType) : simpleNameFromQName(prop.type.qName),
+      multiple: isMultiple(prop)
     }
   }
   return undefined
 }
 
-function plantumRelationsForType(type: GeoForgeType): PlantumlRelation[] | undefined {
+function plantumRelationsForType(type: GeoForgeType,
+    allTypes: Map<string, GeoForgeType>): PlantumlRelation[] | undefined {
   if (isCompositeType(type)) {
-    return type.properties
-        .map(prop => plantumlRelationForProperty(prop, type))
-        .filter(p => p !== undefined) as PlantumlRelation[]
+    const inheritance = plantumlInheritanceRelation(type, allTypes);
+    const propertyRelations = type.properties
+        .map(prop => plantumlRelationForProperty(prop, type, allTypes))
+        .filter(p => p !== undefined) as PlantumlRelation[];
+    return inheritance ? [inheritance, ...propertyRelations] : propertyRelations;
   }
   return undefined;
 }
 
-function plantumlRelationForProperty(prop: CompositeTypeProperty, owner: CompositeType): PlantumlRelation | undefined {
-  const propType = prop.type.element;
+function plantumlInheritanceRelation(type: CompositeType,
+    allTypes: Map<string, GeoForgeType>): PlantumlRelation | undefined {
+  if (!type.superType) {
+    return undefined;
+  }
+  const superType = resolveTypeByQName(type.superType.qName, allTypes);
+  if (!superType || !isCompositeType(superType)) {
+    return undefined;
+  }
+  return {
+    source: simpleName(superType),
+    target: simpleName(type),
+    arrow: '<|--'
+  };
+}
+
+function plantumlRelationForProperty(prop: CompositeTypeProperty, owner: CompositeType,
+    allTypes: Map<string, GeoForgeType>): PlantumlRelation | undefined {
+  const propType = resolvePropType(prop, allTypes);
   if (isLayerType(propType)) {
     return {
       source: simpleName(owner),
       sourceLabel: undefined,
       target: simpleName(propType),
-      targetLabel: undefined,
-      label: simpleName(prop)
+      targetLabel: isMultiple(prop) ? '*' : undefined,
+      label: simpleName(prop),
+      arrow: '*->'
     }
   }
   return undefined
+}
+
+function isMultiple(prop: CompositeTypeProperty): boolean {
+  return prop.multiplicity.upper < 0 || prop.multiplicity.upper > 1;
+}
+
+function resolvePropType(prop: CompositeTypeProperty, allTypes: Map<string, GeoForgeType>): GeoForgeType | undefined {
+  if (prop.type.element) {
+    return prop.type.element;
+  }
+  return resolveTypeByQName(prop.type.qName, allTypes);
+}
+
+function resolveTypeByQName(qName: string[], allTypes: Map<string, GeoForgeType>): GeoForgeType | undefined {
+  const byQualifiedName = allTypes.get(qName.join('.'));
+  if (byQualifiedName) {
+    return byQualifiedName;
+  }
+  const tail = simpleNameFromQName(qName);
+  const matches = Array.from(allTypes.values()).filter(type => simpleName(type) === tail);
+  if (matches.length === 1) {
+    return matches[0];
+  }
+  return undefined;
+}
+
+function simpleNameFromQName(qName: string[]): string {
+  return qName[qName.length - 1] ?? 'Unknown';
+}
+
+function isBuiltinTypeRef(prop: CompositeTypeProperty): boolean {
+  return prop.type.qName.join('.').startsWith('geoforge.lib.');
 }
 
 function plantumlForClass(clazz: PlantumlClass): Generated {
@@ -116,9 +177,13 @@ function plantumlForClass(clazz: PlantumlClass): Generated {
 }
 
 function plantumlForProperty(prop: PlantumlProperty): Generated {
-  return `${prop.name}: ${prop.type}`;
+  const multiple = prop.multiple ? '*' : '';
+  return `${prop.name}${multiple}: ${prop.type}`;
 }
 
 function plantumlForRelation(rel: PlantumlRelation): Generated {
-  return expandToNode`${rel.source} ${rel.sourceLabel} *-> ${rel.targetLabel} ${rel.target}: ${rel.label}`
+  const sourceLabel = rel.sourceLabel ? ` "${rel.sourceLabel}"` : '';
+  const targetLabel = rel.targetLabel ? ` "${rel.targetLabel}"` : '';
+  const label = rel.label ? `: ${rel.label}` : '';
+  return `${rel.source}${sourceLabel} ${rel.arrow}${targetLabel} ${rel.target}${label}`
 }

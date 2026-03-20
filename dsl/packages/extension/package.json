@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "displayName": "geoforge-lang",
     "publisher": "NGU",
-    "icon": "packages/extension/images/geonorge.png",
+    "icon": "images/geonorge.png",
     "keywords": [
         "geoforge",
         "langium",
@@ -43,12 +43,12 @@
             "title": "DSL To Model",
             "category": "geoforge"
         }, {
-            "command": "geoforge.modelToPlantuml",
-            "title": "Model To PlantUML",
+            "command": "geoforge.modelToDsl",
+            "title": "Model To DSL",
             "category": "geoforge"
         }, {
-            "command": "geoforge.modelToJava",
-            "title": "Model To Java",
+            "command": "geoforge.runJavaDtoGenerator",
+            "title": "Run Java DTO Generator",
             "category": "geoforge"
         }]
     },
@@ -56,19 +56,20 @@
         "onLanguage:geoforge",
         "onCommand:geoforge.generatePlantuml",
         "onCommand:geoforge.dslToModel",
-        "onCommand:geoforge.modelToPlantuml",
-        "onCommand:geoforge.modelToJava"
+        "onCommand:geoforge.modelToDsl",
+        "onCommand:geoforge.runJavaDtoGenerator"
     ],
     "main": "./out/extension/main.cjs",
     "scripts": {
         "clean": "shx rm -fr *.tsbuildinfo out syntaxes",
         "vscode:prepublish": "npm run build",
-        "build:prepare": "shx mkdir -p ./syntaxes/ && shx cp -f ../language/syntaxes/geoforge.tmLanguage.json ./syntaxes/geoforge.tmLanguage.json",
+        "build:prepare": "shx mkdir -p ./syntaxes/ && shx cp -f ../language/syntaxes/geoforge.tmLanguage.json ./syntaxes/geoforge.tmLanguage.json && node ./scripts/prepare-java-dto-generator.mjs",
         "build": "npm run build:prepare && tsc -b tsconfig.json && node esbuild.mjs",
         "build:clean": "npm run clean && npm run build",
         "watch": "npm run build:prepare && concurrently -n tsc,esbuild -c blue,yellow \"tsc -b tsconfig.json --watch\" \"node esbuild.mjs --watch\""
     },
     "dependencies": {
+        "geoforge-model": "0.0.1",
         "geoforge-language": "0.0.1",
         "geoforge-cli": "0.0.1",
         "vscode-languageclient": "~9.0.1",

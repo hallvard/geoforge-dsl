@@ -48,7 +48,7 @@ async function readModelFile(fileName: string): Promise<GeoForgeModel | GeoForge
   }
 
   if (!isNamespaceModel(parsed)) {
-    console.error(chalk.red('Input JSON must be a GeoForge model/package with entityType, name and types.'));
+    console.error(chalk.red('Input JSON must be a GeoForge model/package with elementType, name and types.'));
     process.exit(1);
   }
 
@@ -59,10 +59,10 @@ function isNamespaceModel(value: unknown): value is GeoForgeModel | GeoForgePack
   if (!value || typeof value !== 'object') {
     return false;
   }
-  const candidate = value as { entityType?: unknown; name?: unknown; types?: unknown };
-  const entityType = candidate.entityType;
+  const candidate = value as { elementType?: unknown; name?: unknown; types?: unknown };
+  const elementType = candidate.elementType;
   return (
-    (entityType === 'model' || entityType === 'package') &&
+    (elementType === 'model' || elementType === 'package') &&
     Array.isArray(candidate.name) &&
     Array.isArray(candidate.types)
   );
@@ -87,8 +87,10 @@ function extractDestinationAndName(filePath: string, destination: string | undef
 }
 
 function renderNamespace(model: GeoForgeModel | GeoForgePackage): string {
-  const keyword = model.entityType === 'package' ? 'package' : 'model';
-  const lines: string[] = [`${keyword} ${qName(model.name)}`, ''];
+  const keyword = model.elementType === 'package' ? 'package' : 'model';
+  const description = renderDescriptionPrefix(model.description, '  ');
+  const title = renderTitle(model.title);
+  const lines: string[] = [`${keyword} ${description}${qName(model.name)}${title}`, ''];
 
   for (const tag of model.tags) {
     lines.push(renderTag(tag));
@@ -115,11 +117,12 @@ function renderType(type: GeoForgeType): string {
   if (isCompositeType(type)) {
     return renderCompositeType(type);
   }
-  throw new Error(`Unsupported type '${(type as { entityType?: string }).entityType ?? 'unknown'}'.`);
+  throw new Error(`Unsupported type '${(type as { elementType?: string }).elementType ?? 'unknown'}'.`);
 }
 
 function renderBuiltinType(type: BuiltinType): string {
-  const parts: string[] = ['builtin', simpleName(type.name)];
+  const parts: string[] = ['builtin'];
+  parts.push(`${renderDescriptionPrefix(type.description, '  ')}${simpleName(type.name)}${renderTitle(type.title)}`);
   if (type.params && type.params.length > 0) {
     const params = type.params.map(param => {
       if (param.value === undefined) {
@@ -133,16 +136,17 @@ function renderBuiltinType(type: BuiltinType): string {
 }
 
 function renderCodeListType(type: CodeListType): string {
-  const lines: string[] = [`codelist ${simpleName(type.name)} {`];
+  const description = renderDescriptionPrefix(type.description, '  ');
+  const lines: string[] = [`codelist ${description}${simpleName(type.name)}${renderTitle(type.title)} {`];
   for (const item of type.items) {
-    lines.push(`  ${renderCodeListItem(item)}`);
+    pushIndented(lines, renderCodeListItem(item), '  ');
   }
   lines.push('}');
   return lines.join('\n');
 }
 
 function renderCodeListItem(item: CodeListItem): string {
-  const parts: string[] = [simpleName(item.name)];
+  const parts: string[] = [`${renderDescriptionPrefix(item.description, '  ')}${simpleName(item.name)}${renderTitle(item.title)}`];
   if (item.value !== undefined) {
     parts.push(`= ${renderString(item.value)}`);
   }
@@ -153,11 +157,15 @@ function renderCodeListItem(item: CodeListItem): string {
 function renderCompositeType(type: CompositeType): string {
   const kind = isDataType(type) ? 'datatype' : 'layer';
   const abstractPrefix = type.abstract ? 'abstract ' : '';
-  const extendsClause = type.superType ? ` extends ${qName(type.superType.qName)}` : '';
-  const lines: string[] = [`${abstractPrefix}${kind} ${simpleName(type.name)}${extendsClause}${renderTrailingTags(type.tags)} {`];
+  const extendsClause = type.superType ? ` extends ${typeRefName(type.superType.qName)}` : '';
+  const description = renderDescriptionPrefix(type.description, '  ');
+  const title = renderTitle(type.title);
+  const lines: string[] = [
+    `${abstractPrefix}${kind} ${description}${simpleName(type.name)}${title}${extendsClause}${renderTrailingTags(type.tags)} {`
+  ];
 
   for (const prop of type.properties) {
-    lines.push(`  ${renderProperty(prop)}`);
+    pushIndented(lines, renderProperty(prop), '  ');
   }
 
   lines.push('}');
@@ -165,11 +173,13 @@ function renderCompositeType(type: CompositeType): string {
 }
 
 function renderProperty(prop: CompositeTypeProperty): string {
+  const description = renderDescriptionPrefix(prop.description, '  ');
   const kind = prop.kind ? `${renderPropertyKind(prop.kind)} ` : '';
+  const title = renderTitle(prop.title);
   const multiplicity = renderMultiplicity(prop.multiplicity);
   const multiplicityPart = multiplicity ? `${multiplicity}` : '';
-  const defaultPart = prop.defaultValue !== undefined ? ` = ${renderSimpleValue(prop.defaultValue)}` : '';
-  return `${kind}${simpleName(prop.name)}${multiplicityPart}: ${qName(prop.type.qName)}${defaultPart}${renderTrailingTags(prop.tags)}`;
+  const defaultPart = hasRenderableDefaultValue(prop.defaultValue) ? ` = ${renderSimpleValue(prop.defaultValue)}` : '';
+  return `${description}${kind}${simpleName(prop.name)}${title}${multiplicityPart}: ${typeRefName(prop.type.qName)}${defaultPart}${renderTrailingTags(prop.tags)}`;
 }
 
 function renderPropertyKind(kind: CompositeTypeProperty['kind']): string {
@@ -226,8 +236,41 @@ function renderSimpleValue(value: SimpleType): string {
   return String(value);
 }
 
+function hasRenderableDefaultValue(value: SimpleType | null | undefined): value is SimpleType {
+  return value !== undefined && value !== null;
+}
+
 function renderString(value: string): string {
   return JSON.stringify(value);
+}
+
+function renderDescription(value?: string): string {
+  if (!value) {
+    return '';
+  }
+  return renderString(value);
+}
+
+function renderDescriptionPrefix(value: string | undefined, continuationIndent: string): string {
+  const description = renderDescription(value);
+  if (!description) {
+    return '';
+  }
+  return `${description}\n${continuationIndent}`;
+}
+
+function renderTitle(value?: string): string {
+  if (!value) {
+    return '';
+  }
+  return ` ${renderString(value)}`;
+}
+
+function pushIndented(target: string[], value: string, indent: string): void {
+  const lines = value.split('\n');
+  for (const line of lines) {
+    target.push(`${indent}${line}`);
+  }
 }
 
 function qName(name: QName): string {
@@ -236,4 +279,8 @@ function qName(name: QName): string {
 
 function simpleName(name: QName): string {
   return name[name.length - 1] ?? 'X';
+}
+
+function typeRefName(name: QName): string {
+  return simpleName(name);
 }
