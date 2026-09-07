@@ -1,0 +1,24 @@
+<ShapeChangeConfiguration xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1 http://shapechange.net/resources/schema/ShapeChangeConfiguration.xsd">
+  <input>
+    <parameter name="inputModelType" value="SCXML" />
+    <parameter name="inputFile" value="INPUT/Fra_prodspek_komplett_20251217-utf8.xml"/>
+    <parameter name="appSchemaNameRegex" value=""/>
+    <parameter name="appSchemaNamespaceRegex" value=""/>
+    <parameter name="excludedPackages" value=""/>
+    <parameter name="addTaggedValues" value="*"/>
+    <parameter name="addStereotypes" value="*"/>
+  </input>
+  <targets>
+    <Target class="no.geoforge.shapechange.ShapechangeToGeoForgeTarget" mode="enabled">
+      <targetParameter name="outputFile" value="target/generated/nadag.geoforge.json" />
+      <targetParameter name="modelName" value="no.ngu.nadag" />
+      <targetParameter name="namePrefix" value="no.ngu.nadag" />
+      <!-- Optional: only tagged values whose names start with this prefix are translated. -->
+      <!-- If omitted/blank, no tags are translated. -->
+      <targetParameter name="tagPrefix" value="" />
+    </Target>
+  </targets>
+  <log>
+    <parameter name="reportLevel" value="INFO" />
+  </log>
+</ShapeChangeConfiguration>

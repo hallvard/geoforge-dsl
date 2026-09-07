@@ -1,14 +1,15 @@
 package geoforge.model;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import geoforge.model.GeoForge.BuiltinType;
+import geoforge.model.GeoForge.CodeListItem;
+import geoforge.model.GeoForge.CodeListType;
 import geoforge.model.GeoForge.CompositeTypeProperty;
 import geoforge.model.GeoForge.DataType;
-import geoforge.model.GeoForge.CodeListType;
-import geoforge.model.GeoForge.CodeListItem;
 import geoforge.model.GeoForge.GeoForgeType;
 import geoforge.model.GeoForge.LayerType;
 import geoforge.model.GeoForge.Model;
@@ -17,7 +18,6 @@ import geoforge.model.GeoForge.Multiplicity;
 import geoforge.model.GeoForge.Namespace;
 import geoforge.model.GeoForge.Tag;
 import geoforge.model.GeoForge.TypeRef;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
@@ -103,7 +103,7 @@ public class GeoForgeTest {
     var json = objectMapper
         .writerWithDefaultPrettyPrinter()
         .writeValueAsString(createSampleModel());
-    System.out.println(json);
+    assertNotNull(json);
   }
   
   @Test
@@ -111,9 +111,9 @@ public class GeoForgeTest {
     var json = objectMapper
         .writerWithDefaultPrettyPrinter()
         .writeValueAsString(createSampleModel());
-    System.out.println(json);
+    assertNotNull(json);
     var model = objectMapper.readValue(json, Namespace.class);
-    System.out.println(model);
+    assertNotNull(model);
   }
   
   private Namespace loadJson(String source) throws IOException,JsonProcessingException {
@@ -126,6 +126,6 @@ public class GeoForgeTest {
   @Test
   public void testJsonDeserializationFromFile() throws IOException, JsonProcessingException {
     var model = loadJson("/samples/test.geoforge.json");
-    System.out.println(model);
+    assertNotNull(model);
   }
 }
