@@ -4,66 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>no.geoforge.shapechange</groupId>
+    <groupId>no.geoforge.java-gen</groupId>
     <artifactId>java-dto-generator</artifactId>
 
     <parent>
       	<groupId>no.geoforge.java-gen</groupId>
       	<artifactId>parent</artifactId>
-          <version>0.0.1-SNAPSHOT</version>
+          <version>1.0-SNAPSHOT</version>
     </parent>
-
-    <repositories>
-        <repository>
-            <id>ShapeChange</id>
-            <name>ShapeChange repository</name>
-            <url>https://shapechange.net/resources/dist/</url>
-        </repository>        
-    </repositories>
     
     <dependencies>
         <dependency>
             <groupId>no.geoforge.java-gen</groupId>
             <artifactId>model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.18.3</version>
-        </dependency>
-
-<!--     
-        <dependency>
-            <groupId>no.ngu</groupId>
-            <artifactId>shared-geojson</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>no.ngu</groupId>
-            <artifactId>nadag-full-v1-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
- -->
-        <dependency>
-            <groupId>net.shapechange</groupId>
-            <artifactId>ShapeChange</artifactId>
-            <version>3.1.0</version>
         </dependency>
 
         <!-- Java source model and generator library -->
         <dependency>
             <groupId>com.palantir.javapoet</groupId>
             <artifactId>javapoet</artifactId>
-            <version>0.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>3.1.1</version>
+            <version>0.12.0</version>
         </dependency>
 
         <dependency>
@@ -93,28 +54,22 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -132,7 +87,6 @@
                             <overWriteReleases>true</overWriteReleases>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <includeScope>runtime</includeScope>
-                            <excludeArtifactIds>Saxon-HE</excludeArtifactIds>
                         </configuration>
                     </execution>
                 </executions>
@@ -152,7 +106,7 @@
                         <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>de.interactive_instruments.ShapeChange.Main</mainClass>
+                                <mainClass>no.geoforge.dtogen.GeoForgeDtoGeneratorMain</mainClass>
                                 <addClasspath>true</addClasspath>
                                 <classpathPrefix>libs</classpathPrefix>
                                 <!-- Workaround for Maven bug #MJAR-156 (https://issues.apache.org/jira/browse/MJAR-156) -->

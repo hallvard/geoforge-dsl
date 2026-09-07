@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.javagen;
+package no.geoforge.dtogen;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,7 +13,6 @@ import geoforge.model.GeoForge.ModelElementInfo;
 import geoforge.model.GeoForge.Multiplicity;
 import geoforge.model.GeoForge.TypeRef;
 import java.nio.file.Files;
-import no.ngu.nadag.innmelding.dtogen.GeoForgeDtoGenerator;
 import org.junit.jupiter.api.Test;
 
 class GeoForgeDtoGeneratorTest {
@@ -29,10 +28,12 @@ class GeoForgeDtoGeneratorTest {
     var dataTypeFile = outputDir.resolve("no/ngu/generated/ngu/nadag/Identifikasjon.java");
     var codeListFile = outputDir.resolve("no/ngu/generated/ngu/nadag/HoleType.java");
     var layerTypeFile = outputDir.resolve("no/ngu/generated/ngu/nadag/GB.java");
+    var supportFile = outputDir.resolve("no/ngu/generated/CodeListItem.java");
 
     assertTrue(Files.exists(dataTypeFile), "Expected generated data type");
     assertTrue(Files.exists(codeListFile), "Expected generated code list");
     assertTrue(Files.exists(layerTypeFile), "Expected generated layer type");
+    assertTrue(Files.exists(supportFile), "Expected generated support type CodeListItem");
   }
 
   private static Model sampleModel() {

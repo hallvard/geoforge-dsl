@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.dtogen;
+package no.geoforge.dtogen;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.palantir.javapoet.AnnotationSpec;
@@ -10,6 +10,7 @@ import com.palantir.javapoet.ParameterSpec;
 import com.palantir.javapoet.ParameterizedTypeName;
 import com.palantir.javapoet.TypeName;
 import com.palantir.javapoet.TypeSpec;
+import com.palantir.javapoet.TypeVariableName;
 import geoforge.model.GeoForge;
 import geoforge.model.GeoForge.BuiltinType;
 import geoforge.model.GeoForge.CodeListType;
@@ -37,6 +38,7 @@ import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.json.bind.annotation.JsonbSubtype;
 import jakarta.json.bind.annotation.JsonbTypeAdapter;
 import jakarta.json.bind.annotation.JsonbTypeInfo;
+import jakarta.json.bind.adapter.JsonbAdapter;
 import javax.lang.model.element.Modifier;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.media.SchemaProperty;
@@ -88,6 +90,7 @@ public class GeoForgeDtoGenerator {
     if (configuredBuiltinTypeMappings.isEmpty()) {
       configureBuiltinTypeMappings(model, null, externalBuiltinTypeMappings);
     }
+    writeSupportTypes(outputDirectory);
     registerTypeNames(model);
     registerSubtypes(model);
     for (var type : model.types()) {
@@ -156,6 +159,73 @@ public class GeoForgeDtoGenerator {
     } catch (IOException e) {
       throw new IllegalStateException("Failed to write generated type " + className, e);
     }
+  }
+
+  private void writeSupportTypes(Path outputDirectory) {
+    var supportFile = JavaFile.builder(basePackage, codeListItemSupportType()).build();
+    try {
+      supportFile.writeTo(outputDirectory);
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to write support type CodeListItem", e);
+    }
+  }
+
+  private static TypeSpec codeListItemSupportType() {
+    var enumType = TypeVariableName.get("E", ParameterizedTypeName.get(ClassName.get(Enum.class), TypeVariableName.get("E")));
+    var jsonbAdapter = ParameterizedTypeName.get(ClassName.get(JsonbAdapter.class), enumType, TypeName.get(String.class));
+
+    var abstractAdapter = TypeSpec.classBuilder("AbstractJsonbAdapter")
+        .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.ABSTRACT)
+        .addTypeVariable(enumType)
+        .addSuperinterface(jsonbAdapter)
+        .addField(FieldSpec.builder(ParameterizedTypeName.get(ClassName.get(Class.class), enumType), "enumType", Modifier.PRIVATE, Modifier.FINAL).build())
+        .addMethod(MethodSpec.constructorBuilder()
+            .addModifiers(Modifier.PUBLIC)
+            .addParameter(ParameterizedTypeName.get(ClassName.get(Class.class), enumType), "enumType")
+            .addStatement("this.enumType = enumType")
+            .build())
+        .addMethod(MethodSpec.methodBuilder("adaptToJson")
+            .addAnnotation(Override.class)
+            .addModifiers(Modifier.PUBLIC)
+            .returns(String.class)
+            .addParameter(enumType, "enumValue")
+            .addStatement("return enumValue != null ? enumValue.name() : null")
+            .build())
+        .addMethod(MethodSpec.methodBuilder("matches")
+            .addModifiers(Modifier.PROTECTED)
+            .returns(TypeName.BOOLEAN)
+            .addParameter(String.class, "expected")
+            .addParameter(String.class, "json")
+            .addStatement("return expected.equalsIgnoreCase(json)")
+            .build())
+        .addMethod(MethodSpec.methodBuilder("adaptFromJson")
+            .addAnnotation(Override.class)
+            .addModifiers(Modifier.PUBLIC)
+            .returns(enumType)
+            .addParameter(String.class, "json")
+            .beginControlFlow("if (json == null || json.trim().isEmpty())")
+            .addStatement("return null")
+            .endControlFlow()
+            .beginControlFlow("for (var enumConstant : enumType.getEnumConstants())")
+            .beginControlFlow("if (matches(enumConstant.name(), json))")
+            .addStatement("return enumConstant")
+            .endControlFlow()
+            .beginControlFlow("if (enumConstant instanceof CodeListItem cli && matches(cli.getLabel(), json))")
+            .addStatement("return enumConstant")
+            .endControlFlow()
+            .endControlFlow()
+            .addStatement("throw new $T(json + \" is not a valid constant for \" + enumType)", IllegalArgumentException.class)
+            .build())
+        .build();
+
+    return TypeSpec.interfaceBuilder("CodeListItem")
+        .addModifiers(Modifier.PUBLIC)
+        .addMethod(MethodSpec.methodBuilder("getLabel")
+            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+            .returns(String.class)
+            .build())
+        .addType(abstractAdapter)
+        .build();
   }
 
   private TypeSpec generateCodeListType(CodeListType codeListType, String className) {

@@ -1,7 +1,7 @@
-package no.ngu.nadag.innmelding.dtogen;
+package no.geoforge.dtogen;
 
 import com.palantir.javapoet.FieldSpec;
-import de.interactive_instruments.ShapeChange.Model.PropertyInfo;
+import com.palantir.javapoet.TypeName;
 
 /**
  * Abstract helper class for generating Java names for various purposes.
@@ -62,7 +62,15 @@ public abstract class JavaNaming {
    * @return the getter name
    */
   public String toGetterName(FieldSpec field) {
-    var prefix = "boolean".equals(field.type().getClass().getName()) ? "is" : "get";
+    var primitiveBoolean = TypeName.BOOLEAN.equals(field.type());
+    if (primitiveBoolean
+        && field.name() != null
+        && field.name().startsWith("is")
+        && field.name().length() > 2
+        && Character.isUpperCase(field.name().charAt(2))) {
+      return field.name();
+    }
+    var prefix = primitiveBoolean ? "is" : "get";
     return toMemberName(prefix, field.name());
   }
 

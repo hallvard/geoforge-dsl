@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.javagen;
+package no.geoforge.dtogen;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

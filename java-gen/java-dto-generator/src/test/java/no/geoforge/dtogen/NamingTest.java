@@ -1,9 +1,9 @@
-package no.ngu.nadag.innmelding.javagen;
+package no.geoforge.dtogen;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import no.ngu.nadag.innmelding.dtogen.DtoNaming;
-import no.ngu.nadag.innmelding.dtogen.JavaNaming;
+import com.palantir.javapoet.FieldSpec;
+import com.palantir.javapoet.TypeName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,5 +32,23 @@ public class NamingTest {
   @Test
   public void testFixMemberName() {
     assertEquals("Name_Subname", JavaNaming.fixMemberName("Name$%Subname", "_", "_"));
+  }
+
+  @Test
+  public void testGetterNameForPrimitiveBoolean() {
+    var field = FieldSpec.builder(TypeName.BOOLEAN, "active").build();
+    assertEquals("isActive", naming.toGetterName(field));
+  }
+
+  @Test
+  public void testGetterNameForBoxedBoolean() {
+    var field = FieldSpec.builder(TypeName.BOOLEAN.box(), "active").build();
+    assertEquals("getActive", naming.toGetterName(field));
+  }
+
+  @Test
+  public void testGetterNameForIsPrefixedPrimitiveBoolean() {
+    var field = FieldSpec.builder(TypeName.BOOLEAN, "isActive").build();
+    assertEquals("isActive", naming.toGetterName(field));
   }
 }

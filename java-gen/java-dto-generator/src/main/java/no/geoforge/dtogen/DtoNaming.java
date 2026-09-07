@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.dtogen;
+package no.geoforge.dtogen;
 
 /**
  * Helper class for generating Java names for various purposes.

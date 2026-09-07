@@ -1,0 +1,47 @@
+{
+  "elementType": "model",
+  "name": ["it", "sample"],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "codeListType",
+      "name": ["it", "sample", "Status"],
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": ["ACTIVE"],
+          "tags": [],
+          "value": "A"
+        },
+        {
+          "elementType": "codeListItem",
+          "name": ["INACTIVE"],
+          "tags": [],
+          "value": "I"
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": ["it", "sample", "Sample"],
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": ["status"],
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": ["it", "sample", "Status"]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

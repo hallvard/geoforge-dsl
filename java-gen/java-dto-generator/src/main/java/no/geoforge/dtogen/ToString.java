@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.dtogen;
+package no.geoforge.dtogen;
 
 import com.palantir.javapoet.MethodSpec;
 import com.palantir.javapoet.TypeSpec.Builder;

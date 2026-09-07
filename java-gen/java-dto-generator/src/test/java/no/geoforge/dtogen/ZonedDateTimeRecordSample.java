@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.javagen;
+package no.geoforge.dtogen;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import java.time.ZonedDateTime;

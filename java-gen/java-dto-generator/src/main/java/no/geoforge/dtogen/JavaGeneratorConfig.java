@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.dtogen;
+package no.geoforge.dtogen;
 
 import java.util.Map;
 

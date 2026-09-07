@@ -1,4 +1,4 @@
-package no.ngu.nadag.innmelding.dtogen;
+package no.geoforge.dtogen;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
