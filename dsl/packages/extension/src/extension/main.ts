@@ -138,7 +138,7 @@ async function runJavaDtoGeneratorMain(
             [
                 '-cp',
                 classpath,
-                'no.ngu.nadag.innmelding.dtogen.GeoForgeDtoGeneratorMain',
+                'no.geoforge.dtogen.GeoForgeDtoGeneratorMain',
                 modelFile,
                 configPath
             ],
