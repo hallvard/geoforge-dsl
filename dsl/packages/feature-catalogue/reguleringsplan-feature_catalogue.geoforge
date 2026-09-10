@@ -1,0 +1,2683 @@
+model Reguleringsplan
+
+builtin CharacterString
+
+builtin DateTime
+
+builtin Integer
+
+builtin Kurve
+
+builtin Flate
+
+builtin Date
+
+builtin Real
+
+builtin Punkt
+
+codelist "metode som ligger til grunn for registrering av posisjon
+
+
+-- Definition - -
+method on which registration of position is based"
+  Målemetode {
+  "Målt i terrenget , uspesifisert metode/måleinstrument"
+  Terrengmålt__Uspesifisert_måleinstrument = "Terrengmålt: Uspesifisert måleinstrument"
+  "Målt i terrenget med totalstasjon"
+  Terrengmålt__Totalstasjon = "Terrengmålt: Totalstasjon"
+  "Målt i terrenget med teodolitt og elektronisk avstandsmåler"
+  Terrengmålt__Teodolitt_og_el_avstandsmåler = "Terrengmålt: Teodolitt og el avstandsmåler"
+  "Målt i terrenget med teodolitt og målebånd"
+  Terrengmålt__Teodolitt_og_målebånd = "Terrengmålt: Teodolitt og målebånd"
+  "Målt i terrenget, ortogonalmetoden"
+  Terrengmålt__Ortogonalmetoden = "Terrengmålt: Ortogonalmetoden"
+  "Punkt beregnet på bakgrunn av måling mot andre punkter, slik som to avstander eller avstand og retning
+
+-- Definition --
+Point calculated on the basis of other items, such as two distances or distance + direction."
+  Utmål = "Utmål"
+  "Tatt fra plan eller godkjent tiltak"
+  Tatt_fra_plan = "Tatt fra plan"
+  "Annet"
+  Annet___denne_har_ingen_mening__bør_fjernes__ = "Annet  (denne har ingen mening, bør fjernes?)"
+  "Målt i stereoinstrument, uspesifisert instrument"
+  Stereoinstrument = "Stereoinstrument"
+  "Punkt beregnet ved aerotriangulering
+
+-- Definition --
+Point calculated by aerotriangulation"
+  Aerotriangulert = "Aerotriangulert"
+  "Målt i stereoinstrument, analytisk plotter"
+  Stereoinstrument__Analytisk_plotter = "Stereoinstrument: Analytisk plotter"
+  "Målt i stereoinstrument, autograf, analogt instrument"
+  Stereoinstrument__Autograf = "Stereoinstrument: Autograf"
+  "Målt i stereoinstrument, digitalt instrument"
+  Stereoinstrument__Digitalt = "Stereoinstrument: Digitalt"
+  "Geometri overført fra kart maskinelt ved hjelp av skanner, uspesifisert kartmedium"
+  Scannet_fra_kart = "Scannet fra kart"
+  "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er blyantoriginal"
+  Skannet_fra_kart__Blyantoriginal = "Skannet fra kart: Blyantoriginal"
+  "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er rissefolie"
+  Skannet_fra_kart__Rissefolie = "Skannet fra kart: Rissefolie"
+  "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er transparent folie av  god kvalitet."
+  Skannet_fra_kart__Transparent_folie__god_kvalitet = "Skannet fra kart: Transparent folie, god kvalitet"
+  "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er transparent folie av mindre god kvalitet"
+  Skannet_fra_kart__Transparent_folie__mindre_god_kvalitet = "Skannet fra kart: Transparent folie, mindre god kvalitet"
+  "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er papirkopi."
+  Skannet_fra_kart__Papirkopi = "Skannet fra kart: Papirkopi"
+  "Målt med laserskanner fra fly"
+  Flybåren_laserscanner = "Flybåren laserscanner"
+  "Målt med laserskanner plassert i kjøretøy"
+  Bilbåren_laser = "Bilbåren laser"
+  "brukes for objekter som er stedfestet med lineær referanse, enten disse leveres med stedfesting kun som lineære referanser, eller med koordinatgeometri avledet fra lineære referanser"
+  Lineær_referanse = "Lineær referanse"
+  "Geometri overført fra ortofoto eller flybilde ved hjelp av manuell registrering på et digitaliseringsbord, uspesifisert bildemedium"
+  Digitaliseringbord__Ortofoto_eller_flybilde = "Digitaliseringbord: Ortofoto eller flybilde"
+  "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+  Digitaliseringbord__Ortofoto__film = "Digitaliseringbord: Ortofoto, film"
+  "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+  Digitaliseringbord__Ortofoto__fotokopi = "Digitaliseringbord: Ortofoto, fotokopi"
+  "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+  Digitaliseringbord__Flybilde__film = "Digitaliseringbord: Flybilde, film"
+  "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+  Digitaliseringbord__Flybilde__fotokopi = "Digitaliseringbord: Flybilde, fotokopi"
+  "Geometri overført fra ortofoto ved hjelp av manuell registrering på skjerm"
+  Digitalisert_på_skjerm_fra_ortofoto = "Digitalisert på skjerm fra ortofoto"
+  "Geometri overført fra satellittbilde ved hjelp av manuell registrering på skjerm"
+  Digitalisert_på_skjerm_fra_satellittbilde = "Digitalisert på skjerm fra satellittbilde"
+  Digitalisert_på_skjerm_fra_andre_digitale_rasterdata = "Digitalisert på skjerm fra andre digitale rasterdata"
+  Digitalisert_på_skjerm_fra_tolkning_av_seismikk = "Digitalisert på skjerm fra tolkning av seismikk"
+  "Vektorisering fra laserdata, brukes også der vektoriseringen støttes av ortofoto"
+  Vektorisering_av_laserdata = "Vektorisering av laserdata"
+  "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord, medium uspesifisert"
+  Digitaliseringsbord__Kart = "Digitaliseringsbord: Kart"
+  "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er blyantoriginal"
+  Digitaliseringsbord__Kart__blyantoriginal = "Digitaliseringsbord: Kart, blyantoriginal"
+  "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er rissefolie"
+  Digitaliseringsbord__Kart__rissefoile = "Digitaliseringsbord: Kart, rissefoile"
+  "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av god kvalitet, samkopi"
+  Digitaliseringsbord__Kart__transparent_foile__god_kvalitet = "Digitaliseringsbord: Kart, transparent foile, god kvalitet"
+  "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av mindre god kvalitet, samkopi"
+  Digitaliseringsbord__Kart__transparent_foile__mindre_god_kvalitet = "Digitaliseringsbord: Kart, transparent foile, mindre god kvalitet"
+  "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er papirkopi"
+  Digitaliseringsbord__Kart__papirkopi = "Digitaliseringsbord: Kart, papirkopi"
+  "Geometri overført fra kart ved hjelp av manuell registrering på skjerm, medium skannet kart (raster), samkopi"
+  Digitalisert_på_skjerm_fra_skannet_kart = "Digitalisert på skjerm fra skannet kart"
+  "Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert"
+  Genererte_data__interpolasjon_ = "Genererte data (interpolasjon)"
+  "Genererte data, interpolasjonsmetode, fra terrengmodell"
+  Genererte_data__interpolasjon___Terrengmodell = "Genererte data (interpolasjon): Terrengmodell"
+  "Genererte data, interpolasjonsmetode, vektet middel"
+  Genererte_data__interpolasjon___Vektet_middel = "Genererte data (interpolasjon): Vektet middel"
+  "Genererte data: Sirkelgeometri, korridor eller annen geometri generert ut fra f.eks et punkt eller en linje (f.eks midtlinje veg)"
+  Genererte_data__Fra_annen_geometri = "Genererte data: Fra annen geometri"
+  Genererte_data__Generalisering = "Genererte data: Generalisering"
+  Genererte_data__Sentralpunkt = "Genererte data: Sentralpunkt"
+  "Genererte data: Sammenknytningspunkt (f.eks mellom ulike kartlegginger), randpunkt (f.eks mellom ulike kilder til kart)"
+  Genererte_data__Sammenknytningspunkt__randpunkt = "Genererte data: Sammenknytningspunkt, randpunkt"
+  "Koordinater hentet fra GAB, forløperen til registerdelen av matrikkelen"
+  Koordinater_hentet_fra_GAB = "Koordinater hentet fra GAB"
+  "Koordinater hentet fra JREG, jordregisteret"
+  Koordinater_hentet_fra_JREG = "Koordinater hentet fra JREG"
+  "Beregnet, uspesifisert hvordan"
+  Beregnet = "Beregnet"
+  "Spesielle metoder, uspesifisert"
+  Spesielle_metoder = "Spesielle metoder"
+  Spesielle_metoder__Målt_med_stikkstang = "Spesielle metoder: Målt med stikkstang"
+  Spesielle_metoder__Målt_med_waterstang = "Spesielle metoder: Målt med waterstang"
+  Spesielle_metoder__Målt_med_målehjul = "Spesielle metoder: Målt med målehjul"
+  Spesielle_metoder__Målt_med_stigningsmåler = "Spesielle metoder: Målt med stigningsmåler"
+  "Punkt fastsatt ut fra et grunnlag (kart, bilde), f.eks ved partenes enighet ved en oppmålingsforretning"
+  Fastsatt_punkt = "Fastsatt punkt"
+  "Geometri fastsatt ved dom, lov, traktat eller kongelig resolusjon"
+  Fastsatt_ved_dom_eller_kongelig_resolusjon = "Fastsatt ved dom eller kongelig resolusjon"
+  "Annet (spesifiseres i filhode)"
+  Annet__spesifiseres_i_filhode____bør_vel_fjernes__blir_borte_ved_overføring_mellom_systemer_ = "Annet (spesifiseres i filhode) ( bør vel fjernes, blir borte ved overføring mellom systemer)"
+  "Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+  Frihåndstegning = "Frihåndstegning"
+  "Digitalisert fra krokering på kart, dvs grovt skissert på kart"
+  Frihåndstegning_på_kart = "Frihåndstegning på kart"
+  "Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+  Frihåndstegning_på_skjerm = "Frihåndstegning på skjerm"
+  Treghetsstedfesting = "Treghetsstedfesting"
+  "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, relative målinger."
+  GNSS__Kodemåling__relative_målinger = "GNSS: Kodemåling, relative målinger"
+  "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, enkle målinger."
+  GNSS__Kodemåling__enkle_målinger = "GNSS: Kodemåling, enkle målinger"
+  "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling statisk måling."
+  GNSS__Fasemåling__statisk_måling = "GNSS: Fasemåling, statisk måling"
+  "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling andre metoder."
+  GNSS__Fasemåling__andre_metoder = "GNSS: Fasemåling, andre metoder"
+  "Kombinasjon av GPS/Treghet"
+  Kombinasjon_av_GNSS_Treghet = "Kombinasjon av GNSS/Treghet"
+  "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO).: Fasemåling RTK (realtids kinematisk måling)"
+  GNSS__Fasemåling_RTK = "GNSS: Fasemåling RTK"
+  "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO). Fasemåling float-løsning"
+  GNSS__Fasemåling___float_løsning = "GNSS: Fasemåling , float-løsning"
+  "Målemetode er ukjent"
+  Ukjent_målemetode = "Ukjent målemetode"
+}
+
+codelist "nummerering av kommuner i henhold til Statistisk sentralbyrå sin offisielle liste samt et utvalg av utgåtte numre
+
+Merknad: Det presiseres at kommune alltid skal ha 4 sifre, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 sifre." $asDictionary=false
+  Kommunenummer {
+  "Halden"
+  v_0101 = "0101"
+  "Sarpsborg (utgått)"
+  v_0102 = "0102"
+  "Fredrikstad (utgått)"
+  v_0103 = "0103"
+  "Moss"
+  v_0104 = "0104"
+  "Sarpsborg"
+  v_0105 = "0105"
+  "Fredrikstad"
+  v_0106 = "0106"
+  "Hvaler"
+  v_0111 = "0111"
+  "Borge (utgått)"
+  v_0113 = "0113"
+  "Varteig (utgått)"
+  v_0114 = "0114"
+  "Skjeberg (utgått)"
+  v_0115 = "0115"
+  "Aremark"
+  v_0118 = "0118"
+  "Marker"
+  v_0119 = "0119"
+  "Rømskog"
+  v_0121 = "0121"
+  "Trøgstad"
+  v_0122 = "0122"
+  "Spydeberg"
+  v_0123 = "0123"
+  "Askim"
+  v_0124 = "0124"
+  "Eidsberg"
+  v_0125 = "0125"
+  "Skiptvet"
+  v_0127 = "0127"
+  "Rakkestad"
+  v_0128 = "0128"
+  "Tune (utgått)"
+  v_0130 = "0130"
+  "Rolvsøy (utgått)"
+  v_0131 = "0131"
+  "Kråkerøy (utgått)"
+  v_0133 = "0133"
+  "Onsøy (utgått)"
+  v_0134 = "0134"
+  "Råde"
+  v_0135 = "0135"
+  "Rygge"
+  v_0136 = "0136"
+  "Våler i Østfold"
+  v_0137 = "0137"
+  "Hobøl"
+  v_0138 = "0138"
+  "Vestby"
+  v_0211 = "0211"
+  "Ski"
+  v_0213 = "0213"
+  "Ås"
+  v_0214 = "0214"
+  "Frogn"
+  v_0215 = "0215"
+  "Nesodden"
+  v_0216 = "0216"
+  "Oppegård"
+  v_0217 = "0217"
+  "Bærum"
+  v_0219 = "0219"
+  "Asker"
+  v_0220 = "0220"
+  "Aurskog-Høland"
+  v_0221 = "0221"
+  "Sørum"
+  v_0226 = "0226"
+  "Fet"
+  v_0227 = "0227"
+  "Rælingen"
+  v_0228 = "0228"
+  "Enebakk"
+  v_0229 = "0229"
+  "Lørenskog"
+  v_0230 = "0230"
+  "Skedsmo"
+  v_0231 = "0231"
+  "Nittedal"
+  v_0233 = "0233"
+  "Gjerdrum"
+  v_0234 = "0234"
+  "Ullensaker"
+  v_0235 = "0235"
+  "Nes i Akershus"
+  v_0236 = "0236"
+  "Eidsvoll"
+  v_0237 = "0237"
+  "Nannestad"
+  v_0238 = "0238"
+  "Hurdal"
+  v_0239 = "0239"
+  "Oslo"
+  v_0301 = "0301"
+  "Hamar (utgått)"
+  v_0401 = "0401"
+  "Kongsvinger"
+  v_0402 = "0402"
+  "Hamar"
+  v_0403 = "0403"
+  "Ringsaker"
+  v_0412 = "0412"
+  "Vang (utgått)"
+  v_0414 = "0414"
+  "Løten"
+  v_0415 = "0415"
+  "Stange"
+  v_0417 = "0417"
+  "Nord-Odal"
+  v_0418 = "0418"
+  "Sør-Odal"
+  v_0419 = "0419"
+  "Eidskog"
+  v_0420 = "0420"
+  "Grue"
+  v_0423 = "0423"
+  "Åsnes"
+  v_0425 = "0425"
+  "Våler i Hedmark"
+  v_0426 = "0426"
+  "Elverum"
+  v_0427 = "0427"
+  "Trysil"
+  v_0428 = "0428"
+  "Åmot"
+  v_0429 = "0429"
+  "Stor-Elvdal"
+  v_0430 = "0430"
+  "Rendalen"
+  v_0432 = "0432"
+  "Engerdal"
+  v_0434 = "0434"
+  "Tolga"
+  v_0436 = "0436"
+  "Tynset"
+  v_0437 = "0437"
+  "Alvdal"
+  v_0438 = "0438"
+  "Folldal"
+  v_0439 = "0439"
+  "Os i Hedmark"
+  v_0441 = "0441"
+  "Lillehammer"
+  v_0501 = "0501"
+  "Gjøvik"
+  v_0502 = "0502"
+  "Dovre"
+  v_0511 = "0511"
+  "Lesja"
+  v_0512 = "0512"
+  "Skjåk"
+  v_0513 = "0513"
+  "Lom"
+  v_0514 = "0514"
+  "Vågå"
+  v_0515 = "0515"
+  "Nord-Fron"
+  v_0516 = "0516"
+  "Sel"
+  v_0517 = "0517"
+  "Sør-Fron"
+  v_0519 = "0519"
+  "Ringebu"
+  v_0520 = "0520"
+  "Øyer"
+  v_0521 = "0521"
+  "Gausdal"
+  v_0522 = "0522"
+  "Østre Toten"
+  v_0528 = "0528"
+  "Vestre Toten"
+  v_0529 = "0529"
+  "Jevnaker"
+  v_0532 = "0532"
+  "Lunner"
+  v_0533 = "0533"
+  "Gran"
+  v_0534 = "0534"
+  "Søndre Land"
+  v_0536 = "0536"
+  "Nordre Land"
+  v_0538 = "0538"
+  "Sør-Aurdal"
+  v_0540 = "0540"
+  "Etnedal"
+  v_0541 = "0541"
+  "Nord-Aurdal"
+  v_0542 = "0542"
+  "Vestre Slidre"
+  v_0543 = "0543"
+  "Øystre Slidre"
+  v_0544 = "0544"
+  "Vang"
+  v_0545 = "0545"
+  "Drammen"
+  v_0602 = "0602"
+  "Kongsberg"
+  v_0604 = "0604"
+  "Ringerike"
+  v_0605 = "0605"
+  "Hole"
+  v_0612 = "0612"
+  "Flå"
+  v_0615 = "0615"
+  "Nes i Buskerud"
+  v_0616 = "0616"
+  "Gol"
+  v_0617 = "0617"
+  "Hemsedal"
+  v_0618 = "0618"
+  "Ål"
+  v_0619 = "0619"
+  "Hol"
+  v_0620 = "0620"
+  "Sigdal"
+  v_0621 = "0621"
+  "Krødsherad"
+  v_0622 = "0622"
+  "Modum"
+  v_0623 = "0623"
+  "Øvre Eiker"
+  v_0624 = "0624"
+  "Nedre Eiker"
+  v_0625 = "0625"
+  "Lier"
+  v_0626 = "0626"
+  "Røyken"
+  v_0627 = "0627"
+  "Hurum"
+  v_0628 = "0628"
+  "Flesberg"
+  v_0631 = "0631"
+  "Rollag"
+  v_0632 = "0632"
+  "Nore og Uvdal"
+  v_0633 = "0633"
+  "Horten"
+  v_0701 = "0701"
+  "Holmestrand (utgått)"
+  v_0702 = "0702"
+  "Horten (utgått)"
+  v_0703 = "0703"
+  "Tønsberg"
+  v_0704 = "0704"
+  "Tønsberg (utgått)"
+  v_0705 = "0705"
+  "Sandefjord (utgått)"
+  v_0706 = "0706"
+  "Larvik (utgått)"
+  v_0707 = "0707"
+  "Stavern (utgått)"
+  v_0708 = "0708"
+  "Larvik (utgått)"
+  v_0709 = "0709"
+  "Sandefjord"
+  v_0710 = "0710"
+  "Svelvik"
+  v_0711 = "0711"
+  "Sande i Vestfold"
+  v_0713 = "0713"
+  "Hof (utgått)"
+  v_0714 = "0714"
+  "Re"
+  v_0716 = "0716"
+  "Borre (utgått)"
+  v_0717 = "0717"
+  "Ramnes (utgått)"
+  v_0718 = "0718"
+  "Andebu (utgått)"
+  v_0719 = "0719"
+  "Stokke (utgått)"
+  v_0720 = "0720"
+  "Sem (utgått)"
+  v_0721 = "0721"
+  "Nøtterøy (utgått)"
+  v_0722 = "0722"
+  "Tjøme (utgått)"
+  v_0723 = "0723"
+  "Tjølling (utgått)"
+  v_0725 = "0725"
+  "Brunlanes (utgått)"
+  v_0726 = "0726"
+  "Hedrum (utgått)"
+  v_0727 = "0727"
+  "Lardal (utgått)"
+  v_0728 = "0728"
+  "Porsgrunn"
+  v_0805 = "0805"
+  "Skien"
+  v_0806 = "0806"
+  "Notodden"
+  v_0807 = "0807"
+  "Siljan"
+  v_0811 = "0811"
+  "Bamble"
+  v_0814 = "0814"
+  "Kragerø"
+  v_0815 = "0815"
+  "Drangedal"
+  v_0817 = "0817"
+  "Nome"
+  v_0819 = "0819"
+  "Bø i Telemark"
+  v_0821 = "0821"
+  "Sauherad"
+  v_0822 = "0822"
+  "Tinn"
+  v_0826 = "0826"
+  "Hjartdal"
+  v_0827 = "0827"
+  "Seljord"
+  v_0828 = "0828"
+  "Kviteseid"
+  v_0829 = "0829"
+  "Nissedal"
+  v_0830 = "0830"
+  "Fyresdal"
+  v_0831 = "0831"
+  "Tokke"
+  v_0833 = "0833"
+  "Vinje"
+  v_0834 = "0834"
+  "Risør"
+  v_0901 = "0901"
+  "Arendal (utgått)"
+  v_0903 = "0903"
+  "Grimstad"
+  v_0904 = "0904"
+  "Arendal"
+  v_0906 = "0906"
+  "Gjerstad"
+  v_0911 = "0911"
+  "Vegårshei"
+  v_0912 = "0912"
+  "Tvedestrand"
+  v_0914 = "0914"
+  "Moland (utgått)"
+  v_0918 = "0918"
+  "Froland"
+  v_0919 = "0919"
+  "Øyestad (utgått)"
+  v_0920 = "0920"
+  "Tromøy (utgått)"
+  v_0921 = "0921"
+  "Hisøy (utgått)"
+  v_0922 = "0922"
+  "Lillesand"
+  v_0926 = "0926"
+  "Birkenes"
+  v_0928 = "0928"
+  "Åmli"
+  v_0929 = "0929"
+  "Iveland"
+  v_0935 = "0935"
+  "Evje og Hornnes"
+  v_0937 = "0937"
+  "Bygland"
+  v_0938 = "0938"
+  "Valle"
+  v_0940 = "0940"
+  "Bykle"
+  v_0941 = "0941"
+  "Kristiansand"
+  v_1001 = "1001"
+  "Mandal"
+  v_1002 = "1002"
+  "Farsund"
+  v_1003 = "1003"
+  "Flekkefjord"
+  v_1004 = "1004"
+  "Vennesla"
+  v_1014 = "1014"
+  "Songdalen"
+  v_1017 = "1017"
+  "Søgne"
+  v_1018 = "1018"
+  "Marnardal"
+  v_1021 = "1021"
+  "Åseral"
+  v_1026 = "1026"
+  "Audnedal"
+  v_1027 = "1027"
+  "Lindesnes"
+  v_1029 = "1029"
+  "Lyngdal"
+  v_1032 = "1032"
+  "Hægebostad"
+  v_1034 = "1034"
+  "Kvinesdal"
+  v_1037 = "1037"
+  "Sirdal"
+  v_1046 = "1046"
+  "Eigersund"
+  v_1101 = "1101"
+  "Sandnes"
+  v_1102 = "1102"
+  "Stavanger"
+  v_1103 = "1103"
+  "Haugesund"
+  v_1106 = "1106"
+  "Sokndal"
+  v_1111 = "1111"
+  "Lund"
+  v_1112 = "1112"
+  "Bjerkreim"
+  v_1114 = "1114"
+  "Hå"
+  v_1119 = "1119"
+  "Klepp"
+  v_1120 = "1120"
+  "Time"
+  v_1121 = "1121"
+  "Gjesdal"
+  v_1122 = "1122"
+  "Sola"
+  v_1124 = "1124"
+  "Randaberg"
+  v_1127 = "1127"
+  "Forsand"
+  v_1129 = "1129"
+  "Strand"
+  v_1130 = "1130"
+  "Hjelmeland"
+  v_1133 = "1133"
+  "Suldal"
+  v_1134 = "1134"
+  "Sauda"
+  v_1135 = "1135"
+  "Finnøy"
+  v_1141 = "1141"
+  "Rennesøy"
+  v_1142 = "1142"
+  "Kvitsøy"
+  v_1144 = "1144"
+  "Bokn"
+  v_1145 = "1145"
+  "Tysvær"
+  v_1146 = "1146"
+  "Karmøy"
+  v_1149 = "1149"
+  "Utsira"
+  v_1151 = "1151"
+  "Vindafjord ((utgått)"
+  v_1154 = "1154"
+  "Ølen (utgått)"
+  v_1159 = "1159"
+  "Vindafjord"
+  v_1160 = "1160"
+  "Bergen"
+  v_1201 = "1201"
+  "Etne"
+  v_1211 = "1211"
+  "Ølen (utgått)"
+  v_1214 = "1214"
+  "Sveio"
+  v_1216 = "1216"
+  "Bømlo"
+  v_1219 = "1219"
+  "Stord"
+  v_1221 = "1221"
+  "Fitjar"
+  v_1222 = "1222"
+  "Tysnes"
+  v_1223 = "1223"
+  "Kvinnherad"
+  v_1224 = "1224"
+  "Jondal"
+  v_1227 = "1227"
+  "Odda"
+  v_1228 = "1228"
+  "Ullensvang"
+  v_1231 = "1231"
+  "Eidfjord"
+  v_1232 = "1232"
+  "Ulvik"
+  v_1233 = "1233"
+  "Granvin"
+  v_1234 = "1234"
+  "Voss"
+  v_1235 = "1235"
+  "Kvam"
+  v_1238 = "1238"
+  "Fusa"
+  v_1241 = "1241"
+  "Samnanger"
+  v_1242 = "1242"
+  "Os i Hordaland"
+  v_1243 = "1243"
+  "Austevoll"
+  v_1244 = "1244"
+  "Sund"
+  v_1245 = "1245"
+  "Fjell"
+  v_1246 = "1246"
+  "Askøy"
+  v_1247 = "1247"
+  "Vaksdal"
+  v_1251 = "1251"
+  "Modalen"
+  v_1252 = "1252"
+  "Osterøy"
+  v_1253 = "1253"
+  "Meland"
+  v_1256 = "1256"
+  "Øygarden"
+  v_1259 = "1259"
+  "Radøy"
+  v_1260 = "1260"
+  "Lindås"
+  v_1263 = "1263"
+  "Austrheim"
+  v_1264 = "1264"
+  "Fedje"
+  v_1265 = "1265"
+  "Masfjorden"
+  v_1266 = "1266"
+  "Flora"
+  v_1401 = "1401"
+  "Gulen"
+  v_1411 = "1411"
+  "Solund"
+  v_1412 = "1412"
+  "Hyllestad"
+  v_1413 = "1413"
+  "Høyanger"
+  v_1416 = "1416"
+  "Vik"
+  v_1417 = "1417"
+  "Balestrand"
+  v_1418 = "1418"
+  "Leikanger"
+  v_1419 = "1419"
+  "Sogndal"
+  v_1420 = "1420"
+  "Aurland"
+  v_1421 = "1421"
+  "Lærdal"
+  v_1422 = "1422"
+  "Årdal"
+  v_1424 = "1424"
+  "Luster"
+  v_1426 = "1426"
+  "Askvoll"
+  v_1428 = "1428"
+  "Fjaler"
+  v_1429 = "1429"
+  "Gaular"
+  v_1430 = "1430"
+  "Jølster"
+  v_1431 = "1431"
+  "Førde"
+  v_1432 = "1432"
+  "Naustdal"
+  v_1433 = "1433"
+  "Bremanger"
+  v_1438 = "1438"
+  "Vågsøy"
+  v_1439 = "1439"
+  "Selje"
+  v_1441 = "1441"
+  "Eid"
+  v_1443 = "1443"
+  "Hornindal"
+  v_1444 = "1444"
+  "Gloppen"
+  v_1445 = "1445"
+  "Stryn"
+  v_1449 = "1449"
+  "Molde"
+  v_1502 = "1502"
+  "Ålesund"
+  v_1504 = "1504"
+  "Kristiansund"
+  v_1505 = "1505"
+  "Vanylven"
+  v_1511 = "1511"
+  "Sande i Møre og Romsdal"
+  v_1514 = "1514"
+  "Herøy i Møre og Romsdal"
+  v_1515 = "1515"
+  "Ulstein"
+  v_1516 = "1516"
+  "Hareid"
+  v_1517 = "1517"
+  "Volda"
+  v_1519 = "1519"
+  "Ørsta"
+  v_1520 = "1520"
+  "Ørskog"
+  v_1523 = "1523"
+  "Norddal"
+  v_1524 = "1524"
+  "Stranda"
+  v_1525 = "1525"
+  "Stordal"
+  v_1526 = "1526"
+  "Sykkylven"
+  v_1528 = "1528"
+  "Skodje"
+  v_1529 = "1529"
+  "Sula"
+  v_1531 = "1531"
+  "Giske"
+  v_1532 = "1532"
+  "Haram"
+  v_1534 = "1534"
+  "Vestnes"
+  v_1535 = "1535"
+  "Rauma"
+  v_1539 = "1539"
+  "Nesset"
+  v_1543 = "1543"
+  "Midsund"
+  v_1545 = "1545"
+  "Sandøy"
+  v_1546 = "1546"
+  "Aukra"
+  v_1547 = "1547"
+  "Fræna"
+  v_1548 = "1548"
+  "Eide"
+  v_1551 = "1551"
+  "Averøy"
+  v_1554 = "1554"
+  "Gjemnes"
+  v_1557 = "1557"
+  "Tingvoll"
+  v_1560 = "1560"
+  "Sunndal"
+  v_1563 = "1563"
+  "Surnadal"
+  v_1566 = "1566"
+  "Rindal"
+  v_1567 = "1567"
+  "Aure (utgått)"
+  v_1569 = "1569"
+  "Halsa"
+  v_1571 = "1571"
+  "Tustna (utgått)"
+  v_1572 = "1572"
+  "Smøla"
+  v_1573 = "1573"
+  "Aure"
+  v_1576 = "1576"
+  "Trondheim (utgått)"
+  v_1601 = "1601"
+  "Hemne (utgått)"
+  v_1612 = "1612"
+  "Snillfjord (utgått)"
+  v_1613 = "1613"
+  "Hitra (utgått)"
+  v_1617 = "1617"
+  "Frøya (utgått)"
+  v_1620 = "1620"
+  "Ørland (utgått)"
+  v_1621 = "1621"
+  "Agdenes (utgått)"
+  v_1622 = "1622"
+  "Rissa (utgått)"
+  v_1624 = "1624"
+  "Bjugn (utgått)"
+  v_1627 = "1627"
+  "Åfjord (utgått)"
+  v_1630 = "1630"
+  "Roan (utgått)"
+  v_1632 = "1632"
+  "Osen (utgått)"
+  v_1633 = "1633"
+  "Oppdal (utgått)"
+  v_1634 = "1634"
+  "Rennebu (utgått)"
+  v_1635 = "1635"
+  "Meldal (utgått)"
+  v_1636 = "1636"
+  "Orkdal (utgått)"
+  v_1638 = "1638"
+  "Røros (utgått)"
+  v_1640 = "1640"
+  "Holtålen (utgått)"
+  v_1644 = "1644"
+  "Midtre Gauldal (utgått)"
+  v_1648 = "1648"
+  "Melhus (utgått)"
+  v_1653 = "1653"
+  "Skaun (utgått)"
+  v_1657 = "1657"
+  "Klæbu (utgått)"
+  v_1662 = "1662"
+  "Malvik (utgått)"
+  v_1663 = "1663"
+  "Selbu (utgått)"
+  v_1664 = "1664"
+  "Tydal (utgått)"
+  v_1665 = "1665"
+  "Steinkjer (utgått)"
+  v_1702 = "1702"
+  "Namsos (utgått)"
+  v_1703 = "1703"
+  "Meråker (utgått)"
+  v_1711 = "1711"
+  "Stjørdal (utgått)"
+  v_1714 = "1714"
+  "Frosta (utgått)"
+  v_1717 = "1717"
+  "Leksvik (utgått)"
+  v_1718 = "1718"
+  "Levanger (utgått)"
+  v_1719 = "1719"
+  "Verdal (utgått)"
+  v_1721 = "1721"
+  "Mosvik (utgått)"
+  v_1723 = "1723"
+  "Verran (utgått)"
+  v_1724 = "1724"
+  "Namdalseid (utgått)"
+  v_1725 = "1725"
+  "Inderøy (utgått)"
+  v_1729 = "1729"
+  "Snåase – Snåsa (utgått)"
+  v_1736 = "1736"
+  "Lierne (utgått)"
+  v_1738 = "1738"
+  "Raarvihke – Røyrvik (utgått)"
+  v_1739 = "1739"
+  "Namsskogan (utgått)"
+  v_1740 = "1740"
+  "Grong (utgått)"
+  v_1742 = "1742"
+  "Høylandet (utgått)"
+  v_1743 = "1743"
+  "Overhalla (utgått)"
+  v_1744 = "1744"
+  "Fosnes (utgått)"
+  v_1748 = "1748"
+  "Flatanger (utgått)"
+  v_1749 = "1749"
+  "Vikna (utgått)"
+  v_1750 = "1750"
+  "Nærøy (utgått)"
+  v_1751 = "1751"
+  "Leka (utgått)"
+  v_1755 = "1755"
+  "Inderøy (utgått)"
+  v_1756 = "1756"
+  "Bodø"
+  v_1804 = "1804"
+  "Narvik"
+  v_1805 = "1805"
+  "Bindal"
+  v_1811 = "1811"
+  "Sømna"
+  v_1812 = "1812"
+  "Brønnøy"
+  v_1813 = "1813"
+  "Vega"
+  v_1815 = "1815"
+  "Vevelstad"
+  v_1816 = "1816"
+  "Herøy i Nordland"
+  v_1818 = "1818"
+  "Alstahaug"
+  v_1820 = "1820"
+  "Leirfjord"
+  v_1822 = "1822"
+  "Vefsn"
+  v_1824 = "1824"
+  "Grane"
+  v_1825 = "1825"
+  "Hattfjelldal"
+  v_1826 = "1826"
+  "Dønna"
+  v_1827 = "1827"
+  "Nesna"
+  v_1828 = "1828"
+  "Hemnes"
+  v_1832 = "1832"
+  "Rana"
+  v_1833 = "1833"
+  "Lurøy"
+  v_1834 = "1834"
+  "Træna"
+  v_1835 = "1835"
+  "Rødøy"
+  v_1836 = "1836"
+  "Meløy"
+  v_1837 = "1837"
+  "Gildeskål"
+  v_1838 = "1838"
+  "Beiarn"
+  v_1839 = "1839"
+  "Saltdal"
+  v_1840 = "1840"
+  "Fauske – Fuossko"
+  v_1841 = "1841"
+  "Skjerstad (utgått)"
+  v_1842 = "1842"
+  "Sørfold"
+  v_1845 = "1845"
+  "Steigen"
+  v_1848 = "1848"
+  "Hamarøy – Hábmer"
+  v_1849 = "1849"
+  "Divtasvuodna – Tysfjord"
+  v_1850 = "1850"
+  "Lødingen"
+  v_1851 = "1851"
+  "Tjeldsund"
+  v_1852 = "1852"
+  "Evenes"
+  v_1853 = "1853"
+  "Ballangen"
+  v_1854 = "1854"
+  "Røst"
+  v_1856 = "1856"
+  "Værøy"
+  v_1857 = "1857"
+  "Flakstad"
+  v_1859 = "1859"
+  "Vestvågøy"
+  v_1860 = "1860"
+  "Vågan"
+  v_1865 = "1865"
+  "Hadsel"
+  v_1866 = "1866"
+  "Bø i Nordland"
+  v_1867 = "1867"
+  "Øksnes"
+  v_1868 = "1868"
+  "Sortland – Suortá"
+  v_1870 = "1870"
+  "Andøy"
+  v_1871 = "1871"
+  "Moskenes"
+  v_1874 = "1874"
+  "Harstad (utgått)"
+  v_1901 = "1901"
+  "Tromsø"
+  v_1902 = "1902"
+  "Harstad – Hárstták"
+  v_1903 = "1903"
+  "Kvæfjord"
+  v_1911 = "1911"
+  "Skånland"
+  v_1913 = "1913"
+  "Bjarkøy (utgått)"
+  v_1915 = "1915"
+  "Ibestad"
+  v_1917 = "1917"
+  "Gratangen"
+  v_1919 = "1919"
+  "Loabák – Lavangen"
+  v_1920 = "1920"
+  "Bardu"
+  v_1922 = "1922"
+  "Salangen"
+  v_1923 = "1923"
+  "Målselv"
+  v_1924 = "1924"
+  "Sørreisa"
+  v_1925 = "1925"
+  "Dyrøy"
+  v_1926 = "1926"
+  "Tranøy"
+  v_1927 = "1927"
+  "Torsken"
+  v_1928 = "1928"
+  "Berg"
+  v_1929 = "1929"
+  "Lenvik"
+  v_1931 = "1931"
+  "Balsfjord"
+  v_1933 = "1933"
+  "Karlsøy"
+  v_1936 = "1936"
+  "Lyngen"
+  v_1938 = "1938"
+  "Storfjord – Omasvuotna – Omasvuono"
+  v_1939 = "1939"
+  "Gáivuotna – Kåfjord – Kaivuono"
+  v_1940 = "1940"
+  "Skjervøy"
+  v_1941 = "1941"
+  "Nordreisa"
+  v_1942 = "1942"
+  "Kvænangen"
+  v_1943 = "1943"
+  "Hammerfest (utgått)"
+  v_2001 = "2001"
+  "Vardø"
+  v_2002 = "2002"
+  "Vadsø"
+  v_2003 = "2003"
+  "Hammerfest"
+  v_2004 = "2004"
+  "Guovdageaidnu – Kautokeino"
+  v_2011 = "2011"
+  "Alta"
+  v_2012 = "2012"
+  "Loppa"
+  v_2014 = "2014"
+  "Hasvik"
+  v_2015 = "2015"
+  "Sørøysund (utgått)"
+  v_2016 = "2016"
+  "Kvalsund"
+  v_2017 = "2017"
+  "Måsøy"
+  v_2018 = "2018"
+  "Nordkapp"
+  v_2019 = "2019"
+  "Porsanger – Porsá?gu – Porsanki"
+  v_2020 = "2020"
+  "Kárášjohka – Karasjok"
+  v_2021 = "2021"
+  "Lebesby"
+  v_2022 = "2022"
+  "Gamvik"
+  v_2023 = "2023"
+  "Berlevåg"
+  v_2024 = "2024"
+  "Deatnu – Tana"
+  v_2025 = "2025"
+  "Unjárga – Nesseby"
+  v_2027 = "2027"
+  "Båtsfjord"
+  v_2028 = "2028"
+  "Sør-Varanger"
+  v_2030 = "2030"
+  "Spitsbergen"
+  v_2111 = "2111"
+  "Bjørnøya"
+  v_2121 = "2121"
+  "Hopen"
+  v_2131 = "2131"
+  "Jan Mayen"
+  v_2211 = "2211"
+  "Sokkelen sør for 62 grader Nord"
+  v_2311 = "2311"
+  "Sokkelen nord for 62 grader Nord"
+  v_2321 = "2321"
+  "Trondheim"
+  v_5001 = "5001"
+  "Steinkjer"
+  v_5004 = "5004"
+  "Namsos"
+  v_5005 = "5005"
+  "Hemne"
+  v_5011 = "5011"
+  "Snillfjord"
+  v_5012 = "5012"
+  "Hitra"
+  v_5013 = "5013"
+  "Frøya"
+  v_5014 = "5014"
+  "Ørland"
+  v_5015 = "5015"
+  "Agdenes"
+  v_5016 = "5016"
+  "Bjugn"
+  v_5017 = "5017"
+  "Åfjord"
+  v_5018 = "5018"
+  "Roan"
+  v_5019 = "5019"
+  "Osen"
+  v_5020 = "5020"
+  "Oppdal"
+  v_5021 = "5021"
+  "Rennebu"
+  v_5022 = "5022"
+  "Meldal"
+  v_5023 = "5023"
+  "Orkdal"
+  v_5024 = "5024"
+  "Røros"
+  v_5025 = "5025"
+  "Holtålen"
+  v_5026 = "5026"
+  "Midtre Gauldal"
+  v_5027 = "5027"
+  "Melhus"
+  v_5028 = "5028"
+  "Skaun"
+  v_5029 = "5029"
+  "Klæbu"
+  v_5030 = "5030"
+  "Malvik"
+  v_5031 = "5031"
+  "Selbu"
+  v_5032 = "5032"
+  "Tydal"
+  v_5033 = "5033"
+  "Meråker"
+  v_5034 = "5034"
+  "Stjørdal"
+  v_5035 = "5035"
+  "Frosta"
+  v_5036 = "5036"
+  "Levanger"
+  v_5037 = "5037"
+  "Verdal"
+  v_5038 = "5038"
+  "Verran"
+  v_5039 = "5039"
+  "Namdalseid"
+  v_5040 = "5040"
+  "Snåase – Snåsa"
+  v_5041 = "5041"
+  "Lierne"
+  v_5042 = "5042"
+  "Raarvihke – Røyrvik"
+  v_5043 = "5043"
+  "Namsskogan"
+  v_5044 = "5044"
+  "Grong"
+  v_5045 = "5045"
+  "Høylandet"
+  v_5046 = "5046"
+  "Overhalla"
+  v_5047 = "5047"
+  "Frosnes"
+  v_5048 = "5048"
+  "Flatanger"
+  v_5049 = "5049"
+  "Vikna"
+  v_5050 = "5050"
+  "Nærøy"
+  v_5051 = "5051"
+  "Leka"
+  v_5052 = "5052"
+  "Inderøy"
+  v_5053 = "5053"
+  "Indre Fosen"
+  v_5054 = "5054"
+  "Larvik"
+  v_0712 = "0712"
+  "Holmestrand"
+  v_0715 = "0715"
+  "Færder"
+  v_0729 = "0729"
+  "Rindal får kommunenummer 5061 fra 1.1.2019"
+  v_5061 = "5061"
+}
+
+codelist "alfanumerisk kode for land som definert i ISO 3166 Codes for the representation of names of countries and their subdivisions" $asDictionary=true
+  Landskode {
+  Norge = "Norge"
+}
+
+codelist "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
+  Vertikalnivå {
+  Under_grunnen__tunnel_ = "Under grunnen (tunnel)"
+  På_grunnen_vannoverflate = "På grunnen/vannoverflate"
+  Over_grunnen__bru_ = "Over grunnen (bru)"
+  På_bunnen__vann_sjø_ = "På bunnen (vann/sjø)"
+  I_vannsøylen = "I vannsøylen"
+}
+
+codelist "type plan (pbl. 1985 § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 8-1, 11-5, 12-2 og 12-3)"
+  RpPlantype {
+  Eldre_reguleringsplan = "Eldre reguleringsplan"
+  Mindre_reguleringsendring = "Mindre reguleringsendring"
+  "Bebyggelsesplan i henhold til reguleringsplan"
+  Bebyggelsesplan_ihht__Reguleringsplan = "Bebyggelsesplan ihht. Reguleringsplan"
+  "Bebyggelsesplan i henhold til kommuneplanens arealdel"
+  Bebyggelsesplan_ihht_kommunepl__arealdel = "Bebyggelsesplan ihht kommunepl. arealdel"
+  Områderegulering = "Områderegulering"
+  Detaljregulering = "Detaljregulering"
+}
+
+codelist "planens behandling (pbl. 1985 §§ 19-4, 20-5, 27-1, 27-2, 28-1 og 28-2) samt planens virkning (pbl. 1985 §§ 19-6, 20-6, 28-2 og 31/pbl. §§ 8-3, 8-4, 9-3, 9-4, §§ 11-12 til 11-15, og §§ 12-8 til 12-12)"
+  Planstatus {
+  Endelig_vedtatt_arealplan = "Endelig vedtatt arealplan"
+  Opphevet = "Opphevet"
+  Utgått_erstattet = "Utgått/erstattet"
+  Vedtatt_plan_med_utsatt_rettsvirkning = "Vedtatt plan med utsatt rettsvirkning"
+  Overstyrt = "Overstyrt"
+}
+
+codelist "angir om plan har bestemmelser, i så fall om de er egen tekst, og om de er påført plankartet (pbl. 1985 § 20-4 andre ledd bokstav a til h og § 26/pbl. §§ 11-9, 11-10 og 11-11, samt § 12-7)"
+  Planbestemmelse {
+  Med_bestemmelser_som_egen_tekst = "Med bestemmelser som egen tekst"
+  Uten_bestemmelser = "Uten bestemmelser"
+  "Planbestemmelser fremgår kun av kartet (bygghøyder mv.)"
+  Planbestemmelser_fremgår_kun_av_kartet = "Planbestemmelser fremgår kun av kartet"
+  "Planbestemmelser både på kart og som egen tekst"
+  Planbestemmelser_både_kart_og_tekst = "Planbestemmelser både kart og tekst"
+}
+
+codelist "kode for hvilken lov planen er vedtatt etter"
+  LovreferanseType {
+  "Før bygningsloven av 1924"
+  Før_BL_1924 = "Før BL 1924"
+  "Bygningsloven av 1924"
+  BL_1924 = "BL 1924"
+  "Bygningsloven av 1965"
+  BL_1965 = "BL 1965"
+  "Plan- og bygningsloven av 1985"
+  PBL_1985 = "PBL 1985"
+  "Plan- og bygningsloven av 1985 eller før"
+  PBL_1985_eller_før = "PBL 1985 eller før"
+  "Plan- og bygningsloven av 2008"
+  PBL_2008 = "PBL 2008"
+}
+
+codelist "om forslagsstiller er privat eller offentlig planmyndighet"
+  ForslagsstillerType {
+  offentlig = "offentlig"
+  privat = "privat"
+}
+
+codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+  RegformBrukFormål {
+  "Byggeområde  (pbl. 1985 § 25 første ledd, nr. 1), (For generalisering)"
+  Byggeområde = "Byggeområde"
+  "Område for boliger med tilhørende anlegg"
+  Boliger = "Boliger"
+  Frittliggende_småhusbebyggelse = "Frittliggende småhusbebyggelse"
+  Konsentrert_småhusbebyggelse = "Konsentrert småhusbebyggelse"
+  Blokkbebyggelse = "Blokkbebyggelse"
+  "Garasjer i boligområder"
+  Garasje = "Garasje"
+  "Områder for forretning"
+  Forretning = "Forretning"
+  "Områder for kontor"
+  Kontor = "Kontor"
+  "Områder for industri"
+  Industri = "Industri"
+  "Områder for fritidsbebyggelse"
+  Fritidsbebyggelse = "Fritidsbebyggelse"
+  "Område for offentlige bygninger (stat, fylke, kommune), (for generalisering)"
+  Offentlig_bebyggelse = "Offentlig bebyggelse"
+  Offentlig_bygg___barnehage = "Offentlig bygg - barnehage"
+  Offentlig_bygg___undervisning = "Offentlig bygg - undervisning"
+  Offentlig_bygg___institusjon = "Offentlig bygg - institusjon"
+  Offentlig_bygg___kirke = "Offentlig bygg - kirke"
+  Offentlig_bygg___forsamlingslokale = "Offentlig bygg - forsamlingslokale"
+  Offentlig_bygg___administrativt_bygg = "Offentlig bygg - administrativt bygg"
+  "Område for særskilt angitt Allmennyttig formål. (eieren angis såvidt mulig), (For generalisering)"
+  Almennyttig_formål = "Almennyttig formål"
+  Almennyttig_formål___barnehage = "Almennyttig formål - barnehage"
+  Almennyttig_formål___undervisning = "Almennyttig formål - undervisning"
+  Almennyttig_formål___institusjon = "Almennyttig formål - institusjon"
+  Almennyttig_formål___kirke = "Almennyttig formål - kirke"
+  Almennyttig_formål___forsamlingslokale = "Almennyttig formål - forsamlingslokale"
+  Almennyttig_formål___administrativt_bygg = "Almennyttig formål - administrativt bygg"
+  "Område for herberger og bevertningssteder (For generalisering)"
+  Herberge_og_bevertningssted = "Herberge og bevertningssted"
+  "Hotell med tilhørende anlegg"
+  Hotell = "Hotell"
+  Bevertning = "Bevertning"
+  "Område for garasjeanlegg/bensinstasjoner (For generalisering)"
+  Garasjeanlegg_bensinstasjon = "Garasjeanlegg/bensinstasjon"
+  Garasjeanlegg = "Garasjeanlegg"
+  "Område for garasjeanlegg og bensinstasjoner (For generalisering)"
+  Bensinstasjon = "Bensinstasjon"
+  "Annet byggeområde. Bruken må spesifiseres i bestemmelsene og må være innenfor rammen av pbl. § 25 første ledd nr. 1.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Annet_byggeområde = "Annet byggeområde"
+  "Landbruksområde  (pbl. 1985 § 25 første ledd, nr. 2), (For generalisering)"
+  Landbruksområde = "Landbruksområde"
+  "Område for jord- og skogbruk"
+  Jord__og_skogbruk = "Jord- og skogbruk"
+  "Område for reindrift"
+  Landbruksområde_reindrift = "Landbruksområde reindrift"
+  "Område for gartneri"
+  Gartneri = "Gartneri"
+  "Område for parsellhager"
+  Parsellhage = "Parsellhage"
+  "Annet landbruksområde. Bruken må spesifiseres i bestemmelsene og må være innenfor rammen av pbl. 1985 § 25.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Annet_landbruksområde = "Annet landbruksområde"
+  "Offentlige trafikkområder  (pbl. 1985 § 25 første ledd, nr. 3), (For generalisering)"
+  Offentlig_trafikkområde = "Offentlig trafikkområde"
+  Kjørevei = "Kjørevei"
+  Gate_m_fortau = "Gate m/fortau"
+  Annen_veigrunn = "Annen veigrunn"
+  Gang__sykkelvei = "Gang-/sykkelvei"
+  Sykkelvei = "Sykkelvei"
+  Gangvei = "Gangvei"
+  Gatetun = "Gatetun"
+  Torg = "Torg"
+  Rasteplass = "Rasteplass"
+  Parkeringsplass = "Parkeringsplass"
+  Kollektivanlegg = "Kollektivanlegg"
+  Bussterminal = "Bussterminal"
+  Bussholdeplass = "Bussholdeplass"
+  Drosjeholdeplass = "Drosjeholdeplass"
+  Jernbane = "Jernbane"
+  Sporvei_forstadsbane = "Sporvei/forstadsbane"
+  "Flyplass med administrasjonsbygninger"
+  Flyplass_med_administrasjonsbygg = "Flyplass med administrasjonsbygg"
+  Flyplass_taxebane = "Flyplass/taxebane"
+  "Hangarer, verksteder, administrasjonsbygg"
+  Hangarer__verksteder__admin__bygg = "Hangarer, verksteder, admin. bygg"
+  "Havneområde  (anlegg på land)"
+  Havneområde = "Havneområde"
+  Kai = "Kai"
+  "Småbåtanlegg, (anlegg på land)"
+  Småbåtanlegg = "Småbåtanlegg"
+  Trafikkområde_i_sjø_og_vassdrag = "Trafikkområde i sjø og vassdrag"
+  Skipsled = "Skipsled"
+  Havneområde_i_sjø = "Havneområde i sjø"
+  "Annet trafikkområde i sjø/vassdrag. Bruken må spesifiseres i bestemmelsene og må være innenfor rammen av pbl. 1985 § 25 første ledd nr. 3.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Annet_trafikkområde_i_sjø_vassdrag = "Annet trafikkområde i sjø/vassdrag"
+  "Annet trafikkområde (på land). Bruken må spesifiseres i bestemmelsene og må være innenfor rammen av pbl. 1985 § 25 første ledd nr. 3.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Annet_trafikkområde = "Annet trafikkområde"
+  "Offentlig friområde  (pbl. 1985 § 25 første ledd, nr. 4), (For generalisering)"
+  Offentlig_friområde = "Offentlig friområde"
+  Park = "Park"
+  Turvei = "Turvei"
+  Skiløype = "Skiløype"
+  Anlegg_for_lek = "Anlegg for lek"
+  Anlegg_for_idrett_og_sport = "Anlegg for idrett og sport"
+  Leirplass = "Leirplass"
+  "Annet friområde. Bruken må spesifiseres i bestemmelsene og må være innenfor rammen av pbl. 1985 § 25 første ledd nr. 4.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Annet_friområde = "Annet friområde"
+  "Friområde i sjø og vassdrag (for generalisering)"
+  Friområde_i_sjø_og_vassdrag = "Friområde i sjø og vassdrag"
+  Badeområde = "Badeområde"
+  Småbåthavn = "Småbåthavn"
+  Regattabane = "Regattabane"
+  "Må være innenfor rammen av pbl. 1985 § 25 første ledd nr.4"
+  Annet_friområde_i_sjø_vassdrag = "Annet friområde i sjø/vassdrag"
+  "Spesialområde (pbl. 1985 § 25 første ledd, nr. 6), (For generalisering)"
+  Spesialområde = "Spesialområde"
+  Privat_veie = "Privat veie"
+  Parkbelte_i_industriområde = "Parkbelte i industriområde"
+  Campingplass = "Campingplass"
+  "Friluftsområde på land (også turvei / skiløype)"
+  Friluftsområde = "Friluftsområde"
+  Friluftsområde_i_sjø_vassdrag = "Friluftsområde i sjø/vassdrag"
+  "Idrettsanlegg som ikke er offentlig tilgjengelig"
+  Idrettsanl___ikke_offentlig_tilgjengelig = "Idrettsanl., ikke offentlig tilgjengelig"
+  Golfbane = "Golfbane"
+  Grav__og_urnelund = "Grav- og urnelund"
+  "Privat småbåtanlegg (anlegg på land)"
+  Privat_småbåtanlegg = "Privat småbåtanlegg"
+  "Privat småbåthavn (anlegg på sjø)"
+  Privat_småbåthavn = "Privat småbåthavn"
+  "Område for anlegg i grunnen"
+  Anlegg_i_grunnen = "Anlegg i grunnen"
+  "vOmråde for anlegg og drift av kommunalteknisk virksomhet"
+  Kommunalteknisk_virksomhet = "Kommunalteknisk virksomhet"
+  Drikkevannsmagasin = "Drikkevannsmagasin"
+  Vann__og_avløpsanlegg = "Vann- og avløpsanlegg"
+  "Område for bygging og drift av  fjernvarmeanlegg"
+  Fjernvarmeanlegg = "Fjernvarmeanlegg"
+  Anlegg_for_telekommunikasjon = "Anlegg for telekommunikasjon"
+  "Øvingsområde med tilhørende.anlegg for forsvaret/sivilforsvaret"
+  Anlegg_for_forsvaret = "Anlegg for forsvaret"
+  "Område og anlegg for drift av radionavigasjonshjelpemidler utenfor flyplass"
+  Anlegg_for_radionavigasjon = "Anlegg for radionavigasjon"
+  Fiskebruk = "Fiskebruk"
+  "Annet område for anlegg i vassdrag eller i sjøen. Må være innenfor rammen av pbl. 1985 § 25 første ledd nr.6 (NB: detaljering må angis som reguleringsformålutdyping (REGFORMUTDYP))"
+  Andre_anlegg_i_vassdrag_sjø = "Andre anlegg i vassdrag/sjø"
+  Naturvernområde = "Naturvernområde"
+  Naturvernområde_i_sjø_vassdrag = "Naturvernområde i sjø/vassdrag"
+  Klimavernsone = "Klimavernsone"
+  "Områder for steinbrudd og masseuttak"
+  Steinbrudd_og_masseuttak = "Steinbrudd og masseuttak"
+  "Andre områder for vesentlige terrenginngrep"
+  Vesentlige_terrenginngrep = "Vesentlige terrenginngrep"
+  Spesialområde_reindrift = "Spesialområde reindrift"
+  Pelsdyranlegg = "Pelsdyranlegg"
+  Handlesgartneri = "Handlesgartneri"
+  "Område for særskilte anlegg (for generalisering)"
+  Særskilt_anlegg = "Særskilt anlegg"
+  Taubane = "Taubane"
+  Fornøyelsespark = "Fornøyelsespark"
+  "Område for vindkraft"
+  Vindkraft = "Vindkraft"
+  "Annet spesialområde. Bruken må spesifiseres i bestemmelsene og må være innenfor rammen av pbl. 1985 § 25 første ledd nr. 6.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping."
+  Annet_spesialområde = "Annet spesialområde"
+  "Fellesområde  (pbl. 1985 § 25 første ledd nr. 7), (For generalisering)"
+  Fellesområde = "Fellesområde"
+  Felles_avkjørsel = "Felles avkjørsel"
+  Felles_gangareal = "Felles gangareal"
+  Felles_parkeringsplass = "Felles parkeringsplass"
+  "Felles lekeareal for barn"
+  Felles_lekeareal = "Felles lekeareal"
+  Felles_gårdsplass = "Felles gårdsplass"
+  "Fellesareal for garasjer"
+  Felles_garasjeanlegg = "Felles garasjeanlegg"
+  Felles_grøntareal = "Felles grøntareal"
+  "Annet fellesareal for flere eiendommer"
+  Annet_fellesareal = "Annet fellesareal"
+  "Kombinert formål (pbl. 1985 § 25 andre ledd), (For generalisering). Må være innen rammen av pbl. 1985 § 25 andre ledd"
+  Kombinert_formål = "Kombinert formål"
+  "Kombinert formål: Bolig/Forretning"
+  Bolig_Forretning = "Bolig/Forretning"
+  "Kombinert formål: Bolig/Forretning/Kontor"
+  Bolig_Forretning_Kontor = "Bolig/Forretning/Kontor"
+  "Kombinert formål: Bolig/Kontor"
+  Bolig_Kontor = "Bolig/Kontor"
+  "Kombinert formål: Bolig/Offentlig"
+  Bolig_Offentlig = "Bolig/Offentlig"
+  "Kombinert formål: Forretning/Kontor"
+  Forretning_Kontor = "Forretning/Kontor"
+  "Kombinert formål: Forretning/Kontor/Industri"
+  Forretning_Kontor_Industri = "Forretning/Kontor/Industri"
+  "Kombinert formål: Forretning/Industri"
+  Forretning_Industri = "Forretning/Industri"
+  "Kombinert formål: Forretning/Kontor/Offentlig"
+  Forretning_Kontor_Offentlig = "Forretning/Kontor/Offentlig"
+  "Kombinert formål: Forretning/Offentlig"
+  Forretning_Offentlig = "Forretning/Offentlig"
+  Kontor_Industri = "Kontor/Industri"
+  "Kombinert formål: Kontor/Offentlig"
+  Kontor_Offentlig = "Kontor/Offentlig"
+  "Kombinert formål: Kontor/Bensinstasjon"
+  Kontor_Bensinstasjon = "Kontor/Bensinstasjon"
+  "Kombinert formål: Offentlig/Allmennyttig"
+  Offentlig_Almennyttig = "Offentlig/Almennyttig"
+  "Kombinert formål: Veiserviceanlegg (Bevertning/Bensinstasjon)"
+  Bevertning_Bensinstasjon = "Bevertning/Bensinstasjon"
+  "Annet kombinert formål. Må være innen rammen av pbl. 1985 § 25 andre ledd.
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Annet_kombinert_formål = "Annet kombinert formål"
+  "Unyansert formål (kun for eldre planer)
+
+Merknad:
+detaljering må angis som reguleringsfomålsutdyping"
+  Unyansert_formål = "Unyansert formål"
+}
+
+codelist "type grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. §12-7 første ledd nr 5 og TEK10 kap. 5)"
+  Utnyttingstype {
+  "Tillatt bebygd areal i prosent etter byggeforskrift 1987"
+  BYA_87 = "BYA-87"
+  "Tillatt bruksareal i kvm (byggeforskrift 69 og tidligere)"
+  BRA_87 = "BRA-87"
+  "Tillatt tomteutnyttelse i prosent"
+  TU = "TU"
+  "Tillatt grad av utnytting (byggeforskrift 1985 og tidligere)"
+  U = "U"
+  "Tillatt flateutnyttelse i prosent"
+  F = "F"
+  "Brutto gulvareal (BGA i kvm)"
+  BGA = "BGA"
+  "Bebygd flate (BFA i kvm)"
+  BFA = "BFA"
+  Ikke_tillatt_å_bebygge = "Ikke tillatt å bebygge"
+  Ikke_tillatt_med_ytterligere_bebyggelse = "Ikke tillatt med ytterligere bebyggelse"
+  "Tillatt bebygd areal i prosent etter byggeforskrift 1997"
+  __BYA_97 = "%-BYA-97"
+  "Tillatt bruksareal i kvm etter byggeforskrift 1997"
+  T_BRA = "T-BRA"
+  "Prosent tomteutnyttelse etter byggeforskrift 1997"
+  __TU = "%-TU"
+  "Bebygd areal i kvm etter TEK 2007/TEK10"
+  BYA = "BYA"
+  "Bebygd areal i prosent etter TEK 2007/TEK10"
+  __BYA = "%-BYA"
+  "Bruksareal i kvm etter TEK 2007/TEK10"
+  BRA = "BRA"
+  "Prosent bruksareal etter TEK 2007/TEK10"
+  __BRA = "%-BRA"
+}
+
+codelist "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4 andre ledd bokstav a og § 26 første ledd og § 28-2, samt pbl. §§ 11-10 nr. 1 og 12-7 nr. 1 og 2)"
+  Byggverkbestemmelse {
+  Fastsatt_plassering = "Fastsatt plassering"
+  Fastsatt_høyde = "Fastsatt høyde"
+  Fastsatt_plassering_høyde = "Fastsatt plassering/høyde"
+  Fastsatt_møneretning = "Fastsatt møneretning"
+  Fastsatt_plassering_møneretning = "Fastsatt plassering/møneretning"
+  Fastsatt_plassering_høyde_møneretning = "Fastsatt plassering/høyde/møneretning"
+  Fastsatt_utforming = "Fastsatt utforming"
+}
+
+codelist "planbestemmelse om avkjørsel (pbl. §§ 25 og 26 første ledd)
+
+Merknad:
+Angir om avkjørsel til formålsområde tillates eller ikke tillates, eller om det i plan / bestemmelser er tillatt avkjørsel via annet formål enn vei (via gangvei, turvei e.l.).  I sistnevnte situasjon knyttes egenskapen til det formålsområde det er tillatt"
+  Avkjørselsbestemmelse {
+  Avkjørsel_tillatt = "Avkjørsel tillatt"
+  Avkjørsel_ikke_tillatt = "Avkjørsel ikke tillatt"
+}
+
+codelist "planbestemmelse om arealet skal brukes av det offentlige, eller være fellesarealer for flere eiendommer (pbl. § 11-10 nr. 3 og § 12-7 nr. 14)"
+  EierformType {
+  offentlig_formål = "offentlig formål"
+  felles = "felles"
+  annen_eierform = "annen eierform"
+}
+
+codelist "arealformål - formålet må angis nærmere (pbl. § 12-5)"
+  RpArealformål {
+  Bebyggelse_og_anlegg = "Bebyggelse og anlegg"
+  Boligbebyggelse = "Boligbebyggelse"
+  Boligbebyggelse_frittliggende_småhusbebyggelse = "Boligbebyggelse-frittliggende småhusbebyggelse"
+  Boligbebyggelse_konsentrert_småhusbebyggelse = "Boligbebyggelse-konsentrert småhusbebyggelse"
+  Boligbebyggelse_blokkbebyggelse = "Boligbebyggelse-blokkbebyggelse"
+  Garasjeanlegg_for_bolig__fritidsbebyggelse = "Garasjeanlegg for bolig-/fritidsbebyggelse"
+  Fritidsbebyggelse = "Fritidsbebyggelse"
+  Fritidsbebyggelse_frittliggende = "Fritidsbebyggelse-frittliggende"
+  Fritidsbebyggelse_konsentrert = "Fritidsbebyggelse-konsentrert"
+  Fritidsbebyggelse_blokk = "Fritidsbebyggelse-blokk"
+  Kolonihage = "Kolonihage"
+  Sentrumsformål = "Sentrumsformål"
+  Kjøpesenter = "Kjøpesenter"
+  Forretninger = "Forretninger"
+  Offentlig_eller_privat_tjenesteyting = "Offentlig eller privat tjenesteyting"
+  Barnehage = "Barnehage"
+  Undervisning = "Undervisning"
+  Forsamlingslokale_for_religionsutøvelse = "Forsamlingslokale for religionsutøvelse"
+  Administrasjon = "Administrasjon"
+  Kulturinstitusjon = "Kulturinstitusjon"
+  Helse__omsorgsinstitusjon = "Helse-/omsorgsinstitusjon"
+  Annen_offentlig_eller_privat_tjenesteyting = "Annen offentlig eller privat tjenesteyting"
+  Fritids__og_turistformål = "Fritids- og turistformål"
+  Utleiehytter = "Utleiehytter"
+  Fornøyelsespark_eller_temapark = "Fornøyelsespark eller temapark"
+  Campingplass = "Campingplass"
+  Leirplass = "Leirplass"
+  Råstoffutvinning = "Råstoffutvinning"
+  Steinbrudd_og_masseuttak = "Steinbrudd og masseuttak"
+  Næringsbebyggelse = "Næringsbebyggelse"
+  Kontor = "Kontor"
+  Hotell_overnatting = "Hotell/overnatting"
+  Bevertning = "Bevertning"
+  Industri = "Industri"
+  Lager = "Lager"
+  Bensinstasjon_vegserviceanlegg = "Bensinstasjon/vegserviceanlegg"
+  Annen_næring = "Annen næring"
+  Idrettsanlegg = "Idrettsanlegg"
+  Skianlegg = "Skianlegg"
+  Skiløypetrasé = "Skiløypetrasé"
+  Idrettsstadion = "Idrettsstadion"
+  Nærmiljøanlegg = "Nærmiljøanlegg"
+  Golfbane = "Golfbane"
+  Motorsportanlegg = "Motorsportanlegg"
+  Skytebane = "Skytebane"
+  Andre_idrettsanlegg = "Andre idrettsanlegg"
+  Andre_typer_bebyggelse_og_anlegg = "Andre typer bebyggelse og anlegg"
+  Godsterminal = "Godsterminal"
+  Godslager = "Godslager"
+  Energianlegg = "Energianlegg"
+  Fjernvarmeanlegg = "Fjernvarmeanlegg"
+  Vindkraftanlegg = "Vindkraftanlegg"
+  Vann__og_avløpanlegg = "Vann- og avløpanlegg"
+  Vannforsyningsanlegg = "Vannforsyningsanlegg"
+  Avløpsanlegg = "Avløpsanlegg"
+  Renovasjonsanlegg = "Renovasjonsanlegg"
+  Øvrige_kommunaltekniske_anlegg = "Øvrige kommunaltekniske anlegg"
+  Telekommunikasjonsanlegg = "Telekommunikasjonsanlegg"
+  "(NB! Ny 1. januar 2011 som erstatter tidligere 6730)"
+  Småbåtanlegg_i_sjø_og_vassdrag = "Småbåtanlegg i sjø og vassdrag"
+  "(NB! Ny 1. januar 2011 som erstatter tidligere 6740)"
+  Småbåtanlegg_i_sjø_og_vassdrag_med_tilhørende_strandsone = "Småbåtanlegg i sjø og vassdrag med tilhørende strandsone"
+  "(NB! Ny  1. januar 2011 som erstatter tidligere 6750)"
+  Uthus_naust_badehus = "Uthus/naust/badehus"
+  Annen_særskilt_angitt_bebyggelse_og_anlegg = "Annen særskilt angitt bebyggelse og anlegg"
+  Uteoppholdsareal = "Uteoppholdsareal"
+  Lekeplass = "Lekeplass"
+  Gårdsplass = "Gårdsplass"
+  Parsellhage = "Parsellhage"
+  Annet_uteoppholdsareal = "Annet uteoppholdsareal"
+  Grav_og_urnelund = "Grav-og urnelund"
+  Krematorium = "Krematorium"
+  Nødvendige_bygg_og_anlegg_for_grav__og_urnelund = "Nødvendige bygg og anlegg for grav- og urnelund"
+  Kombinert_bebyggelse_og_anleggsformål = "Kombinert bebyggelse og anleggsformål"
+  Bolig_forretning = "Bolig/forretning"
+  Bolig_forretning_kontor = "Bolig/forretning/kontor"
+  Bolig_tjenesteyting = "Bolig/tjenesteyting"
+  Bolig_kontor = "Bolig/kontor"
+  Forretning_kontor = "Forretning/kontor"
+  Forretning_kontor_industri = "Forretning/kontor/industri"
+  Forretning_industri = "Forretning/industri"
+  Forretning_kontor_tjenesteyting = "Forretning/kontor/tjenesteyting"
+  Forretning_tjenesteyting = "Forretning/tjenesteyting"
+  Næring_tjenesteyting = "Næring/tjenesteyting"
+  Kontor_lager = "Kontor/lager"
+  Industri_lager = "Industri/lager"
+  Kontor_industri = "Kontor/industri"
+  Kontor_tjenesteyting = "Kontor/tjenesteyting"
+  Angitt_bebyggelse_og_anleggsformål_kombinert_med_andre_angitte_hovedformål = "Angitt bebyggelse og anleggsformål kombinert med andre angitte hovedformål"
+  Samferdselsanlegg_og_teknisk_infrastruktur__arealer_ = "Samferdselsanlegg og teknisk infrastruktur (arealer)"
+  Veg = "Veg"
+  Kjøreveg = "Kjøreveg"
+  Fortau = "Fortau"
+  Torg = "Torg"
+  Gatetun = "Gatetun"
+  Gang__sykkelveg = "Gang-/sykkelveg"
+  Gangveg_gangareal_gågate = "Gangveg/gangareal/gågate"
+  Sykkelanlegg = "Sykkelanlegg"
+  Annen_veggrunn___tekniske_anlegg = "Annen veggrunn - tekniske anlegg"
+  Annen_veggrunn___grøntareal = "Annen veggrunn - grøntareal"
+  Bane__nærmere_angitt_baneformål_ = "Bane (nærmere angitt baneformål)"
+  Trasé_for_jernbane = "Trasé for jernbane"
+  Trasé_for_sporveg_forstadsbane = "Trasé for sporveg/forstadsbane"
+  Trasé_for_taubane = "Trasé for taubane"
+  Stasjons__terminalbygg = "Stasjons-/terminalbygg"
+  Holdeplass_plattform = "Holdeplass/plattform"
+  Leskur_plattformtak = "Leskur/plattformtak"
+  Tekniske_bygg_konstruksjoner = "Tekniske bygg/konstruksjoner"
+  Annen_banegrunn___tekniske_anlegg = "Annen banegrunn - tekniske anlegg"
+  Annen_banegrunn___grøntareal = "Annen banegrunn - grøntareal"
+  Lufthavn_generelt = "Lufthavn generelt"
+  Lufthavn___landings__taxebane = "Lufthavn - landings-/taxebane"
+  Lufthavn___terminalbygg = "Lufthavn - terminalbygg"
+  Lufthavn__hangarer_administrasjonsbygg = "Lufthavn- hangarer/administrasjonsbygg"
+  Landingsplass_for_helikopter_o_a_ = "Landingsplass for helikopter o.a."
+  Havn = "Havn"
+  Kai = "Kai"
+  Havneterminaler = "Havneterminaler"
+  Havnelager = "Havnelager"
+  Molo = "Molo"
+  Navigasjonsinstallasjon = "Navigasjonsinstallasjon"
+  Hovednett_for_sykkel = "Hovednett for sykkel"
+  Kollektivnett = "Kollektivnett"
+  Trase_for_nærmere_angitt_kollektivtransport = "Trase for nærmere angitt kollektivtransport"
+  Kollektivknutepunkt = "Kollektivknutepunkt"
+  Kollektivanlegg = "Kollektivanlegg"
+  Kollektivterminal = "Kollektivterminal"
+  Kollektivholdeplass = "Kollektivholdeplass"
+  Pendler__innfartsparkering = "Pendler-/innfartsparkering"
+  Parkering = "Parkering"
+  Rasteplass = "Rasteplass"
+  Parkeringsplasser = "Parkeringsplasser"
+  Parkeringshus__anlegg = "Parkeringshus/-anlegg"
+  Teknisk_infrastruktur = "Teknisk infrastruktur"
+  Energinett = "Energinett"
+  Fjernvarmenett = "Fjernvarmenett"
+  Vann__og_avløpsnett = "Vann- og avløpsnett"
+  Vannforsyningsnett = "Vannforsyningsnett"
+  Avløpsnett = "Avløpsnett"
+  Overvannsnett = "Overvannsnett"
+  Avfallssug = "Avfallssug"
+  Telekommunikasjonsnett = "Telekommunikasjonsnett"
+  Sikringsanlegg = "Sikringsanlegg"
+  Andre_tekniske_infrastrukturtraseer = "Andre tekniske infrastrukturtraseer"
+  Kombinerte_tekniske_infrastrukturtraseer = "Kombinerte tekniske infrastrukturtraseer"
+  Kombinerte_formål_for_samferdselsanlegg_og_eller_teknisk_infrastrukturtraseer = "Kombinerte formål for samferdselsanlegg og/eller teknisk infrastrukturtraseer"
+  Angitte_samferdselsanlegg_og_eller_teknisk_infrastrukturtraseer_kombinert_med_andre_angitte_hovedformål = "Angitte samferdselsanlegg og/eller teknisk infrastrukturtraseer kombinert med andre angitte hovedformål"
+  Blågrønnstruktur = "Blågrønnstruktur"
+  Naturområde___grønnstruktur = "Naturområde - grønnstruktur"
+  Turdrag = "Turdrag"
+  Turveg = "Turveg"
+  Friområde = "Friområde"
+  Badeplass__område = "Badeplass/-område"
+  Park = "Park"
+  Vegetasjonsskjerm = "Vegetasjonsskjerm"
+  Vannspeil = "Vannspeil"
+  Overvannstiltak = "Overvannstiltak"
+  Infiltrasjon_fordrøyning_avledning = "Infiltrasjon/fordrøyning/avledning"
+  Kombinerte_grøntstrukturformål = "Kombinerte grøntstrukturformål"
+  Angitt_grøntstruktur_kombinert_med_andre_angitte_hovedformål = "Angitt grøntstruktur kombinert med andre angitte hovedformål"
+  Forsvaret = "Forsvaret"
+  Ulike_typer_militære_formål = "Ulike typer militære formål"
+  Skytefelt_øvingsområde = "Skytefelt/øvingsområde"
+  Forlegning_leir = "Forlegning/leir"
+  Kombinerte_militærformål = "Kombinerte militærformål"
+  "<u>(Lagt inn på nytt etter justering av forskrift 1. januar 2011)</u>"
+  LNFR_areal_for_nødvendige_tiltak_for_landbruk_og_reindrift_og_gårdstilknyttet_næringsvirksomhet_basert_på_gårdens_ressursgrunnlag = "LNFR areal for nødvendige tiltak for landbruk og reindrift og gårdstilknyttet næringsvirksomhet basert på gårdens ressursgrunnlag"
+  Landbruksformål = "Landbruksformål"
+  Jordbruk = "Jordbruk"
+  Skogbruk = "Skogbruk"
+  Seterområde = "Seterområde"
+  Gartneri = "Gartneri"
+  Pelsdyranlegg = "Pelsdyranlegg"
+  Naturformål_av_LNFR = "Naturformål av LNFR"
+  Friluftsformål = "Friluftsformål"
+  Reindriftformål = "Reindriftformål"
+  LNFR_areal_for_spredt_bolig__fritids__eller_næringsbebyggelse__mv = "LNFR areal for spredt bolig- fritids- eller næringsbebyggelse, mv"
+  Spredt_boligbebyggelse = "Spredt boligbebyggelse"
+  Spredt__fritidsbebyggelse = "Spredt  fritidsbebyggelse"
+  Spredt__næringsbebyggelse = "Spredt  næringsbebyggelse"
+  Naturvern = "Naturvern"
+  Jordvern = "Jordvern"
+  Særlige_landskapshensyn = "Særlige landskapshensyn"
+  Vern_av_kulturmiljø_eller_kulturminne = "Vern av kulturmiljø eller kulturminne"
+  LNFR_formål_kombinert_med_andre_angitte_hovedformål = "LNFR formål kombinert med andre angitte hovedformål"
+  Bruk_og_vern_av_sjø_og_vassdrag_med_tilhørende_strandsone = "Bruk og vern av sjø og vassdrag med tilhørende strandsone"
+  Ferdsel = "Ferdsel"
+  Ankringsomåde = "Ankringsomåde"
+  Opplagsomåde = "Opplagsomåde"
+  Riggområde = "Riggområde"
+  Farled = "Farled"
+  Hoved__biled = "Hoved-/biled"
+  Havneområde_i_sjø = "Havneområde i sjø"
+  Småbåthavn = "Småbåthavn"
+  Bøyehavn = "Bøyehavn"
+  Fiske = "Fiske"
+  Fiskeområde = "Fiskeområde"
+  Låssettingsplasser = "Låssettingsplasser"
+  Oppvekstområde_for_yngel = "Oppvekstområde for yngel"
+  Akvakultur = "Akvakultur"
+  Akvakulturanlegg_i_sjø_og_vassdrag = "Akvakulturanlegg i sjø og vassdrag"
+  '19. desember 2011: Tidligere navn "Akvakulturanlegg i sjø og vassdrag med tilhørende landanlegg" erstattet for å være i samsvar med pbl. § 11-7 andre ledd nr. 6, jf. Ag9-vedtak 4. november 2011'
+  Akvakulturanlegg_i_sjø_og_vassdrag_med_tilhørende_strandsone = "Akvakulturanlegg i sjø og vassdrag med tilhørende strandsone"
+  Fangstbasert_levendelagring = "Fangstbasert levendelagring"
+  Drikkevann = "Drikkevann"
+  Naturområde = "Naturområde"
+  Naturområde_i_sjø_og_vassdrag = "Naturområde i sjø og vassdrag"
+  Naturområde_i_sjø_og_vassdrag_med_tilhørende_strandsone = "Naturområde i sjø og vassdrag med tilhørende strandsone"
+  Friluftsområde = "Friluftsområde"
+  Friluftsområde_i_sjø_og_vassdrag = "Friluftsområde i sjø og vassdrag"
+  Friluftsområde_i_sjø_og_vassdrag_med_tilhørende_strandsone = "Friluftsområde i sjø og vassdrag med tilhørende strandsone"
+  Idrett_vannsport = "Idrett/vannsport"
+  Badeområde = "Badeområde"
+  Kombinerte_formål_i_sjø_og_vassdrag_med_eller_uten_tilhørende_strandsone = "Kombinerte formål i sjø og vassdrag med eller uten tilhørende strandsone"
+  Angitt_formål_i_sjø_og_vassdrag_med_eller_uten_tilhørende_strandsone_kombinert_med_andre_angitte_hovedformål = "Angitt formål i sjø og vassdrag med eller uten tilhørende strandsone kombinert med andre angitte hovedformål"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Bebyggelse_og_anlegg___generalisert__utgått_ = "Bebyggelse og anlegg - generalisert (utgått)"
+  "Utgår fra SOSI Plan 4.5.2. Erstattes av kodene 1167 Kulturinstitusjon og 1168 Helse-/omsorgsinstitusjon"
+  Institusjon__utgått_ = "Institusjon (utgått)"
+  "Utgår fra SOSI Plan 4.5.2"
+  Forsamlingslokale__utgått_ = "Forsamlingslokale (utgått)"
+  "NB! Utgått. Skal ikke benyttes på planer vedtatt etter 1. januar 2011"
+  Næring_kontor__utgått_ = "Næring/kontor (utgått)"
+  "NB! Utgått. Skal ikke benyttes på planer vedtatt etter 1. januar 2011"
+  Næring_kontor_industri__utgått_ = "Næring/kontor/industri (utgått)"
+  "NB! Utgått. Skal ikke benyttes på planer vedtatt etter 1. januar 2011"
+  Næring_industri__utgått_ = "Næring/industri (utgått)"
+  "NB! Utgått. Skal ikke benyttes på planer vedtatt etter 1. januar 2011"
+  Næring_kontor_tjenesteyting__utgått_ = "Næring/kontor/tjenesteyting (utgått)"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Samferdselsanlegg_og_teknisk_infrastruktur__arealer____generalisert__utgått_ = "Samferdselsanlegg og teknisk infrastruktur (arealer) - generalisert (utgått)"
+  "Utgår fra SOSI Plan 4.5.2. Skal kun brukes på kommuneplan"
+  Trase_for_teknisk_infrastruktur__utgått_ = "Trase for teknisk infrastruktur (utgått)"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Grønnstruktur___generalisert__utgått_ = "Grønnstruktur - generalisert (utgått)"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Forsvaret___generalisert__utgått_ = "Forsvaret - generalisert (utgått)"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Landbruks___natur__og_friluftsformål_samt_reindrift__LNFR____generalisert__utgått_ = "Landbruks-, natur- og friluftsformål samt reindrift (LNFR) - generalisert (utgått)"
+  "NB! Utgått. Skal ikke brukes på planer vedtatt etter 1. januar 2011, jf. justering i kart- og planforskriften"
+  Landbruks___natur__og_friluftsformål_samt_reindrift__LNFR___utgått_ = "Landbruks-, natur- og friluftsformål samt reindrift (LNFR) (utgått)"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Bruk_og_vern_av_sjø_og_vassdrag_med_tilhørende_strandsone___generalisert__utgått_ = "Bruk og vern av sjø og vassdrag med tilhørende strandsone - generalisert (utgått)"
+  'Utgått. Ikke tillatt brukt i nye planer vedtatt etter SOSI Plan 4.5. "Farled" / 6200 benyttes i stedet.'
+  Skipsled__utgått_ = "Skipsled (utgått)"
+  "NB! Utgått pr 1. januar 2011, erstattet av kodeverdi 1587."
+  Småbåtanlegg_i_sjø_og_vassdrag__utgått_ = "Småbåtanlegg i sjø og vassdrag (utgått)"
+  "NB! Utgått pr 1. januar 2011, erstattet av kodeverdi 1588."
+  Småbåtanlegg_i_sjø_og_vassdrag_med_tilhørende_strandsone__utgått_ = "Småbåtanlegg i sjø og vassdrag med tilhørende strandsone (utgått)"
+  "NB! Utgått pr 1. januar 2011, erstattet av kodeverdi 1589."
+  Uthus_naust_badehus__utgått_ = "Uthus/naust/badehus (utgått)"
+  Angitt_militært_formål_kombinert_med_andre_angitte_hovedformål = "Angitt militært formål kombinert med andre angitte hovedformål"
+}
+
+codelist "hensynssone - støysone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpStøySoneType {
+  Rød_sone_iht__T_1442 = "Rød sone iht. T-1442"
+  Gul_sone_iht__T_1442 = "Gul sone iht. T-1442"
+  Grønn_sone_iht__T_1442 = "Grønn sone iht. T-1442"
+  Andre_støysoner = "Andre støysoner"
+}
+
+codelist "hensynssone - videreføring av gjeldende reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav f)"
+  RpDetaljeringSoneType {
+  Reguleringsplan_skal_fortsatt_gjelde = "Reguleringsplan skal fortsatt gjelde"
+  "Ikke gyldig f.o.m. SOSI 4.5 desember 2011"
+  Reguleringsplan_skal_fortsatt_gjelde___generalisert__utgått_ = "Reguleringsplan skal fortsatt gjelde - generalisert (utgått)"
+}
+
+codelist "hensynssone - krav til infrastruktur (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+  RpInfrastrukturSoneType {
+  Krav_vedrørende_infrastruktur = "Krav vedrørende infrastruktur"
+  Rekkefølgekrav_infrastruktur = "Rekkefølgekrav infrastruktur"
+  Rekkefølgekrav_samfunnservice = "Rekkefølgekrav samfunnservice"
+  Rekkefølgekrav_grønnstruktur = "Rekkefølgekrav grønnstruktur"
+}
+
+codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+  RegformRekkefølge {
+  Formålsrekkefølge = "Formålsrekkefølge"
+  Midlertidig_trafikkområde = "Midlertidig trafikkområde"
+}
+
+codelist
+  RpBåndleggingSoneType {
+  Båndlegging_for_regulering_etter_pbl_ = "Båndlegging for regulering etter pbl."
+  Båndlegging_etter_lov_om_naturvern = "Båndlegging etter lov om naturvern"
+  Båndlegging_etter_lov_om_kulturminner = "Båndlegging etter lov om kulturminner"
+  "Ny iht. vedtak i SOSI Ag9 4. november 2011 sak 14."
+  Båndlegging_etter_lov_om_naturområder_i_Oslo_og_nærliggende_kommuner__markalova_ = "Båndlegging etter lov om naturområder i Oslo og nærliggende kommuner (markalova)"
+  Båndlegging_etter_andre_lover = "Båndlegging etter andre lover"
+  Båndlegging_i_forhold_til_avkjøringsklasser_etter_vegloven = "Båndlegging i forhold til avkjøringsklasser etter vegloven"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5"
+  Båndlegging___generalisert__utgått_ = "Båndlegging - generalisert (utgått)"
+  "Ikke tillatt brukt på planer vedtatt iht. SOSI 4.5.
+Er feilaktig kommet med i kodelistene i SOSI, ikke vært med i kart- og planforskriften."
+  Båndlegging_i_henhold_til_reguleringsbestemmelser___12_7__utgått_ = "Båndlegging i henhold til reguleringsbestemmelser § 12-7 (utgått)"
+}
+
+codelist "hensynssone - sikringssone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpSikringSoneType {
+  Nedslagsfelt_drikkevann = "Nedslagsfelt drikkevann"
+  Område_for_grunnvannsforsyning = "Område for grunnvannsforsyning"
+  Byggeforbud_rundt_veg__bane_og_flyplass = "Byggeforbud rundt veg, bane og flyplass"
+  Frisikt = "Frisikt"
+  Andre_sikringssoner = "Andre sikringssoner"
+}
+
+codelist "hensynssone  - særlig hensyn med angivelse av interesse (pbl. §12-6, jf. § 11-8 tredje ledd bokstav c)"
+  RpAngittHensynSoneType {
+  Hensyn_landbruk = "Hensyn landbruk"
+  Hensyn_reindrift = "Hensyn reindrift"
+  Hensyn_friluftsliv = "Hensyn friluftsliv"
+  Hensyn_grønnstruktur = "Hensyn grønnstruktur"
+  Hensyn_landskap = "Hensyn landskap"
+  Bevaring_naturmiljø = "Bevaring naturmiljø"
+  Bevaring_kulturmiljø = "Bevaring kulturmiljø"
+  Randområder_til_nasjonalpark_landskapsvernområde = "Randområder til nasjonalpark/landskapsvernområde"
+  Hensynssone_for_sikring_av_mineralressurser = "Hensynssone for sikring av mineralressurser"
+}
+
+codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+  RegformFornyelse {
+  "Fornyelsesområde  (pbl. 1985 § 25 første ledd, nr. 8), (For generalisering)"
+  Fornyelsesområde = "Fornyelsesområde"
+}
+
+codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+  RegformFare {
+  "Fareområde  (pbl. 1985 § 25, første ledd, nr. 5),  (For generalisering)"
+  Fareområde = "Fareområde"
+  Høyspenningsanlegg = "Høyspenningsanlegg"
+  Skytebane = "Skytebane"
+  "Ildsfarlig opplag og andre innretninger som kan være farlige for allmenheten"
+  Ildsfarlig_opplag_ol = "Ildsfarlig opplag ol"
+  "Område med rasfare"
+  Rasfare = "Rasfare"
+  "Område med flomfare"
+  Flomfare = "Flomfare"
+  "område med særskilt angitt fare
+
+Merknad:
+detaljering må angis som reguleringsformålsutdyping"
+  Særskilt_angitt_fare = "Særskilt angitt fare"
+}
+
+codelist "type reguleringsformål (pbl. 1985 § 25, første ledd)"
+  RegformBevaring {
+  "Bevaring av bygninger og anlegg"
+  Bevaringsområde = "Bevaringsområde"
+  Bevaring_av_bygninger = "Bevaring av bygninger"
+  Bevaring_av_anlegg = "Bevaring av anlegg"
+  Bevaring_av_landskap_og_vegetasjon = "Bevaring av landskap og vegetasjon"
+}
+
+codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+  RegformRestriksjon {
+  "Frisiktsone ved vei"
+  Frisiktsone = "Frisiktsone"
+  "Restriksjonsområde rundt flyplass"
+  Restriksjonsområde_flyplass = "Restriksjonsområde flyplass"
+  Grunnvannsmagasin = "Grunnvannsmagasin"
+  Nedslagsfelt_for_drikkevann = "Nedslagsfelt for drikkevann"
+}
+
+codelist "Pbl. § 12-7"
+  RpBestemmelseHjemmel {
+  "Pbl. § 12-7 nr. 1 om utforming, herunder estetiske krav, og bruk av arealer, bygninger og anlegg i planområdet"
+  utforming = "utforming"
+  "Pbl. § 12-7 nr. 2 om vilkår for bruk av arealer, bygninger og anlegg i planområdet, eller forbud mot former for bruk, herunder byggegrenser, for å fremme eller sikre formålet med planen, avveie interesser og ivareta ulike hensyn i eller av hensyn til forhol"
+  vilkår_for_bruk_av_arealer__bygninger_og_anlegg = "vilkår for bruk av arealer, bygninger og anlegg"
+  "Pbl. § 12-7 nr. 3 om grenseverdier for tillatt forurensning og andre krav til miljøkvalitet i planområdet, samt tiltak og krav til ny og pågående virksomhet i eller av hensyn til forhold utenfor planområdet for å forebygge eller begrense forurensning)"
+  grenseverdier_krav_til_forurensning_og_miljøkvalite = "grenseverdier/krav til forurensning og miljøkvalite"
+  "Pbl. § 12-7 nr. 4 om funksjons- og kvalitetskrav til bygninger, anlegg og utearealer, herunder krav for å sikre hensynet til helse, miljø, sikkerhet, universell utforming og barns særlige behov for leke- og uteoppholdsareal"
+  funksjons__og_kvalitetskrav_til_bygninger__anlegg_og_utearealer = "funksjons- og kvalitetskrav til bygninger, anlegg og utearealer"
+  "Pbl. § 12-7 nr. 5 om antallet boliger i et område, største og minste boligstørrelse, og nærmere krav til tilgjengelighet og boligens utforming der det er hensiktsmessig for spesielle behov"
+  antall_boliger__boligstørrelse__tilgjengelighet__mm = "antall boliger, boligstørrelse, tilgjengelighet, mm"
+  "Pbl § 12-7 nr. 6 om bestemmelser for å sikre verneverdier i bygninger, andre kulturminner, og kulturmiljøer, herunder vern av fasade, materialbruk og interiør, samt sikre naturtyper og annen verdifull natur"
+  sikre_verneverdier_i_bygninger__andre_kulturminner_og_kulturmiljøer = "sikre verneverdier i bygninger, andre kulturminner og kulturmiljøer"
+  "Pbl. § 12-7 nr. 7 om trafikkregulerende tiltak og parkeringsbestemmelser for bil og sykkelparkering, herunder øvre og nedre grense for parkeringsdekning"
+  trafikkregulerende_tiltak_og_parkeringsbestemmelser = "trafikkregulerende tiltak og parkeringsbestemmelser"
+  "Pbl. § 12-7 nr. 8 om krav om tilrettelegging for forsyning av vannbåren varme til ny bebyggelse, jf. § 27-5"
+  krav_om_tilrettelegging_for_vannbåren_varme = "krav om tilrettelegging for vannbåren varme"
+  "Pbl. § 12-7 nr. 9 om retningslinjer for særlige drifts- og skjøtselstiltak innenfor arealformålene nr. 3, 5 og 6 i § 12-5"
+  retningslinjer_for_særlige_drifts__og_skjøtselstiltak = "retningslinjer for særlige drifts- og skjøtselstiltak"
+  "Pbl. § 12-7 nr. 10 om krav om særskilt rekkefølge for gjennomføring av tiltak etter planen, og at utbygging av et område ikke kan finne sted før tekniske anlegg og samfunnstjenester som energiforsyning, transport og vegnett, helse- og sosialtjenester, barne"
+  krav_om_særskilt_rekkefølge_for_gjennomføring_av_tiltak = "krav om særskilt rekkefølge for gjennomføring av tiltak"
+  "Pbl. § 12-7 nr. 11 om krav om detaljregulering for deler av planområdet eller bestemte typer av tiltak, og retningslinjer for slik plan"
+  krav_om_detaljregulering = "krav om detaljregulering"
+  "Pbl. § 12-7 nr. 12 om krav om nærmere undersøkelser før gjennomføring av planen, samt undersøkelser med sikte på å overvåke og klargjøre virkninger for miljø, helse, sikkerhet, tilgjengelighet for alle, og andre samfunnsinteresser, ved gjennomføring av plan"
+  krav_om_nærmere_undersøkelser__overvåking_og_klargjøring_av_virkninger = "krav om nærmere undersøkelser, overvåking og klargjøring av virkninger"
+  "Pbl. § 12-7 nr. 13 om krav om fordeling av arealverdier og kostnader ved ulike felles tiltak innenfor planområdet i henhold til jordskifteloven § 2 bokstav h, jf. § 5 andre ledd"
+  krav_om_fordeling_av_arealverdier_og_kostnader = "krav om fordeling av arealverdier og kostnader"
+  "Pbl. § 12-7 nr. 14 om hvilke arealer som skal være til offentlige formål eller fellesareal"
+  hvilke_arealer_som_skal_være_til_offentlige_formål_eller_fellesareal = "hvilke arealer som skal være til offentlige formål eller fellesareal"
+  "bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1.
+Koden utgår fra SOSI Plan 4.5.2 og bestemmelsesområdet erstattes av objekttypen PblMidlByggAnleggOmråde"
+  midlertidig_bygge__og_anleggsområde__utgått_ = "midlertidig bygge- og anleggsområde (utgått)"
+}
+
+codelist "hensynssone med bestemmelse om at flere eiendommer skal undergis felles planlegging med bruk av særskilte gjennomførings-virkemidler (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e andre ledd)"
+  RpGjennomføringSoneType {
+  Krav_om_felles_planlegging = "Krav om felles planlegging"
+  Omforminig = "Omforminig"
+  Fornyelse = "Fornyelse"
+  "Ikke gyldig f.o.m SOSI 4.5 desember 2011"
+  Krav_om_felles_planlegging__omforming_og_fornyelse___generalisert__utgått_ = "Krav om felles planlegging, omforming og fornyelse - generalisert (utgått)"
+}
+
+codelist "hensynssone - fare (pbl. § 12-6, jf. § 11-8, 3.ledd bokstav a)"
+  RpFareSoneType {
+  Ras__og_skredfare = "Ras- og skredfare"
+  Flomfare = "Flomfare"
+  Radon = "Radon"
+  Brann__eksplosjonsfare = "Brann-/eksplosjonsfare"
+  Skytebane = "Skytebane"
+  Høyspenningsanlegg__inkl_høyspentkabler_ = "Høyspenningsanlegg (inkl høyspentkabler)"
+  Sone_for_militær_virksomhet = "Sone for militær virksomhet"
+  Annen_fare = "Annen fare"
+}
+
+codelist "kode for å angi hva påskrift/nødvendig tekst i plankartet omhandler"
+  PåskriftType {
+  Arealformål = "Arealformål"
+  Feltnavn = "Feltnavn"
+  Areal = "Areal"
+  PlanId = "PlanId"
+  Utnytting = "Utnytting"
+  Målsetting = "Målsetting"
+  Radius = "Radius"
+  Kotehøyde = "Kotehøyde"
+  Plantilbehør = "Plantilbehør"
+}
+
+codelist "linje i regulerings- /bebyggelesesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+  RpJuridiskLinjeType {
+  Regulert_tomtegrense = "Regulert tomtegrense"
+  Eiendomsgrense_som_skal_oppheves = "Eiendomsgrense som skal oppheves"
+  "Bygg som skal bevares (kun bevaringsområder)"
+  Bygg__kulturminner__mm__som_skal_bevares = "Bygg, kulturminner, mm. som skal bevares"
+  "grense mellom arealer som kan bebygges og ikke kan bebygges.
+
+Merknad: definisjon justert iht. vedtak i SOSI Ag9 20. september 2011 sak 7"
+  Byggegrense = "Byggegrense"
+  "eksakt plassering av bygningen (påbudt plassering i eldre planer)
+
+Merknad: definisjon justert iht. vedtak i SOSI Ag9 20. september 2011 sak 7"
+  Byggelinje = "Byggelinje"
+  "Omriss av planlagt bebyggelse"
+  Planlagt_bebyggelse = "Planlagt bebyggelse"
+  "Omriss av eksisterende bebyggelse som inngår i planen"
+  Bebyggelse_som_inngår_i_planen = "Bebyggelse som inngår i planen"
+  "Omriss av bebyggelse som forutsettes fjernet"
+  Bebyggelse_som_forutsettes_fjernet = "Bebyggelse som forutsettes fjernet"
+  Regulert_senterlinje = "Regulert senterlinje"
+  Frisiktlinje = "Frisiktlinje"
+  "Regulert kant kjørebane (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Regulert_kant_kjørebane = "Regulert kant kjørebane"
+  "Regulert kjørefelt (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Regulert_kjørefelt = "Regulert kjørefelt"
+  "Regulert parkeringsfelt (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Regulert_parkeringsfelt = "Regulert parkeringsfelt"
+  "Regulert fotgjengerfelt (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Regulert_fotgjengerfelt = "Regulert fotgjengerfelt"
+  "Regulert støyskjerm (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Regulert_støyskjerm = "Regulert støyskjerm"
+  Regulert_støttemur = "Regulert støttemur"
+  Sikringsgjerde = "Sikringsgjerde"
+  "Bru (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Bru = "Bru"
+  "Tunnel (benyttes kun der planen fastsetter juridisk bindende plassering, endring må behandles som mindre vesentlig endring)"
+  Tunnel = "Tunnel"
+  Måle__og_avstandslinje = "Måle- og avstandslinje"
+  Strandlinje_sjø = "Strandlinje sjø"
+  Strandlinje_vassdrag = "Strandlinje vassdrag"
+  Midtlinje_vassdrag = "Midtlinje vassdrag"
+  "Gjelder kun lov om naturområder i Oslo og nærliggende kommuner (markalova)."
+  Markagrense = "Markagrense"
+}
+
+codelist "punkt i regulerings- /bebyggelsesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+  RpJuridiskPunktType {
+  Veistengning_fysisk_kjøresperre = "Veistengning/fysisk kjøresperre"
+  Stenging_av_avkjørsel = "Stenging av avkjørsel"
+  Avkjørsel___både_inn_og_utkjøring = "Avkjørsel - både inn og utkjøring"
+  Avkjørsel___kun_innkjøring = "Avkjørsel - kun innkjøring"
+  Avkjørsel___kun_utkjøring = "Avkjørsel - kun utkjøring"
+  Brukar = "Brukar"
+  Tunnelåpning = "Tunnelåpning"
+  Punktfeste = "Punktfeste"
+  Eksisterende_tre_som_skal_bevares = "Eksisterende tre som skal bevares"
+  Regulert_nytt_tre = "Regulert nytt tre"
+  Regulert_møneretning = "Regulert møneretning"
+}
+
+codelist "Identisk med SOSI høydeReferanse / HØYDE-REF"
+  Høydereferansesystem {
+  Ellipsoide_jf__KOORDSYS = "Ellipsoide jf. KOORDSYS"
+  Lokal_referanseflate = "Lokal referanseflate"
+  "NKG: The Nordic Geodetic Commission - founded in 1953 - is an association of geodesists from Denmark, Finland, Iceland, Norway and Sweden. Its purpose is to give the members possibilities of fruitful gatherings and mutual exchange of professional views and experiences. The NKG is recognized and supported by a number of Nordic  organizations, such as the Director Generals of the Nordic Mapping Authorities. (Kilde: http://217.152.180.26/nkg/)"
+  Geoide_bestemt_av_NKG_i_1989 = "Geoide bestemt av NKG i 1989"
+  "Denne er identisk med NN1954"
+  Norsk_Null_av_1954 = "Norsk Null av 1954"
+  "For nyere data er denne gått ut av bruk. Er erstattet av NN54."
+  Norsk_Norsk_Null_av_1957 = "Norsk-Norsk Null av 1957"
+  "Nytt felles nordisk vertikalt datum, basert på Normaal Amsterdals Peil."
+  Norsk_Null_av_2000 = "Norsk Null av 2000"
+}
+
+datatype
+  Identifikasjon {
+  "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.
+
+NOTE: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet."
+    lokalId: CharacterString
+  'navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  ("_") dersom data produsenten ikke er assosiert med bare et land.
+
+NOTE 1 : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i "INSPIRE external  Object Identifier Namespaces Register"
+
+Eksempel: NO for Norge.'
+    navnerom: CharacterString
+  'identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.
+
+NOTE Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  "2007-02-12T12:12:12+05:30" som versjonId.'
+    versjonId?: CharacterString
+}
+
+datatype "beskrivelse av kvaliteten på stedfestingen
+
+Merknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.
+
+-- Definition --
+description of the quality of the localization    Note: This is identical to ..KVALITET (quality) in previous ersions of SOSI."
+  Posisjonskvalitet {
+  "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss
+
+-- Definition --
+method for measuring in ground outline (x,y), and height (z) when the method is the same as when measuring in ground outline"
+    målemetode: Målemetode
+  "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
+
+Merknad:
+Oppgitt i cm
+
+-- Definition --
+the point standard deviation in ground outline for points as well as lateral deviation of lines    Note: Stated in cm"
+    nøyaktighet?: Integer
+}
+
+datatype "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
+  NasjonalArealplanId {
+  "nummerering av kommuner i henhold til SSB sin offisielle liste
+
+Merknad:
+Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 siffer."
+    kommunenummer?: Kommunenummer
+  "entydig nummer for staten (1)"
+    landkode?: Landskode
+  "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
+    planidentifikasjon: CharacterString
+}
+
+datatype "grad av utnytting (pbl. § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III)"
+  Utnytting {
+  "type grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. § 12-7 første ledd nr 5 og TEK10 kap. 5)"
+    utnyttingstype: Utnyttingstype
+  "tallverdi for grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. §12-7 første ledd nr 5 og TEK10 kap. 5 )"
+    utnyttingstall?: Real
+  "tallverdi for minste utnyttingsgrad (pbl. §12-7 første ledd nr 5 og TEK10 kap 5 )"
+    utnyttingstall_minimum?: Real
+}
+
+datatype "entydig nummer for enkeltsaker og enkeltvedtak (pbl. 1985 § 93, fra 1. juli 2010 pbl. kap 20)"
+  Saksnummer {
+  "Årstallet saken ble initiert"
+    saksår: Integer
+  "løpenummer for saken innenfor året.
+
+NB! attributtnavnet forandret fra sekvensnummer til sakssekvensnummer desember 2011, for å tilpasses NOARK 5."
+    sakssekvensnummer: Integer
+}
+
+datatype
+  HøydeFraPlanbestemmelse {
+  "tall for kotehøyde ved bestemmelse om regulert høyde (bestemmelse om utforming illustrert på kart, pbl. § 12-7 nr. 1"
+    regulerthøyde: Real
+  "Benyttet høydereferansesystem"
+    høyderefansesystem: Høydereferansesystem
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+
+Merknad:
+Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og avgrensningslinjer fra denne klassen.
+
+
+-- Definition --
+abstract object which carries a number of attributes which are independent of specific disciplines and may be used for all object types"
+  Fellesegenskaper_Delområde {
+  identity identifikasjon?: Identifikasjon
+  "dato når en representasjon av objektet i digital form første gang ble etablert
+
+Merknad:
+førsteDigitaliseringsdato kan skille seg fra førsteDatafangstdato ved at den første datafangsten skjedde analogt og gjort om til digital form senere i en produksjonsprosess.
+Eventuelt at innlegging i databasen skjedde på et senere tidspunkt enn registreringen /observasjonen / målingen av objektet.
+
+-- Definition --
+date when a representation of the object in digital form was established for the first time    Note: firstDigitisationDate may differ from firstDataCaptureDate by the first data capture having been analog and converted into digital form later in a production ??<truncated text>"
+    førsteDigitaliseringsdato?: DateTime
+  "dato for siste endring på objektetdataene
+
+Merknad:
+Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).
+
+-- Definition --
+date of latest modification of object data    Note: Date of updating may differ from date of data capture in that data which is registered may be buffered for a shorter or longer period of time, before being entered into the computer system (the database)."
+    oppdateringsdato?: DateTime
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+
+Merknad:
+Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.
+
+
+-- Definition --
+abstract object which carries a number of attributes which are independent of specific disciplines and may be used for all object types"
+  Fellesegenskaper_Planområde {
+  identity identifikasjon?: Identifikasjon
+  "dato når en representasjon av objektet i digital form første gang ble etablert
+
+Merknad:
+førsteDigitaliseringsdato kan skille seg fra førsteDatafangstdato ved at den første datafangsten skjedde analogt og gjort om til digital form senere i en produksjonsprosess.
+Eventuelt at innlegging i databasen skjedde på et senere tidspunkt enn registreringen /observasjonen / målingen av objektet.
+
+-- Definition --
+date when a representation of the object in digital form was established for the first time    Note: firstDigitisationDate may differ from firstDataCaptureDate by the first data capture having been analog and converted into digital form later in a production ??<truncated text>"
+    førsteDigitaliseringsdato?: DateTime
+  "dato for siste endring på objektetdataene
+
+Merknad:
+Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).
+
+-- Definition --
+date of latest modification of object data    Note: Date of updating may differ from date of data capture in that data which is registered may be buffered for a shorter or longer period of time, before being entered into the computer system (the database)."
+    oppdateringsdato?: DateTime
+  "beskrivelse av de prosesser som dataene er gått gjennom som kan ha betydning for kvaliteten og bruken av dataene
+
+Merknad:
+Prosesshistorie vil kunne inneholde informasjon om transformasjoner. Hva slags informasjon som angis er ofte gitt i andre standarder, f.eks kvalitet og kvalitetsikring.
+
+-- Definition --
+description of the processes through which the data has gone, and which may be significant for the quality and use of the data    Note: ProcessHistory may contain information on transformations. What kind of information is given is often indicated in other standards ??<truncated text>"
+    prosesshistorie*: CharacterString
+  "generell opplysning
+
+Merknad:
+mulighet til å legge inn utfyllende informasjon om objektet
+
+-- Definition --
+general information    Note: allows for entry of supplemental information about the object"
+    informasjon*: CharacterString
+  "referanse  til et informasjonselement, enten lokalt eller globalt"
+    link*: CharacterString
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+
+Merknad:
+Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.
+
+
+-- Definition --
+abstract object which carries a number of attributes which are independent of specific disciplines and may be used for all object types"
+  Fellesegenskaper_LinjerOgPunkt {
+  identity identifikasjon?: Identifikasjon
+  "dato når en representasjon av objektet i digital form første gang ble etablert
+
+Merknad:
+førsteDigitaliseringsdato kan skille seg fra førsteDatafangstdato ved at den første datafangsten skjedde analogt og gjort om til digital form senere i en produksjonsprosess.
+Eventuelt at innlegging i databasen skjedde på et senere tidspunkt enn registreringen /observasjonen / målingen av objektet.
+
+-- Definition --
+date when a representation of the object in digital form was established for the first time    Note: firstDigitisationDate may differ from firstDataCaptureDate by the first data capture having been analog and converted into digital form later in a production ??<truncated text>"
+    førsteDigitaliseringsdato?: DateTime
+  "dato for siste endring på objektetdataene
+
+Merknad:
+Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).
+
+-- Definition --
+date of latest modification of object data    Note: Date of updating may differ from date of data capture in that data which is registered may be buffered for a shorter or longer period of time, before being entered into the computer system (the database)."
+    oppdateringsdato?: DateTime
+  "beskrivelse av kvaliteten på stedfestingen
+
+Merknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.
+
+-- Definition --
+description of the quality of the localization    Note: This is identical to ..KVALITET (quality) in previous ersions of SOSI."
+    kvalitet?: Posisjonskvalitet
+}
+
+layer "grense for regulerings- og bebyggelsesplan/områderegulering eller detaljregulering (pbl. 1985 §§ 22 og 24 og 28-2, eller pbl. §§ 12-1, 12-2 og 12-3)"
+  RpGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper"
+  Kobling_Delområde extends Fellesegenskaper_Delområde {
+  "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
+    arealplanId: NasjonalArealplanId
+  "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
+    vertikalnivå: Vertikalnivå
+}
+
+abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper"
+  Kobling_PunktLinje extends Fellesegenskaper_LinjerOgPunkt {
+  "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
+    arealplanId: NasjonalArealplanId
+  "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
+    vertikalnivå: Vertikalnivå
+}
+
+layer "område for regulerings- og bebyggelsesplan/områderegulering, eller detaljregulering, jf. pbl. 1985 §§ 22 og 24 og 28-2, eller pbl. §§ 12-1, 12-2 og 12-3"
+  RpOmråde extends Fellesegenskaper_Planområde {
+  "objektets utstrekning"
+    område: Flate
+  "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
+    arealplanId: NasjonalArealplanId
+  "type plan (pbl. 1985 § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 8-1, 11-5, 12-2 og 12-3)"
+    plantype: RpPlantype
+  "planens behandling (pbl. 1985 §§ 19-4, 20-5, 27-1, 27-2, 28-1 og 28-2) samt planens virkning (pbl. 1985 §§ 19-6, 20-6, 28-2 og 31/pbl. §§ 8-3, 8-4, 9-3, 9-4, §§ 11-12 til 11-15, og §§ 12-8 til 12-12)"
+    planstatus: Planstatus
+  "planens navn (pbl. 1985 § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 sjette ledd)"
+    plannavn: CharacterString
+  "angir om plan har bestemmelser, i så fall om de er egen tekst, og om de er påført plankartet (pbl. 1985 § 20-4 andre ledd bokstav a til h og § 26/pbl. §§ 11-9, 11-10 og 11-11, samt § 12-7)"
+    planbestemmelse: Planbestemmelse
+  "dato for ikrafttredelse av planer (pbl. 1985 §§ 18, 19-1 sjette ledd, 20-1 andre ledd, 22 og 28-2, samt pbl. §§ 8-4, 8-5, 11-6, 11- 15, 11-16, 12-4, 12-12 og 12-13)"
+    ikrafttredelsesdato?: Date
+  "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
+    vertikalnivå: Vertikalnivå
+  "kode for hvilken lov planen er vedtatt etter"
+    lovreferanse: LovreferanseType
+  "tekstlig beskrivelse av hvilken lov planen er vedtatt med hjemmel i"
+    lovreferanseBeskrivelse?: CharacterString
+  "frist for gjennomføring av private detaljplaner (pbl. § 12-4 femte ledd)"
+    gjennomføringsfrist?: Date
+  "om forslagsstiller er privat eller offentlig planmyndighet"
+    forslagsstillerType?: ForslagsstillerType
+  "dato når arealplanen med tilhørende bestemmelser gjennom statlig, regionalt eller kommunalt vedtak etter plan- og bygningsloven har fått rettsvirkning"
+    vedtakEndeligPlanDato?: Date
+  "dato når endelig vedtatt arealplan eller planbestemmelse ble kunngjort, pbl. § 6-3, 8-5 siste ledd, 11-15 tredje ledd og 12-12 siste ledd"
+    kunngjøringsdato?: Date
+  "planidentifikasjon for opprinnelig plan. Brukes kun dersom planen har fått ny NasjonalArealplanid."
+    opprinneligplanid?: CharacterString
+  "administrativEnhet for opprinnelig plan. Brukes kun dersom planen har fått ny NasjonalArealplanid."
+    opprinneligadministrativenhet?: CharacterString
+  planavgrensning*: RpGrense
+}
+
+layer "område for reguleringsformål i regulerings- og bebyggelsesplan (pbl. 1985 § 25, første ledd)"
+  RbFormålOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+    reguleringsformål: RegformBrukFormål
+  "utdyping av reguleringsformål (pbl. 1985 § 25 første ledd)"
+    reguleringsformålsutdyping?: CharacterString
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25, 1 første ledd)"
+    feltbetegnelse?: CharacterString
+  "grad av utnytting (pbl. § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III)"
+    utnytting?: Utnytting
+  "minste uteoppholdsareal (pbl. 1985 § 26 andre ledd og forskrift TEK kap. III)"
+    uteoppholdsareal?: Integer
+  "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4 andre ledd bokstav a og § 26 første ledd og § 28-2, samt pbl. 1985 §§ 11-10 nr. 1 og 12-7 nr. 1 og 2)"
+    byggverkbestemmelse?: Byggverkbestemmelse
+  "planbestemmelse om avkjørsel (pbl. 1985 §§ 25 og 26 første ledd, og pbl. 1985 § 11-10 nr. 4)
+
+Merknad:
+Angir om avkjørsel til formålsområdet tillates eller ikke tillates, eller om det i planbestemmelser er tillatt avkjørsel via annet formål enn vei (via gangvei, turvei e.l.).  I sistnevnte situasjon knyttes egenskapen til det formålsområdet det er tillatt å passere"
+    avkjørselsbestemmelse?: Avkjørselsbestemmelse
+  avgrensning*: RpFormålGrense
+}
+
+layer "grense for reguleringsformål i regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 § 25 første ledd, eller pbl. § 12-5)"
+  RpFormålGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "område med arealformål i reguleringsplan (pbl. § 12-5)"
+  RpArealformålOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "planbestemmelse om arealet skal eies av private eller det offentlige, eller være fellesarealer for flere eiendommer (pbl. § 11-10 nr .3 og § 12-7 nr. 14)"
+    eierform: EierformType
+  "arealformål - formålet må angis nærmere (pbl. § 12-5)"
+    arealformål: RpArealformål
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd/pbl. § 12-5 første ledd/pbl. § 12-7 nr. 4, samt TEK10 § 5-6 og kap. 8)"
+    feltbetegnelse?: CharacterString
+  "grad av utnytting (pbl. 1985 § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III/pbl. §§ 11-9 nr. 5 og 12-7 nr. 5, samt TEK10 kap. 5)"
+    utnytting*: Utnytting
+  "minste uteoppholdsareal (pbl. § 26, andre ledd og forskrift TEK kap III)"
+    uteoppholdsareal?: Integer
+  "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4, andre ledd bokstav a og § 26, 1. ledd og § 28-2, samt pbl. §§ 11-10 nr. 1 og 12-7 nr. 1 og 2, samt TEK10 kap. 7 og § 8-3)"
+    byggverkbestemmelse?: Byggverkbestemmelse
+  "planbestemmelse om avkjørsel (pbl. 1985 §§ 25 og 26, 1. ledd, og pbl. § 11-10 nr. 4 og TEK10 § 8-8)
+
+Merknad:
+Angir om avkjørsel til formålsområde tillates eller ikke tillates, eller om det i plan / bestemmelser er tillatt avkjørsel via annet formål enn vei (via gangvei, turvei e.l.).  I sistnevnte situasjon knyttes egenskapen til det formålsområde det er tillatt å passere"
+    avkjørselsbestemmelse?: Avkjørselsbestemmelse
+  avgrensning+: RpFormålGrense
+}
+
+layer "område for hensynssone for støyssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpStøySone extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "hensynssone - støysone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+    støy: RpStøySoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, f.eks. "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpStøyGrense
+}
+
+layer "videreføring av reguleringsplan (pbl. § 11-8 tredje ledd bokstav f, jf. § 12-6)"
+  RpDetaljeringSone extends Kobling_Delområde {
+  område: Flate
+  "hensynssone - videreføring av gjeldende reguleringsplan (pbl. § 12-6, jf. §11-8 bokstav f)"
+    detaljering: RpDetaljeringSoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpDetaljeringGrense
+}
+
+layer "grense for videreføring av regulerings- og bebyggelsesplan/detaljregulerings-plan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav f)"
+  RpDetaljeringGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "grense for hensynssone for båndlegging i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
+  RpBåndleggingGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "område for hensynssone med særlige krav til infrasturkturinfrastruktur i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+  RpInfrastrukturSone extends Kobling_Delområde {
+  område: Flate
+  "hensynssone - krav til infrastruktur (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+    infrastruktur: RpInfrastrukturSoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpInfrastrukturGrense
+}
+
+layer "grense for hensynssone for gjennomføringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e)"
+  RpGjennomføringGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "grense for fornyelse i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 8)"
+  RbFornyelseGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "grense for bestemmelse illustrert på kart (pbl. § 12-7 nr. 1-14)"
+  RpBestemmelseGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "område med formålsrekkefølge i regulerings- og bebyggelsesplan (pbl. 1985 § 25 andre ledd, § 26 og § 28-2)"
+  RbRekkefølgeOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "type reguleringsformål (pbl. § 25 første ledd)"
+    reguleringsformål: RegformRekkefølge
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+    feltbetegnelse?: CharacterString
+  rekkefølgeAvgrensning*: RbRekkefølgeGrense
+}
+
+layer "hensynssone - båndlegging (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
+  RpBåndleggingSone extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "hensynssone - båndlegging (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
+    båndlegging: RpBåndleggingSoneType
+  "planbestemmelsen om midlertidig båndlagt i påvente av vedtak etter pbl., eller særlov, med angivelse av hvilke rådighetsbegrensinger som gjelder inntil det er utarbeidet et nytt forvaltningsgrunnlag for arealet (pbl. § 11-8 tredje ledd bokstav d)"
+    båndlagtFremTil?: Date
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpBåndleggingGrense
+}
+
+layer "grense for hensynssone i reguleringsplan (pbl. § 12-6, jf. § 11-8)"
+  RpAngittHensynGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "grense for formålsrekkefølge i regulerings- og bebyggelsesplan (pbl. 1985 § 25 andre ledd, § 26 og § 28-2)"
+  RbRekkefølgeGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "grense for hensynssone med særlige krav til infrasturkturinfrastruktur i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+  RpInfrastrukturGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "grense for restriksjon i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6, § 26 og § 28-2)"
+  RbRestriksjonGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "grense for hensynssone for støyssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpStøyGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "område for hensynssone for sikringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpSikringSone extends Kobling_Delområde {
+  område: Flate
+  "hensynssone - sikringssone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+    sikring: RpSikringSoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpSikringGrense
+}
+
+layer "områder med hensynssone i reguleringsplan (pbl. § 12-6, jf. § 11-8)"
+  RpAngittHensynSone extends Kobling_Delområde {
+  område: Flate
+  "hensynssone  - særlig hensyn med angivelse av interesse (pbl. §12-6, jf. § 11-8 tredje ledd bokstav c)"
+    angittHensyn: RpAngittHensynSoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpAngittHensynGrense
+}
+
+layer "område for fornyelse i regulerings- og bebyggelsesplan (pbl. § 25 første ledd nr. 8)"
+  RbFornyelseOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+    reguleringsformål: RegformFornyelse
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+    feltbetegnelse?: CharacterString
+  avgrensning*: RbFornyelseGrense
+}
+
+layer "grense for bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1."
+  PblMidlByggAnleggGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "område med fare i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd, nr. 5)"
+  RbFareOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+    reguleringsformål: RegformFare
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+    feltbetegnelse?: CharacterString
+  "utdyping av reguleringsformål (pbl. 1985 § 25 første ledd)"
+    reguleringsformålsutdyping?: CharacterString
+  avgrensning*: RpFareGrense
+}
+
+layer "område for bevaring i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6)"
+  RbBevaringOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "type reguleringsformål (pbl. § 25 første ledd)"
+    reguleringsformål: RegformBevaring
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+    feltbetegnelse?: CharacterString
+  avgrensning*: RbBevaringGrense
+}
+
+layer "grense for hensynssone for sikringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpSikringGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+layer "bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1."
+  PblMidlByggAnleggOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "planbestemmelse knyttet til navngitt område"
+    bestemmelseOmrådeNavn: CharacterString
+  "entydig nummer for enkeltsaker og enkeltvedtak (pbl. 1985 § 93, fra 1. juli 2010 pbl. kap 20)"
+    saksnummer?: Saksnummer
+  "dato for vedtak/avgjørelse av enkeltvedtak (pbl. 1985 § 93, fra 1 juli 2010 pbl. kap. 20)"
+    avgjørelsesdato: Date
+  GyldigTilDato: Date
+  avgrensning*: PblMidlByggAnleggGrense
+}
+
+layer "område med restriksjon i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6, § 26 og § 28-2)"
+  RbRestriksjonOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+    område: Flate
+  "type reguleringsformål (pbl. § 25 første ledd)"
+    reguleringsformål: RegformRestriksjon
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+    feltbetegnelse?: CharacterString
+  avgrensning*: RbRestriksjonGrense
+}
+
+layer "grense for fare i regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 § 25 første ledd nr. 5, eller pbl. § 12-5)"
+  RpFareGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "grense for bevaring i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd, nr. 6)"
+  RbBevaringGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+    grense: Kurve
+}
+
+layer "område for bestemmelse illustrert på kart (pbl. § 12-7 nr. 1-14)"
+  RpBestemmelseOmråde extends Kobling_Delområde {
+  område: Flate
+  "planbestemmelse knyttet til navngitt område"
+    bestemmelseOmrådeNavn: CharacterString
+  "Pbl. § 12-7"
+    type: RpBestemmelseHjemmel
+  avgrensning+: RpBestemmelseGrense
+}
+
+layer "område for hensynssone for gjennomføringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e)"
+  RpGjennomføringSone extends Kobling_Delområde {
+  område: Flate
+  "hensynssone med bestemmelse om at flere eiendommer skal undergis felles planlegging med bruk av særskilte gjennomførings-virkemidler (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e andre ledd)"
+    gjennomføring: RpGjennomføringSoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
+    beskrivelse?: CharacterString
+  avgrensning+: RpGjennomføringGrense
+}
+
+layer "område for hensynssone faresone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+  RpFareSone extends Kobling_Delområde {
+  område: Flate
+  "hensynssone - fare (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+    fare: RpFareSoneType
+  "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
+    hensynSonenavn: CharacterString
+  beskrivelse?: CharacterString
+  avgrensning+: RpFareGrense
+}
+
+layer "supplerende tekst til regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5 og 12-7)"
+  RpPåskrift extends Kobling_PunktLinje {
+  "sted som objektet eksisterer på"
+    posisjon: Punkt
+  "STRENG er definert til lengde på maks. 70 tegn, noe som for kartformål er tilstrekkelig. SOSI kan imidlertid håndtere lengre tekster, men da må en definere og benytte brukerdefinerte navn."
+    generellTekststreng: CharacterString
+  "kode for å angi hva påskrift/nødvendig tekst i plankartet omhandler"
+    påskriftType?: PåskriftType
+}
+
+layer "linje for juridisk bindende tilleggsinformasjon (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5 og 12-7)"
+  RpJuridiskLinje extends Kobling_PunktLinje {
+  "forløp som følger overgang mellom ulike fenomener"
+    senterlinje: Kurve
+  "linje i regulerings- /bebyggelesesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+    juridisklinje: RpJuridiskLinjeType
+}
+
+layer "punkt for juridisk bindende tilleggsinformasjon (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5, og 12-7)"
+  RpJuridiskPunkt extends Kobling_PunktLinje {
+  "sted som objektet eksisterer på"
+    posisjon: Punkt
+  "punkt i regulerings- /bebyggelsesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+    juridiskpunkt: RpJuridiskPunktType
+}
+
+layer "linje for bestemmelse om regulert høyde (bestemmelse om utforming illustrert på kart, pbl. § 12-7 nr. 1)"
+  RpRegulertHøyde extends Kobling_PunktLinje {
+  senterlinje: Kurve
+  høydefraplanbestemmelse: HøydeFraPlanbestemmelse
+}
