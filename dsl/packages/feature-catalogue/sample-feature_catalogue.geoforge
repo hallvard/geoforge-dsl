@@ -1,0 +1,238 @@
+model AdministrativeEnheterFylkerOgKommuner_20240101
+
+builtin CharacterString
+
+builtin Integer
+
+builtin Boolean
+
+builtin DateTime
+
+builtin Date
+
+builtin GM_MultiSurface
+
+builtin GM_Curve
+
+codelist "metode som ligger til grunn for registrering av posisjon
+
+-- Definition - -
+method on which registration of position is based"
+  $asDictionary=true $codeList="https://register.geonorge.no/sosi-kodelister/generelle-konsepter/4.5/m%C3%A5lemetodekode"
+  Målemetode {
+}
+
+codelist 'nummerering av kommuner i henhold til SSB sin offisielle liste
+Merknad: Inneholder fremtidige, gyldige og utgåtte kommunenummer. Det presiseres at kommune alltid skal ha 4 sifre, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 sifre.
+
+URI til ekstern kodeliste: https://register.geonorge.no/sosi-kodelister/kommunenummer?page=2'
+  $asDictionary=true $codeList="https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer"
+  Kommunenummer {
+}
+
+codelist 'nummerering av fylker
+Merknad: Inneholder fremtidige, gyldige og utgåtte nummer. Fylket skal alltid ha 2 sifre, dvs. eventuelt med ledende null.
+URI til ekstern kodeliste: https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/fylkesnummer'
+  $asDictionary=true $codeList="https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/fylkesnummer?"
+  Fylkesnummer {
+}
+
+codelist "ISO 639 del 3 språkkodetabell
+
+Merknad: ufullstendig kodeliste pga. importfeil
+
+language code tables of ISO 639 part 3
+
+ISO 639-3 is a code that aims to define three-letter identifiers for all known human languages. At the core of ISO 639-3 are the individual languages already accounted for in ISO 639-2."
+  Språkkode {
+  "English"
+  English = "English"
+  "Kven Finnish"
+  KvenFinnish = "KvenFinnish"
+  "Lule Sami"
+  LuleSami = "LuleSami"
+  "Northern Sami"
+  NorthernSami = "NorthernSami"
+  "Swedish"
+  Swedish = "Swedish"
+  "Finnish"
+  Finnish = "Finnish"
+  "Norwegian"
+  Norwegian = "Norwegian"
+  "Southern Sami"
+  SouthernSami = "SouthernSami"
+}
+
+codelist "oversikt over ulike typer avgrensingslinjer."
+  $asDictionary=false
+  TypeAvgrensning {
+  "avgrensningen av nasjonen Norge på land mot andre nasjoner"
+  Riksgrense = "Riksgrense"
+  "avgrensning i havet av statens suverenitetsområde, beregnet 12 nm (22 224 m) utenfor og parallelt med grunnlinjen"
+  Territorialgrense = "Territorialgrense"
+  "avtalt avgrensningslinje til havs basert på folkerettslig bindende avtaler
+
+Merknad:
+Avtalt avgrensningslinje vil normalt gjelde alle aktuelle former for kyststatsjurisdiksjon. Detaljene vil framgå av den aktuelle avgrensningsavtale.
+
+Merknad 2:
+Benyttes også som avgrensning av kontinentalsokkel i internasjonalt farvann, der flere stater kan framlegge dokumentasjon om rettigheter til sokkelen, men der statene har kommet til enighet om en avgrensningslinje."
+  AvtaltAvgrensningslinje = "AvtaltAvgrensningslinje"
+  "avgrensing av kommune"
+  Kommunegrense = "Kommunegrense"
+  "avgrensning av fylke"
+  Fylkesgrense = "Fylkesgrense"
+  "avgrensning av grunnkrets"
+  Grunnkretsgrense = "Grunnkretsgrense"
+  "avgrensning av delområde"
+  Delområdegrense = "Delområdegrense"
+  "avgrensing av Stemmekrets"
+  Stemmekretsgrense = "Stemmekretsgrense"
+}
+
+datatype "unik identifikasjon av et objekt"
+  Identifikasjon {
+  "lokal identifikator av et objekt
+
+Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet."
+    lokalId: CharacterString $SOSI_navn="LOKALID"
+  "navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI
+
+Eksempel: http://data.geonorge.no/SentraltStedsnavnsregister/1.0
+
+Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no"
+    navnerom: CharacterString $SOSI_navn="NAVNEROM"
+  "identifikasjon av en spesiell versjon av et geografisk objekt (instans)"
+    versjonId?: CharacterString $SOSI_navn="VERSJONID"
+}
+
+datatype "offisielt navn på en kommune, et fylke eller en nasjon"
+  AdministrativEnhetNavn {
+  "navnet på den administrative enheten i angitt språk."
+    navn: CharacterString $SOSI_navn="NAVN"
+  "angir språk for det administrative navnet."
+    språk: Språkkode $SOSI_navn="SPRÅK"
+  "angir presentasjonsrekkefølge i sammenstaninger av nav på administretiv enhet ved presentasjon på alle sprøkformer."
+    rekkefølge?: Integer $SOSI_navn="REKKEFØLGE"
+}
+
+datatype "beskrivelse av kvaliteten på stedfestingen"
+  Posisjonskvalitet {
+  "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss"
+    målemetode: Målemetode $SOSI_navn="MÅLEMETODE"
+  "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
+
+Merknad:
+Oppgitt i cm"
+    nøyaktighet?: Integer $SOSI_navn="NØYAKTIGHET"
+}
+
+abstract layer "abstrakt objekttype som bærer sentrale egenskaper som er anbefalt for bruk i produktspesifikasjoner.
+
+Merknad: Disse egenskapene skal derfor ikke modelleres inn i fagområdemodeller."
+  SOSI_Fellesegenskaper {
+  "unik identifikasjon av et objekt"
+    identity identifikasjon: Identifikasjon $SOSI_navn="IDENT"
+  "tidspunkt for siste endring på objektet
+
+Merknad:
+Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen)."
+    oppdateringsdato: DateTime $SOSI_navn="OPPDATERINGSDATO"
+  "Tidspunktet når objektet oppstod i den virkelige verden"
+    gyldigFra?: Date $SOSI_navn="GYLDIGFRA"
+  "Tidspunktet når objektet opphørte å eksistere i den virkelige verden"
+    gyldigTil?: Date $SOSI_navn="GYLDIGTIL"
+}
+
+abstract layer "abstrakt objekttype som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+
+Merknad:
+Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og avgrensningslinjer fra denne klassen."
+  SOSI_Objekt_flate extends SOSI_Fellesegenskaper {
+  "dato når objektet siste gang ble registrert/observert/målt i terrenget
+
+Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.
+Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato."
+    datafangstdato?: DateTime $SOSI_navn="DATAFANGSTDATO"
+  "dato for uttak fra en database
+
+Merknad:
+Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase."
+    datauttaksdato?: DateTime $SOSI_navn="DATAUTTAKSDATO"
+  "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+
+Merknad:
+Kan også beskrive navn på person og årsak til oppdatering"
+    opphav?: CharacterString $SOSI_navn="OPPHAV"
+}
+
+abstract layer "abstrakt objekttype som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+
+Merknad:
+Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og avgrensningslinjer fra denne klassen."
+  SOSI_Objekt_grense extends SOSI_Fellesegenskaper {
+  "dato når objektet siste gang ble registrert/observert/målt i terrenget
+
+Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.
+Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato."
+    datafangstdato?: DateTime $SOSI_navn="DATAFANGSTDATO"
+  "beskrivelse av kvaliteten på stedfestingen"
+    kvalitet?: Posisjonskvalitet
+  "dato for uttak fra en database
+
+Merknad:
+Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase."
+    datauttaksdato?: DateTime $SOSI_navn="DATAUTTAKSDATO"
+  "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+
+Merknad:
+Kan også beskrive navn på person og årsak til oppdatering"
+    opphav?: CharacterString $SOSI_navn="OPPHAV"
+}
+
+layer "Generell avgrensingslinje"
+  Grense extends SOSI_Objekt_grense {
+  "Geometri for avgrensingslinjer"
+    geometry grense: GM_Curve $SOSI_navn="GRENSE"
+  "angir type avgreisningslinje. Ulike objekter avgrenses av ulike typer grenser."
+    avgrensningstype: TypeAvgrensning $SOSI_navn="AVGRENSNINGSTYPE"
+}
+
+layer "inndeling i administrative og politiske enheter innenfor fylket
+
+Merknad: Tilsvarer NUTS 5 og LAU 2 på internasjonalt statistisk nivå"
+  Kommune extends SOSI_Objekt_flate {
+  "den geografiske avgrensingen av stemmekretsen."
+    geometry område: GM_MultiSurface $SOSI_navn="FLATE"
+  "offisielt navn på en kommune, et fylke eller en nasjon"
+    administrativEnhetNavn+: AdministrativEnhetNavn $SOSI_navn="ADMENHETNAVN"
+  "nummerering av kommunen i henhold til Statistisk sentralbyrå sin offisielle liste
+
+Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 siffer."
+    kommunenummer: Kommunenummer $SOSI_navn="KOMMUNENUMMER"
+  "Offisielt navn på en kommune. Merk: Hvis kommunen har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng."
+    kommunenavn: CharacterString $SOSI_navn="KOMMUNENAVN"
+  "angir om kommunen er en del ac samisk forvaltningaområde"
+    samiskForvaltningsområde?: Boolean $SOSI_navn="SAMISKFORVALTNINGSOMRÅDE"
+  avgrensesAvGrense*: Grense
+}
+
+layer "administrativ inndeling av nasjonen på regionalt nivå
+
+Merknad: Tilsvarer NUTS 3 på internasjonalt statistisk nivå"
+  Fylke extends SOSI_Objekt_flate {
+  "den geografiske avgrensingen av stemmekretsen."
+    geometry område: GM_MultiSurface $SOSI_navn="FLATE"
+  "offisielt navn på en kommune, et fylke eller en nasjon"
+    administrativEnhetNavn+: AdministrativEnhetNavn $SOSI_navn="ADMENHETNAVN"
+  "nummerering av fylker i henhold til Statistisk sentralbyrå sin offisielle liste
+
+Merknad:
+Det presiseres at fylkesnummer alltid skal ha 2 sifre, dvs. eventuelt med ledende null. Fylkesnummer benyttes for kopling mot en rekke andre registre som også benytter 2 sifre."
+    fylkesnummer: Fylkesnummer $SOSI_navn="FYLKESNUMMER"
+  "Offisielt navn på et fylke. Merk: Hvis fylket har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng."
+    fylkesnavn: CharacterString $SOSI_navn="FYLKESNAVN"
+  "angir om fylket er en del ac samisk forvaltningaområde"
+    samiskForvaltningsområde?: Boolean $SOSI_navn="SAMISKFORVALTNINGSOMRÅDE"
+  avgrensesAvGrense*: Grense
+}

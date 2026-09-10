@@ -6,6 +6,7 @@ import { GeoForgeLanguageMetaData } from 'geoforge-language';
 import { dslToModelAction } from './dsl-to-model.js';
 import { generatePlantumlAction } from './generator.js';
 import { modelToDslAction } from './model-to-dsl.js';
+import { modelToFeatureCatalogueAction } from './model-to-feature-catalogue.js';
 import { modelToPlantumlAction } from './model-to-plantuml.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -63,6 +64,14 @@ export default function(): void {
         .option('-d, --destination <dir>', 'destination directory of generating')
         .description('translates a GeoForge model JSON file to DSL text')
         .action(modelToDslAction);
+
+    program
+        .command('model-to-feature-catalogue')
+        .alias('model2fc')
+        .argument('<file>', 'source model file in JSON format')
+        .option('-d, --destination <dir>', 'destination directory of generating')
+        .description('translates a GeoForge model JSON file to feature catalogue JSON')
+        .action(modelToFeatureCatalogueAction);
 
     program.parse(process.argv);
 }
