@@ -1,8 +1,8 @@
 package no.geoforge.shapechange;
 
-import de.interactive_instruments.ShapeChange.Model.ClassInfo;
-import de.interactive_instruments.ShapeChange.Model.Model;
-import de.interactive_instruments.ShapeChange.Model.PropertyInfo;
+import de.interactive_instruments.shapechange.core.model.ClassInfo;
+import de.interactive_instruments.shapechange.core.model.Model;
+import de.interactive_instruments.shapechange.core.model.PropertyInfo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;

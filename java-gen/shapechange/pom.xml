@@ -15,10 +15,20 @@
 
     <repositories>
         <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
             <id>ShapeChange</id>
             <name>ShapeChange repository</name>
             <url>https://shapechange.net/resources/dist/</url>
-        </repository>        
+            <!-- <url>https://dl.interactive-instruments.de/repository/maven-releases/</url> -->
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy> <!-- Rejects HTML/corrupt downloads -->
+            </releases>
+        </repository>
     </repositories>
     
     <dependencies>
@@ -42,8 +52,15 @@
  -->
         <dependency>
             <groupId>net.shapechange</groupId>
-            <artifactId>ShapeChange</artifactId>
-            <version>3.1.0</version>
+            <artifactId>shapechange-core</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.shapechange</groupId>
+            <artifactId>shapechange-app</artifactId>
+            <version>4.0.0</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -106,7 +123,7 @@
                         <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>de.interactive_instruments.ShapeChange.Main</mainClass>
+                                <mainClass>de.interactive_instruments.shapechange.app.Main</mainClass>
                                 <addClasspath>true</addClasspath>
                                 <classpathPrefix>libs</classpathPrefix>
                                 <!-- Workaround for Maven bug #MJAR-156 (https://issues.apache.org/jira/browse/MJAR-156) -->

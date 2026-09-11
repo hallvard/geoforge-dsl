@@ -29,18 +29,18 @@ public class GeoForge {
     }
   }
 
-  public record ModelElementInfo(QName name, String title, String description, List<Tag> tags) {
+  public record ModelElementInfo(QName name, String description, List<Tag> tags) {
 
-    public ModelElementInfo(List<String> name, String title, String description) {
-      this(new QName(name), title, description, new ArrayList<>());
+    public ModelElementInfo(List<String> name, String description) {
+      this(new QName(name), description, new ArrayList<>());
     }
-    
-    public ModelElementInfo(String name, String title, String description) {
-      this(new QName(name), title, description, new ArrayList<>());
+
+    public ModelElementInfo(String name, String description) {
+      this(new QName(name), description, new ArrayList<>());
     }
 
     public ModelElementInfo(String name) {
-      this(new QName(name), null, null, new ArrayList<>());
+      this(new QName(name), null, new ArrayList<>());
     }
 
     public String nameString() {
@@ -153,11 +153,6 @@ public class GeoForge {
       return info.name().segments();
     }
 
-    @JsonProperty("title")
-    public String title() {
-      return info.title();
-    }
-
     @JsonProperty("description")
     public String description() {
       return info.description();
@@ -223,12 +218,11 @@ public class GeoForge {
     @JsonCreator
     public static Model of(
         @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("types") List<GeoForgeType> types
     ) {
-      var model = new Model(new ModelElementInfo(name, title, description));
+      var model = new Model(new ModelElementInfo(name, description));
       model.tags().addAll(tags);
       model.types().addAll(types);
       return model;
@@ -337,14 +331,13 @@ public class GeoForge {
     @JsonCreator
     public static DataType of(
         @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("abstract") boolean isAbstract,
         @JsonProperty("superType") TypeRef<DataType> superType,
         @JsonProperty("properties") List<CompositeTypeProperty> properties
     ) {
-      var compositeType = new DataType(new ModelElementInfo(name, title, description), isAbstract, superType, properties);
+      var compositeType = new DataType(new ModelElementInfo(name, description), isAbstract, superType, properties);
       compositeType.tags().addAll(tags);
       return compositeType;
     }
@@ -363,14 +356,13 @@ public class GeoForge {
     @JsonCreator
     public static LayerType of(
         @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("abstract") boolean isAbstract,
         @JsonProperty("superType") TypeRef<LayerType> superType,
         @JsonProperty("properties") List<CompositeTypeProperty> properties
     ) {
-      var compositeType = new LayerType(new ModelElementInfo(name, title, description), isAbstract, superType, properties);
+      var compositeType = new LayerType(new ModelElementInfo(name, description), isAbstract, superType, properties);
       compositeType.tags().addAll(tags);
       return compositeType;
     }
@@ -410,7 +402,6 @@ public class GeoForge {
     @JsonCreator
     public static CompositeTypeProperty of(
         @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("kind") Kind kind,
@@ -418,7 +409,7 @@ public class GeoForge {
         @JsonProperty("multiplicity") Multiplicity multiplicity,
         @JsonProperty("defaultValue") String defaultValue
     ) {
-      var property = new CompositeTypeProperty(new ModelElementInfo(name, title, description), kind, type, multiplicity, SimpleValue.of(defaultValue));
+      var property = new CompositeTypeProperty(new ModelElementInfo(name, description), kind, type, multiplicity, SimpleValue.of(defaultValue));
       property.tags().addAll(tags);
       return property;
     }
@@ -477,14 +468,12 @@ public class GeoForge {
     public static BuiltinType of(
         @JsonProperty("name")
         List<String> name,
-        @JsonProperty("title")
-        String title,
         @JsonProperty("description")
         String description,
         @JsonProperty("tags")
         List<Tag> tags
     ) {
-      var builtinType = new BuiltinType(new ModelElementInfo(name, title, description), List.of());
+      var builtinType = new BuiltinType(new ModelElementInfo(name, description), List.of());
       builtinType.tags().addAll(tags);
       return builtinType;
     }
@@ -514,12 +503,11 @@ public class GeoForge {
     @JsonCreator
     public static CodeListType of(
         @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("items") List<CodeListItem> items
     ) {
-      var enumType = new CodeListType(new ModelElementInfo(name, title, description), items);
+      var enumType = new CodeListType(new ModelElementInfo(name, description), items);
       enumType.tags().addAll(tags);
       return enumType;
     }
@@ -542,12 +530,11 @@ public class GeoForge {
     @JsonCreator
     public static CodeListItem of(
         @JsonProperty("name") List<String> name,
-        @JsonProperty("title") String title,
         @JsonProperty("description") String description,
         @JsonProperty("tags") List<Tag> tags,
         @JsonProperty("value") String value
     ) {
-      var item = new CodeListItem(new ModelElementInfo(name, title, description), value);
+      var item = new CodeListItem(new ModelElementInfo(name, description), value);
       item.tags().addAll(tags);
       return item;
     }

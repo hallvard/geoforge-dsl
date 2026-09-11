@@ -2,10 +2,10 @@ package no.geoforge.shapechange;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import de.interactive_instruments.ShapeChange.Model.ClassInfo;
-import de.interactive_instruments.ShapeChange.Model.Info;
-import de.interactive_instruments.ShapeChange.Model.Model;
-import de.interactive_instruments.ShapeChange.Model.PropertyInfo;
+import de.interactive_instruments.shapechange.core.model.ClassInfo;
+import de.interactive_instruments.shapechange.core.model.Info;
+import de.interactive_instruments.shapechange.core.model.Model;
+import de.interactive_instruments.shapechange.core.model.PropertyInfo;
 import geoforge.model.GeoForge;
 import geoforge.model.GeoForge.BuiltinType;
 import geoforge.model.GeoForge.CodeListItem;
@@ -74,7 +74,7 @@ public class ShapechangeToGeoForgeTranslator extends AbstractGenerator<GeoForgeT
   }
 
   private GeoForge.Model buildModel(String modelName) {
-    var modelInfo = new ModelElementInfo(toQNameSegments(modelName), null, null);
+    var modelInfo = new ModelElementInfo(toQNameSegments(modelName), null);
     var geoForgeModel = new GeoForge.Model(modelInfo);
     if (javaTypeMappingsFile != null && !javaTypeMappingsFile.isBlank()) {
       geoForgeModel.tags().add(Tag.of("javaTypeMappingsFile", javaTypeMappingsFile));
@@ -291,29 +291,38 @@ public class ShapechangeToGeoForgeTranslator extends AbstractGenerator<GeoForgeT
 
   private ModelElementInfo infoForClass(ClassInfo info) {
     var name = toQualifiedTypeName(info);
-    var title = trimToNull(info.aliasName());
     var description = trimToNull(firstNonBlank(info.documentation(), info.description()));
-    return new ModelElementInfo(name, title, description);
+    var elementInfo = new ModelElementInfo(name, description);
+    addAliasTag(info, elementInfo);
+    return elementInfo;
   }
 
   private ModelElementInfo infoForProperty(PropertyInfo info) {
     var name = toSafePropertyName(info.name());
-    var title = trimToNull(info.aliasName());
     var description = trimToNull(firstNonBlank(info.documentation(), info.description()));
-    return new ModelElementInfo(name, title, description);
+    var elementInfo = new ModelElementInfo(name, description);
+    addAliasTag(info, elementInfo);
+    return elementInfo;
+  }
+
+  private void addAliasTag(Info info, ModelElementInfo elementInfo) {
+    var alias = trimToNull(info.aliasName());
+    if (alias != null) {
+      elementInfo.tags().add(Tag.of("alias", alias));
+    }
   }
 
   private List<String> toQualifiedTypeName(ClassInfo info) {
     var raw = info.fullName() != null ? info.fullName() : info.name();
     var source = toQNameSegments(raw);
     var className = source.isEmpty()
-        ? naming.toJavaClassName("unnamed")
-        : naming.toJavaClassName(source.get(source.size() - 1));
+        ? toGeoForgeTypeName("unnamed")
+        : toGeoForgeTypeName(source.get(source.size() - 1));
 
     var qualified = new ArrayList<String>();
     qualified.addAll(toSafePackageSegments(namePrefix));
     if (source.size() > 1) {
-      qualified.add(naming.toJavaPackageName(source.get(source.size() - 2)));
+      qualified.add(toGeoForgeNamespaceSegment(source.get(source.size() - 2)));
     }
     qualified.add(className);
     return qualified;
@@ -321,8 +330,41 @@ public class ShapechangeToGeoForgeTranslator extends AbstractGenerator<GeoForgeT
 
   private List<String> toSafePackageSegments(List<String> segments) {
     return segments.stream()
-        .map(naming::toJavaPackageName)
+        .map(ShapechangeToGeoForgeTranslator::toGeoForgeNamespaceSegment)
         .toList();
+  }
+
+  /**
+   * Turns a raw model name into a legal GeoForge DSL identifier. Unlike the Java-oriented
+   * {@link JavaNaming}, this keeps native (Norwegian) letters as-is: GeoForge identifiers
+   * support full Unicode letters and never end up as file/class names, so there is no reason
+   * to transliterate them (e.g. into ASCII "ae"/"oe"/"aa") the way {@link DtoNaming} would.
+   */
+  private static String toGeoForgeTypeName(String name) {
+    return toFirstUpperCase(sanitizeIdentifier(name));
+  }
+
+  private static String toGeoForgeNamespaceSegment(String name) {
+    return sanitizeIdentifier(name).toLowerCase();
+  }
+
+  private static String sanitizeIdentifier(String name) {
+    var sanitized = name.replaceAll("[^\\p{L}0-9_]+", "_").replaceAll("_+", "_");
+    if (sanitized.isEmpty()) {
+      sanitized = "_";
+    }
+    var first = sanitized.charAt(0);
+    if (!Character.isLetter(first) && first != '_') {
+      sanitized = "_" + sanitized;
+    }
+    return sanitized;
+  }
+
+  private static String toFirstUpperCase(String name) {
+    if (name.isEmpty() || !Character.isLowerCase(name.charAt(0))) {
+      return name;
+    }
+    return name.substring(0, 1).toUpperCase() + name.substring(1);
   }
 
   private List<String> toSafePropertyName(String rawName) {

@@ -1,0 +1,545 @@
+package no.ngu.nadag.kodelister
+
+"oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview of possible aquifer types for ground water measurements</engelsk>"
+  codelist AkviferType {
+  "grunnvannsmagasin med artesisk trykk (poreovertrykk)<engelsk>aquifer with artesian pressure (excess pore pressure)</engelsk>"
+    Artesisk
+  "lukket (avskjermet) grunnvannsmagasin<engelsk>closed (protected) aquifer</engelsk>"
+    Lukket
+  "utett (drenert) grunnvannsmagasin<engelsk>drained aquifer</engelsk>"
+    Utett
+  "åpent grunnvannsmagasin<engelsk>open aquifer</engelsk>"
+    Åpen
+  "informasjon mangler <engelsk>not specified</engelsk>"
+    Ikke_angitt
+}
+
+"Kodeliste for å angi deformasjonsobservasjon"
+  codelist DeformasjonObservasjonKode {
+  IkkeSpesifisert
+  Hindring
+  Skadet
+  Usikkert
+}
+
+"Kodeliste for feltundersøkelsestype"
+  codelist FeltUndersTypeKode {
+  FeltUndersMetode
+  TolketBerghøyde
+  Tolket
+}
+
+"oversikt over koder for observasjoner som gjøres ved utførelse av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai 2024 ble gjort om til tekststreng fra å være knyttet til denne kodelisten. Tekstrengen kan inneholde mer enn 1 kode. <engelsk>overview of codes for observations conducted during an GeotechnicalBoreholeInvestigation. Used in the \"observasjonKode\" attribute, which in May 2024 was changed to a text string from being linked to this code list. The text string can contain more than 1 code. </engelsk>"
+  codelist GeotekniskBoreObservasjonskode {
+  "kode for påvisning av grunnvannstand\r\n<engelsk>code for detection of the ground water table\r\n</engelsk>"
+    AntattGrunnvann
+  "kode for avslutning av boring\r\n<engelsk>code for termination of boring</engelsk>"
+    Avsluttet
+  "kode for avslutning av boring i blokk\r\n<engelsk>code for termination of boring in blocks</engelsk>"
+    BlokkSlutt
+  "kode for bøyd sonderingsstang\r\n<engelsk>code for curved sounding rods</engelsk>"
+    BøydSonderingsstang
+  "kode for avslutning av boring i berg med slag\r\n<engelsk>code for termination of boring in rock with strokes</engelsk>"
+    FjellMedSlag
+  "kode for angivelse av dybde for bergoverflate\r\n<engelsk>code for identification of depth to the rock surface</engelsk>"
+    Fjellnivå
+  "kode for markering av feil i forrige angitte kode<engelsk>code for marking errors in previously given code</engelsk>"
+    ForrigeKodeFeil
+  "kode for boring i friksjonsjord<engelsk>code for boring in friction soils</engelsk>"
+    Friksjonsjord
+  "kode for boring i frosset materiale<engelsk>code for boring in frozen soils</engelsk>"
+    Frosset
+  "kode for angivelse av boring i frostisoleringsmateriale<engelsk>code for boring in frost-insulation materials</engelsk>"
+    Frostisolering
+  "kode for markering av ikke-godkjent funksjon<engelsk>code for marking of non-approved function</engelsk>"
+    FunksjonskontrollIkkeOk
+  "kode for markering av godkjent funksjon<engelsk>code for marking of approved function</engelsk>"
+    FunksjonskontrollOk
+  "kode for boring i fylling<engelsk>code for boring in fills and embankments</engelsk>"
+    Fylling
+  "kode for gjennomboring av blokk eller stein<engelsk>code for penetration of block or stone</engelsk>"
+    GjennomborretBlokkEllerStein
+  "kode for angivelse av hindring<engelsk>code for information of hindrances</engelsk>"
+    Hindring
+  "kode for boring gjennom ikke-merkbare sprekker<engelsk>code for boring through non-recordable cracks and fissures</engelsk>"
+    IkkeMerkbareSprekker
+  "kode for markering av manglende registrering <engelsk>code for marking of lacking registration</engelsk>"
+    IngenRegistrering
+  "kode for markering av manglende vurdering<engelsk>code for marking of lacking evaluation</engelsk>"
+    IngenVurdering
+  "kode for boring gjennom jord med grus<engelsk>code for boring through soil with gravel</engelsk>"
+    JordMedGrus
+  "kode for boring gjennom jord med sand<engelsk>code for boring through soil with sand</engelsk>"
+    JordMedSand
+  "kode for boring gjennom jord med stein<engelsk>code for boring through soil with stones</engelsk>"
+    JordMedStein
+  "kode for boring gjennom jord med kull og aske<engelsk>code for boring through soil with coal and ashes</engelsk>"
+    KullAske
+  "kode for boring gjennom leire<engelsk>code for boring through clay</engelsk>"
+    Leire
+  "kode for boring gjennom finstoffholdig morene<engelsk>code for boring through clayey moraine and till</engelsk>"
+    LeirMorene
+  "kode for markering av tilleggsinformasjon<engelsk>code for marking of additional information</engelsk>"
+    MerInformasjon
+  "kode for boring gjennom morenejord<engelsk>code for boring through morainic soil</engelsk>"
+    MoreneJord
+  "kode for markering av overgang til ny metode<engelsk>code for marking of transition to new method</engelsk>"
+    NyMetode
+  "kode for markering av opphold i boringen<engelsk>code for marking of halt in the boring</engelsk>"
+    Opphold
+  "kode for boring gjennom oppsprukket berg<engelsk>code for boring through cracked rock</engelsk>"
+    OppsprukketFjell
+  "kode for boring gjennom organisk materiale<engelsk>code for boring through organic materials</engelsk>"
+    OrganiskJord
+  "kode for markering av pumping med borstengene (repetert vertikal opptrekking og nedpressing av stangsystemet)<engelsk>code for marking of pumping wth drill rods (repeated sequences of vertical hoisting and pushing of the rod system)</engelsk>"
+    Pumping
+  "kode for avslutning av pumping<engelsk>code for termination of pumping</engelsk>"
+    PumpingSlutt
+  "kode for boring gjennom sand med grus<engelsk>code for boring through soil with sand and gravel</engelsk>"
+    SandmedGrus
+  "kode for boring gjennom silt<engelsk>code for boring through silt</engelsk>"
+    Silt
+  "kode for markering av skade på borutstyr<engelsk>code for marking of damage of drilling equipment</engelsk>"
+    Skadet
+  "kode for markering av stangskjøting (svensk terminologi)<engelsk>code for marking of added rods (swedish terminology)</engelsk>"
+    Skarv
+  "kode for markering av slag på borstenger<engelsk>code for marking of strokes on drill rods</engelsk>"
+    Slag
+  "kode for markering av slag på borstenger og spyling gjennom borkrone<engelsk>code for marking of strokes on the drill rods and/or flushing through the drill bit</engelsk>"
+    SlagSpyl
+  "kode for markering av avslutning av slag på borstenger og spyling gjennom borkrone<engelsk>code for marking of termination of strokes on the drill rods and/or flushing through the drill bit</engelsk>"
+    SlagSpylSlutt
+  "kode for markering av avslutning av slag på borstenger<engelsk>code for marking of termination of strokes on the drill rods</engelsk>"
+    SluttSlag
+  "kode for avslutning av vridning av borstenger<engelsk>code for termination of rotation of the drill rods</engelsk>"
+    SluttVridning
+  "kode for demontering av borstang<engelsk>code for demounting of a drill rod</engelsk>"
+    SonderingstangAv
+  "kode for angivelse av dybde for borspiss<engelsk>code for identification of depth for the drill bit</engelsk>"
+    SpissDyp
+  "kode for markering av spyling gjennom borkrone<engelsk>code for marking of flushing through the drill bit</engelsk>"
+    Spyling
+  "kode for avslutning av spyling gjennom borkrone<engelsk>code for termination of flushing through the drill bit</engelsk>"
+    SpylingSlutt
+  "kode for angivelse av startnivå<engelsk>code for given start level</engelsk>"
+    Startnivå
+  "kode for start av slag på borstenger<engelsk>code for start of strokes on the drill rods</engelsk>"
+    StartSlag
+  "kode for start av vridning på borstenger<engelsk>code for start of rotation of the drill rods</engelsk>"
+    StartVridning
+  "kode for boring gjennom svært oppsprukket berg<engelsk>code for boring through very cracked rock</engelsk>"
+    SværtOppsprukketFjell
+  "code for angivelse av synk for 0 vekt (dreiesondering)<engelsk>code for given sink of drill rods for 0 load (rotary weight sounding)</engelsk>"
+    SynkVekt0
+  "kode for angivelse av synk for 0.64 vekt (dreiesondering) <engelsk>code for given sink of drill rods for 0.64 load (rotary weight sounding)</engelsk>"
+    SynkVekt0_64
+  "kode for markering av terrengoverflate <engelsk>code for marking of the terrain surface</engelsk>"
+    Terrengoverflate
+  "kode for markering av tidligere stopp i boringen <engelsk>code for marking of previous stops in the boring</engelsk>"
+    TidligereStopp
+  "kode for angivelse av tid <engelsk>code for time</engelsk>"
+    Tidsangivelse
+  "code for boring gjennom torv\r\n<engelsk>code for boring through peat</engelsk>"
+    Torv
+  "kode for boring gjennom tørrskorpe\r\n<engelsk>code for boring through dry crust</engelsk>"
+    Tørrskorpe
+  "kode for boring gjennom ubestemt jordart <engelsk>code for boring through undetermined soil</engelsk>"
+    UbestemtJordart
+  "kode for boring gjennom uorganisk kohesjonsjord\r\n<engelsk>code for boring through inorganic cohesive soil</engelsk>"
+    UorganiskKohesjonsjord
+  "kode for boring gjennom inhomogen makadam (pukk) <engelsk>code for boring through inhomogenous macadam (blasted rock)</engelsk>"
+    UrenMakadam
+  "kode for boring uten vridning (rotasjon) av borstenger<engelsk>code for boring without rotation of the drill rods</engelsk>"
+    UtenVridning
+  "kode for boring med vridning (rotasjon) av borstenger<engelsk>code for boring with rotation of the drill rods</engelsk>"
+    Vridning
+}
+
+"Koder for metoder benyttet ved geotekniske feltundersøkelser"
+  codelist GeotekniskFeltUndersMetodeKode {
+  Ramsondering
+  BelastningTest
+  SetningMåling
+  Skrueplate
+  SPT
+  PermeabilitetMåling
+  ElektriskSondering
+  HelningMåling
+  Skovlboring
+}
+
+"oversikt over observasjonskoder for grunnvann"
+  codelist GeotekniskGrunnvannObservasjonKode $alias="GroundwaterObservationCode" {
+  IkkeSpesifisert
+  Tørr
+  Vannstrøm
+  Erstattet
+  Ferdig
+  Stikk
+  FunksjonSjekkOk
+  FunksjonSjekkFeilet
+  Spylet
+  Frosset
+}
+
+"Kode for metoder benyttet ved geotekniske borehullundersøkelser"
+  codelist GeotekniskMetodeKode {
+  Bergkontrollboring
+  Gassprøve
+  Blokkprøve
+  Dilatometertest
+  Dreiesondering_manuell
+  Dreiesondering_maskinell
+  Dreietrykksondering
+  Dynamisk_sondering_uspesifisert
+  Enkel_sondering
+  Gassmåling
+  Graveprøve
+  Grunnvannsmåling
+  Hejarsondering_A
+  Hejarsondering_B
+  HK_sondering
+  Hydraulisk_test
+  Ikke_angitt
+  Jord_berg_sondering_1
+  Jord_berg_sondering_2
+  Jord_berg_sondering_3
+  Kanneprøve
+  Kjerneprøve
+  Kombinasjonssondering_uspesifisert
+  Kombisondering
+  Naverprøve
+  Platebelastning
+  Poretrykksmåling
+  Ramprøve
+  Ramsondering
+  Ramsondering_A
+  Ramsondering_B
+  Sedimentprøve
+  Skovlprøve
+  Slagsondering
+  SPT
+  Statisk_sondering_uspesifisert
+  Stempelprøve
+  Stikksondering
+  Totalsondering_Norge
+  Totalsondering_Sverige
+  Trykksondering_CPT_CPTU_
+  Vannprøve
+  Vektsondering_manuell
+  Vektsondering_maskinell
+  Vingeboring
+  Dreiesondering_uspesifisert
+  Prøve_uspesifisert
+  Prøveserie_uspesifisert
+  Miljøundersøkelse
+  Elektrisk_sondering
+  Kjerneboring
+}
+
+"oversikt over koder for stopp av boring ved utførelse av en grunnundersøkelse <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>"
+  codelist GeotekniskStoppkode {
+  "kode for avslutning av boring i antatt berg <engelsk>code for termination of boring in presumed rock</engelsk>"
+    AntattBerg
+  "kode for avslutning av boring i antatt stein eller blokk <engelsk>code for termination of boring in presumed stone or block</engelsk>"
+    AntattSteinBlokk
+  "kode for avslutning av boring ved brudd i borstang eller borspiss <engelsk>code for termination of boring due to failure of drill rod or drill bit</engelsk>"
+    BruddBorstangSpiss
+  "kode for avslutning av boring ved oppnådd boredybde i berg <engelsk>code for termination of boring after assumed depth in rock</engelsk>"
+    DybdeIBergOppnådd
+  "kode for avslutning av boring ved oppnådd boredybde i berg større enn 3 m <engelsk>code for termination of boring after assumed depth in rock greater than 3 m</engelsk>"
+    DybdeIFjellMerEnn3Meter
+  "kode for avslutning av boring ved feil på borustyr <engelsk>code for termination of boring due to equipment errors</engelsk>"
+    MaterialEllerMaskinFeil
+  "kode for avslutning av boring ved avbrutt sondering <engelsk>code for termination of boring due to interrupted sounding</engelsk>"
+    SonderingAvbrutt
+  "kode for avslutning av boring i fast grunn <engelsk>code for termination of boring in firm ground</engelsk>"
+    SonderingAvbruttFastGrunn
+  "kode for avslutning av sondering uten stopp <engelsk>code for termination of sounding without stop</engelsk>"
+    SonderingAvsluttetUtenStopp
+  "kode for avslutning av boring i stein, blokk eller berg <engelsk>code for termination of boring in presumed stone, block or rock</engelsk>"
+    SteinBlokkFjell
+  "kode for avslutning av boring ved uspesifisert årsak <engelsk>code for termination of boring due to unspecified reasons</engelsk>"
+    Uspesifisert
+  "Det har blitt tatt ut en kjerneprøve på minimum 3 meter<engelsk> core drilling min 3 meter</engelsk>"
+    KjerneBoringMerEnn3Meter
+  "kode for avslutning av boring ved oppnådd boredybde i berg større enn 3 m og borestøv har blitt analysert <engelsk>code for termination of boring after assumed depth in rock greater than 3 m and the drill cuttings have been analysed</engelsk>"
+    DybdeIFjellMerEnn3MeterMedAnalyse
+}
+
+"angir hvilket medium en boring er foretatt i\r\n\r\n<engelsk> \r\ndefine what kind of medium/material the borehole has penetrated.</engelsk>"
+  codelist GjennomboretMedium {
+  "berggrunn/fjell\r\n\r\n<engelsk> \r\nbedrock\r\n</engelsk>"
+    Berg
+  "is\r\n\r\n<engelsk> \r\nice\r\n</engelsk>"
+    Is
+  "luft\r\n\r\n<engelsk> \r\nair\r\n</engelsk>"
+    Luft
+  "løsmasse\r\n\r\n<engelsk> \r\nuncompacted material\r\n</engelsk>"
+    Løsmasse
+  "medium/material er ikke angitt\r\n\r\n<engelsk> \r\nmedium/material is undefined\r\n</engelsk>"
+    Uspesifisert
+  "vann\r\n\r\n<engelsk> \r\nwater\r\n</engelsk>"
+    Vann
+}
+
+"oversikt over lagdeling og jordart for klassifisering og identifisering av grunnforhold<engelsk>overview of stratification and soil type for classification and identification of ground conditions</engelsk>"
+  codelist HovedLagKlassifisering $alias="MainLayerClassification" {
+  "antatt forurenset materiale<engelsk>assumed contaminated material</engelsk>"
+    AntattForurensning $alias="Cs"
+  "blokk (fraksjoner større enn 200 mm)<engelsk>boulders (fractions > 200 mm</engelsk>"
+    Blokk $alias="Bl"
+  "dy (Dy består av vannavsatte plante- og dyrerester og er en strukturløs masse)<engelsk>organic material consisting of plant and animal debris sedimented in water. The material is not showing a special structure</engelsk>"
+    Dy $alias="Dy"
+  "matjord <engelsk>humus</engelsk>"
+    Matjord $alias="Topsoil"
+  "berg<engelsk>rock</engelsk>"
+    Berg $alias="B"
+  "forvitret torv (Torv er mer eller mindre omvandlede planterester, klassifiseres etter von Post skala)<engelsk>weathered peat (Peat is more or less transformed plant debris and is classified according to the von Post scale)</engelsk>"
+    ForvitretTorv $alias="Th"
+  "oppsprukket berg<engelsk>jointed rock</engelsk>"
+    OppsprukketBerg $alias="Br"
+  "gytje (Gytje består av vannavsatte plante- og dyrerester og viser vanligvis organisk struktur)<engelsk>organic material consisting of plant and animal debris. The material usually shows a special structure</engelsk>"
+    Gytje $alias="Gy"
+  "leirblandet gytje (organisk materiale )<engelsk>organic material consisting of plant, animal debris and clay.</engelsk>"
+    GytjeOgLeire $alias="GyLe"
+  "humus (Humus er en fellesbetegnelse på organisk materiale i jordarter)<engelsk>common denotation of organic matter in soils</engelsk>"
+    Humus $alias="Mu"
+  "kull<engelsk>coal</engelsk>"
+    Kull $alias="Coal"
+  "leire (materiale med mer enn 30 % i leirfraksjonen < 2 µm)<engelsk>clay (material with more than 30 % in the clay fraction < 2 µm)</engelsk>"
+    Leire $alias="Le"
+  "annet organisk materiale<engelsk>other organic materials</engelsk>"
+    AnnetOrganiskMateriale $alias="Organic"
+  "Sand (fraksjoner mellom 0,063 og 2,0 mm)<engelsk>sand (fractions between  0,063 and 2,0 mm</engelsk>"
+    Sand $alias="Sa"
+  "silt (fraksjoner mellom 0,002 og 0,063 mm)<engelsk>silt (fractions between 0,002 and 0,063 mm</engelsk>"
+    Silt $alias="Si"
+  "skjellgrus<engelsk>coquina</engelsk>"
+    Skjellgrus $alias="Skgr"
+  "skjellsand<engelsk>shellsand</engelsk>"
+    Skjellsand $alias="Sksa"
+  "suldidholdig sand<engelsk>sulphide sand</engelsk>"
+    SulfidholdigJord $alias="Su"
+  "torv<engelsk>peat</engelsk>"
+    Torv $alias="T"
+  "tørrskorpe leire<engelsk>crusty clay</engelsk>"
+    TørrskorpeLeire $alias="Let"
+  "uspesifisert materiale<engelsk>unspecified material</engelsk>"
+    UspesifisertMateriale $alias="NotSpecified"
+  "fyllmasse<engelsk>fill mass</engelsk>"
+    Fyllmasse $alias="F"
+  "grus (fraksjoner mellom 2,0 og 63 mm)<engelsk>gravel (fractions between 2,0 and 63 mm</engelsk>"
+    Grus $alias="Gr"
+  "kvikkleire (omrørt skjærfasthet < 0,5 kPa)<engelsk>quick clay (remoulded shear strength < 0,5 kPa)</engelsk>"
+    Kvikkleire $alias="kLe"
+  "morene<engelsk>glacial deposit</engelsk>"
+    Morene $alias="Mn"
+  "friksjonsjord<engelsk>non-cohesive soil </engelsk>"
+    Friksjonsjord $alias="Fr"
+  Kohesjonsjord $alias="Cohesive"
+  "planterester<engelsk>plant remnants</engelsk>"
+    Planterester $alias="Vx"
+  "Blokkig og steinig morene <engelsk>Boulder and Cobble till </engelsk>"
+    BlokkigOgSteinigMorene $alias="BlMn"
+  "Ukjent materiale <engelsk>Unknown material</engelsk>"
+    UkjentMateriale $alias="X"
+  "Jord<engelsk>soil</engelsk>"
+    Jord $alias="J"
+  "Steinig morene<engelsk>Cobble till</engelsk>"
+    SteinigMorene $alias="StMn"
+  "Grussig morene<engelsk>Gravel till</engelsk>"
+    GrusigMorene $alias="GrMn"
+  "Sandig morene<engelsk>Sand till</engelsk>"
+    SandigMorene $alias="SaMn"
+  "Siltig morene<engelsk>Silt till</engelsk>"
+    SiltigMorene $alias="SiMn"
+  "Leirig morene<engelsk>Clay till</engelsk>"
+    LeirigMorene $alias="LeMn"
+  "Skjell<engelsk>Shells</engelsk>"
+    Skjell $alias="Sk"
+  "Fibrig torv. Fibrig struktur, lett gjenkjennelig plantestruktur, viser noe styrke,<engelsk> Fibrous peat</engelsk>"
+    FibrigTorv $alias="Tl"
+  "Delvis fibrig torv. Gjenkjennelig plantestruktur, ingen styrke i planterestene<engelsk>Pseudo-fibrous peat</engelsk>"
+    DelvisFibrigTorv $alias="Tm"
+  "Stein<engelsk>Cobbles</engelsk>\r\nstein (fraksjoner mellom 63 og 200 mm)<engelsk>cobbles (fractions between 63 and 200 mm</engelsk>"
+    Stein $alias="St"
+  "Berg eller blokk<engelsk>Rock or boulders</engelsk>"
+    BergEllerBlokk $alias="BelBl"
+}
+
+"proporsjonalitetskonstant som relaterer vannstrømningsrate gjennom et medium til gradienten\r\n\r\nMerknad: Kalles også hydraulisk ledningsevne og avhenger av både vannets og mediets egenskaper.\r\n\r\n<engelsk>proportionality constant which relates water permeability through a medium with the gradient</engelsk>"
+  codelist HydrauliskKonduktivitet {
+  "dårlig vanngiver  <engelsk>poor water source</engelsk>"
+    Dårlig_vanngiver
+  "ganske dårlig vanngiver <engelsk>pretty poor water source</engelsk>"
+    Ganske_dårlig_vanngiver
+  "god vanngiver <engelsk>good water source</engelsk>"
+    God_vanngiver
+  "meget dårlig vanngiver <engelsk>very poor water source</engelsk>"
+    Meget_dårlig_vanngiver
+  "meget god vanngiver <engelsk>very good water source</engelsk>"
+    Meget_god_vanngiver
+}
+
+"oversikt over klassifiseringsmetoder for bestemmelse av grunnforhold<engelsk>overview of classification methods for determination of ground conditions</engelsk>"
+  codelist KlassifiseringsMetode $alias="ClassificationMethod" {
+  "tolket fra observasjon<engelsk>interpreted from observation</engelsk>"
+    Observasjon
+  "tolket fra sondering i felt<engelsk>interpreted from sounding in the field</engelsk>"
+    TolketFeltsondering
+  "tolket fra boring i berg<engelsk>interpreted from drilling in rock</engelsk>"
+    TolketBergBoring
+  "tolket fra boring 3 m inn i berg<engelsk>interpreted from boring 3 m into rock</engelsk>"
+    TolketBergBoring3Meter
+  "tolket fra prøving i laboratoriet<engelsk>interpreted from testing in the laboratory</engelsk>"
+    TolketLab
+  "tolket fra tegning<engelsk>interpreted from drawing</engelsk>"
+    TolketTegning
+  "uspesifisert tolkningskilde<engelsk>unspecified source of interpretation</engelsk>"
+    Uspesifisert
+  "beregnet størrelse fra terrengoverflaten<engelsk>calculated from the terrain surface</engelsk>"
+    BeregnetFraTerrengoverflaten
+  "tolket fra prøvetaking i felt<engelsk>interpreted from sampling in the field</engelsk>"
+    TolketPrøvetak
+}
+
+"beskriver om borlengde til berg er antatt eller påvist med en sikker metode\r\n\r\n<engelsk> \r\ndefines the quality of the depth information either assumed or confirmed by a secure method\r\n</engelsk>"
+  codelist KvalitetBorlengdeTilBerg $alias="QualityBoreholeLenghtToRock" {
+  "usikker angivelse av dybde til berg\r\n\r\n<engelsk> \r\nuncertain depth to rock\r\n</engelsk>"
+    antatt
+  "sikker angivelse av dybde til berg\r\n\r\n<engelsk> \r\nconfirmed depth to rock\r\n</engelsk>"
+    påvist
+}
+
+"Koder for grad av sikkerhet for påvisning av kvikkleire eller sprøbruddmateriale"
+  codelist KvikkleirePåvisningKode {
+  "Benyttes ved sondering"
+    Antatt
+  IkkeVurdert
+  "Kan kun benyttes der kvikkleire eller sprøbruddmateriale er påvist ved prøvetaking"
+    Sikker
+  "Benyttes ved sondering"
+    Usikker
+  "Benyttes ved sondering"
+    AntattIkkeKvikk
+}
+
+"kodeliste som brukes for å fortelle i hvilken del av prøvedelen som det er gjort undersøkelser"
+  codelist LagPosisjon $alias="LayerComposition" {
+  IkkeAngitt
+  Venstre
+  Midten
+  Høyre
+}
+
+"Typer av dokument brukt i NADAG forvaltningsløsning."
+  codelist NADAG_DokumentType {
+  Uspesifisert_dokumenttype
+  Opptegningssymbol
+  Bilde
+  Rådatafil
+  Labrapport
+  Geoteknisk_rapport
+  Plantegning
+  Profiltegning
+  Tegning
+  Modell
+  Andre_vedlegg_til_borehull
+  Digitalisert_DWG_tegning
+  Bilde_koblet_til_digitalisert_DWG_tegning
+  Bilde_borehullsprofil
+  Vurderingsrapport
+}
+
+"Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder benyttes."
+  codelist NADAG_Høyderef {
+  NN2000
+  NN54
+  Ukjent_høydereferanse
+}
+
+"oversikt over lastkapasiteter for vanlige trykksonder i CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>"
+  codelist NedpressingsKapasitet {
+  "trykksonde med lastkapasitet 1 tonn <engelsk>probe with vertical load capacity 1 ton</engelsk>"
+    _10_kN
+  "trykksonde med lastkapasitet 10 tonn <engelsk>probe with vertical load capacity 10 tons</engelsk>"
+    _100_kN
+  "trykksonde med lastkapasitet 5 tonn <engelsk>probe with vertical load capacity 5 tons</engelsk>"
+    _50_kN
+}
+
+"oversikt over aktuelle typer poretrykksmålere<engelsk>overview of possible types of pore pressure measurement devices</engelsk>"
+  codelist PoretrykkMåleKategori {
+  "elektrisk poretrykksmåler<engelsk>electrical piezometer</engelsk>"
+    Elektrisk
+  "hydraulisk poretrykksmåler<engelsk>hydraulic piezometer</engelsk>"
+    Hydraulisk
+}
+
+"inndeling av fysisk prøvemateriale i prøvetype, avhengig av prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample type classes, depending on sampling method and/or storage method for the sampled material</engelsk>"
+  codelist PrøvetakingType {
+  "blokkprøve, normalt med uforstyrret eller noe forstyrret prøvemateriale<engelsk>block sample, normally of undisturbed or slightly disturbed quality</engelsk>"
+    Blokk
+  "plastrør<engelsk>plastic tube>"
+    Plastrør
+  "poseprøve, normalt med omrørt eller meget forstyrret materiale<engelsk>bag sample, normally of remoulded or very disturbed quality</engelsk>"
+    Poseprøve
+  "ren  flaske <engelsk>clean bottle</engelsk>"
+    Ren_flaske
+  "steril flaske <engelsk>antiseptic bottle</engelsk>"
+    Steril_flaske
+  "sylinder, normalt med lett forstyrret til meget forstyrret materiale<engelsk>cylinder, normally of slightly to somewhat disturbed quality</engelsk>"
+    Sylinder
+}
+
+"Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse fysisk representerer."
+  codelist RepresentasjonKvalitet {
+  "Hva avvgrensing av geoteknisk undersøkelse representerer er ikke kjent."
+    Ukjent
+  "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et mindre område, opptil ca 10 mål."
+    Representasjonspunkt_for_mindre_GU_område_Opptil_ca_10_mål_
+  "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et større område, over ca 10 mål eller lenger enn ca. 0,5km."
+    Representasjonspunkt_for_større_GU_område_Over_ca_10_mål_eller_lengre_enn_ca_0_5_km
+  "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et område som er av kommunal/regional størrelse."
+    Representasjonspunkt_for_kommunalt_regionalt_GU_område_
+  "Avgrensning av en geoteknisk undersøkelse som i hovedsak avgrenser inngående borehull."
+    Polygon_som_avgrenser_borehull_i_GU_
+  "Polygon for GU med kun et enkelt borehull (100x100m)."
+    Polygon_for_GU_med_kun_et_enkelt_borehull_100x100m_
+  Polygon_hentet_fra_borehull_i_GU_min_og_maks_koordinater_
+  "Avgrensning av en geoteknisk undersøkelse som representerer prosjektområde."
+    Polygon_som_representerer_prosjektområde_
+}
+
+"oversikt over aktuelle kvalitetsklasser (Anvendelsesklasser) for CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>"
+  codelist SondeKvalitetsKlasse {
+  "anvendelsesklasse 1 for CPTU med høyeste krav til målenøyaktighet<engelsk>application Class 1 for CPTU with the highest accuracy</engelsk>"
+    Klasse_1
+  "anvendelsesklasse 2 for CPT/CPTU <engelsk>application Class 2 for CPT/CPTU</engelsk>"
+    Klasse_2
+  "anvendelsesklasse 3 for CPT/CPTU <engelsk>application Class 3 for CPT/CPTU</engelsk>"
+    Klasse_3
+  "anvendelsesklasse 4 for CPT med laveste krav til målenøyaktighet<engelsk>application Class 4 for CPT with the lowest accuracy.</engelsk>"
+    Klasse_4
+}
+
+"Metoder benyttet for tolkning av geotekniske feltundersøkelser"
+  codelist TolkningMetodeKode {
+  F
+  BG
+  BH
+  _Le
+}
+
+"angir kilden til vannprøve<engelsk>define the source of the water sample</engelsk>"
+  codelist VannPrøveKilde {
+  "grunnvann <engelsk>ground water</engelsk>"
+    Grunnvann
+  "overflatevann<engelsk>surface water</engelsk>"
+    Overflatevann
+  "porevann <engelsk>pore water</engelsk>"
+    Porevann
+  "sigevann <engelsk>seepage water </engelsk>"
+    Sigevann
+}

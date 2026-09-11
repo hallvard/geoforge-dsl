@@ -7,13 +7,15 @@ codelist HoleType {
   DRILLED = 1
 }
 
-layer GeotekniskUnders {
+feature GeotekniskUnders {
   identity identifikasjon : Identifikasjon
   geometry område: Areal
-  borehull*: layer GB {
+  borehull*: GB
+}
+
+feature GB {
     identity identifikasjon : Identifikasjon
     holeType: HoleType
     opprettetDato: Date
     geometry posisjon: Posisjon
-  }
 }

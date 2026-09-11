@@ -1,0 +1,23 @@
+package geoforge.lib
+
+builtin Boolean
+
+builtin CharacterString
+
+builtin Date
+
+builtin DateTime
+
+builtin Flate
+
+builtin GM_MultiSurface
+
+builtin GM_Surface
+
+builtin Integer
+
+builtin Kurve
+
+builtin Punkt
+
+builtin Real
