@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Fellesegenskaper",
+    "description": "abstrakt objekttype som bærer de egenskapene fra SOSI_Fellesegenskaper som er anvendt på objekttypene i denne modellen.",
+    "attributes": [
+      {
+        "name": "identifikasjon",
+        "type": "Identifikasjon",
+        "description": "unik identifikasjon av et dataobjekt\n\nFølger dataobjektet og identifiserer det i hele dets levetid.",
+        "cardinality": "1",
+        "attributes": [
+          {
+            "name": "lokalId",
+            "type": "CharacterString",
+            "description": "lokal identifikator av et objekt.\n\nSkal være en uuid, slik at den er unik, uavhengig av navnerommet",
+            "cardinality": "1"
+          },
+          {
+            "name": "navnerom",
+            "type": "CharacterString",
+            "description": "navnerom som unikt identifiserer datakilden til et objekt.\n\nNavnerom anbefales å være en http-URI og må være registrert i data.geonorge.no\nFor plan anbefales navnerommet http://data.geonorge.no/sosi/plan",
+            "cardinality": "1"
+          },
+          {
+            "name": "versjonId",
+            "type": "CharacterString",
+            "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans)",
+            "cardinality": "0..1"
+          }
+        ]
+      },
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "tidspunkt for siste endring på dataobjektet",
+        "cardinality": "1"
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": []
+    },
+    "package": "Fellesegenskaper"
+  },
+  {
+    "name": "Arealplan",
+    "description": "dataobjekt for igangsatt planlegging etter pbl",
+    "attributes": [
+      {
+        "name": "nasjonalArealplanId",
+        "type": "NasjonalArealplanId",
+        "description": "landsdekkende entydig og unik identifikasjon av en arealplan (pbl. §§ 6-4, 9-1, og 12-1, samt kart- og planforskriften § 9 andre og sjette ledd).\n\nDenne identifikatoren tildeles planen når planprosessen starter, og den kan ikke endres undervegs av forslagstiller.",
+        "cardinality": "1",
+        "attributes": [
+          {
+            "name": "kommunenummer",
+            "type": "Kommunenummer",
+            "description": "kode som viser til offisiell nummerering av kommuner\n\nMerknad: Det presiseres at kommunenummer alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommunenummer benyttes for kobling mot en rekke andre registre som også benytter 4 siffer.",
+            "cardinality": "0..1",
+            "valueDomain": {
+              "definition": "ekstern kodeliste for kommunenummer\nKoder med status Gyldig refererer til dagens kommuner, mens koder med status Utgått referer til utgåtte kommunenummer",
+              "asDictionary": "true",
+              "codeList": "https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer"
+            }
+          },
+          {
+            "name": "landkode",
+            "type": "Landkode",
+            "description": "landkode = NO anvendes kun av statlig vedtaksmyndighet",
+            "cardinality": "0..1",
+            "valueDomain": {
+              "listedValues": [
+                {
+                  "value": "NO",
+                  "label": "Norge. Aktuell kode for administrativ enhet for statlig vedtatte planer"
+                }
+              ],
+              "definition": "alfanumerisk kode for nasjonalt nivå / Norge.\n\nAvledet fra \"ISO 3166 Codes for the representation of names of countries and their subdivisions\""
+            }
+          },
+          {
+            "name": "planid",
+            "type": "CharacterString",
+            "description": "entydig identifikasjon av en plan innen vedkommende administrative enhet (pbl. §§ 9-1, 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)",
+            "cardinality": "1"
+          }
+        ]
+      },
+      {
+        "name": "plantype",
+        "type": "RpPlantype",
+        "description": "type reguleringsplan (pbl. §§ 12-2 og 12-3)",
+        "cardinality": "1",
+        "valueDomain": {
+          "definition": "ekstern kodeliste for type reguleringsplan (pbl. §§ 12-2 og 12-3) ihht til gjeldende lov. Angir om planen er en områdeplan eller detaljplan.",
+          "asDictionary": "true",
+          "codeList": "https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/rpplantype"
+        }
+      },
+      {
+        "name": "plannavn",
+        "type": "CharacterString",
+        "description": "planens offisielle navn",
+        "cardinality": "0..1"
+      },
+      {
+        "name": "lovreferanse",
+        "type": "Lovreferanse",
+        "description": "kode for hvilken lov planen vedtas etter\n\nFor reguleringsplanforslag og planlegging igangsatt skal lovreferanse = 6 (pbl 2008)",
+        "cardinality": "1",
+        "valueDomain": {
+          "definition": "ekstern kodeliste for gjeldende pbl.",
+          "asDictionary": "true",
+          "codeList": "https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/lovreferanse"
+        }
+      }
+    ],
+    "abstract": false,
+    "relationships": {
+      "inheritance": [
+        "Fellesegenskaper"
+      ],
+      "associations": [
+        {
+          "target": "Planområde",
+          "role": "planleggingIgangsatt",
+          "cardinality": "1..*"
+        }
+      ]
+    },
+    "package": "Planområde"
+  },
+  {
+    "name": "Planområde",
+    "description": "område for planlegging igangsatt etter pbl 2008.\n\nOmrådet skal være sammenhengende i grunnriss, men kan dekke flere vertikalnivåer",
+    "attributes": [
+      {
+        "name": "område",
+        "type": "GM_Surface",
+        "description": "planens utstrekning i grunnriss uavhengig av vertikalnivå",
+        "cardinality": "1"
+      }
+    ],
+    "abstract": false,
+    "relationships": {
+      "inheritance": [
+        "Fellesegenskaper"
+      ],
+      "associations": []
+    },
+    "package": "Planområde"
+  }
+]
