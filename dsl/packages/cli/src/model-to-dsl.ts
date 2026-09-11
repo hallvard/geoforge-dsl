@@ -89,8 +89,7 @@ function extractDestinationAndName(filePath: string, destination: string | undef
 function renderNamespace(model: GeoForgeModel | GeoForgePackage): string {
   const keyword = model.elementType === 'package' ? 'package' : 'model';
   const description = renderDescriptionPrefix(model.description, '  ');
-  const title = renderTitle(model.title);
-  const lines: string[] = [`${keyword} ${description}${qName(model.name)}${title}`, ''];
+  const lines: string[] = [`${description}${keyword} ${qName(model.name)}`, ''];
 
   for (const tag of model.tags) {
     lines.push(renderTag(tag));
@@ -122,7 +121,7 @@ function renderType(type: GeoForgeType): string {
 
 function renderBuiltinType(type: BuiltinType): string {
   const parts: string[] = ['builtin'];
-  parts.push(`${renderDescriptionPrefix(type.description, '  ')}${simpleName(type.name)}${renderTitle(type.title)}`);
+  parts.push(`${renderDescriptionPrefix(type.description, '  ')}${simpleName(type.name)}`);
   if (type.params && type.params.length > 0) {
     const params = type.params.map(param => {
       if (param.value === undefined) {
@@ -137,7 +136,7 @@ function renderBuiltinType(type: BuiltinType): string {
 
 function renderCodeListType(type: CodeListType): string {
   const description = renderDescriptionPrefix(type.description, '  ');
-  const lines: string[] = [`codelist ${description}${simpleName(type.name)}${renderTitle(type.title)} {`];
+  const lines: string[] = [`${description}codelist ${simpleName(type.name)}${renderTrailingTags(type.tags)} {`];
   for (const item of type.items) {
     pushIndented(lines, renderCodeListItem(item), '  ');
   }
@@ -146,7 +145,7 @@ function renderCodeListType(type: CodeListType): string {
 }
 
 function renderCodeListItem(item: CodeListItem): string {
-  const parts: string[] = [`${renderDescriptionPrefix(item.description, '  ')}${simpleName(item.name)}${renderTitle(item.title)}`];
+  const parts: string[] = [`${renderDescriptionPrefix(item.description, '  ')}${simpleName(item.name)}`];
   if (item.value !== undefined) {
     parts.push(`= ${renderString(item.value)}`);
   }
@@ -155,13 +154,12 @@ function renderCodeListItem(item: CodeListItem): string {
 }
 
 function renderCompositeType(type: CompositeType): string {
-  const kind = isDataType(type) ? 'datatype' : 'layer';
+  const kind = isDataType(type) ? 'datatype' : 'feature';
   const abstractPrefix = type.abstract ? 'abstract ' : '';
   const extendsClause = type.superType ? ` extends ${typeRefName(type.superType.qName)}` : '';
   const description = renderDescriptionPrefix(type.description, '  ');
-  const title = renderTitle(type.title);
   const lines: string[] = [
-    `${abstractPrefix}${kind} ${description}${simpleName(type.name)}${title}${extendsClause}${renderTrailingTags(type.tags)} {`
+    `${description}${abstractPrefix}${kind} ${simpleName(type.name)}${renderTrailingTags(type.tags)}${extendsClause} {`
   ];
 
   for (const prop of type.properties) {
@@ -175,11 +173,10 @@ function renderCompositeType(type: CompositeType): string {
 function renderProperty(prop: CompositeTypeProperty): string {
   const description = renderDescriptionPrefix(prop.description, '  ');
   const kind = prop.kind ? `${renderPropertyKind(prop.kind)} ` : '';
-  const title = renderTitle(prop.title);
   const multiplicity = renderMultiplicity(prop.multiplicity);
   const multiplicityPart = multiplicity ? `${multiplicity}` : '';
   const defaultPart = hasRenderableDefaultValue(prop.defaultValue) ? ` = ${renderSimpleValue(prop.defaultValue)}` : '';
-  return `${description}${kind}${simpleName(prop.name)}${title}${multiplicityPart}: ${typeRefName(prop.type.qName)}${defaultPart}${renderTrailingTags(prop.tags)}`;
+  return `${description}${kind}${simpleName(prop.name)}${multiplicityPart}: ${typeRefName(prop.type.qName)}${defaultPart}${renderTrailingTags(prop.tags)}`;
 }
 
 function renderPropertyKind(kind: CompositeTypeProperty['kind']): string {
@@ -257,13 +254,6 @@ function renderDescriptionPrefix(value: string | undefined, continuationIndent: 
     return '';
   }
   return `${description}\n${continuationIndent}`;
-}
-
-function renderTitle(value?: string): string {
-  if (!value) {
-    return '';
-  }
-  return ` ${renderString(value)}`;
 }
 
 function pushIndented(target: string[], value: string, indent: string): void {

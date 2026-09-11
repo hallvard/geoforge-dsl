@@ -36,10 +36,10 @@ describe('Validating', () => {
               version: Timestamp
             }
 
-            layer GU {
+            feature GU {
               identity id: Id
               geometry omraade: Areal
-              borehull*: layer GB {
+              borehull*: feature GB {
                 identity id: Id
                 geometry posisjon: Posisjon 
               }
@@ -60,7 +60,7 @@ describe('Validating', () => {
           model ngu.nadag
 
           datatype BaseData {}
-          layer BadLayer extends BaseData {}
+          feature BadLayer extends BaseData {}
         `);
 
         const errors = (document.diagnostics ?? []).filter(d => d.severity === 1);
@@ -71,8 +71,8 @@ describe('Validating', () => {
         document = await parse(`
           model ngu.nadag
 
-          layer BaseLayer {}
-          layer GoodLayer extends BaseLayer {}
+          feature BaseLayer {}
+          feature GoodLayer extends BaseLayer {}
         `);
 
         const errors = (document.diagnostics ?? []).filter(d => d.severity === 1);

@@ -3,7 +3,6 @@ export type QName = string[];
 interface ModelElement {
   elementType: string;
   name: QName;
-  title?: string;
   description?: string;
   tags: Tag[];
 }

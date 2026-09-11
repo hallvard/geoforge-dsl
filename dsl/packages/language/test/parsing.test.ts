@@ -22,11 +22,12 @@ describe('Parsing tests', () => {
 
     test('parse Model', async () => {
         document = await parse(`
-            model "Datamodell for NADAG"
-            ngu.nadag
-            $version=1.0
+            "Datamodell for NADAG"
+            model ngu.nadag $version=1.0
 
-            builtin "Native String" string
+            "Native String"
+            builtin string
+            
             builtin long
 
             builtin Posisjon
@@ -41,35 +42,35 @@ describe('Parsing tests', () => {
                 INAKTIV = 2
             }
 
-            datatype
-                "Identifikasjon"
-                Id
-                $version=1.0 $versionDate=2025-01-01 $versionTime=12:40:02.007
+            datatype Id $version=1.0 $versionDate=2025-01-01 $versionTime=12:40:02.007
             {
-                "Unik innen navnerom"
-                lokalId: UUID // velger likevel UUID
+              "Unik innen navnerom"
+              lokalId: UUID // velger likevel UUID
 
-                "Gjør navnet unikt"
-                namespace: string
-                "Versjonen er monotont økende, f.eks. et tidsstempel"
-                version: long
+              "Gjør navnet unikt"
+              namespace: string
+
+              "Versjonen er monotont økende, f.eks. et tidsstempel"
+              version: long
             }
 
-            abstract layer Entitet {
+            abstract feature Entitet {
               identity id: Id
               opprettetDato: DateTime
               sistEndretDato: DateTime
             }
 
-            abstract layer StedfestetEntitet extends Entitet {
+            abstract feature StedfestetEntitet extends Entitet {
               geometry posisjon: Posisjon
             }
 
-            layer GU extends Entitet {
-              geometry "område" "Område": Areal
+            feature GU extends Entitet {
+              "Område"
+              geometry område: Areal
+
               status: Kode
-              borehull*: layer GB extends StedfestetEntitet {
-                undersoekelser*: layer _ extends StedfestetEntitet {
+              borehull*: feature GB extends StedfestetEntitet {
+                undersoekelser*: feature _ extends StedfestetEntitet {
                 }
               }
             }

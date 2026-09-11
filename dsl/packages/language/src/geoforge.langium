@@ -2,20 +2,25 @@ grammar GeoForge
 
 entry Namespace: Package | Model;
 
-Package: 'package' NamespaceFragment;
-Model: 'model' NamespaceFragment;
+Text returns string: STRING;
+
+
+Package: (description=Text)? 'package' NamespaceFragment;
+Model: (description=Text)? 'model' NamespaceFragment;
+
+fragment TagsFragment:
+  (tags += Tag)*;
 
 fragment NamespaceFragment:
-  (description=STRING)?
-  name = QName (title = STRING)?
-  (tags += Tag)*
+  name = QName
+  TagsFragment
   (imports += Import)*
   (types += TypeDef)*;
 
 Import:
   'import' namespace = [Namespace:QName];
 
-Name returns string: (ID | STRING);
+Name returns string: ID;
 
 QName returns string:
   Name ('.' Name)*;
@@ -23,12 +28,12 @@ QName returns string:
 TypeDef: BuiltinType | CompositeType | EnumType;
 
 CompositeType:
+  (description=Text)?
   (isAbstract ?= 'abstract')?
-  kind = ('datatype' | 'layer')
-  (description=STRING)?
-  name = Name (title = STRING)?
+  kind = ('datatype' | 'feature')
+  name = Name
+  TagsFragment
   ('extends' extends = [CompositeType:QName])?
-  (tags += Tag)*
   '{'
     (properties += Property)*
   '}'
@@ -41,14 +46,15 @@ PropertyType: TypeDef | TypeRef;
 TypeRef: typeRef = [TypeDef:QName];
 
 Property:
-  (description=STRING)?
+  (description=Text)?
   (kind = PropertyKind)?
-  name = Name (title = STRING)?
+  name = Name
   (multiplicity = Multiplicity)?
+  TagsFragment
   ':'
   type = PropertyType
   ('=' defaultValue = LiteralValue)?
-  (tags += Tag)*
+  TagsFragment
   ;
 
 Multiplicity: ZeroOrMoreMultiplicity | OneOrMoreMultiplicity | ZeroOrOneMultiplicity | SomeMultiplicity;
@@ -59,11 +65,11 @@ ZeroOrOneMultiplicity: spec = '?';
 SomeMultiplicity: '[' lower = IntLiteral ('..' (upper = IntLiteral)?) ']';
 
 BuiltinType:
+  (description=Text)?
   'builtin'
-  (description = STRING)?
-  name = Name (title = STRING)?
+  name = Name
   ('(' (params += BuiltinParam (',' params += BuiltinParam)*)? ')')?
-  (tags += Tag)*
+  TagsFragment
   ;
 
 BuiltinParam: name = Name ('!'? | ('=' value = BuiltinParamValue));
@@ -71,25 +77,26 @@ BuiltinParam: name = Name ('!'? | ('=' value = BuiltinParamValue));
 BuiltinParamValue: StringValue | DecimalValue | IntValue | NameValue;
 
 EnumType:
+  (description=Text)?
   'codelist'
-  (description = STRING)?
-  (tags += Tag)*
-  name = Name (title = STRING)?
+  name = Name
+  TagsFragment
+  (sourceUrl = STRING)?
   '{'
-    (properties += EnumProperty)+
+    (properties += EnumProperty)*
   '}'
   ;
 
 EnumProperty:
-  (description = STRING)?
-  name = Name (title = STRING)?
+  (description=Text)?
+  name = (Name | STRING)
   ('=' value = EnumValue)?
-  (tags += Tag)*
+  TagsFragment
   ;
 
 EnumValue: StringValue | IntValue | NameValue;
 
-Tag: name = '$' QName ('!'? | ('=' value = LiteralValue));
+Tag: (modifier = '$' name = QName ('=' value = LiteralValue)) | (modifier = ('+' | '-') name = QName);
 
 LiteralValue: StringValue | UuidValue | DateValue | TimeValue | DateTimeValue | DecimalValue | IntValue | NameValue;
 

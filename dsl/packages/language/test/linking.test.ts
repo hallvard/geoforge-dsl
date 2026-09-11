@@ -38,10 +38,10 @@ describe('Linking tests', () => {
               version: Timestamp
             }
 
-            layer GU {
+            feature GU {
               identity id: Id
-              geometry "område": Areal
-              borehull*: layer GB {
+              geometry område: Areal
+              borehull*: feature GB {
                 identity id: Id
                 geometry posisjon: Posisjon 
               }

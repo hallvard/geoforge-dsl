@@ -68,7 +68,6 @@ export function buildModel(model: Model): GeoForgeModel {
   return {
     elementType: 'model',
     name: string2Qname(model.name),
-    title: model.title,
     description: model.description,
     tags: buildTags(model.tags),
     types: model.types.map(type => buildReferencedType(type, context))
@@ -128,7 +127,6 @@ function buildCompositeType(type: CompositeType, context: BuilderContext): Compo
   const compositeType: CompositegeoforgeType = {
     elementType: type.kind === 'datatype' ? 'dataType' : 'layerType',
     name: typeQName,
-    title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
     abstract: type.isAbstract ?? false,
@@ -178,7 +176,6 @@ function buildCompositeTypeProperty(prop: Property, context: BuilderContext): Co
   return {
     elementType: 'compositeTypeProperty',
     name: string2Qname(prop.name),
-    title: prop.title,
     description: prop.description,
     tags: buildTags(prop.tags),
     kind,
@@ -218,7 +215,6 @@ function buildBuiltinType(type: BuiltinType, qName: string[]): BuiltingeoforgeTy
   const geoforgeType: BuiltingeoforgeType = {
     elementType: 'builtinType',
     name: qName,
-    title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
     params: type.params.map(buildBuiltinParam)
@@ -237,13 +233,11 @@ function buildEnumType(type: EnumType, qName: string[]): CodeListgeoforgeType {
   const geoforgeType: CodeListgeoforgeType = {
     elementType: 'codeListType',
     name: qName,
-    title: type.title,
     description: type.description,
     tags: buildTags(type.tags),
     items: type.properties.map(prop => ({
       elementType: 'codeListItem',
       name: [prop.name],
-      title: prop.title,
       description: prop.description,
       tags: buildTags(prop.tags),
       value: buildSimpleValue(prop.value)?.toString()

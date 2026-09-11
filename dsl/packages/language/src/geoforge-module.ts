@@ -4,6 +4,7 @@ import { GeoForgeGeneratedModule, GeoforgeGeneratedSharedModule } from './genera
 import { geoforgeValidator, registerValidationChecks } from './geoforge-validator.js';
 import { geoforgeValueConverter } from './geoforge-value-converter.js';
 import { geoforgeScopeComputation, geoforgeScopeProvider } from './geoforge-scoping.js';
+import { GeoforgeTokenBuilder } from './geoforge-token-builder.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -27,7 +28,8 @@ export type geoforgeServices = LangiumServices & geoforgeAddedServices
  */
 export const geoforgeModule: Module<geoforgeServices, PartialLangiumServices & geoforgeAddedServices> = {
   parser: {
-    ValueConverter: () => new geoforgeValueConverter()
+    ValueConverter: () => new geoforgeValueConverter(),
+    TokenBuilder: () => new GeoforgeTokenBuilder()
   },
   validation: {
     geoforgeValidator: () => new geoforgeValidator()
