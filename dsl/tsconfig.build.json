@@ -5,6 +5,12 @@
             "path": "./packages/model/tsconfig.json"
         },
         {
+            "path": "./packages/feature-catalogue/tsconfig.json"
+        },
+        {
+            "path": "./packages/feature-catalogue/tsconfig.test.json"
+        },
+        {
             "path": "./packages/language/tsconfig.src.json"
         },
         {

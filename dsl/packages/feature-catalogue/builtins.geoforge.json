@@ -1,0 +1,117 @@
+{
+  "elementType": "package",
+  "name": [
+    "builtins"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "CharacterString"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Integer"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Real"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Boolean"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Date"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "DateTime"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Punkt"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Kurve"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "Flate"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "GM_Curve"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "GM_Surface"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "builtins",
+        "GM_MultiSurface"
+      ],
+      "tags": [],
+      "params": []
+    }
+  ]
+}

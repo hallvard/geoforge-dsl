@@ -14,8 +14,6 @@ import {
   CodeListType,
   CompositeTypeProperty,
   DataType,
-  GeoForgeModel,
-  GeoForgePackage,
   GeoForgeType,
   LayerType,
   Multiplicity,
@@ -26,7 +24,9 @@ import {
   isLayerType,
   simpleName
 } from 'geoforge-model/model';
+import type { Namespace, Resolver, ResolvedType } from 'geoforge-model/model-index';
 import { extractDestinationAndName } from './util.js';
+import { createFileResolver } from './model-loader.js';
 
 export type ModelToFeatureCatalogueOptions = {
   destination?: string;
@@ -34,7 +34,8 @@ export type ModelToFeatureCatalogueOptions = {
 
 export const modelToFeatureCatalogueAction = async (fileName: string, opts: ModelToFeatureCatalogueOptions): Promise<void> => {
   const model = await readModelFile(fileName);
-  const catalogue = buildFeatureCatalogueFromModel(model);
+  const resolver = createFileResolver(fileName, model);
+  const catalogue = buildFeatureCatalogueFromModel(model, resolver);
   const generatedFilePath = await writeCatalogueFile(catalogue, fileName, opts.destination);
   console.log(chalk.green(`Feature catalogue JSON generated to ${generatedFilePath}`));
 };
@@ -43,21 +44,41 @@ export const modelToFeatureCatalogueAction = async (fileName: string, opts: Mode
  * Only LayerTypes become top-level classes (a feature catalogue documents feature types, per ISO 19110);
  * DataType/CodeListType/BuiltinType are inlined wherever a LayerType property references them, matching
  * how the format inlines and duplicates such types rather than declaring them independently.
+ *
+ * A LayerType's supertype chain is also walked (via `resolver`, following into other files as
+ * needed) and added to the class list -- an abstract base declared in a shared file (e.g.
+ * Fellesegenskaper) is still its own documented class, not just inlined, even when this model's
+ * own `types` only holds what's declared directly in this file.
  */
-export function buildFeatureCatalogueFromModel(model: GeoForgeModel | GeoForgePackage): FeatureCatalogue {
-  return model.types.filter(isLayerType).map(buildClass);
+export function buildFeatureCatalogueFromModel(model: Namespace, resolver: Resolver): FeatureCatalogue {
+  const layerTypes = new Map<string, { type: LayerType; resolver: Resolver }>();
+
+  function collect(layerType: LayerType, layerResolver: Resolver): void {
+    const key = layerType.name.join('.');
+    if (layerTypes.has(key)) {
+      return;
+    }
+    layerTypes.set(key, { type: layerType, resolver: layerResolver });
+    const resolved = layerType.superType && layerResolver.resolve(layerType.superType);
+    if (resolved && isLayerType(resolved.type)) {
+      collect(resolved.type, resolved.resolver);
+    }
+  }
+
+  model.types.filter(isLayerType).forEach(type => collect(type, resolver));
+  return Array.from(layerTypes.values()).map(({ type, resolver }) => buildClass(type, resolver));
 }
 
-function buildClass(layerType: LayerType): FeatureCatalogueClass {
+function buildClass(layerType: LayerType, resolver: Resolver): FeatureCatalogueClass {
   const attributes: FeatureCatalogueAttribute[] = [];
   const associations: Association[] = [];
 
   for (const prop of layerType.properties) {
-    const propType = prop.type.element;
-    if (propType && isLayerType(propType)) {
-      associations.push(buildAssociation(prop, propType));
+    const resolved = resolver.resolve(prop.type);
+    if (resolved && isLayerType(resolved.type)) {
+      associations.push(buildAssociation(prop, resolved.type));
     } else {
-      attributes.push(buildAttribute(prop, []));
+      attributes.push(buildAttribute(prop, [], resolved));
     }
   }
 
@@ -74,8 +95,12 @@ function buildClass(layerType: LayerType): FeatureCatalogueClass {
   };
 }
 
-function buildAttribute(prop: CompositeTypeProperty, ancestry: readonly DataType[]): FeatureCatalogueAttribute {
-  const propType = prop.type.element;
+function buildAttribute(
+  prop: CompositeTypeProperty,
+  ancestry: readonly DataType[],
+  resolved: ResolvedType | undefined
+): FeatureCatalogueAttribute {
+  const propType = resolved?.type;
 
   const attribute: FeatureCatalogueAttribute = {
     name: simpleName(prop),
@@ -92,7 +117,10 @@ function buildAttribute(prop: CompositeTypeProperty, ancestry: readonly DataType
         'cannot inline it as repeated catalogue attributes.'
       );
     }
-    attribute.attributes = propType.properties.map(nested => buildAttribute(nested, [...ancestry, propType]));
+    const nestedResolver = resolved!.resolver;
+    attribute.attributes = propType.properties.map(nested =>
+      buildAttribute(nested, [...ancestry, propType], nestedResolver.resolve(nested.type))
+    );
   } else if (propType && isCodeListType(propType)) {
     attribute.valueDomain = buildValueDomain(propType);
   }
@@ -115,14 +143,14 @@ function buildValueDomain(codeListType: CodeListType): ValueDomain {
     valueDomain.definition = codeListType.description;
   }
 
-  const codeListTag = codeListType.tags.find(tag => tag.name === 'codeList');
-  if (codeListTag && typeof codeListTag.value === 'string') {
-    valueDomain.codeList = codeListTag.value;
+  // an external codelist (grammar: `codelist Foo import dictionary "url" {}`), not a set of
+  // tags -- these come straight off the CodeListType, not codeListType.tags.
+  if (codeListType.sourceUrl !== undefined) {
+    valueDomain.codeList = codeListType.sourceUrl;
   }
 
-  const asDictionaryTag = codeListType.tags.find(tag => tag.name === 'asDictionary');
-  if (asDictionaryTag) {
-    valueDomain.asDictionary = asDictionaryTag.value === true || asDictionaryTag.value === 'true';
+  if (codeListType.asDictionary !== undefined) {
+    valueDomain.asDictionary = codeListType.asDictionary ? 'true' : 'false';
   }
 
   if (codeListType.items.length > 0) {
@@ -136,7 +164,7 @@ function buildCodeListValue(item: CodeListItem): CodeListValue {
   const value = item.value ?? simpleName(item);
   return {
     value,
-    label: item.description ?? item.title ?? value
+    label: item.description ?? value
   };
 }
 
@@ -175,7 +203,7 @@ function packageOf(qName: string[]): string {
   return qName.slice(0, -1).join('.');
 }
 
-async function readModelFile(fileName: string): Promise<GeoForgeModel | GeoForgePackage> {
+async function readModelFile(fileName: string): Promise<Namespace> {
   let content: string;
   try {
     content = await fs.readFile(fileName, 'utf-8');
@@ -200,7 +228,7 @@ async function readModelFile(fileName: string): Promise<GeoForgeModel | GeoForge
   return parsed;
 }
 
-function isNamespaceModel(value: unknown): value is GeoForgeModel | GeoForgePackage {
+function isNamespaceModel(value: unknown): value is Namespace {
   if (!value || typeof value !== 'object') {
     return false;
   }

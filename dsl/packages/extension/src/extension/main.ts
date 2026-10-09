@@ -7,6 +7,7 @@ import * as vscode from 'vscode';
 import type { LanguageClientOptions, ServerOptions } from 'vscode-languageclient/node.js';
 import { LanguageClient, TransportKind } from 'vscode-languageclient/node.js';
 import type { JavaGeneratorConfig } from './java-generator-config.js';
+import { discoverGeneratorTargets, runGeneratorTarget } from './generator-targets.js';
 
 let client: LanguageClient;
 const execFileAsync = promisify(execFile);
@@ -14,27 +15,12 @@ const execFileAsync = promisify(execFile);
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     client = await startLanguageClient(context);
 
-    const generatePlantumlCommand = vscode.commands.registerCommand('geoforge.generatePlantuml', async () => {
-        const filePath = await pickPlantumlSourceFile();
-        if (!filePath) {
-            return;
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(editor => {
+        const fsPath = editor?.document.uri.fsPath;
+        if (fsPath?.endsWith('.puml')) {
+            void rememberVisitedPlantuml(context, fsPath);
         }
-        const succeeded = await runGeoforgeCli(['plantuml', filePath], filePath, context.extensionPath);
-        if (succeeded) {
-            await openGeneratedPlantuml(filePath);
-        }
-    });
-
-    const dslToModelCommand = vscode.commands.registerCommand('geoforge.dslToModel', async () => {
-        const filePath = await pickGeoforgeFile();
-        if (!filePath) {
-            return;
-        }
-        const succeeded = await runGeoforgeCli(['dsl2model', filePath], filePath, context.extensionPath);
-        if (succeeded) {
-            await openGeneratedDslToModel(filePath);
-        }
-    });
+    }));
 
     const modelToDslCommand = vscode.commands.registerCommand('geoforge.modelToDsl', async () => {
         const filePath = await pickModelJsonFile();
@@ -47,32 +33,122 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         }
     });
 
-    const runJavaDtoGeneratorCommand = vscode.commands.registerCommand('geoforge.runJavaDtoGenerator', async () => {
-        const modelFile = await pickModelJsonFile();
-        if (!modelFile) {
-            vscode.window.showErrorMessage('Could not determine model JSON input file. Open a .geoforge.json file or select one.');
+    const generateCommand = vscode.commands.registerCommand('geoforge.generate', async () => {
+        const builtins: GenerateQuickPickItem[] = GENERATE_TARGETS.map(t => ({
+            label: t.label,
+            run: () => t.run(context)
+        }));
+        const custom: GenerateQuickPickItem[] = discoverCustomGeneratorTargets().map(target => ({
+            label: target.config.label,
+            run: () => runGeneratorTarget(target)
+        }));
+
+        const picked = await vscode.window.showQuickPick([...builtins, ...custom], { placeHolder: 'Generate...' });
+        if (!picked) {
             return;
         }
-
-        const { jarPath, attemptedPaths } = resolveJavaDtoGeneratorRuntime(modelFile, context.extensionPath);
-        if (!jarPath) {
-            vscode.window.showErrorMessage(
-                `Java DTO generator jar not found. Tried: ${attemptedPaths.join(', ')}. Build it with mvn package in java-gen/java-dto-generator.`
-            );
-            return;
-        }
-
-        const workspaceRoot = getWorkspaceRoot(modelFile) ?? path.dirname(modelFile);
-        const configPath = await ensureJavaGeneratorConfigFile(workspaceRoot);
-        if (!configPath) {
-            vscode.window.showErrorMessage('Java generator config file not found. Create geoforge-java-generator.json in workspace root.');
-            return;
-        }
-
-        await runJavaDtoGeneratorMain(jarPath, modelFile, configPath);
+        await picked.run();
     });
 
-    context.subscriptions.push(generatePlantumlCommand, dslToModelCommand, modelToDslCommand, runJavaDtoGeneratorCommand);
+    context.subscriptions.push(modelToDslCommand, generateCommand);
+}
+
+interface GenerateQuickPickItem extends vscode.QuickPickItem {
+    label: string;
+    run(): Promise<void>;
+}
+
+interface GenerateTarget {
+    label: string;
+    run(context: vscode.ExtensionContext): Promise<void>;
+}
+
+const GENERATE_TARGETS: GenerateTarget[] = [
+    { label: 'PlantUML', run: generatePlantuml },
+    { label: 'Feature Catalogue', run: generateFeatureCatalogue },
+    { label: 'Java DTOs', run: generateJavaDto }
+];
+
+/**
+ * Custom targets defined under .geoforge/generators/ (see generator-targets.ts), discovered by
+ * walking from the workspace root down to the active editor's own directory -- so a target defined
+ * closer to whatever the user is working on overrides a same-named one defined nearer the root.
+ */
+function discoverCustomGeneratorTargets() {
+    const editor = vscode.window.activeTextEditor;
+    const referencePath = editor?.document.uri.fsPath;
+    const workspaceRoot = referencePath ? getWorkspaceRoot(referencePath) : vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    const startDir = referencePath ? path.dirname(referencePath) : workspaceRoot;
+    if (!startDir) {
+        return [];
+    }
+    return discoverGeneratorTargets(startDir, workspaceRoot);
+}
+
+/** A model's PlantUML diagrams are described by "<model>.puml-options.json"; see the cli's plantuml-options. */
+const PUML_OPTIONS_SUFFIX = '.puml-options.json';
+
+async function generatePlantuml(context: vscode.ExtensionContext): Promise<void> {
+    const filePath = await pickPlantumlSourceFile();
+    if (!filePath) {
+        return;
+    }
+    const args = ['plantuml', filePath];
+    if (!filePath.endsWith('.geoforge.json')) {
+        const workspaceRoot = getWorkspaceRoot(filePath);
+        if (workspaceRoot) {
+            args.push('--workspace', workspaceRoot);
+        }
+    }
+    const startedAt = Date.now();
+    const succeeded = await runGeoforgeCli(args, filePath, context.extensionPath);
+    if (succeeded) {
+        await openGeneratedPlantuml(context, filePath, startedAt);
+    }
+}
+
+async function generateFeatureCatalogue(context: vscode.ExtensionContext): Promise<void> {
+    const filePath = await pickGeoforgeFile();
+    if (!filePath) {
+        return;
+    }
+    const modelFile = await ensureModelJsonFile(filePath, context);
+    if (!modelFile) {
+        return;
+    }
+    const succeeded = await runGeoforgeCli(['model2fc', modelFile], modelFile, context.extensionPath);
+    if (succeeded) {
+        await openGeneratedModelToFeatureCatalogue(modelFile);
+    }
+}
+
+async function generateJavaDto(context: vscode.ExtensionContext): Promise<void> {
+    const filePath = await pickGeoforgeFile();
+    if (!filePath) {
+        vscode.window.showErrorMessage('Could not determine GeoForge input file. Open a .geoforge or .geoforge.json file or select one.');
+        return;
+    }
+    const modelFile = await ensureModelJsonFile(filePath, context);
+    if (!modelFile) {
+        return;
+    }
+
+    const { jarPath, attemptedPaths } = resolveJavaDtoGeneratorRuntime(modelFile, context.extensionPath);
+    if (!jarPath) {
+        vscode.window.showErrorMessage(
+            `Java DTO generator jar not found. Tried: ${attemptedPaths.join(', ')}. Build it with mvn package in java-gen/java-dto-generator.`
+        );
+        return;
+    }
+
+    const workspaceRoot = getWorkspaceRoot(modelFile) ?? path.dirname(modelFile);
+    const configPath = await ensureJavaGeneratorConfigFile(workspaceRoot);
+    if (!configPath) {
+        vscode.window.showErrorMessage('Java generator config file not found. Create geoforge-java-generator.json in workspace root.');
+        return;
+    }
+
+    await runJavaDtoGeneratorMain(jarPath, modelFile, configPath);
 }
 
 export function deactivate(): Thenable<void> | undefined {
@@ -196,19 +272,59 @@ async function resolveJavaDtoOutputOptions(configPath: string): Promise<{ output
     return { outputDirectory, basePackage };
 }
 
-async function openGeneratedPlantuml(sourceFilePath: string): Promise<void> {
-    const generatedPath = getGeneratedPlantumlPath(sourceFilePath);
-    await openGeneratedFile(generatedPath, `PlantUML generation finished, but output file was not found at ${generatedPath}`);
+/**
+ * Opens the diagram(s) just generated: "<model>.geoforge.puml" for default options, or one
+ * "<model>.<options name>.puml" per *.puml.options.json file (see cli's plantuml-options) -- told
+ * apart from stale ones left over from earlier runs by having been written since `startedAt`.
+ * They are opened least recently visited first, so the one you were last looking at ends up focused.
+ */
+async function openGeneratedPlantuml(context: vscode.ExtensionContext, sourceFilePath: string, startedAt: number): Promise<void> {
+    const dir = path.dirname(path.resolve(sourceFilePath));
+    const stem = getPlantumlModelStem(sourceFilePath);
+    const generated = fs.readdirSync(dir)
+        .filter(file => file.startsWith(`${stem}.`) && file.endsWith('.puml'))
+        .map(file => path.join(dir, file))
+        .filter(file => fs.statSync(file).mtimeMs >= startedAt - 1000);
+    if (generated.length === 0) {
+        const expected = path.join(dir, `${stem}.geoforge.puml`);
+        vscode.window.showWarningMessage(`PlantUML generation finished, but no output file was found next to ${expected}`);
+        return;
+    }
+    const visited = context.workspaceState.get<string[]>(VISITED_PLANTUML_KEY, []);
+    // Most recently visited last; never visited first, in file name order.
+    const rank = (file: string): number => visited.indexOf(file);
+    generated.sort((a, b) => rank(a) - rank(b));
+    for (const file of generated) {
+        await openGeneratedFile(file, `PlantUML generation finished, but output file was not found at ${file}`);
+    }
 }
 
-async function openGeneratedDslToModel(sourceFilePath: string): Promise<void> {
-    const generatedPath = getGeneratedDslToModelPath(sourceFilePath);
-    await openGeneratedFile(generatedPath, `DSL-to-model finished, but output file was not found at ${generatedPath}`);
+const VISITED_PLANTUML_KEY = 'geoforge.visitedPlantuml';
+const MAX_VISITED_PLANTUML = 100;
+
+/** Records `fsPath` as the most recently visited diagram, in the workspace state (most recent last). */
+async function rememberVisitedPlantuml(context: vscode.ExtensionContext, fsPath: string): Promise<void> {
+    const visited = context.workspaceState.get<string[]>(VISITED_PLANTUML_KEY, []).filter(file => file !== fsPath);
+    visited.push(fsPath);
+    await context.workspaceState.update(VISITED_PLANTUML_KEY, visited.slice(-MAX_VISITED_PLANTUML));
+}
+
+/** "nadag" for "nadag.geoforge", "nadag.geoforge.json" and "nadag.puml-options.json". */
+function getPlantumlModelStem(sourceFilePath: string): string {
+    return path.basename(sourceFilePath)
+        .replace(/\.puml-options\.json$/, '')
+        .replace(/\.json$/, '')
+        .replace(/\.geoforge$/, '');
 }
 
 async function openGeneratedModelToDsl(sourceFilePath: string): Promise<void> {
     const generatedPath = getGeneratedModelToDslPath(sourceFilePath);
     await openGeneratedFile(generatedPath, `Model-to-DSL finished, but output file was not found at ${generatedPath}`);
+}
+
+async function openGeneratedModelToFeatureCatalogue(sourceFilePath: string): Promise<void> {
+    const generatedPath = getGeneratedModelToFeatureCataloguePath(sourceFilePath);
+    await openGeneratedFile(generatedPath, `Model-to-feature-catalogue finished, but output file was not found at ${generatedPath}`);
 }
 
 async function openGeneratedFile(generatedPath: string, warningMessage: string): Promise<void> {
@@ -220,26 +336,26 @@ async function openGeneratedFile(generatedPath: string, warningMessage: string):
     await vscode.window.showTextDocument(document, { preview: false });
 }
 
-function getGeneratedPlantumlPath(sourceFilePath: string): string {
-    const absolute = path.resolve(sourceFilePath);
+/** The model JSON file a .geoforge file compiles to -- always alongside its source. */
+function getModelJsonPath(geoforgeFilePath: string): string {
+    const absolute = path.resolve(geoforgeFilePath);
     const outputDirectory = path.dirname(absolute);
-    const sourceBaseName = path.basename(absolute, path.extname(absolute));
-    const outputBaseName = sourceBaseName.endsWith('.geoforge') ? sourceBaseName : `${sourceBaseName}.geoforge`;
-    return path.join(outputDirectory, `${outputBaseName}.puml`);
-}
-
-function getGeneratedDslToModelPath(sourceFilePath: string): string {
-    const absolute = path.resolve(sourceFilePath);
-    const outputDirectory = path.join(path.dirname(absolute), 'generated');
     const sourceBaseName = path.basename(absolute, path.extname(absolute));
     return path.join(outputDirectory, `${sourceBaseName}.geoforge.json`);
 }
 
 function getGeneratedModelToDslPath(sourceFilePath: string): string {
     const absolute = path.resolve(sourceFilePath);
-    const outputDirectory = path.join(path.dirname(absolute), 'generated');
+    const outputDirectory = path.dirname(absolute);
     const sourceBaseName = path.basename(absolute, path.extname(absolute));
     return path.join(outputDirectory, `${sourceBaseName}.geoforge`);
+}
+
+function getGeneratedModelToFeatureCataloguePath(sourceFilePath: string): string {
+    const absolute = path.resolve(sourceFilePath);
+    const outputDirectory = path.dirname(absolute);
+    const sourceBaseName = path.basename(absolute, path.extname(absolute));
+    return path.join(outputDirectory, `${sourceBaseName}.feature_catalogue.json`);
 }
 
 function resolveCliPath(sourceFilePath: string, extensionPath: string): { cliPath?: string; attemptedPaths: string[] } {
@@ -322,9 +438,17 @@ function getWorkspaceRoot(filePath: string): string | undefined {
     return vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
 }
 
+/**
+ * Picks the .geoforge file the user is working on, or an already-open .geoforge.json if that's
+ * what they're actually looking at. Prompts for a .geoforge file (not .json) otherwise, since the
+ * model JSON is an implementation detail -- see ensureModelJsonFile.
+ */
 async function pickGeoforgeFile(): Promise<string | undefined> {
     const editor = vscode.window.activeTextEditor;
     if (editor?.document.languageId === 'geoforge') {
+        return editor.document.uri.fsPath;
+    }
+    if (editor && editor.document.uri.fsPath.endsWith('.geoforge.json')) {
         return editor.document.uri.fsPath;
     }
 
@@ -338,25 +462,58 @@ async function pickGeoforgeFile(): Promise<string | undefined> {
     return selected?.[0]?.fsPath;
 }
 
+/**
+ * Ensures `filePath` has an up-to-date model JSON and returns its path -- generating it (and every
+ * other .geoforge file it actually references, needed for cross-file references to resolve)
+ * transparently if `filePath` is a .geoforge source, or passing it through unchanged if it's
+ * already JSON. Searches the whole workspace folder (not just filePath's own directory) for
+ * referenced files, since a real VS Code workspace commonly spans several directories.
+ */
+async function ensureModelJsonFile(filePath: string, context: vscode.ExtensionContext): Promise<string | undefined> {
+    if (filePath.endsWith('.geoforge.json')) {
+        return filePath;
+    }
+    const args = ['dsl2model', filePath];
+    const workspaceRoot = getWorkspaceRoot(filePath);
+    if (workspaceRoot) {
+        args.push('--workspace', workspaceRoot);
+    }
+    const succeeded = await runGeoforgeCli(args, filePath, context.extensionPath);
+    if (!succeeded) {
+        return undefined;
+    }
+    const modelPath = getModelJsonPath(filePath);
+    if (!fs.existsSync(modelPath)) {
+        vscode.window.showErrorMessage(`Model generation finished, but output file was not found at ${modelPath}`);
+        return undefined;
+    }
+    return modelPath;
+}
+
 async function pickPlantumlSourceFile(): Promise<string | undefined> {
     const editor = vscode.window.activeTextEditor;
     if (editor?.document.languageId === 'geoforge') {
         return editor.document.uri.fsPath;
     }
-    if (editor && editor.document.uri.fsPath.endsWith('.geoforge.json')) {
+    if (editor && (editor.document.uri.fsPath.endsWith('.geoforge.json') || editor.document.uri.fsPath.endsWith(PUML_OPTIONS_SUFFIX))) {
         return editor.document.uri.fsPath;
     }
 
     const selected = await vscode.window.showOpenDialog({
         canSelectMany: false,
         filters: {
-            'GeoForge sources': ['geoforge', 'json']
+            'GeoForge sources and PlantUML options': ['geoforge', 'json']
         },
         openLabel: 'Select GeoForge source file'
     });
     return selected?.[0]?.fsPath;
 }
 
+/**
+ * Picks an existing model JSON file directly -- used by Model To DSL, whose whole purpose is
+ * round-tripping FROM a model (possibly one with no corresponding .geoforge source at all, e.g.
+ * one produced by the Java ShapeChange pipeline), so it doesn't make sense to derive one here.
+ */
 async function pickModelJsonFile(): Promise<string | undefined> {
     const editor = vscode.window.activeTextEditor;
     if (editor && editor.document.uri.fsPath.endsWith('.geoforge.json')) {

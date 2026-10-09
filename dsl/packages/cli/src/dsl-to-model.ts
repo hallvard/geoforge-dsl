@@ -1,29 +1,27 @@
 import chalk from 'chalk';
-import { NodeFileSystem } from 'langium/node';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import type { Model } from 'geoforge-language';
-import { creategeoforgeServices } from 'geoforge-language';
-import { buildModel } from './builder.js';
-import { extractAstNode } from './util.js';
+import { compileDirectory } from './model-compiler.js';
 
 export type DslToModelOptions = {
   destination?: string;
+  workspace?: string;
 };
 
 export const dslToModelAction = async (fileName: string, opts: DslToModelOptions): Promise<void> => {
-  const services = creategeoforgeServices(NodeFileSystem).geoforge;
-  const astModel = await extractAstNode<Model>(fileName, services);
-  const model = buildModel(astModel);
-  const generatedFilePath = await writeModelFile(model, fileName, opts.destination);
+  const { path: generatedFilePath } = await compileDirectory(fileName, opts.destination, opts.workspace);
   console.log(chalk.green(`Model JSON generated to ${generatedFilePath}`));
 };
 
-async function writeModelFile(model: object, sourceFilePath: string, destination?: string): Promise<string> {
+export function modelJsonPathFor(sourceFilePath: string, destination?: string): string {
   const data = extractDestinationAndName(sourceFilePath, destination);
-  const generatedFilePath = path.join(data.destination, `${data.name}.geoforge.json`);
+  return path.join(data.destination, `${data.name}.geoforge.json`);
+}
 
-  await fs.mkdir(data.destination, { recursive: true });
+export async function writeModelFile(model: object, sourceFilePath: string, destination?: string): Promise<string> {
+  const generatedFilePath = modelJsonPathFor(sourceFilePath, destination);
+
+  await fs.mkdir(path.dirname(generatedFilePath), { recursive: true });
 
   let json: string;
   try {
@@ -43,7 +41,7 @@ async function writeModelFile(model: object, sourceFilePath: string, destination
 function extractDestinationAndName(filePath: string, destination: string | undefined): { destination: string; name: string } {
   const absolute = path.resolve(filePath);
   return {
-    destination: destination ?? path.join(path.dirname(absolute), 'generated'),
+    destination: destination ?? path.dirname(absolute),
     name: path.basename(absolute, path.extname(absolute))
   };
 }

@@ -1,32 +1,29 @@
 package Fellesegenskaper
 
-builtin CharacterString
+import builtins
 
-builtin DateTime
-
-datatype "unik identifikasjon av et dataobjekt
-
+"unik identifikasjon av et dataobjekt
 Følger dataobjektet og identifiserer det i hele dets levetid."
-  Identifikasjon {
+datatype Identifikasjon {
   "lokal identifikator av et objekt.
-
-Skal være en uuid, slik at den er unik, uavhengig av navnerommet"
-    lokalId: CharacterString
+  Skal være en uuid, slik at den er unik, uavhengig av navnerommet"
+  lokalId: CharacterString
+  
   "navnerom som unikt identifiserer datakilden til et objekt.
-
-Navnerom anbefales å være en http-URI og må være registrert i data.geonorge.no
-For plan anbefales navnerommet http://data.geonorge.no/sosi/plan"
-    navnerom: CharacterString
+  Navnerom anbefales å være en http-URI og må være registrert i data.geonorge.no
+  For plan anbefales navnerommet http://data.geonorge.no/sosi/plan"
+  navnerom: CharacterString
+  
   "identifikasjon av en spesiell versjon av et geografisk objekt (instans)"
-    versjonId?: CharacterString
+  versjonId?: CharacterString
 }
 
-abstract layer "abstrakt objekttype som bærer de egenskapene fra SOSI_Fellesegenskaper som er anvendt på objekttypene i denne modellen."
-  Fellesegenskaper {
+"abstrakt objekttype som bærer de egenskapene fra SOSI_Fellesegenskaper som er anvendt på objekttypene i denne modellen."
+abstract feature Fellesegenskaper {
   "unik identifikasjon av et dataobjekt
+  Følger dataobjektet og identifiserer det i hele dets levetid."
+  identity identifikasjon: Identifikasjon
 
-Følger dataobjektet og identifiserer det i hele dets levetid."
-    identity identifikasjon: Identifikasjon
   "tidspunkt for siste endring på dataobjektet"
-    oppdateringsdato: DateTime
+  oppdateringsdato: DateTime
 }

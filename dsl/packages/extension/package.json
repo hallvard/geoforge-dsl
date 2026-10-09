@@ -19,6 +19,10 @@
         "Programming Languages"
     ],
     "contributes": {
+        "jsonValidation": [{
+            "fileMatch": "*.puml-options.json",
+            "url": "./schemas/puml-options.schema.json"
+        }],
         "languages": [{
             "id": "geoforge",
             "aliases": ["geoforge", "geoforge"],
@@ -35,29 +39,24 @@
             "path": "syntaxes/geoforge.tmLanguage.json"
         }],
         "commands": [{
-            "command": "geoforge.generatePlantuml",
-            "title": "Generate PlantUML",
-            "category": "geoforge"
-        }, {
-            "command": "geoforge.dslToModel",
-            "title": "DSL To Model",
+            "command": "geoforge.generate",
+            "title": "Generate...",
             "category": "geoforge"
         }, {
             "command": "geoforge.modelToDsl",
             "title": "Model To DSL",
             "category": "geoforge"
-        }, {
-            "command": "geoforge.runJavaDtoGenerator",
-            "title": "Run Java DTO Generator",
-            "category": "geoforge"
-        }]
+        }],
+        "chatSkills": [
+            { "path": "./skills/geoforge-language/SKILL.md" },
+            { "path": "./skills/geoforge-commands/SKILL.md" },
+            { "path": "./skills/geoforge-generator-targets/SKILL.md" }
+        ]
     },
     "activationEvents": [
         "onLanguage:geoforge",
-        "onCommand:geoforge.generatePlantuml",
-        "onCommand:geoforge.dslToModel",
-        "onCommand:geoforge.modelToDsl",
-        "onCommand:geoforge.runJavaDtoGenerator"
+        "onCommand:geoforge.generate",
+        "onCommand:geoforge.modelToDsl"
     ],
     "main": "./out/extension/main.cjs",
     "scripts": {

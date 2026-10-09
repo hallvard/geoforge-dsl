@@ -1,0 +1,1417 @@
+{
+  "elementType": "package",
+  "name": [
+    "no",
+    "ngu",
+    "nadag",
+    "generelle_typer"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "generelle_typer",
+        "Identifikasjon"
+      ],
+      "description": "Unik identifikasjon av et objekt, ivaretatt av den ansvarlige produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet. \r\n\r\nNOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som f.eks bygningsnummer. \r\n\r\nNOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "Identification"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "lokalId"
+          ],
+          "description": "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.\r\n\r\nNOTE: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "localId"
+            }
+          ],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "navnerom"
+          ],
+          "description": "navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  (\"_\") dersom data produsenten ikke er assosiert med bare et land.\r\n\r\nNOTE 1 : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i \"INSPIRE external  Object Identifier Namespaces Register\"\r\n\r\nEksempel: NO for Norge.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "namespace"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "versjonId"
+          ],
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen. \r\n\r\nNOTE Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "versionId"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "generelle_typer",
+        "Kopidata"
+      ],
+      "description": "angivelse av at objektet er hentet fra en kopi av originaldata\r\n\r\nMerknad: \r\nKan benyttes dersom man gjør et uttak av en database som ikke inneholder originaldataene.",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "områdeId"
+          ],
+          "description": "identifikasjon av område som dataene dekker\r\n\r\nMerknad: Kan angis med kommunenummer eller fylkesnummer. Disse bør spesifiseres nærmere.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "originalDatavert"
+          ],
+          "description": "ansvarlig etat for forvaltning av data",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "kopidato"
+          ],
+          "description": "dato når objektet ble kopiert fra originaldatasettet  \r\n\r\nMerknad:\r\nEr en del av egenskapen Kopidata. Brukes i de tilfeller hvor en kopidatabase brukes til distribusjon.\r\nÅ kopiere et datasett til en kopidatabase skal ikke føre til at Oppdateringsdato blir endret.\r\nEventuell redigering av data i et kopidatasett medfører ny Oppdateringsdato, Datafangstdato og/eller Verifiseringsdato.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "generelle_typer",
+        "Målemetode"
+      ],
+      "description": "metode som ligger til grunn for registrering av posisjon\r\n\r\n\r\n-- Definition - - \r\nmethod on which registration of position is based",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "MeasuringMethod"
+        }
+      ],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Terrengmålt"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Measured in terrain"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Totalstasjon"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Total station"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Teodolitt_med_elektronisk_avstandsmåler"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Theodolite with electronic rangefinder"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Teodolitt_med_målebånd"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Theodolite with measuring tape"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ortogonalmetoden"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Orthogonal method"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Utmål"
+          ],
+          "description": "Punkt beregnet på bakgrunn av andre punkter, slik som to avstander eller avstand + retning\r\n\r\n-- Definition -- \r\nPoint calculated on the basis of other items, such as two distances or distance + direction.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "MeasureOut"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tatt_fra_plan"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Taken from plan"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Annet_denne_har_ingen_mening_bør_fjernes_"
+          ],
+          "description": "Annet",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Stereoinstrument"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Stereo instrument"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Aerotriangulert"
+          ],
+          "description": "(Pkt. beregnet v/ aerotriangulering)\r\n\r\n-- Definition -- \r\nPoint calculated by aerotriangulation",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Aerotriangulated"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Analytisk_plotter"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Analytical plotter"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Autograf_vanlig_registrering"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Autograph - normal registration"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalt_stereoinstrument"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digital stereo instrument"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Scannet_fra_kart"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Scanned from map"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Scannet_fra_blyantoriginal"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Scannet from pencilled original"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Scannet_fra_rissefolie"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Scanned from ??scribing folio"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Scannet_fra_transparent_folie_god_kvalitet"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Scanned from transparency folio - good quality"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Scannet_fra_transparent_folie_mindre_god_kvalitet"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Scanned from transparency folio - inferior quality"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Scannet_fra_papirkopi"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Scannet from paper / hard copy"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Flybåren_laserscanner"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Airbourne laser scanner"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_ortofoto_flybilde"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from orthophoto/aerial photo"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_fra_ortofoto_film"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised from orthophoto - film"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_fra_ortofoto_fotokopi"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised from orthophoto - photocopy"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_fra_flybilde_monodigitalisert_fra_film"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised from aerial photo - mono-digitised from film"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_fra_flybilde_monodigitalisert_fra_fotokopi"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised from aerial photo - mono-digitised from photocopy"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_fra_ortofoto"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised from orthophoto"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_skjerm_fra_satellittbilde"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on screen from satellite photo"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_strek_kart"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from line-map"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_blyantoriginal"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from pencilled original"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_rissefolie"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from ??scribing folio"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_transparent_film_god_kvalitet"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from transparency film - good quality"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_transparent_film_mindre_god_kvalitet"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from transparency film - lower quality"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_på_dig_bord_fra_papirkopi"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on dig.table from paper copy"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dig_på_skjerm_fra_scannet_samkopi"
+          ],
+          "description": "(Raster)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised on screen from scanned photographic combination"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Genererte_data_interpolasjon_"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Generated data (interpolation)"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generert_i_terrengmodell"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Generated in terrain model"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vektet_middel"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Weighted mean"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generert_sirkelgeometri"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Generated circular geometry"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generalisert"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Generalised"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generert_sentralpunkt"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Generated central point"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sammenknytningspunkt_randpunkt"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Connection point/edge point"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Koordinater_hentet_fra_GAB"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Coordinates retrieved from GAB"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Koordinater_hentet_fra_JREG"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Coordinates retrieved from JREG"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Beregnet"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Calculated"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Spesielle_metoder"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Special methods"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Målt_med_stikkstang"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Measured with range pole"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Målt_med_waterstang"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Measured with"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Målt_med_målehjul"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Measured with measuring wheel"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Målt_med_stigningsmåler"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Measured with rate of climb indicator"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fastsatt_punkt"
+          ],
+          "description": "punkt fastsatt ut fra et grunnlag f.eks ved partenes enighet ved oppmålingsforretning.",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fastsatt_ved_dom_eller_kongelig_resolusjon"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Stipulated by court decision or royal decree"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Annet_spesifiseres_i_filhode_bør_vel_fjernes_blir_borte_ved_overføring_mellom_systemer_"
+          ],
+          "description": "Annet (spesifiseres i filhode)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "????"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Frihåndstegning"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Free-hand drawing"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_fra_krokering_på_kart"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Digitised from sketching on map"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Direkte_innlagt_på_skjerm"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Directly input on screen"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Treghetsstedfesting"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Inertial ??positioning/localization"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Kodemåling_relative_målinger"
+          ],
+          "description": "Tidligere GPS-Differensiell, pseudorange\r\n\r\n-- Definition -- \r\nPrevious GPS differential, pseudorange",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GPS code measurement, relatively measurements"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Kodemåling_enkeltmålinger"
+          ],
+          "description": "Tidligere GPS, Absolutt, pseudorange\r\n\r\n-- Definition -- \r\nPrevious GPS, absolute, pseudorange",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GPS code measurement, individual measurements"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_statisk_måling"
+          ],
+          "description": "Tidligere GPS, Differensiell\r\n\r\n-- Definition -- \r\nPrevious GPS, differential",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GPS phase measurement, static measurement"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_andre_metoder"
+          ],
+          "description": "(utenom RTK). Tidligere GPS-Absolutt, fase\r\n\r\n-- Definition -- \r\n(not including RTK). Previous Absolute GPS, phase",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GPS phase measurement, other methods"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kombinasjon_av_GPS_Treghet"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Combination of GPS/Inertia"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_RTK"
+          ],
+          "description": "(Realtids kinematisk måling). Tidligere GPS kinematisk (Real time kinematic)\r\n\r\n-- Definition -- \r\n(Real time kinematic measurement). Previous GPS kinematic (Real time kinematic)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GPS phase measurement RTK"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_float_løsning"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GPS phase measurement, float solution"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ukjent_målemetode"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Unknown measurement method"
+            }
+          ]
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "generelle_typer",
+        "MålemetodeHøyde"
+      ],
+      "description": "metode for å måle objekttypens høydeverdi",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Terrengmålt"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Totalstasjon"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Teodolitt_med_elektronisk_avstandsmåler"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Teodolitt_med_målebånd"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ortogonalmetoden"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Nivellement"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tatt_fra_plan"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Annet"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Stereoinstrument"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Aerotriangulert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Analytisk_plotter"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Autograf_vanlig_registrering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalt_stereoinstrument"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Flybåren_laserscanning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Genererte_data_interpolasjon_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generert_i_terrengmodell"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vektet_middel"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generert_sirkelgeometri"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Generalisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sammenknytningspunkt_randpunkt"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Koordinater_hentet_fra_GAB"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Koordinater_hentet_fra_JREG_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Beregnet_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Spesielle_metoder"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Målt_med_stigningsmåler"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fastsatt_ved_dom_eller_kongelig_resolusjon"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Annet_spesifiseres_i_filhode_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Treghetsstedfesting"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Kodemåling_relative_målinger_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Kodemåling_enkeltpunktbestemmelser"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_statisk_måling_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_andre_metoder"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kombinasjon_av_GPS_Treghet"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GPS_Fasemåling_RTK"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ukjent_målemetode"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "generelle_typer",
+        "Posisjonskvalitet"
+      ],
+      "description": "beskrivelse av kvaliteten på stedfestingen",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "målemetode"
+          ],
+          "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "generelle_typer",
+              "Målemetode"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nøyaktighet"
+          ],
+          "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\r\n\r\nMerknad:\r\nOppgitt i cm",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "synbarhet"
+          ],
+          "description": "hvor godt den kartlagte detalj var synbar ved kartleggingen",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "generelle_typer",
+              "Synbarhet"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "målemetodeHøyde"
+          ],
+          "description": "metode for å måle høyden",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "generelle_typer",
+              "MålemetodeHøyde"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nøyaktighetHøyde"
+          ],
+          "description": "nøyaktighet for høyden i cm",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "maksimaltAvvik"
+          ],
+          "description": "absolutt toleranse for geometriske avvik",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "generelle_typer",
+        "Synbarhet"
+      ],
+      "description": "hvor godt den kartlagte detalj var synbar ved kartleggingen",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fullt_ut_synlig_gjenfinnbar_i_terrenget"
+          ],
+          "description": "Default",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dårlig_gjenfinnbar_i_terreng"
+          ],
+          "description": "Forøvrig grei å innmåle. (Benyttes bl.a. for innmåling av ledninger på lukket grøft)",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Middels_synlig_i_flybilde_modell"
+          ],
+          "description": "Middels synlig i flybilde/modell",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dårlig_ikke_synlig_i_flybilde_modell"
+          ],
+          "description": "Dårlig/ikke synlig i flybilde/modell",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    }
+  ]
+}

@@ -1,27 +1,11 @@
 model Reguleringsplan
 
-builtin CharacterString
+import builtins
 
-builtin DateTime
-
-builtin Integer
-
-builtin Kurve
-
-builtin Flate
-
-builtin Date
-
-builtin Real
-
-builtin Punkt
-
-codelist "metode som ligger til grunn for registrering av posisjon
-
-
+"metode som ligger til grunn for registrering av posisjon
 -- Definition - -
 method on which registration of position is based"
-  Målemetode {
+codelist Målemetode {
   "Målt i terrenget , uspesifisert metode/måleinstrument"
   Terrengmålt__Uspesifisert_måleinstrument = "Terrengmålt: Uspesifisert måleinstrument"
   "Målt i terrenget med totalstasjon"
@@ -159,10 +143,9 @@ Point calculated by aerotriangulation"
   Ukjent_målemetode = "Ukjent målemetode"
 }
 
-codelist "nummerering av kommuner i henhold til Statistisk sentralbyrå sin offisielle liste samt et utvalg av utgåtte numre
-
-Merknad: Det presiseres at kommune alltid skal ha 4 sifre, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 sifre." $asDictionary=false
-  Kommunenummer {
+"nummerering av kommuner i henhold til Statistisk sentralbyrå sin offisielle liste samt et utvalg av utgåtte numre
+Merknad: Det presiseres at kommune alltid skal ha 4 sifre, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 sifre."
+codelist Kommunenummer {
   "Halden"
   v_0101 = "0101"
   "Sarpsborg (utgått)"
@@ -1213,13 +1196,13 @@ Merknad: Det presiseres at kommune alltid skal ha 4 sifre, dvs. eventuelt med le
   v_5061 = "5061"
 }
 
-codelist "alfanumerisk kode for land som definert i ISO 3166 Codes for the representation of names of countries and their subdivisions" $asDictionary=true
-  Landskode {
+"alfanumerisk kode for land som definert i ISO 3166 Codes for the representation of names of countries and their subdivisions"
+codelist Landskode as-dictionary {
   Norge = "Norge"
 }
 
-codelist "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
-  Vertikalnivå {
+"planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
+codelist Vertikalnivå {
   Under_grunnen__tunnel_ = "Under grunnen (tunnel)"
   På_grunnen_vannoverflate = "På grunnen/vannoverflate"
   Over_grunnen__bru_ = "Over grunnen (bru)"
@@ -1227,8 +1210,8 @@ codelist "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl
   I_vannsøylen = "I vannsøylen"
 }
 
-codelist "type plan (pbl. 1985 § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 8-1, 11-5, 12-2 og 12-3)"
-  RpPlantype {
+"type plan (pbl. 1985 § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 8-1, 11-5, 12-2 og 12-3)"
+codelist RpPlantype {
   Eldre_reguleringsplan = "Eldre reguleringsplan"
   Mindre_reguleringsendring = "Mindre reguleringsendring"
   "Bebyggelsesplan i henhold til reguleringsplan"
@@ -1239,8 +1222,8 @@ codelist "type plan (pbl. 1985 § 19-1, sjette ledd, § 20-1 andre og femte ledd
   Detaljregulering = "Detaljregulering"
 }
 
-codelist "planens behandling (pbl. 1985 §§ 19-4, 20-5, 27-1, 27-2, 28-1 og 28-2) samt planens virkning (pbl. 1985 §§ 19-6, 20-6, 28-2 og 31/pbl. §§ 8-3, 8-4, 9-3, 9-4, §§ 11-12 til 11-15, og §§ 12-8 til 12-12)"
-  Planstatus {
+"planens behandling (pbl. 1985 §§ 19-4, 20-5, 27-1, 27-2, 28-1 og 28-2) samt planens virkning (pbl. 1985 §§ 19-6, 20-6, 28-2 og 31/pbl. §§ 8-3, 8-4, 9-3, 9-4, §§ 11-12 til 11-15, og §§ 12-8 til 12-12)"
+codelist Planstatus {
   Endelig_vedtatt_arealplan = "Endelig vedtatt arealplan"
   Opphevet = "Opphevet"
   Utgått_erstattet = "Utgått/erstattet"
@@ -1248,8 +1231,8 @@ codelist "planens behandling (pbl. 1985 §§ 19-4, 20-5, 27-1, 27-2, 28-1 og 28-
   Overstyrt = "Overstyrt"
 }
 
-codelist "angir om plan har bestemmelser, i så fall om de er egen tekst, og om de er påført plankartet (pbl. 1985 § 20-4 andre ledd bokstav a til h og § 26/pbl. §§ 11-9, 11-10 og 11-11, samt § 12-7)"
-  Planbestemmelse {
+"angir om plan har bestemmelser, i så fall om de er egen tekst, og om de er påført plankartet (pbl. 1985 § 20-4 andre ledd bokstav a til h og § 26/pbl. §§ 11-9, 11-10 og 11-11, samt § 12-7)"
+codelist Planbestemmelse {
   Med_bestemmelser_som_egen_tekst = "Med bestemmelser som egen tekst"
   Uten_bestemmelser = "Uten bestemmelser"
   "Planbestemmelser fremgår kun av kartet (bygghøyder mv.)"
@@ -1258,8 +1241,8 @@ codelist "angir om plan har bestemmelser, i så fall om de er egen tekst, og om 
   Planbestemmelser_både_kart_og_tekst = "Planbestemmelser både kart og tekst"
 }
 
-codelist "kode for hvilken lov planen er vedtatt etter"
-  LovreferanseType {
+"kode for hvilken lov planen er vedtatt etter"
+codelist LovreferanseType {
   "Før bygningsloven av 1924"
   Før_BL_1924 = "Før BL 1924"
   "Bygningsloven av 1924"
@@ -1274,14 +1257,14 @@ codelist "kode for hvilken lov planen er vedtatt etter"
   PBL_2008 = "PBL 2008"
 }
 
-codelist "om forslagsstiller er privat eller offentlig planmyndighet"
-  ForslagsstillerType {
+"om forslagsstiller er privat eller offentlig planmyndighet"
+codelist ForslagsstillerType {
   offentlig = "offentlig"
   privat = "privat"
 }
 
-codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-  RegformBrukFormål {
+"type reguleringsformål (pbl. 1985 § 25 første ledd)"
+codelist RegformBrukFormål {
   "Byggeområde  (pbl. 1985 § 25 første ledd, nr. 1), (For generalisering)"
   Byggeområde = "Byggeområde"
   "Område for boliger med tilhørende anlegg"
@@ -1513,8 +1496,8 @@ detaljering må angis som reguleringsfomålsutdyping"
   Unyansert_formål = "Unyansert formål"
 }
 
-codelist "type grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. §12-7 første ledd nr 5 og TEK10 kap. 5)"
-  Utnyttingstype {
+"type grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. §12-7 første ledd nr 5 og TEK10 kap. 5)"
+codelist Utnyttingstype {
   "Tillatt bebygd areal i prosent etter byggeforskrift 1987"
   BYA_87 = "BYA-87"
   "Tillatt bruksareal i kvm (byggeforskrift 69 og tidligere)"
@@ -1547,8 +1530,8 @@ codelist "type grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 f
   __BRA = "%-BRA"
 }
 
-codelist "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4 andre ledd bokstav a og § 26 første ledd og § 28-2, samt pbl. §§ 11-10 nr. 1 og 12-7 nr. 1 og 2)"
-  Byggverkbestemmelse {
+"planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4 andre ledd bokstav a og § 26 første ledd og § 28-2, samt pbl. §§ 11-10 nr. 1 og 12-7 nr. 1 og 2)"
+codelist Byggverkbestemmelse {
   Fastsatt_plassering = "Fastsatt plassering"
   Fastsatt_høyde = "Fastsatt høyde"
   Fastsatt_plassering_høyde = "Fastsatt plassering/høyde"
@@ -1558,24 +1541,24 @@ codelist "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 
   Fastsatt_utforming = "Fastsatt utforming"
 }
 
-codelist "planbestemmelse om avkjørsel (pbl. §§ 25 og 26 første ledd)
+"planbestemmelse om avkjørsel (pbl. §§ 25 og 26 første ledd)
 
 Merknad:
 Angir om avkjørsel til formålsområde tillates eller ikke tillates, eller om det i plan / bestemmelser er tillatt avkjørsel via annet formål enn vei (via gangvei, turvei e.l.).  I sistnevnte situasjon knyttes egenskapen til det formålsområde det er tillatt"
-  Avkjørselsbestemmelse {
+codelist Avkjørselsbestemmelse {
   Avkjørsel_tillatt = "Avkjørsel tillatt"
   Avkjørsel_ikke_tillatt = "Avkjørsel ikke tillatt"
 }
 
-codelist "planbestemmelse om arealet skal brukes av det offentlige, eller være fellesarealer for flere eiendommer (pbl. § 11-10 nr. 3 og § 12-7 nr. 14)"
-  EierformType {
+"planbestemmelse om arealet skal brukes av det offentlige, eller være fellesarealer for flere eiendommer (pbl. § 11-10 nr. 3 og § 12-7 nr. 14)"
+codelist EierformType {
   offentlig_formål = "offentlig formål"
   felles = "felles"
   annen_eierform = "annen eierform"
 }
 
-codelist "arealformål - formålet må angis nærmere (pbl. § 12-5)"
-  RpArealformål {
+"arealformål - formålet må angis nærmere (pbl. § 12-5)"
+codelist RpArealformål {
   Bebyggelse_og_anlegg = "Bebyggelse og anlegg"
   Boligbebyggelse = "Boligbebyggelse"
   Boligbebyggelse_frittliggende_småhusbebyggelse = "Boligbebyggelse-frittliggende småhusbebyggelse"
@@ -1830,37 +1813,36 @@ codelist "arealformål - formålet må angis nærmere (pbl. § 12-5)"
   Angitt_militært_formål_kombinert_med_andre_angitte_hovedformål = "Angitt militært formål kombinert med andre angitte hovedformål"
 }
 
-codelist "hensynssone - støysone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpStøySoneType {
+"hensynssone - støysone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+codelist RpStøySoneType {
   Rød_sone_iht__T_1442 = "Rød sone iht. T-1442"
   Gul_sone_iht__T_1442 = "Gul sone iht. T-1442"
   Grønn_sone_iht__T_1442 = "Grønn sone iht. T-1442"
   Andre_støysoner = "Andre støysoner"
 }
 
-codelist "hensynssone - videreføring av gjeldende reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav f)"
-  RpDetaljeringSoneType {
+"hensynssone - videreføring av gjeldende reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav f)"
+codelist RpDetaljeringSoneType {
   Reguleringsplan_skal_fortsatt_gjelde = "Reguleringsplan skal fortsatt gjelde"
   "Ikke gyldig f.o.m. SOSI 4.5 desember 2011"
   Reguleringsplan_skal_fortsatt_gjelde___generalisert__utgått_ = "Reguleringsplan skal fortsatt gjelde - generalisert (utgått)"
 }
 
-codelist "hensynssone - krav til infrastruktur (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
-  RpInfrastrukturSoneType {
+"hensynssone - krav til infrastruktur (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+codelist RpInfrastrukturSoneType {
   Krav_vedrørende_infrastruktur = "Krav vedrørende infrastruktur"
   Rekkefølgekrav_infrastruktur = "Rekkefølgekrav infrastruktur"
   Rekkefølgekrav_samfunnservice = "Rekkefølgekrav samfunnservice"
   Rekkefølgekrav_grønnstruktur = "Rekkefølgekrav grønnstruktur"
 }
 
-codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-  RegformRekkefølge {
+"type reguleringsformål (pbl. 1985 § 25 første ledd)"
+codelist RegformRekkefølge {
   Formålsrekkefølge = "Formålsrekkefølge"
   Midlertidig_trafikkområde = "Midlertidig trafikkområde"
 }
 
-codelist
-  RpBåndleggingSoneType {
+codelist RpBåndleggingSoneType {
   Båndlegging_for_regulering_etter_pbl_ = "Båndlegging for regulering etter pbl."
   Båndlegging_etter_lov_om_naturvern = "Båndlegging etter lov om naturvern"
   Båndlegging_etter_lov_om_kulturminner = "Båndlegging etter lov om kulturminner"
@@ -1875,8 +1857,8 @@ Er feilaktig kommet med i kodelistene i SOSI, ikke vært med i kart- og planfors
   Båndlegging_i_henhold_til_reguleringsbestemmelser___12_7__utgått_ = "Båndlegging i henhold til reguleringsbestemmelser § 12-7 (utgått)"
 }
 
-codelist "hensynssone - sikringssone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpSikringSoneType {
+"hensynssone - sikringssone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+codelist RpSikringSoneType {
   Nedslagsfelt_drikkevann = "Nedslagsfelt drikkevann"
   Område_for_grunnvannsforsyning = "Område for grunnvannsforsyning"
   Byggeforbud_rundt_veg__bane_og_flyplass = "Byggeforbud rundt veg, bane og flyplass"
@@ -1884,8 +1866,8 @@ codelist "hensynssone - sikringssone (pbl. § 12-6, jf. § 11-8 tredje ledd boks
   Andre_sikringssoner = "Andre sikringssoner"
 }
 
-codelist "hensynssone  - særlig hensyn med angivelse av interesse (pbl. §12-6, jf. § 11-8 tredje ledd bokstav c)"
-  RpAngittHensynSoneType {
+"hensynssone  - særlig hensyn med angivelse av interesse (pbl. §12-6, jf. § 11-8 tredje ledd bokstav c)"
+codelist RpAngittHensynSoneType {
   Hensyn_landbruk = "Hensyn landbruk"
   Hensyn_reindrift = "Hensyn reindrift"
   Hensyn_friluftsliv = "Hensyn friluftsliv"
@@ -1897,14 +1879,14 @@ codelist "hensynssone  - særlig hensyn med angivelse av interesse (pbl. §12-6,
   Hensynssone_for_sikring_av_mineralressurser = "Hensynssone for sikring av mineralressurser"
 }
 
-codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-  RegformFornyelse {
+"type reguleringsformål (pbl. 1985 § 25 første ledd)"
+codelist RegformFornyelse {
   "Fornyelsesområde  (pbl. 1985 § 25 første ledd, nr. 8), (For generalisering)"
   Fornyelsesområde = "Fornyelsesområde"
 }
 
-codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-  RegformFare {
+"type reguleringsformål (pbl. 1985 § 25 første ledd)"
+codelist RegformFare {
   "Fareområde  (pbl. 1985 § 25, første ledd, nr. 5),  (For generalisering)"
   Fareområde = "Fareområde"
   Høyspenningsanlegg = "Høyspenningsanlegg"
@@ -1922,8 +1904,8 @@ detaljering må angis som reguleringsformålsutdyping"
   Særskilt_angitt_fare = "Særskilt angitt fare"
 }
 
-codelist "type reguleringsformål (pbl. 1985 § 25, første ledd)"
-  RegformBevaring {
+"type reguleringsformål (pbl. 1985 § 25, første ledd)"
+codelist RegformBevaring {
   "Bevaring av bygninger og anlegg"
   Bevaringsområde = "Bevaringsområde"
   Bevaring_av_bygninger = "Bevaring av bygninger"
@@ -1931,8 +1913,8 @@ codelist "type reguleringsformål (pbl. 1985 § 25, første ledd)"
   Bevaring_av_landskap_og_vegetasjon = "Bevaring av landskap og vegetasjon"
 }
 
-codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-  RegformRestriksjon {
+"type reguleringsformål (pbl. 1985 § 25 første ledd)"
+codelist RegformRestriksjon {
   "Frisiktsone ved vei"
   Frisiktsone = "Frisiktsone"
   "Restriksjonsområde rundt flyplass"
@@ -1941,8 +1923,8 @@ codelist "type reguleringsformål (pbl. 1985 § 25 første ledd)"
   Nedslagsfelt_for_drikkevann = "Nedslagsfelt for drikkevann"
 }
 
-codelist "Pbl. § 12-7"
-  RpBestemmelseHjemmel {
+"Pbl. § 12-7"
+codelist RpBestemmelseHjemmel {
   "Pbl. § 12-7 nr. 1 om utforming, herunder estetiske krav, og bruk av arealer, bygninger og anlegg i planområdet"
   utforming = "utforming"
   "Pbl. § 12-7 nr. 2 om vilkår for bruk av arealer, bygninger og anlegg i planområdet, eller forbud mot former for bruk, herunder byggegrenser, for å fremme eller sikre formålet med planen, avveie interesser og ivareta ulike hensyn i eller av hensyn til forhol"
@@ -1976,8 +1958,8 @@ Koden utgår fra SOSI Plan 4.5.2 og bestemmelsesområdet erstattes av objekttype
   midlertidig_bygge__og_anleggsområde__utgått_ = "midlertidig bygge- og anleggsområde (utgått)"
 }
 
-codelist "hensynssone med bestemmelse om at flere eiendommer skal undergis felles planlegging med bruk av særskilte gjennomførings-virkemidler (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e andre ledd)"
-  RpGjennomføringSoneType {
+"hensynssone med bestemmelse om at flere eiendommer skal undergis felles planlegging med bruk av særskilte gjennomførings-virkemidler (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e andre ledd)"
+codelist RpGjennomføringSoneType {
   Krav_om_felles_planlegging = "Krav om felles planlegging"
   Omforminig = "Omforminig"
   Fornyelse = "Fornyelse"
@@ -1985,8 +1967,8 @@ codelist "hensynssone med bestemmelse om at flere eiendommer skal undergis felle
   Krav_om_felles_planlegging__omforming_og_fornyelse___generalisert__utgått_ = "Krav om felles planlegging, omforming og fornyelse - generalisert (utgått)"
 }
 
-codelist "hensynssone - fare (pbl. § 12-6, jf. § 11-8, 3.ledd bokstav a)"
-  RpFareSoneType {
+"hensynssone - fare (pbl. § 12-6, jf. § 11-8, 3.ledd bokstav a)"
+codelist RpFareSoneType {
   Ras__og_skredfare = "Ras- og skredfare"
   Flomfare = "Flomfare"
   Radon = "Radon"
@@ -1997,8 +1979,8 @@ codelist "hensynssone - fare (pbl. § 12-6, jf. § 11-8, 3.ledd bokstav a)"
   Annen_fare = "Annen fare"
 }
 
-codelist "kode for å angi hva påskrift/nødvendig tekst i plankartet omhandler"
-  PåskriftType {
+"kode for å angi hva påskrift/nødvendig tekst i plankartet omhandler"
+codelist PåskriftType {
   Arealformål = "Arealformål"
   Feltnavn = "Feltnavn"
   Areal = "Areal"
@@ -2010,8 +1992,8 @@ codelist "kode for å angi hva påskrift/nødvendig tekst i plankartet omhandler
   Plantilbehør = "Plantilbehør"
 }
 
-codelist "linje i regulerings- /bebyggelesesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
-  RpJuridiskLinjeType {
+"linje i regulerings- /bebyggelesesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+codelist RpJuridiskLinjeType {
   Regulert_tomtegrense = "Regulert tomtegrense"
   Eiendomsgrense_som_skal_oppheves = "Eiendomsgrense som skal oppheves"
   "Bygg som skal bevares (kun bevaringsområder)"
@@ -2056,8 +2038,8 @@ Merknad: definisjon justert iht. vedtak i SOSI Ag9 20. september 2011 sak 7"
   Markagrense = "Markagrense"
 }
 
-codelist "punkt i regulerings- /bebyggelsesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
-  RpJuridiskPunktType {
+"punkt i regulerings- /bebyggelsesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+codelist RpJuridiskPunktType {
   Veistengning_fysisk_kjøresperre = "Veistengning/fysisk kjøresperre"
   Stenging_av_avkjørsel = "Stenging av avkjørsel"
   Avkjørsel___både_inn_og_utkjøring = "Avkjørsel - både inn og utkjøring"
@@ -2071,8 +2053,8 @@ codelist "punkt i regulerings- /bebyggelsesplan/områderegulering/detaljreguleri
   Regulert_møneretning = "Regulert møneretning"
 }
 
-codelist "Identisk med SOSI høydeReferanse / HØYDE-REF"
-  Høydereferansesystem {
+"Identisk med SOSI høydeReferanse / HØYDE-REF"
+codelist Høydereferansesystem {
   Ellipsoide_jf__KOORDSYS = "Ellipsoide jf. KOORDSYS"
   Lokal_referanseflate = "Lokal referanseflate"
   "NKG: The Nordic Geodetic Commission - founded in 1953 - is an association of geodesists from Denmark, Finland, Iceland, Norway and Sweden. Its purpose is to give the members possibilities of fruitful gatherings and mutual exchange of professional views and experiences. The NKG is recognized and supported by a number of Nordic  organizations, such as the Director Generals of the Nordic Mapping Authorities. (Kilde: http://217.152.180.26/nkg/)"
@@ -2085,61 +2067,55 @@ codelist "Identisk med SOSI høydeReferanse / HØYDE-REF"
   Norsk_Null_av_2000 = "Norsk Null av 2000"
 }
 
-datatype
-  Identifikasjon {
+datatype Identifikasjon {
   "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.
-
 NOTE: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet."
-    lokalId: CharacterString
+  lokalId: CharacterString
+  
   'navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  ("_") dersom data produsenten ikke er assosiert med bare et land.
-
 NOTE 1 : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i "INSPIRE external  Object Identifier Namespaces Register"
-
 Eksempel: NO for Norge.'
-    navnerom: CharacterString
-  'identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.
+  navnerom: CharacterString
 
+  'identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.
 NOTE Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  "2007-02-12T12:12:12+05:30" som versjonId.'
-    versjonId?: CharacterString
+  versjonId?: CharacterString
 }
 
-datatype "beskrivelse av kvaliteten på stedfestingen
-
+"beskrivelse av kvaliteten på stedfestingen
 Merknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.
-
 -- Definition --
 description of the quality of the localization    Note: This is identical to ..KVALITET (quality) in previous ersions of SOSI."
-  Posisjonskvalitet {
+datatype Posisjonskvalitet {
   "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss
-
 -- Definition --
 method for measuring in ground outline (x,y), and height (z) when the method is the same as when measuring in ground outline"
-    målemetode: Målemetode
+  målemetode: Målemetode
+  
   "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
-
 Merknad:
 Oppgitt i cm
-
 -- Definition --
 the point standard deviation in ground outline for points as well as lateral deviation of lines    Note: Stated in cm"
-    nøyaktighet?: Integer
+  nøyaktighet?: Integer
 }
 
-datatype "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
-  NasjonalArealplanId {
+"entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
+datatype NasjonalArealplanId {
   "nummerering av kommuner i henhold til SSB sin offisielle liste
-
 Merknad:
 Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 siffer."
-    kommunenummer?: Kommunenummer
+  kommunenummer?: Kommunenummer
+  
   "entydig nummer for staten (1)"
-    landkode?: Landskode
+  landkode?: Landskode
+  
   "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
-    planidentifikasjon: CharacterString
+  planidentifikasjon: CharacterString
 }
 
-datatype "grad av utnytting (pbl. § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III)"
-  Utnytting {
+"grad av utnytting (pbl. § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III)"
+datatype Utnytting {
   "type grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. § 12-7 første ledd nr 5 og TEK10 kap. 5)"
     utnyttingstype: Utnyttingstype
   "tallverdi for grad av utnytting (pbl. 1985 §§ 20-4 annet ledd bokstav b, 26 første ledd og forskrift TEK kap. III, pbl. §12-7 første ledd nr 5 og TEK10 kap. 5 )"
@@ -2148,34 +2124,32 @@ datatype "grad av utnytting (pbl. § 20-4 andre ledd bokstav b og § 26 første 
     utnyttingstall_minimum?: Real
 }
 
-datatype "entydig nummer for enkeltsaker og enkeltvedtak (pbl. 1985 § 93, fra 1. juli 2010 pbl. kap 20)"
-  Saksnummer {
+"entydig nummer for enkeltsaker og enkeltvedtak (pbl. 1985 § 93, fra 1. juli 2010 pbl. kap 20)"
+datatype Saksnummer {
   "Årstallet saken ble initiert"
-    saksår: Integer
+  saksår: Integer
+  
   "løpenummer for saken innenfor året.
-
 NB! attributtnavnet forandret fra sekvensnummer til sakssekvensnummer desember 2011, for å tilpasses NOARK 5."
-    sakssekvensnummer: Integer
+  sakssekvensnummer: Integer
 }
 
-datatype
-  HøydeFraPlanbestemmelse {
+datatype HøydeFraPlanbestemmelse {
   "tall for kotehøyde ved bestemmelse om regulert høyde (bestemmelse om utforming illustrert på kart, pbl. § 12-7 nr. 1"
-    regulerthøyde: Real
+  regulerthøyde: Real
+  
   "Benyttet høydereferansesystem"
-    høyderefansesystem: Høydereferansesystem
+  høyderefansesystem: Høydereferansesystem
 }
 
-abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
-
+"abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
 Merknad:
 Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og avgrensningslinjer fra denne klassen.
-
-
 -- Definition --
 abstract object which carries a number of attributes which are independent of specific disciplines and may be used for all object types"
-  Fellesegenskaper_Delområde {
+abstract feature Fellesegenskaper_Delområde {
   identity identifikasjon?: Identifikasjon
+
   "dato når en representasjon av objektet i digital form første gang ble etablert
 
 Merknad:
@@ -2184,7 +2158,8 @@ Eventuelt at innlegging i databasen skjedde på et senere tidspunkt enn registre
 
 -- Definition --
 date when a representation of the object in digital form was established for the first time    Note: firstDigitisationDate may differ from firstDataCaptureDate by the first data capture having been analog and converted into digital form later in a production ??<truncated text>"
-    førsteDigitaliseringsdato?: DateTime
+  førsteDigitaliseringsdato?: DateTime
+
   "dato for siste endring på objektetdataene
 
 Merknad:
@@ -2192,10 +2167,10 @@ Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er regi
 
 -- Definition --
 date of latest modification of object data    Note: Date of updating may differ from date of data capture in that data which is registered may be buffered for a shorter or longer period of time, before being entered into the computer system (the database)."
-    oppdateringsdato?: DateTime
+  oppdateringsdato?: DateTime
 }
 
-abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+"abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
 
 Merknad:
 Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.
@@ -2203,7 +2178,7 @@ Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningsl
 
 -- Definition --
 abstract object which carries a number of attributes which are independent of specific disciplines and may be used for all object types"
-  Fellesegenskaper_Planområde {
+abstract feature Fellesegenskaper_Planområde {
   identity identifikasjon?: Identifikasjon
   "dato når en representasjon av objektet i digital form første gang ble etablert
 
@@ -2213,7 +2188,8 @@ Eventuelt at innlegging i databasen skjedde på et senere tidspunkt enn registre
 
 -- Definition --
 date when a representation of the object in digital form was established for the first time    Note: firstDigitisationDate may differ from firstDataCaptureDate by the first data capture having been analog and converted into digital form later in a production ??<truncated text>"
-    førsteDigitaliseringsdato?: DateTime
+  førsteDigitaliseringsdato?: DateTime
+  
   "dato for siste endring på objektetdataene
 
 Merknad:
@@ -2221,7 +2197,8 @@ Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er regi
 
 -- Definition --
 date of latest modification of object data    Note: Date of updating may differ from date of data capture in that data which is registered may be buffered for a shorter or longer period of time, before being entered into the computer system (the database)."
-    oppdateringsdato?: DateTime
+  oppdateringsdato?: DateTime
+  
   "beskrivelse av de prosesser som dataene er gått gjennom som kan ha betydning for kvaliteten og bruken av dataene
 
 Merknad:
@@ -2229,7 +2206,8 @@ Prosesshistorie vil kunne inneholde informasjon om transformasjoner. Hva slags i
 
 -- Definition --
 description of the processes through which the data has gone, and which may be significant for the quality and use of the data    Note: ProcessHistory may contain information on transformations. What kind of information is given is often indicated in other standards ??<truncated text>"
-    prosesshistorie*: CharacterString
+  prosesshistorie*: CharacterString
+  
   "generell opplysning
 
 Merknad:
@@ -2237,12 +2215,13 @@ mulighet til å legge inn utfyllende informasjon om objektet
 
 -- Definition --
 general information    Note: allows for entry of supplemental information about the object"
-    informasjon*: CharacterString
+  informasjon*: CharacterString
+  
   "referanse  til et informasjonselement, enten lokalt eller globalt"
-    link*: CharacterString
+  link*: CharacterString
 }
 
-abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
+"abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper
 
 Merknad:
 Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.
@@ -2250,8 +2229,9 @@ Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningsl
 
 -- Definition --
 abstract object which carries a number of attributes which are independent of specific disciplines and may be used for all object types"
-  Fellesegenskaper_LinjerOgPunkt {
+abstract feature Fellesegenskaper_LinjerOgPunkt {
   identity identifikasjon?: Identifikasjon
+  
   "dato når en representasjon av objektet i digital form første gang ble etablert
 
 Merknad:
@@ -2260,7 +2240,8 @@ Eventuelt at innlegging i databasen skjedde på et senere tidspunkt enn registre
 
 -- Definition --
 date when a representation of the object in digital form was established for the first time    Note: firstDigitisationDate may differ from firstDataCaptureDate by the first data capture having been analog and converted into digital form later in a production ??<truncated text>"
-    førsteDigitaliseringsdato?: DateTime
+  førsteDigitaliseringsdato?: DateTime
+  
   "dato for siste endring på objektetdataene
 
 Merknad:
@@ -2268,416 +2249,514 @@ Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er regi
 
 -- Definition --
 date of latest modification of object data    Note: Date of updating may differ from date of data capture in that data which is registered may be buffered for a shorter or longer period of time, before being entered into the computer system (the database)."
-    oppdateringsdato?: DateTime
+  oppdateringsdato?: DateTime
+  
   "beskrivelse av kvaliteten på stedfestingen
 
 Merknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.
 
 -- Definition --
 description of the quality of the localization    Note: This is identical to ..KVALITET (quality) in previous ersions of SOSI."
-    kvalitet?: Posisjonskvalitet
+  kvalitet?: Posisjonskvalitet
 }
 
-layer "grense for regulerings- og bebyggelsesplan/områderegulering eller detaljregulering (pbl. 1985 §§ 22 og 24 og 28-2, eller pbl. §§ 12-1, 12-2 og 12-3)"
-  RpGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for regulerings- og bebyggelsesplan/områderegulering eller detaljregulering (pbl. 1985 §§ 22 og 24 og 28-2, eller pbl. §§ 12-1, 12-2 og 12-3)"
+feature RpGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
+  grense: Kurve
 }
 
-abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper"
-  Kobling_Delområde extends Fellesegenskaper_Delområde {
+"abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper"
+abstract feature Kobling_Delområde extends Fellesegenskaper_Delområde {
   "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
-    arealplanId: NasjonalArealplanId
+  arealplanId: NasjonalArealplanId
+  
   "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
-    vertikalnivå: Vertikalnivå
+  vertikalnivå: Vertikalnivå
 }
 
-abstract layer "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper"
-  Kobling_PunktLinje extends Fellesegenskaper_LinjerOgPunkt {
+"abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper"
+abstract feature Kobling_PunktLinje extends Fellesegenskaper_LinjerOgPunkt {
   "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
-    arealplanId: NasjonalArealplanId
+  arealplanId: NasjonalArealplanId
+  
   "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
-    vertikalnivå: Vertikalnivå
+  vertikalnivå: Vertikalnivå
 }
 
-layer "område for regulerings- og bebyggelsesplan/områderegulering, eller detaljregulering, jf. pbl. 1985 §§ 22 og 24 og 28-2, eller pbl. §§ 12-1, 12-2 og 12-3"
-  RpOmråde extends Fellesegenskaper_Planområde {
+"område for regulerings- og bebyggelsesplan/områderegulering, eller detaljregulering, jf. pbl. 1985 §§ 22 og 24 og 28-2, eller pbl. §§ 12-1, 12-2 og 12-3"
+feature RpOmråde extends Fellesegenskaper_Planområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "entydig identifikasjon for en plan innen en kommune eller et fylke (pbl. 1985 § 18, § 19-1, sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
-    arealplanId: NasjonalArealplanId
+  arealplanId: NasjonalArealplanId
+  
   "type plan (pbl. 1985 § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 8-1, 11-5, 12-2 og 12-3)"
-    plantype: RpPlantype
+  plantype: RpPlantype
+  
   "planens behandling (pbl. 1985 §§ 19-4, 20-5, 27-1, 27-2, 28-1 og 28-2) samt planens virkning (pbl. 1985 §§ 19-6, 20-6, 28-2 og 31/pbl. §§ 8-3, 8-4, 9-3, 9-4, §§ 11-12 til 11-15, og §§ 12-8 til 12-12)"
-    planstatus: Planstatus
+  planstatus: Planstatus
+  
   "planens navn (pbl. 1985 § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2/pbl. §§ 6-4, 8-1, 9-1, 11-1 og § 12-1, samt kart- og planforskriften § 9 sjette ledd)"
-    plannavn: CharacterString
+  plannavn: CharacterString
+  
   "angir om plan har bestemmelser, i så fall om de er egen tekst, og om de er påført plankartet (pbl. 1985 § 20-4 andre ledd bokstav a til h og § 26/pbl. §§ 11-9, 11-10 og 11-11, samt § 12-7)"
-    planbestemmelse: Planbestemmelse
+  planbestemmelse: Planbestemmelse
+  
   "dato for ikrafttredelse av planer (pbl. 1985 §§ 18, 19-1 sjette ledd, 20-1 andre ledd, 22 og 28-2, samt pbl. §§ 8-4, 8-5, 11-6, 11- 15, 11-16, 12-4, 12-12 og 12-13)"
-    ikrafttredelsesdato?: Date
+  ikrafttredelsesdato?: Date
+  
   "planens eller innholdets beliggenhet i forhold til jordoverflaten (pbl. § 19-1 sjette ledd, § 20-1 andre og femte ledd og § 22 og § 28-2)"
-    vertikalnivå: Vertikalnivå
+  vertikalnivå: Vertikalnivå
+  
   "kode for hvilken lov planen er vedtatt etter"
-    lovreferanse: LovreferanseType
+  lovreferanse: LovreferanseType
+  
   "tekstlig beskrivelse av hvilken lov planen er vedtatt med hjemmel i"
-    lovreferanseBeskrivelse?: CharacterString
+  lovreferanseBeskrivelse?: CharacterString
+  
   "frist for gjennomføring av private detaljplaner (pbl. § 12-4 femte ledd)"
-    gjennomføringsfrist?: Date
+  gjennomføringsfrist?: Date
+  
   "om forslagsstiller er privat eller offentlig planmyndighet"
-    forslagsstillerType?: ForslagsstillerType
+  forslagsstillerType?: ForslagsstillerType
+  
   "dato når arealplanen med tilhørende bestemmelser gjennom statlig, regionalt eller kommunalt vedtak etter plan- og bygningsloven har fått rettsvirkning"
-    vedtakEndeligPlanDato?: Date
+  vedtakEndeligPlanDato?: Date
+  
   "dato når endelig vedtatt arealplan eller planbestemmelse ble kunngjort, pbl. § 6-3, 8-5 siste ledd, 11-15 tredje ledd og 12-12 siste ledd"
-    kunngjøringsdato?: Date
+  kunngjøringsdato?: Date
+  
   "planidentifikasjon for opprinnelig plan. Brukes kun dersom planen har fått ny NasjonalArealplanid."
-    opprinneligplanid?: CharacterString
+  opprinneligplanid?: CharacterString
+  
   "administrativEnhet for opprinnelig plan. Brukes kun dersom planen har fått ny NasjonalArealplanid."
-    opprinneligadministrativenhet?: CharacterString
+  opprinneligadministrativenhet?: CharacterString
+  
   planavgrensning*: RpGrense
 }
 
-layer "område for reguleringsformål i regulerings- og bebyggelsesplan (pbl. 1985 § 25, første ledd)"
-  RbFormålOmråde extends Kobling_Delområde {
+"område for reguleringsformål i regulerings- og bebyggelsesplan (pbl. 1985 § 25, første ledd)"
+feature RbFormålOmråde extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-    reguleringsformål: RegformBrukFormål
+  reguleringsformål: RegformBrukFormål
+  
   "utdyping av reguleringsformål (pbl. 1985 § 25 første ledd)"
-    reguleringsformålsutdyping?: CharacterString
+  reguleringsformålsutdyping?: CharacterString
+  
   "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25, 1 første ledd)"
-    feltbetegnelse?: CharacterString
+  feltbetegnelse?: CharacterString
+  
   "grad av utnytting (pbl. § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III)"
-    utnytting?: Utnytting
+  utnytting?: Utnytting
+  
   "minste uteoppholdsareal (pbl. 1985 § 26 andre ledd og forskrift TEK kap. III)"
-    uteoppholdsareal?: Integer
+  uteoppholdsareal?: Integer
+  
   "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4 andre ledd bokstav a og § 26 første ledd og § 28-2, samt pbl. 1985 §§ 11-10 nr. 1 og 12-7 nr. 1 og 2)"
-    byggverkbestemmelse?: Byggverkbestemmelse
+  byggverkbestemmelse?: Byggverkbestemmelse
+  
   "planbestemmelse om avkjørsel (pbl. 1985 §§ 25 og 26 første ledd, og pbl. 1985 § 11-10 nr. 4)
 
 Merknad:
 Angir om avkjørsel til formålsområdet tillates eller ikke tillates, eller om det i planbestemmelser er tillatt avkjørsel via annet formål enn vei (via gangvei, turvei e.l.).  I sistnevnte situasjon knyttes egenskapen til det formålsområdet det er tillatt å passere"
-    avkjørselsbestemmelse?: Avkjørselsbestemmelse
+  avkjørselsbestemmelse?: Avkjørselsbestemmelse
+  
   avgrensning*: RpFormålGrense
 }
 
-layer "grense for reguleringsformål i regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 § 25 første ledd, eller pbl. § 12-5)"
-  RpFormålGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for reguleringsformål i regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 § 25 første ledd, eller pbl. § 12-5)"
+feature RpFormålGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
     grense: Kurve
 }
 
-layer "område med arealformål i reguleringsplan (pbl. § 12-5)"
-  RpArealformålOmråde extends Kobling_Delområde {
+"område med arealformål i reguleringsplan (pbl. § 12-5)"
+feature RpArealformålOmråde extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "planbestemmelse om arealet skal eies av private eller det offentlige, eller være fellesarealer for flere eiendommer (pbl. § 11-10 nr .3 og § 12-7 nr. 14)"
-    eierform: EierformType
+  eierform: EierformType
+  
   "arealformål - formålet må angis nærmere (pbl. § 12-5)"
-    arealformål: RpArealformål
+  arealformål: RpArealformål
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd/pbl. § 12-5 første ledd/pbl. § 12-7 nr. 4, samt TEK10 § 5-6 og kap. 8)"
-    feltbetegnelse?: CharacterString
+  feltbetegnelse?: CharacterString
+  
   "grad av utnytting (pbl. 1985 § 20-4 andre ledd bokstav b og § 26 første ledd og forskrift TEK kap. III/pbl. §§ 11-9 nr. 5 og 12-7 nr. 5, samt TEK10 kap. 5)"
-    utnytting*: Utnytting
+  utnytting*: Utnytting
+  
   "minste uteoppholdsareal (pbl. § 26, andre ledd og forskrift TEK kap III)"
-    uteoppholdsareal?: Integer
+  uteoppholdsareal?: Integer
+  
   "planbestemmelse om bygningers plassering, utforming mv. (pbl. 1985 § 20-4, andre ledd bokstav a og § 26, 1. ledd og § 28-2, samt pbl. §§ 11-10 nr. 1 og 12-7 nr. 1 og 2, samt TEK10 kap. 7 og § 8-3)"
-    byggverkbestemmelse?: Byggverkbestemmelse
+  byggverkbestemmelse?: Byggverkbestemmelse
+  
   "planbestemmelse om avkjørsel (pbl. 1985 §§ 25 og 26, 1. ledd, og pbl. § 11-10 nr. 4 og TEK10 § 8-8)
 
 Merknad:
 Angir om avkjørsel til formålsområde tillates eller ikke tillates, eller om det i plan / bestemmelser er tillatt avkjørsel via annet formål enn vei (via gangvei, turvei e.l.).  I sistnevnte situasjon knyttes egenskapen til det formålsområde det er tillatt å passere"
-    avkjørselsbestemmelse?: Avkjørselsbestemmelse
+  avkjørselsbestemmelse?: Avkjørselsbestemmelse
+  
   avgrensning+: RpFormålGrense
 }
 
-layer "område for hensynssone for støyssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpStøySone extends Kobling_Delområde {
+"område for hensynssone for støyssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+feature RpStøySone extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "hensynssone - støysone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-    støy: RpStøySoneType
+  støy: RpStøySoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, f.eks. "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpStøyGrense
 }
 
-layer "videreføring av reguleringsplan (pbl. § 11-8 tredje ledd bokstav f, jf. § 12-6)"
-  RpDetaljeringSone extends Kobling_Delområde {
+"videreføring av reguleringsplan (pbl. § 11-8 tredje ledd bokstav f, jf. § 12-6)"
+feature RpDetaljeringSone extends Kobling_Delområde {
   område: Flate
+  
   "hensynssone - videreføring av gjeldende reguleringsplan (pbl. § 12-6, jf. §11-8 bokstav f)"
-    detaljering: RpDetaljeringSoneType
+  detaljering: RpDetaljeringSoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpDetaljeringGrense
 }
 
-layer "grense for videreføring av regulerings- og bebyggelsesplan/detaljregulerings-plan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav f)"
-  RpDetaljeringGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for videreføring av regulerings- og bebyggelsesplan/detaljregulerings-plan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav f)"
+feature RpDetaljeringGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "grense for hensynssone for båndlegging i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
-  RpBåndleggingGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for hensynssone for båndlegging i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
+feature RpBåndleggingGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "område for hensynssone med særlige krav til infrasturkturinfrastruktur i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
-  RpInfrastrukturSone extends Kobling_Delområde {
+"område for hensynssone med særlige krav til infrasturkturinfrastruktur i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+feature RpInfrastrukturSone extends Kobling_Delområde {
   område: Flate
+  
   "hensynssone - krav til infrastruktur (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
-    infrastruktur: RpInfrastrukturSoneType
+  infrastruktur: RpInfrastrukturSoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpInfrastrukturGrense
 }
 
-layer "grense for hensynssone for gjennomføringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e)"
-  RpGjennomføringGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for hensynssone for gjennomføringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e)"
+feature RpGjennomføringGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
-}
-
-layer "grense for fornyelse i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 8)"
-  RbFornyelseGrense extends Fellesegenskaper_LinjerOgPunkt {
-  "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
-}
-
-layer "grense for bestemmelse illustrert på kart (pbl. § 12-7 nr. 1-14)"
-  RpBestemmelseGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "område med formålsrekkefølge i regulerings- og bebyggelsesplan (pbl. 1985 § 25 andre ledd, § 26 og § 28-2)"
-  RbRekkefølgeOmråde extends Kobling_Delområde {
+"grense for fornyelse i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 8)"
+feature RbFornyelseGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+  grense: Kurve
+}
+
+"grense for bestemmelse illustrert på kart (pbl. § 12-7 nr. 1-14)"
+feature RpBestemmelseGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+"område med formålsrekkefølge i regulerings- og bebyggelsesplan (pbl. 1985 § 25 andre ledd, § 26 og § 28-2)"
+feature RbRekkefølgeOmråde extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "type reguleringsformål (pbl. § 25 første ledd)"
-    reguleringsformål: RegformRekkefølge
+  reguleringsformål: RegformRekkefølge
+  
   "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
-    feltbetegnelse?: CharacterString
+  feltbetegnelse?: CharacterString
+  
   rekkefølgeAvgrensning*: RbRekkefølgeGrense
 }
 
-layer "hensynssone - båndlegging (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
-  RpBåndleggingSone extends Kobling_Delområde {
+"hensynssone - båndlegging (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
+feature RpBåndleggingSone extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "hensynssone - båndlegging (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav d)"
-    båndlegging: RpBåndleggingSoneType
+  båndlegging: RpBåndleggingSoneType
+  
   "planbestemmelsen om midlertidig båndlagt i påvente av vedtak etter pbl., eller særlov, med angivelse av hvilke rådighetsbegrensinger som gjelder inntil det er utarbeidet et nytt forvaltningsgrunnlag for arealet (pbl. § 11-8 tredje ledd bokstav d)"
-    båndlagtFremTil?: Date
+  båndlagtFremTil?: Date
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpBåndleggingGrense
 }
 
-layer "grense for hensynssone i reguleringsplan (pbl. § 12-6, jf. § 11-8)"
-  RpAngittHensynGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for hensynssone i reguleringsplan (pbl. § 12-6, jf. § 11-8)"
+feature RpAngittHensynGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "grense for formålsrekkefølge i regulerings- og bebyggelsesplan (pbl. 1985 § 25 andre ledd, § 26 og § 28-2)"
-  RbRekkefølgeGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for formålsrekkefølge i regulerings- og bebyggelsesplan (pbl. 1985 § 25 andre ledd, § 26 og § 28-2)"
+feature RbRekkefølgeGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
-}
-
-layer "grense for hensynssone med særlige krav til infrasturkturinfrastruktur i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
-  RpInfrastrukturGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "grense for restriksjon i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6, § 26 og § 28-2)"
-  RbRestriksjonGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for hensynssone med særlige krav til infrasturkturinfrastruktur i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav b)"
+feature RpInfrastrukturGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+"grense for restriksjon i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6, § 26 og § 28-2)"
+feature RbRestriksjonGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
-}
-
-layer "grense for hensynssone for støyssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpStøyGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "område for hensynssone for sikringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpSikringSone extends Kobling_Delområde {
+"grense for hensynssone for støyssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+feature RpStøyGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+"område for hensynssone for sikringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+feature RpSikringSone extends Kobling_Delområde {
   område: Flate
+  
   "hensynssone - sikringssone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-    sikring: RpSikringSoneType
+  sikring: RpSikringSoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpSikringGrense
 }
 
-layer "områder med hensynssone i reguleringsplan (pbl. § 12-6, jf. § 11-8)"
-  RpAngittHensynSone extends Kobling_Delområde {
+"områder med hensynssone i reguleringsplan (pbl. § 12-6, jf. § 11-8)"
+feature RpAngittHensynSone extends Kobling_Delområde {
   område: Flate
+  
   "hensynssone  - særlig hensyn med angivelse av interesse (pbl. §12-6, jf. § 11-8 tredje ledd bokstav c)"
-    angittHensyn: RpAngittHensynSoneType
+  angittHensyn: RpAngittHensynSoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpAngittHensynGrense
 }
 
-layer "område for fornyelse i regulerings- og bebyggelsesplan (pbl. § 25 første ledd nr. 8)"
-  RbFornyelseOmråde extends Kobling_Delområde {
+"område for fornyelse i regulerings- og bebyggelsesplan (pbl. § 25 første ledd nr. 8)"
+feature RbFornyelseOmråde extends Kobling_Delområde {
+  
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-    reguleringsformål: RegformFornyelse
+  reguleringsformål: RegformFornyelse
+  
   "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
-    feltbetegnelse?: CharacterString
+  feltbetegnelse?: CharacterString
+  
   avgrensning*: RbFornyelseGrense
 }
 
-layer "grense for bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1."
-  PblMidlByggAnleggGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1."
+feature PblMidlByggAnleggGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
-}
-
-layer "område med fare i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd, nr. 5)"
-  RbFareOmråde extends Kobling_Delområde {
-  "objektets utstrekning"
-    område: Flate
-  "type reguleringsformål (pbl. 1985 § 25 første ledd)"
-    reguleringsformål: RegformFare
-  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
-    feltbetegnelse?: CharacterString
-  "utdyping av reguleringsformål (pbl. 1985 § 25 første ledd)"
-    reguleringsformålsutdyping?: CharacterString
-  avgrensning*: RpFareGrense
-}
-
-layer "område for bevaring i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6)"
-  RbBevaringOmråde extends Kobling_Delområde {
-  "objektets utstrekning"
-    område: Flate
-  "type reguleringsformål (pbl. § 25 første ledd)"
-    reguleringsformål: RegformBevaring
-  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
-    feltbetegnelse?: CharacterString
-  avgrensning*: RbBevaringGrense
-}
-
-layer "grense for hensynssone for sikringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpSikringGrense extends Fellesegenskaper_LinjerOgPunkt {
   grense: Kurve
 }
 
-layer "bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1."
-  PblMidlByggAnleggOmråde extends Kobling_Delområde {
+"område med fare i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd, nr. 5)"
+feature RbFareOmråde extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
+  "type reguleringsformål (pbl. 1985 § 25 første ledd)"
+  reguleringsformål: RegformFare
+  
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+  feltbetegnelse?: CharacterString
+  
+  "utdyping av reguleringsformål (pbl. 1985 § 25 første ledd)"
+  reguleringsformålsutdyping?: CharacterString
+  
+  avgrensning*: RpFareGrense
+}
+
+"område for bevaring i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6)"
+feature RbBevaringOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+  område: Flate
+  
+  "type reguleringsformål (pbl. § 25 første ledd)"
+  reguleringsformål: RegformBevaring
+  
+  "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
+  feltbetegnelse?: CharacterString
+  
+  avgrensning*: RbBevaringGrense
+}
+
+"grense for hensynssone for sikringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+feature RpSikringGrense extends Fellesegenskaper_LinjerOgPunkt {
+  grense: Kurve
+}
+
+"bestemmelsesområde for midlertidig bygge- og anlegg, jfr. PBL paragraf 12-7 nr. 1."
+feature PblMidlByggAnleggOmråde extends Kobling_Delområde {
+  "objektets utstrekning"
+  område: Flate
+  
   "planbestemmelse knyttet til navngitt område"
-    bestemmelseOmrådeNavn: CharacterString
+  bestemmelseOmrådeNavn: CharacterString
+  
   "entydig nummer for enkeltsaker og enkeltvedtak (pbl. 1985 § 93, fra 1. juli 2010 pbl. kap 20)"
-    saksnummer?: Saksnummer
+  saksnummer?: Saksnummer
+  
   "dato for vedtak/avgjørelse av enkeltvedtak (pbl. 1985 § 93, fra 1 juli 2010 pbl. kap. 20)"
-    avgjørelsesdato: Date
+  avgjørelsesdato: Date
+  
   GyldigTilDato: Date
+  
   avgrensning*: PblMidlByggAnleggGrense
 }
 
-layer "område med restriksjon i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6, § 26 og § 28-2)"
-  RbRestriksjonOmråde extends Kobling_Delområde {
+"område med restriksjon i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd nr. 6, § 26 og § 28-2)"
+feature RbRestriksjonOmråde extends Kobling_Delområde {
   "objektets utstrekning"
-    område: Flate
+  område: Flate
+  
   "type reguleringsformål (pbl. § 25 første ledd)"
-    reguleringsformål: RegformRestriksjon
+  reguleringsformål: RegformRestriksjon
+  
   "navn/betegnelse på formålsfelt innen regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd)"
-    feltbetegnelse?: CharacterString
+  feltbetegnelse?: CharacterString
+  
   avgrensning*: RbRestriksjonGrense
 }
 
-layer "grense for fare i regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 § 25 første ledd nr. 5, eller pbl. § 12-5)"
-  RpFareGrense extends Fellesegenskaper_LinjerOgPunkt {
+"grense for fare i regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 § 25 første ledd nr. 5, eller pbl. § 12-5)"
+feature RpFareGrense extends Fellesegenskaper_LinjerOgPunkt {
+  "forløp som følger overgang mellom ulike fenomener"
+  grense: Kurve
+}
+
+"grense for bevaring i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd, nr. 6)"
+feature RbBevaringGrense extends Fellesegenskaper_LinjerOgPunkt {
   "forløp som følger overgang mellom ulike fenomener"
     grense: Kurve
 }
 
-layer "grense for bevaring i regulerings- og bebyggelsesplan (pbl. 1985 § 25 første ledd, nr. 6)"
-  RbBevaringGrense extends Fellesegenskaper_LinjerOgPunkt {
-  "forløp som følger overgang mellom ulike fenomener"
-    grense: Kurve
-}
-
-layer "område for bestemmelse illustrert på kart (pbl. § 12-7 nr. 1-14)"
-  RpBestemmelseOmråde extends Kobling_Delområde {
+"område for bestemmelse illustrert på kart (pbl. § 12-7 nr. 1-14)"
+feature RpBestemmelseOmråde extends Kobling_Delområde {
   område: Flate
+  
   "planbestemmelse knyttet til navngitt område"
-    bestemmelseOmrådeNavn: CharacterString
+  bestemmelseOmrådeNavn: CharacterString
+  
   "Pbl. § 12-7"
-    type: RpBestemmelseHjemmel
+  type: RpBestemmelseHjemmel
+  
   avgrensning+: RpBestemmelseGrense
 }
 
-layer "område for hensynssone for gjennomføringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e)"
-  RpGjennomføringSone extends Kobling_Delområde {
+"område for hensynssone for gjennomføringssone i reguleringsplan (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e)"
+feature RpGjennomføringSone extends Kobling_Delområde {
   område: Flate
+  
   "hensynssone med bestemmelse om at flere eiendommer skal undergis felles planlegging med bruk av særskilte gjennomførings-virkemidler (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav e andre ledd)"
-    gjennomføring: RpGjennomføringSoneType
+  gjennomføring: RpGjennomføringSoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   'beskrivelse kan benyttes der loven gir anledning til detaljering, for eks, "andre anlegg", men der lov/forskrift ikke definerer detaljeringen i form av spesifikke arealformål'
-    beskrivelse?: CharacterString
+  beskrivelse?: CharacterString
+  
   avgrensning+: RpGjennomføringGrense
 }
 
-layer "område for hensynssone faresone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-  RpFareSone extends Kobling_Delområde {
+"område for hensynssone faresone (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
+feature RpFareSone extends Kobling_Delområde {
   område: Flate
+  
   "hensynssone - fare (pbl. § 12-6, jf. § 11-8 tredje ledd bokstav a)"
-    fare: RpFareSoneType
+  fare: RpFareSoneType
+  
   "identifikasjon av hensynssone (pbl. § 11-8, jf. § 12-6)"
-    hensynSonenavn: CharacterString
+  hensynSonenavn: CharacterString
+  
   beskrivelse?: CharacterString
+  
   avgrensning+: RpFareGrense
 }
 
-layer "supplerende tekst til regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5 og 12-7)"
-  RpPåskrift extends Kobling_PunktLinje {
+"supplerende tekst til regulerings- og bebyggelsesplan/områderegulering og detaljregulering (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5 og 12-7)"
+feature RpPåskrift extends Kobling_PunktLinje {
   "sted som objektet eksisterer på"
-    posisjon: Punkt
+  posisjon: Punkt
+  
   "STRENG er definert til lengde på maks. 70 tegn, noe som for kartformål er tilstrekkelig. SOSI kan imidlertid håndtere lengre tekster, men da må en definere og benytte brukerdefinerte navn."
-    generellTekststreng: CharacterString
+  generellTekststreng: CharacterString
+  
   "kode for å angi hva påskrift/nødvendig tekst i plankartet omhandler"
-    påskriftType?: PåskriftType
+  påskriftType?: PåskriftType
 }
 
-layer "linje for juridisk bindende tilleggsinformasjon (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5 og 12-7)"
-  RpJuridiskLinje extends Kobling_PunktLinje {
+"linje for juridisk bindende tilleggsinformasjon (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5 og 12-7)"
+feature RpJuridiskLinje extends Kobling_PunktLinje {
   "forløp som følger overgang mellom ulike fenomener"
-    senterlinje: Kurve
-  "linje i regulerings- /bebyggelesesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
-    juridisklinje: RpJuridiskLinjeType
-}
-
-layer "punkt for juridisk bindende tilleggsinformasjon (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5, og 12-7)"
-  RpJuridiskPunkt extends Kobling_PunktLinje {
-  "sted som objektet eksisterer på"
-    posisjon: Punkt
-  "punkt i regulerings- /bebyggelsesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
-    juridiskpunkt: RpJuridiskPunktType
-}
-
-layer "linje for bestemmelse om regulert høyde (bestemmelse om utforming illustrert på kart, pbl. § 12-7 nr. 1)"
-  RpRegulertHøyde extends Kobling_PunktLinje {
   senterlinje: Kurve
+  
+  "linje i regulerings- /bebyggelesesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+  juridisklinje: RpJuridiskLinjeType
+}
+
+"punkt for juridisk bindende tilleggsinformasjon (pbl. 1985 §§ 25 og 26 og 28-2, eller pbl. §§ 12-2, 12-3, 12-5, og 12-7)"
+feature RpJuridiskPunkt extends Kobling_PunktLinje {
+  "sted som objektet eksisterer på"
+  posisjon: Punkt
+  
+  "punkt i regulerings- /bebyggelsesplan/områderegulering/detaljregulering, jf. pbl. 1985 §§ 25 og 28-2 andre ledd, samt pbl. kap. 12"
+  juridiskpunkt: RpJuridiskPunktType
+}
+
+"linje for bestemmelse om regulert høyde (bestemmelse om utforming illustrert på kart, pbl. § 12-7 nr. 1)"
+feature RpRegulertHøyde extends Kobling_PunktLinje {
+  senterlinje: Kurve  
   høydefraplanbestemmelse: HøydeFraPlanbestemmelse
 }

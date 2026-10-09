@@ -1,0 +1,40 @@
+{
+  "$schema": "../packages/extension/schemas/puml-options.schema.json",
+  "diagrams": [
+    {
+      "name": "overview",
+      "title": "Nadag: overview",
+      "selection": { "include-package": ["nadag$"] },
+      "diagram": { "hide-property": [".*"] }
+    },
+    {
+      "name": "backbone",
+      "title": "Nadag: Backbone",
+      "selection": {
+        "include": ["^GeotekniskUnders$"],
+        "include-related": [
+          { "relations": ["relation", "child"], "direction": "out", "depth": 3 }
+        ]
+      },
+      "diagram": {
+        "hide-property-kind": "identity|geometry",
+        "hide-property-type-kind": "datatype|codelist|builtin",
+        "unselected-references": "field"
+      }
+    },
+    {
+      "name": "metoder",
+      "title": "Nadag: Metoder",
+      "selection": {
+        "include": ["^Geotekniskmetode$"],
+        "include-related": [
+          { "relations": ["extends"], "direction": "in", "depth": -1 }
+        ]
+      },
+      "diagram": {
+        "hide-property-kind": ".*",
+        "unselected-references": "field"
+      }
+    }
+  ]
+}

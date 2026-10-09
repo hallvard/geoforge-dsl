@@ -1,0 +1,120 @@
+{
+  "elementType": "package",
+  "name": [
+    "geoforge",
+    "lib"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Boolean"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "CharacterString"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Date"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "DateTime"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Flate"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "GM_MultiSurface"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "GM_Surface"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Integer"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Kurve"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Punkt"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Real"
+      ],
+      "tags": [],
+      "params": []
+    }
+  ]
+}

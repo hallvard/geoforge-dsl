@@ -8,6 +8,7 @@ import { generatePlantumlAction } from './generator.js';
 import { modelToDslAction } from './model-to-dsl.js';
 import { modelToFeatureCatalogueAction } from './model-to-feature-catalogue.js';
 import { modelToPlantumlAction } from './model-to-plantuml.js';
+import { isPlantumlOptionsFile, modelPathForOptions } from './plantuml-options.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const packagePath = path.resolve(__dirname, '..', 'package.json');
@@ -26,9 +27,13 @@ const packageContent = await fs.readFile(packagePath, 'utf-8');
 
 type PlantumlCliOptions = {
     destination?: string;
+    workspace?: string;
 };
 
 async function plantumlSmartAction(fileName: string, opts: PlantumlCliOptions): Promise<void> {
+    if (isPlantumlOptionsFile(fileName)) {
+        fileName = modelPathForOptions(fileName);
+    }
     const extension = path.extname(fileName).toLowerCase();
     if (extension === '.json') {
         await modelToPlantumlAction(fileName, opts);
@@ -45,8 +50,9 @@ export default function(): void {
     const fileExtensions = GeoForgeLanguageMetaData.fileExtensions.join(', ');
     program
         .command('plantuml')
-        .argument('<file>', `source file (.json model or possible DSL extensions: ${fileExtensions})`)
+        .argument('<file>', `source file (.json model, <model>.puml-options.json, or possible DSL extensions: ${fileExtensions})`)
         .option('-d, --destination <dir>', 'destination directory of generating')
+        .option('-w, --workspace <dir>', 'directory to search recursively for other .geoforge files referenced by <file> (default: only <file>\'s own directory)')
         .description('generates PlantUML from DSL or GeoForge model JSON based on input file extension')
         .action(plantumlSmartAction);
 
@@ -55,6 +61,7 @@ export default function(): void {
         .alias('dsl2model')
         .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
         .option('-d, --destination <dir>', 'destination directory of generating')
+        .option('-w, --workspace <dir>', 'directory to search recursively for other .geoforge files referenced by <file> (default: only <file>\'s own directory)')
         .description('translates a DSL file to GeoForge model JSON')
         .action(dslToModelAction);
 

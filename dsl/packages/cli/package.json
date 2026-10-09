@@ -28,7 +28,8 @@
         "commander": "~11.1.0",
         "ecore": "^0.12.0",
         "geoforge-model": "0.0.1",
-        "geoforge-language": "0.0.1"
+        "geoforge-language": "0.0.1",
+        "geoforge-feature-catalogue": "0.0.1"
     },
     "volta": {
         "node": "20.19.2",

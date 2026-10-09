@@ -1,0 +1,2712 @@
+{
+  "elementType": "package",
+  "name": [
+    "no",
+    "ngu",
+    "nadag",
+    "kodelister"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "AkviferType"
+      ],
+      "description": "oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview of possible aquifer types for ground water measurements</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Artesisk"
+          ],
+          "description": "grunnvannsmagasin med artesisk trykk (poreovertrykk)<engelsk>aquifer with artesian pressure (excess pore pressure)</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Lukket"
+          ],
+          "description": "lukket (avskjermet) grunnvannsmagasin<engelsk>closed (protected) aquifer</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Utett"
+          ],
+          "description": "utett (drenert) grunnvannsmagasin<engelsk>drained aquifer</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Åpen"
+          ],
+          "description": "åpent grunnvannsmagasin<engelsk>open aquifer</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ikke_angitt"
+          ],
+          "description": "informasjon mangler <engelsk>not specified</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "DeformasjonObservasjonKode"
+      ],
+      "description": "Kodeliste for å angi deformasjonsobservasjon",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IkkeSpesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Hindring"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skadet"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Usikkert"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "FeltUndersTypeKode"
+      ],
+      "description": "Kodeliste for feltundersøkelsestype",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FeltUndersMetode"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketBerghøyde"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tolket"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "GeotekniskBoreObservasjonskode"
+      ],
+      "description": "oversikt over koder for observasjoner som gjøres ved utførelse av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai 2024 ble gjort om til tekststreng fra å være knyttet til denne kodelisten. Tekstrengen kan inneholde mer enn 1 kode. <engelsk>overview of codes for observations conducted during an GeotechnicalBoreholeInvestigation. Used in the \"observasjonKode\" attribute, which in May 2024 was changed to a text string from being linked to this code list. The text string can contain more than 1 code. </engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "AntattGrunnvann"
+          ],
+          "description": "kode for påvisning av grunnvannstand\r\n<engelsk>code for detection of the ground water table\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Avsluttet"
+          ],
+          "description": "kode for avslutning av boring\r\n<engelsk>code for termination of boring</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BlokkSlutt"
+          ],
+          "description": "kode for avslutning av boring i blokk\r\n<engelsk>code for termination of boring in blocks</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BøydSonderingsstang"
+          ],
+          "description": "kode for bøyd sonderingsstang\r\n<engelsk>code for curved sounding rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FjellMedSlag"
+          ],
+          "description": "kode for avslutning av boring i berg med slag\r\n<engelsk>code for termination of boring in rock with strokes</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fjellnivå"
+          ],
+          "description": "kode for angivelse av dybde for bergoverflate\r\n<engelsk>code for identification of depth to the rock surface</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "ForrigeKodeFeil"
+          ],
+          "description": "kode for markering av feil i forrige angitte kode<engelsk>code for marking errors in previously given code</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Friksjonsjord"
+          ],
+          "description": "kode for boring i friksjonsjord<engelsk>code for boring in friction soils</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Frosset"
+          ],
+          "description": "kode for boring i frosset materiale<engelsk>code for boring in frozen soils</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Frostisolering"
+          ],
+          "description": "kode for angivelse av boring i frostisoleringsmateriale<engelsk>code for boring in frost-insulation materials</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FunksjonskontrollIkkeOk"
+          ],
+          "description": "kode for markering av ikke-godkjent funksjon<engelsk>code for marking of non-approved function</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FunksjonskontrollOk"
+          ],
+          "description": "kode for markering av godkjent funksjon<engelsk>code for marking of approved function</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fylling"
+          ],
+          "description": "kode for boring i fylling<engelsk>code for boring in fills and embankments</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GjennomborretBlokkEllerStein"
+          ],
+          "description": "kode for gjennomboring av blokk eller stein<engelsk>code for penetration of block or stone</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Hindring"
+          ],
+          "description": "kode for angivelse av hindring<engelsk>code for information of hindrances</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IkkeMerkbareSprekker"
+          ],
+          "description": "kode for boring gjennom ikke-merkbare sprekker<engelsk>code for boring through non-recordable cracks and fissures</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IngenRegistrering"
+          ],
+          "description": "kode for markering av manglende registrering <engelsk>code for marking of lacking registration</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IngenVurdering"
+          ],
+          "description": "kode for markering av manglende vurdering<engelsk>code for marking of lacking evaluation</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "JordMedGrus"
+          ],
+          "description": "kode for boring gjennom jord med grus<engelsk>code for boring through soil with gravel</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "JordMedSand"
+          ],
+          "description": "kode for boring gjennom jord med sand<engelsk>code for boring through soil with sand</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "JordMedStein"
+          ],
+          "description": "kode for boring gjennom jord med stein<engelsk>code for boring through soil with stones</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "KullAske"
+          ],
+          "description": "kode for boring gjennom jord med kull og aske<engelsk>code for boring through soil with coal and ashes</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Leire"
+          ],
+          "description": "kode for boring gjennom leire<engelsk>code for boring through clay</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "LeirMorene"
+          ],
+          "description": "kode for boring gjennom finstoffholdig morene<engelsk>code for boring through clayey moraine and till</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "MerInformasjon"
+          ],
+          "description": "kode for markering av tilleggsinformasjon<engelsk>code for marking of additional information</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "MoreneJord"
+          ],
+          "description": "kode for boring gjennom morenejord<engelsk>code for boring through morainic soil</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "NyMetode"
+          ],
+          "description": "kode for markering av overgang til ny metode<engelsk>code for marking of transition to new method</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Opphold"
+          ],
+          "description": "kode for markering av opphold i boringen<engelsk>code for marking of halt in the boring</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "OppsprukketFjell"
+          ],
+          "description": "kode for boring gjennom oppsprukket berg<engelsk>code for boring through cracked rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "OrganiskJord"
+          ],
+          "description": "kode for boring gjennom organisk materiale<engelsk>code for boring through organic materials</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Pumping"
+          ],
+          "description": "kode for markering av pumping med borstengene (repetert vertikal opptrekking og nedpressing av stangsystemet)<engelsk>code for marking of pumping wth drill rods (repeated sequences of vertical hoisting and pushing of the rod system)</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "PumpingSlutt"
+          ],
+          "description": "kode for avslutning av pumping<engelsk>code for termination of pumping</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SandmedGrus"
+          ],
+          "description": "kode for boring gjennom sand med grus<engelsk>code for boring through soil with sand and gravel</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Silt"
+          ],
+          "description": "kode for boring gjennom silt<engelsk>code for boring through silt</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skadet"
+          ],
+          "description": "kode for markering av skade på borutstyr<engelsk>code for marking of damage of drilling equipment</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skarv"
+          ],
+          "description": "kode for markering av stangskjøting (svensk terminologi)<engelsk>code for marking of added rods (swedish terminology)</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Slag"
+          ],
+          "description": "kode for markering av slag på borstenger<engelsk>code for marking of strokes on drill rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SlagSpyl"
+          ],
+          "description": "kode for markering av slag på borstenger og spyling gjennom borkrone<engelsk>code for marking of strokes on the drill rods and/or flushing through the drill bit</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SlagSpylSlutt"
+          ],
+          "description": "kode for markering av avslutning av slag på borstenger og spyling gjennom borkrone<engelsk>code for marking of termination of strokes on the drill rods and/or flushing through the drill bit</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SluttSlag"
+          ],
+          "description": "kode for markering av avslutning av slag på borstenger<engelsk>code for marking of termination of strokes on the drill rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SluttVridning"
+          ],
+          "description": "kode for avslutning av vridning av borstenger<engelsk>code for termination of rotation of the drill rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SonderingstangAv"
+          ],
+          "description": "kode for demontering av borstang<engelsk>code for demounting of a drill rod</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SpissDyp"
+          ],
+          "description": "kode for angivelse av dybde for borspiss<engelsk>code for identification of depth for the drill bit</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Spyling"
+          ],
+          "description": "kode for markering av spyling gjennom borkrone<engelsk>code for marking of flushing through the drill bit</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SpylingSlutt"
+          ],
+          "description": "kode for avslutning av spyling gjennom borkrone<engelsk>code for termination of flushing through the drill bit</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Startnivå"
+          ],
+          "description": "kode for angivelse av startnivå<engelsk>code for given start level</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "StartSlag"
+          ],
+          "description": "kode for start av slag på borstenger<engelsk>code for start of strokes on the drill rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "StartVridning"
+          ],
+          "description": "kode for start av vridning på borstenger<engelsk>code for start of rotation of the drill rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SværtOppsprukketFjell"
+          ],
+          "description": "kode for boring gjennom svært oppsprukket berg<engelsk>code for boring through very cracked rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SynkVekt0"
+          ],
+          "description": "code for angivelse av synk for 0 vekt (dreiesondering)<engelsk>code for given sink of drill rods for 0 load (rotary weight sounding)</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SynkVekt0_64"
+          ],
+          "description": "kode for angivelse av synk for 0.64 vekt (dreiesondering) <engelsk>code for given sink of drill rods for 0.64 load (rotary weight sounding)</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Terrengoverflate"
+          ],
+          "description": "kode for markering av terrengoverflate <engelsk>code for marking of the terrain surface</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TidligereStopp"
+          ],
+          "description": "kode for markering av tidligere stopp i boringen <engelsk>code for marking of previous stops in the boring</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tidsangivelse"
+          ],
+          "description": "kode for angivelse av tid <engelsk>code for time</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Torv"
+          ],
+          "description": "code for boring gjennom torv\r\n<engelsk>code for boring through peat</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tørrskorpe"
+          ],
+          "description": "kode for boring gjennom tørrskorpe\r\n<engelsk>code for boring through dry crust</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UbestemtJordart"
+          ],
+          "description": "kode for boring gjennom ubestemt jordart <engelsk>code for boring through undetermined soil</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UorganiskKohesjonsjord"
+          ],
+          "description": "kode for boring gjennom uorganisk kohesjonsjord\r\n<engelsk>code for boring through inorganic cohesive soil</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UrenMakadam"
+          ],
+          "description": "kode for boring gjennom inhomogen makadam (pukk) <engelsk>code for boring through inhomogenous macadam (blasted rock)</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UtenVridning"
+          ],
+          "description": "kode for boring uten vridning (rotasjon) av borstenger<engelsk>code for boring without rotation of the drill rods</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vridning"
+          ],
+          "description": "kode for boring med vridning (rotasjon) av borstenger<engelsk>code for boring with rotation of the drill rods</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "GeotekniskFeltUndersMetodeKode"
+      ],
+      "description": "Koder for metoder benyttet ved geotekniske feltundersøkelser",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ramsondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BelastningTest"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SetningMåling"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skrueplate"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SPT"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "PermeabilitetMåling"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "ElektriskSondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "HelningMåling"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skovlboring"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "GeotekniskGrunnvannObservasjonKode"
+      ],
+      "description": "oversikt over observasjonskoder for grunnvann",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GroundwaterObservationCode"
+        }
+      ],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IkkeSpesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tørr"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vannstrøm"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Erstattet"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ferdig"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Stikk"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FunksjonSjekkOk"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FunksjonSjekkFeilet"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Spylet"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Frosset"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "GeotekniskMetodeKode"
+      ],
+      "description": "Kode for metoder benyttet ved geotekniske borehullundersøkelser",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Bergkontrollboring"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Gassprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Blokkprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dilatometertest"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dreiesondering_manuell"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dreiesondering_maskinell"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dreietrykksondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dynamisk_sondering_uspesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Enkel_sondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Gassmåling"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Graveprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Grunnvannsmåling"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Hejarsondering_A"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Hejarsondering_B"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "HK_sondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Hydraulisk_test"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ikke_angitt"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Jord_berg_sondering_1"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Jord_berg_sondering_2"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Jord_berg_sondering_3"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kanneprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kjerneprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kombinasjonssondering_uspesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kombisondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Naverprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Platebelastning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Poretrykksmåling"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ramprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ramsondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ramsondering_A"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ramsondering_B"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sedimentprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skovlprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Slagsondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SPT"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Statisk_sondering_uspesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Stempelprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Stikksondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Totalsondering_Norge"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Totalsondering_Sverige"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Trykksondering_CPT_CPTU_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vannprøve"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vektsondering_manuell"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vektsondering_maskinell"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vingeboring"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dreiesondering_uspesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Prøve_uspesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Prøveserie_uspesifisert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Miljøundersøkelse"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Elektrisk_sondering"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kjerneboring"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "GeotekniskStoppkode"
+      ],
+      "description": "oversikt over koder for stopp av boring ved utførelse av en grunnundersøkelse <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "AntattBerg"
+          ],
+          "description": "kode for avslutning av boring i antatt berg <engelsk>code for termination of boring in presumed rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "AntattSteinBlokk"
+          ],
+          "description": "kode for avslutning av boring i antatt stein eller blokk <engelsk>code for termination of boring in presumed stone or block</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BruddBorstangSpiss"
+          ],
+          "description": "kode for avslutning av boring ved brudd i borstang eller borspiss <engelsk>code for termination of boring due to failure of drill rod or drill bit</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "DybdeIBergOppnådd"
+          ],
+          "description": "kode for avslutning av boring ved oppnådd boredybde i berg <engelsk>code for termination of boring after assumed depth in rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "DybdeIFjellMerEnn3Meter"
+          ],
+          "description": "kode for avslutning av boring ved oppnådd boredybde i berg større enn 3 m <engelsk>code for termination of boring after assumed depth in rock greater than 3 m</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "MaterialEllerMaskinFeil"
+          ],
+          "description": "kode for avslutning av boring ved feil på borustyr <engelsk>code for termination of boring due to equipment errors</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SonderingAvbrutt"
+          ],
+          "description": "kode for avslutning av boring ved avbrutt sondering <engelsk>code for termination of boring due to interrupted sounding</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SonderingAvbruttFastGrunn"
+          ],
+          "description": "kode for avslutning av boring i fast grunn <engelsk>code for termination of boring in firm ground</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SonderingAvsluttetUtenStopp"
+          ],
+          "description": "kode for avslutning av sondering uten stopp <engelsk>code for termination of sounding without stop</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SteinBlokkFjell"
+          ],
+          "description": "kode for avslutning av boring i stein, blokk eller berg <engelsk>code for termination of boring in presumed stone, block or rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Uspesifisert"
+          ],
+          "description": "kode for avslutning av boring ved uspesifisert årsak <engelsk>code for termination of boring due to unspecified reasons</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "KjerneBoringMerEnn3Meter"
+          ],
+          "description": "Det har blitt tatt ut en kjerneprøve på minimum 3 meter<engelsk> core drilling min 3 meter</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "DybdeIFjellMerEnn3MeterMedAnalyse"
+          ],
+          "description": "kode for avslutning av boring ved oppnådd boredybde i berg større enn 3 m og borestøv har blitt analysert <engelsk>code for termination of boring after assumed depth in rock greater than 3 m and the drill cuttings have been analysed</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "GjennomboretMedium"
+      ],
+      "description": "angir hvilket medium en boring er foretatt i\r\n\r\n<engelsk> \r\ndefine what kind of medium/material the borehole has penetrated.</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Berg"
+          ],
+          "description": "berggrunn/fjell\r\n\r\n<engelsk> \r\nbedrock\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Is"
+          ],
+          "description": "is\r\n\r\n<engelsk> \r\nice\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Luft"
+          ],
+          "description": "luft\r\n\r\n<engelsk> \r\nair\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Løsmasse"
+          ],
+          "description": "løsmasse\r\n\r\n<engelsk> \r\nuncompacted material\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Uspesifisert"
+          ],
+          "description": "medium/material er ikke angitt\r\n\r\n<engelsk> \r\nmedium/material is undefined\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vann"
+          ],
+          "description": "vann\r\n\r\n<engelsk> \r\nwater\r\n</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "HovedLagKlassifisering"
+      ],
+      "description": "oversikt over lagdeling og jordart for klassifisering og identifisering av grunnforhold<engelsk>overview of stratification and soil type for classification and identification of ground conditions</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "MainLayerClassification"
+        }
+      ],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "AntattForurensning"
+          ],
+          "description": "antatt forurenset materiale<engelsk>assumed contaminated material</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Cs"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Blokk"
+          ],
+          "description": "blokk (fraksjoner større enn 200 mm)<engelsk>boulders (fractions > 200 mm</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Bl"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dy"
+          ],
+          "description": "dy (Dy består av vannavsatte plante- og dyrerester og er en strukturløs masse)<engelsk>organic material consisting of plant and animal debris sedimented in water. The material is not showing a special structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Dy"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Matjord"
+          ],
+          "description": "matjord <engelsk>humus</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Topsoil"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Berg"
+          ],
+          "description": "berg<engelsk>rock</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "B"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "ForvitretTorv"
+          ],
+          "description": "forvitret torv (Torv er mer eller mindre omvandlede planterester, klassifiseres etter von Post skala)<engelsk>weathered peat (Peat is more or less transformed plant debris and is classified according to the von Post scale)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Th"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "OppsprukketBerg"
+          ],
+          "description": "oppsprukket berg<engelsk>jointed rock</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Br"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Gytje"
+          ],
+          "description": "gytje (Gytje består av vannavsatte plante- og dyrerester og viser vanligvis organisk struktur)<engelsk>organic material consisting of plant and animal debris. The material usually shows a special structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Gy"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GytjeOgLeire"
+          ],
+          "description": "leirblandet gytje (organisk materiale )<engelsk>organic material consisting of plant, animal debris and clay.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GyLe"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Humus"
+          ],
+          "description": "humus (Humus er en fellesbetegnelse på organisk materiale i jordarter)<engelsk>common denotation of organic matter in soils</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Mu"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kull"
+          ],
+          "description": "kull<engelsk>coal</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Coal"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Leire"
+          ],
+          "description": "leire (materiale med mer enn 30 % i leirfraksjonen < 2 µm)<engelsk>clay (material with more than 30 % in the clay fraction < 2 µm)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Le"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "AnnetOrganiskMateriale"
+          ],
+          "description": "annet organisk materiale<engelsk>other organic materials</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Organic"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sand"
+          ],
+          "description": "Sand (fraksjoner mellom 0,063 og 2,0 mm)<engelsk>sand (fractions between  0,063 and 2,0 mm</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Sa"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Silt"
+          ],
+          "description": "silt (fraksjoner mellom 0,002 og 0,063 mm)<engelsk>silt (fractions between 0,002 and 0,063 mm</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Si"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skjellgrus"
+          ],
+          "description": "skjellgrus<engelsk>coquina</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Skgr"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skjellsand"
+          ],
+          "description": "skjellsand<engelsk>shellsand</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Sksa"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SulfidholdigJord"
+          ],
+          "description": "suldidholdig sand<engelsk>sulphide sand</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Su"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Torv"
+          ],
+          "description": "torv<engelsk>peat</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "T"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TørrskorpeLeire"
+          ],
+          "description": "tørrskorpe leire<engelsk>crusty clay</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Let"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UspesifisertMateriale"
+          ],
+          "description": "uspesifisert materiale<engelsk>unspecified material</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "NotSpecified"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Fyllmasse"
+          ],
+          "description": "fyllmasse<engelsk>fill mass</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "F"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Grus"
+          ],
+          "description": "grus (fraksjoner mellom 2,0 og 63 mm)<engelsk>gravel (fractions between 2,0 and 63 mm</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Gr"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kvikkleire"
+          ],
+          "description": "kvikkleire (omrørt skjærfasthet < 0,5 kPa)<engelsk>quick clay (remoulded shear strength < 0,5 kPa)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "kLe"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Morene"
+          ],
+          "description": "morene<engelsk>glacial deposit</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Mn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Friksjonsjord"
+          ],
+          "description": "friksjonsjord<engelsk>non-cohesive soil </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Fr"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Kohesjonsjord"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Cohesive"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Planterester"
+          ],
+          "description": "planterester<engelsk>plant remnants</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Vx"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BlokkigOgSteinigMorene"
+          ],
+          "description": "Blokkig og steinig morene <engelsk>Boulder and Cobble till </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "BlMn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UkjentMateriale"
+          ],
+          "description": "Ukjent materiale <engelsk>Unknown material</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Jord"
+          ],
+          "description": "Jord<engelsk>soil</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "J"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SteinigMorene"
+          ],
+          "description": "Steinig morene<engelsk>Cobble till</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "StMn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "GrusigMorene"
+          ],
+          "description": "Grussig morene<engelsk>Gravel till</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GrMn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SandigMorene"
+          ],
+          "description": "Sandig morene<engelsk>Sand till</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "SaMn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "SiltigMorene"
+          ],
+          "description": "Siltig morene<engelsk>Silt till</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "SiMn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "LeirigMorene"
+          ],
+          "description": "Leirig morene<engelsk>Clay till</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "LeMn"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Skjell"
+          ],
+          "description": "Skjell<engelsk>Shells</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Sk"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "FibrigTorv"
+          ],
+          "description": "Fibrig torv. Fibrig struktur, lett gjenkjennelig plantestruktur, viser noe styrke,<engelsk> Fibrous peat</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Tl"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "DelvisFibrigTorv"
+          ],
+          "description": "Delvis fibrig torv. Gjenkjennelig plantestruktur, ingen styrke i planterestene<engelsk>Pseudo-fibrous peat</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "Tm"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Stein"
+          ],
+          "description": "Stein<engelsk>Cobbles</engelsk>\r\nstein (fraksjoner mellom 63 og 200 mm)<engelsk>cobbles (fractions between 63 and 200 mm</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "St"
+            }
+          ]
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BergEllerBlokk"
+          ],
+          "description": "Berg eller blokk<engelsk>Rock or boulders</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "BelBl"
+            }
+          ]
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "HydrauliskKonduktivitet"
+      ],
+      "description": "proporsjonalitetskonstant som relaterer vannstrømningsrate gjennom et medium til gradienten\r\n\r\nMerknad: Kalles også hydraulisk ledningsevne og avhenger av både vannets og mediets egenskaper.\r\n\r\n<engelsk>proportionality constant which relates water permeability through a medium with the gradient</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Dårlig_vanngiver"
+          ],
+          "description": "dårlig vanngiver  <engelsk>poor water source</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ganske_dårlig_vanngiver"
+          ],
+          "description": "ganske dårlig vanngiver <engelsk>pretty poor water source</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "God_vanngiver"
+          ],
+          "description": "god vanngiver <engelsk>good water source</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Meget_dårlig_vanngiver"
+          ],
+          "description": "meget dårlig vanngiver <engelsk>very poor water source</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Meget_god_vanngiver"
+          ],
+          "description": "meget god vanngiver <engelsk>very good water source</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "KlassifiseringsMetode"
+      ],
+      "description": "oversikt over klassifiseringsmetoder for bestemmelse av grunnforhold<engelsk>overview of classification methods for determination of ground conditions</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "ClassificationMethod"
+        }
+      ],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Observasjon"
+          ],
+          "description": "tolket fra observasjon<engelsk>interpreted from observation</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketFeltsondering"
+          ],
+          "description": "tolket fra sondering i felt<engelsk>interpreted from sounding in the field</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketBergBoring"
+          ],
+          "description": "tolket fra boring i berg<engelsk>interpreted from drilling in rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketBergBoring3Meter"
+          ],
+          "description": "tolket fra boring 3 m inn i berg<engelsk>interpreted from boring 3 m into rock</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketLab"
+          ],
+          "description": "tolket fra prøving i laboratoriet<engelsk>interpreted from testing in the laboratory</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketTegning"
+          ],
+          "description": "tolket fra tegning<engelsk>interpreted from drawing</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Uspesifisert"
+          ],
+          "description": "uspesifisert tolkningskilde<engelsk>unspecified source of interpretation</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BeregnetFraTerrengoverflaten"
+          ],
+          "description": "beregnet størrelse fra terrengoverflaten<engelsk>calculated from the terrain surface</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "TolketPrøvetak"
+          ],
+          "description": "tolket fra prøvetaking i felt<engelsk>interpreted from sampling in the field</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "KvalitetBorlengdeTilBerg"
+      ],
+      "description": "beskriver om borlengde til berg er antatt eller påvist med en sikker metode\r\n\r\n<engelsk> \r\ndefines the quality of the depth information either assumed or confirmed by a secure method\r\n</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "QualityBoreholeLenghtToRock"
+        }
+      ],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "antatt"
+          ],
+          "description": "usikker angivelse av dybde til berg\r\n\r\n<engelsk> \r\nuncertain depth to rock\r\n</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "påvist"
+          ],
+          "description": "sikker angivelse av dybde til berg\r\n\r\n<engelsk> \r\nconfirmed depth to rock\r\n</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "KvikkleirePåvisningKode"
+      ],
+      "description": "Koder for grad av sikkerhet for påvisning av kvikkleire eller sprøbruddmateriale",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Antatt"
+          ],
+          "description": "Benyttes ved sondering",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IkkeVurdert"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sikker"
+          ],
+          "description": "Kan kun benyttes der kvikkleire eller sprøbruddmateriale er påvist ved prøvetaking",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Usikker"
+          ],
+          "description": "Benyttes ved sondering",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "AntattIkkeKvikk"
+          ],
+          "description": "Benyttes ved sondering",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "LagPosisjon"
+      ],
+      "description": "kodeliste som brukes for å fortelle i hvilken del av prøvedelen som det er gjort undersøkelser",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "LayerComposition"
+        }
+      ],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "IkkeAngitt"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Venstre"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Midten"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Høyre"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "NADAG_DokumentType"
+      ],
+      "description": "Typer av dokument brukt i NADAG forvaltningsløsning.",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Uspesifisert_dokumenttype"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Opptegningssymbol"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Bilde"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Rådatafil"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Labrapport"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Geoteknisk_rapport"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Plantegning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Profiltegning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Tegning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Modell"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Andre_vedlegg_til_borehull"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Digitalisert_DWG_tegning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Bilde_koblet_til_digitalisert_DWG_tegning"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Bilde_borehullsprofil"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Vurderingsrapport"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "NADAG_Høyderef"
+      ],
+      "description": "Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder benyttes.",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "NN2000"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "NN54"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ukjent_høydereferanse"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "NedpressingsKapasitet"
+      ],
+      "description": "oversikt over lastkapasiteter for vanlige trykksonder i CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "_10_kN"
+          ],
+          "description": "trykksonde med lastkapasitet 1 tonn <engelsk>probe with vertical load capacity 1 ton</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "_100_kN"
+          ],
+          "description": "trykksonde med lastkapasitet 10 tonn <engelsk>probe with vertical load capacity 10 tons</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "_50_kN"
+          ],
+          "description": "trykksonde med lastkapasitet 5 tonn <engelsk>probe with vertical load capacity 5 tons</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "PoretrykkMåleKategori"
+      ],
+      "description": "oversikt over aktuelle typer poretrykksmålere<engelsk>overview of possible types of pore pressure measurement devices</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Elektrisk"
+          ],
+          "description": "elektrisk poretrykksmåler<engelsk>electrical piezometer</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Hydraulisk"
+          ],
+          "description": "hydraulisk poretrykksmåler<engelsk>hydraulic piezometer</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "PrøvetakingType"
+      ],
+      "description": "inndeling av fysisk prøvemateriale i prøvetype, avhengig av prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample type classes, depending on sampling method and/or storage method for the sampled material</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Blokk"
+          ],
+          "description": "blokkprøve, normalt med uforstyrret eller noe forstyrret prøvemateriale<engelsk>block sample, normally of undisturbed or slightly disturbed quality</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Plastrør"
+          ],
+          "description": "plastrør<engelsk>plastic tube>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Poseprøve"
+          ],
+          "description": "poseprøve, normalt med omrørt eller meget forstyrret materiale<engelsk>bag sample, normally of remoulded or very disturbed quality</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ren_flaske"
+          ],
+          "description": "ren  flaske <engelsk>clean bottle</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Steril_flaske"
+          ],
+          "description": "steril flaske <engelsk>antiseptic bottle</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sylinder"
+          ],
+          "description": "sylinder, normalt med lett forstyrret til meget forstyrret materiale<engelsk>cylinder, normally of slightly to somewhat disturbed quality</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "RepresentasjonKvalitet"
+      ],
+      "description": "Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse fysisk representerer.",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Ukjent"
+          ],
+          "description": "Hva avvgrensing av geoteknisk undersøkelse representerer er ikke kjent.",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Representasjonspunkt_for_mindre_GU_område_Opptil_ca_10_mål_"
+          ],
+          "description": "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et mindre område, opptil ca 10 mål.",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Representasjonspunkt_for_større_GU_område_Over_ca_10_mål_eller_lengre_enn_ca_0_5_km"
+          ],
+          "description": "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et større område, over ca 10 mål eller lenger enn ca. 0,5km.",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Representasjonspunkt_for_kommunalt_regionalt_GU_område_"
+          ],
+          "description": "Avgrensning av en geoteknisk undersøkelse basert på et representasjonspunkt. Her for et område som er av kommunal/regional størrelse.",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Polygon_som_avgrenser_borehull_i_GU_"
+          ],
+          "description": "Avgrensning av en geoteknisk undersøkelse som i hovedsak avgrenser inngående borehull.",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Polygon_for_GU_med_kun_et_enkelt_borehull_100x100m_"
+          ],
+          "description": "Polygon for GU med kun et enkelt borehull (100x100m).",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Polygon_hentet_fra_borehull_i_GU_min_og_maks_koordinater_"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Polygon_som_representerer_prosjektområde_"
+          ],
+          "description": "Avgrensning av en geoteknisk undersøkelse som representerer prosjektområde.",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "SondeKvalitetsKlasse"
+      ],
+      "description": "oversikt over aktuelle kvalitetsklasser (Anvendelsesklasser) for CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Klasse_1"
+          ],
+          "description": "anvendelsesklasse 1 for CPTU med høyeste krav til målenøyaktighet<engelsk>application Class 1 for CPTU with the highest accuracy</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Klasse_2"
+          ],
+          "description": "anvendelsesklasse 2 for CPT/CPTU <engelsk>application Class 2 for CPT/CPTU</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Klasse_3"
+          ],
+          "description": "anvendelsesklasse 3 for CPT/CPTU <engelsk>application Class 3 for CPT/CPTU</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Klasse_4"
+          ],
+          "description": "anvendelsesklasse 4 for CPT med laveste krav til målenøyaktighet<engelsk>application Class 4 for CPT with the lowest accuracy.</engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "TolkningMetodeKode"
+      ],
+      "description": "Metoder benyttet for tolkning av geotekniske feltundersøkelser",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "F"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BG"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "BH"
+          ],
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "_Le"
+          ],
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "kodelister",
+        "VannPrøveKilde"
+      ],
+      "description": "angir kilden til vannprøve<engelsk>define the source of the water sample</engelsk>",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Grunnvann"
+          ],
+          "description": "grunnvann <engelsk>ground water</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Overflatevann"
+          ],
+          "description": "overflatevann<engelsk>surface water</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Porevann"
+          ],
+          "description": "porevann <engelsk>pore water</engelsk>",
+          "tags": []
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "Sigevann"
+          ],
+          "description": "sigevann <engelsk>seepage water </engelsk>",
+          "tags": []
+        }
+      ],
+      "asDictionary": false
+    }
+  ]
+}

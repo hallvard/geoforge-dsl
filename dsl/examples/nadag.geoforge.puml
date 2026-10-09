@@ -1,6 +1,21 @@
 @startuml "no.ngu.nadag"
 class BlokkPrøve {
 }
+class GeotekniskPrøvetaking {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    prøvetype: PrøvetakingType
+    densitetPrøvetaking: Real
+    miljøtekniskUndersøkelse: CharacterString
+}
+class Geotekniskmetode {
+    identifikasjon: Identifikasjon
+}
+class Identifikasjon {
+    id: String
+    namespace: String
+    version: long
+}
 class DeformasjonMåling {
     absoluttverdi: Boolean
     installasjonTidspunkt: DateTime
@@ -10,16 +25,142 @@ class DeformasjonMåling {
     harOvervåkningObservasjon*: DeformasjonOvervåkningData
     harSetningObservasjon*: DeformasjonMåleData
 }
+class GeotekniskObservasjon {
+}
+class GeotekniskObservasjon_NADAG {
+    boreBeskrivelse: CharacterString
+    boretAzimuth: Real
+    boretHelningsgrad: Real
+    boretLengde: Real
+    boretLengdeTilBerg: BorlengdeTilBerg
+    dybdeFraGittPosisjon: Real
+    dybdeFraVannoverflaten: Real
+    lenkeTilTileggsinfo: CharacterString
+    værforholdVedBoring: CharacterString
+    høyde: Real
+    høydeReferanse: NADAG_Høyderef
+    undersøkelseNr: CharacterString
+    eksternIdentifikasjon: EksternIdentifikasjon
+    opprettetDato: DateTime
+    dybdeGrunnvannstand: Real
+    forboretDiameter: Real
+    forboretLengde: Real
+    forboringMetode: CharacterString
+    stoppKode: GeotekniskStoppkode
+    forboretStartLengde: Real
+}
+class GeovitenskapeligObservasjon {
+    posisjon: Punkt
+    observasjonStart: DateTime
+    observasjonSlutt: DateTime
+    observatør: CharacterString
+    opphav: CharacterString
+}
+class Supertype_Geotekn_obj_pkt {
+    datafangstdato: DateTime
+    digitaliseringsmålestokk: Integer
+    identifikasjon: Identifikasjon
+    kvalitet: PosisjonskvalitetNADAG
+    oppdateringsdato: DateTime
+}
+class PosisjonskvalitetNADAG {
+    målemetode: Målemetode
+    målemetodeHøyde: MålemetodeHøyde
+    nøyaktighet: Integer
+    nøyaktighetHøyde: Integer
+}
+class BorlengdeTilBerg {
+    borlengdeKvalitet: KvalitetBorlengdeTilBerg
+    borlengdeTilBerg: Real
+}
+class EksternIdentifikasjon {
+    eksternId: CharacterString
+    eksternNavnerom: CharacterString
+    eksternVersjonId: CharacterString
+    eksternLeveringDato: DateTime
+}
+class GeotekniskBorehull {
+    boreNr: CharacterString
+    høyde: Real
+    høydeReferanse: NADAG_Høyderef
+    opprettetDato: DateTime
+    eksternIdentifikasjon: EksternIdentifikasjon
+    kvikkleirePåvisning: KvikkleirePåvisningKode
+    opprinneligGeotekniskUndersID: CharacterString
+    opphav: CharacterString
+    maksBoretLengde: Real
+}
+class GeovitenskapligBorehull {
+    antallBorehullUndersøkelser: Integer
+    beskrivelse: CharacterString
+    boretLengdeTilBerg: BorlengdeTilBerg
+    gjennomboretMedium*: GjennomboretMedium
+    posisjon: Punkt
+}
+class GeotekniskBorehullUnders {
+    høyde: Real
+    høydeReferanse: NADAG_Høyderef
+    undersøkelseNr: CharacterString
+    eksternIdentifikasjon: EksternIdentifikasjon
+    opprettetDato: DateTime
+    geotekniskMetode: GeotekniskMetodeKode
+    dybdeGrunnvannstand: Real
+    forboretDiameter: Real
+    forboretLengde: Real
+    forboringMetode: CharacterString
+    stoppKode: GeotekniskStoppkode
+    forboretStartLengde: Real
+}
+class GeovitenskapligBorehullUndersøkelse {
+    posisjon: Punkt
+    boreBeskrivelse: CharacterString
+    borehullForløp: Kurve
+    boretAzimuth: Real
+    boretHelningsgrad: Real
+    boretLengde: Real
+    boretLengdeTilBerg: BorlengdeTilBerg
+    dybdeFraGittPosisjon: Real
+    dybdeFraVannoverflaten: Real
+    lenkeTilTileggsinfo: CharacterString
+    opphav: CharacterString
+    undersøkelseSlutt: DateTime
+    undersøkelseStart: DateTime
+    værforholdVedBoring: CharacterString
+}
+class GeotekniskUnders {
+    eksternIdentifikasjon: EksternIdentifikasjon
+    representasjonKvalitet: RepresentasjonKvalitet
+    opprettetDato: DateTime
+    prosjektNr: CharacterString
+    opphav: CharacterString
+    undersøkelseÅrAntatt: Integer
+}
+class GeovitenskapeligUndersøkelse {
+    beskrivelse: CharacterString
+    område: GM_Surface
+    oppdragsgiver: CharacterString
+    oppdragstaker: CharacterString
+    prosjektNavn: CharacterString
+    undersøkelsePeriodeFra: DateTime
+    sammensattområde: GM_MultiSurface
+    undersøkelsePeriodeTil: DateTime
+}
+class Supertype_Geotekn_obj_omr {
+    identifikasjon: Identifikasjon
+    oppdateringsdato: DateTime
+}
 class DeformasjonOvervåkningData {
     nedreAlarmNivå: Real
     øvreAlarmNivå: Real
     måleDato: Date
     måleTidspunkt: DateTime
     observasjonMerknad: CharacterString
+    akvifer: AkviferType
 }
 class DeformasjonMåleData {
     måleDato: Date
     måleTidspunkt: DateTime
+    deformasjonObservasjonKode: DeformasjonObservasjonKode
     observasjonMerknad: CharacterString
     setning: Real
     deformasjonX: Real
@@ -35,6 +176,12 @@ class DilatometerTest {
     dilatometerModulus: Real
     dilatometerObservasjon*: DilatometerTestData
 }
+class GeotekniskInsituTest {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    insituTestStartTidspunkt: DateTime
+    insituTestSluttTidspunkt: DateTime
+}
 class DilatometerTestData {
     boretDybde: Real
     observasjonMerknad: CharacterString
@@ -47,6 +194,11 @@ class DilatometerTestData {
 class DynamiskSondering {
     antPrøveuttakForstyrretMatr: Integer
     dynamiskSonderingObservasjon*: DynamiskSonderingData
+}
+class GeotekniskSondering {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    torvTykkelse: Real
 }
 class DynamiskSonderingData {
     boretLengde: Real
@@ -72,50 +224,10 @@ class GassData {
 }
 class GassPrøve {
 }
-class GeotekniskBorehull {
-    boreNr: CharacterString
-    høyde: Real
-    opprettetDato: DateTime
-    eksternIdentifikasjon: EksternIdentifikasjon
-    opprinneligGeotekniskUndersID: CharacterString
-    opphav: CharacterString
-    maksBoretLengde: Real
-}
-class EksternIdentifikasjon {
-    eksternId: CharacterString
-    eksternNavnerom: CharacterString
-    eksternVersjonId: CharacterString
-    eksternLeveringDato: DateTime
-}
-class GeotekniskBorehullUnders {
-    høyde: Real
-    undersøkelseNr: CharacterString
-    eksternIdentifikasjon: EksternIdentifikasjon
-    opprettetDato: DateTime
-    dybdeGrunnvannstand: Real
-    forboretDiameter: Real
-    forboretLengde: Real
-    forboringMetode: CharacterString
-    forboretStartLengde: Real
-}
-class Geotekniskmetode {
-    identifikasjon: Identifikasjon
-}
-class Identifikasjon {
-    id: String
-    namespace: String
-    version: long
-}
-class GeotekniskUnders {
-    eksternIdentifikasjon: EksternIdentifikasjon
-    opprettetDato: DateTime
-    prosjektNr: CharacterString
-    opphav: CharacterString
-    undersøkelseÅrAntatt: Integer
-}
 class GeotekniskDokument {
     dokumentID: CharacterString
     dokumentNøkkel: CharacterString
+    dokumentType: NADAG_DokumentType
     dokumentFilnavn: CharacterString
     dokumentURL: CharacterString
     innholdType: CharacterString
@@ -129,10 +241,14 @@ class GeotekniskDokument {
 class GeotekniskFeltUnders {
     identifikasjon: Identifikasjon
     posisjon: Punkt
+    geotekniskFeltUndersMetode: GeotekniskFeltUndersMetodeKode
     eksternidentifikasjon: EksternIdentifikasjon
     opprettetDato: DateTime
+    feltundersType: FeltUndersTypeKode
+    tolkningMetode: TolkningMetodeKode
     høydeFjell: Real
     høyde: Real
+    høydeReferanse: NADAG_Høyderef
     feltundersNr: CharacterString
 }
 class GeotekniskPrøveserie {
@@ -145,6 +261,8 @@ class GeotekniskPrøveserie {
 }
 class GeotekniskTolketLag {
     tolketLagID: CharacterString
+    klassifiseringMetode: KlassifiseringsMetode
+    hovedLagKlassifiseringsKode: HovedLagKlassifisering
     lagBeskrivelse: CharacterString
     tolketAv: CharacterString
     tolketTidspunkt: DateTime
@@ -156,6 +274,7 @@ class GeotekniskTolketLag {
     eksternIdentifikasjon: EksternIdentifikasjon
     posisjon: Punkt
     høyde: Real
+    høydeReferanse: NADAG_Høyderef
 }
 class GeotekniskTolketPunkt {
     identifikasjon: Identifikasjon
@@ -164,16 +283,16 @@ class GeotekniskTolketPunkt {
     navn: CharacterString
     posisjon: Punkt
     høyde: Real
+    høydeReferanse: NADAG_Høyderef
     digitaliseringsmålestokk: Integer
     kvalitet: PosisjonskvalitetNADAG
     oppdateringsdato: DateTime
     beskrivelse: CharacterString
 }
-class PosisjonskvalitetNADAG {
-    nøyaktighet: Integer
-    nøyaktighetHøyde: Integer
-}
 class GeotekniskUndersøkelseGrense {
+}
+class GeovitenskapeligUndersøkelseGrense {
+    grense: Kurve
 }
 class GravePrøve {
 }
@@ -182,6 +301,7 @@ class GrunnvannMåling {
     filterDyp: Real
     filterLengde: Real
     filterType: CharacterString
+    grunnvannAkvifer: AkviferType
     rørBunn: Real
     rørTopp: Real
     rørType: CharacterString
@@ -201,9 +321,11 @@ class GrunnvannData {
     redoks: Real
     turbiditet: Real
     boretLengde: Real
+    grunnvannObservasjonKode: GeotekniskGrunnvannObservasjonKode
     erGyldig: Boolean
 }
 class OvervåkningData {
+    akvifer: AkviferType
     måleTidspunkt: DateTime
     nedreAlarmNivå: Real
     øvreAlarmNivå: Real
@@ -220,6 +342,7 @@ class HydrauliskeData {
     måleDato: Date
     måleTidspunkt: DateTime
     observasjonMerknad: CharacterString
+    hydrauliskKonduktivitet: HydrauliskKonduktivitet
     dybdeGrunnvannstand: Real
 }
 class KannePrøve {
@@ -227,9 +350,6 @@ class KannePrøve {
 class KjerneBoring {
     boretLengdeTilBerg: BorlengdeTilBerg
     harData*: KjerneBoringData
-}
-class BorlengdeTilBerg {
-    borlengdeTilBerg: Real
 }
 class KjerneBoringData {
     boretLengde: Real
@@ -305,6 +425,7 @@ class PoretrykkMåling {
     rørTopp: Real
     rørBunn: Real
     målerspissNummer: CharacterString
+    målerKategori: PoretrykkMåleKategori
     målerType: CharacterString
     poretrykkObservasjon*: PoretrykkData
 }
@@ -355,12 +476,14 @@ class Trykksondering {
     filterType: CharacterString
     initiellSpissmotstand: Real
     metningsMedium: CharacterString
+    nedpressingsKapasitet: NedpressingsKapasitet
     nedpressningsHastighet: Real
     nullpunktsKorreksjon: Real
     rørKappeKorreksjonsFaktor: Real
     sidefriksjonKorreksjon: Real
     sondeIdentifikasjon: CharacterString
     sondeKalibreringDato: DateTime
+    sondeKvalitetKlasse: SondeKvalitetsKlasse
     spissKorreksjonFaktor: Real
     spissType: CharacterString
     atmosferiskTrykkKorreksjon: Real
@@ -372,6 +495,7 @@ class Trykksondering {
 class PoretrykkDataInsitu {
     boretDybde: Real
     enhetsvekt: Real
+    observasjonKode: GeotekniskBoreObservasjonskode
     observasjonMerknad: CharacterString
     poretrykk: Real
     boretLengde: Real
@@ -412,6 +536,7 @@ class DissipasjonData {
     spissmotstand: Real
 }
 class VannPrøve {
+    vannPrøveType: VannPrøveKilde
 }
 class Vingeboring {
     vannstandIBorehull: Real
@@ -434,17 +559,57 @@ class VingeboringData {
     boretLengde: Real
     plastisitetIndeks: Real
 }
+GeotekniskPrøvetaking <|-- BlokkPrøve
+Geotekniskmetode <|-- GeotekniskPrøvetaking
+GeotekniskObservasjon <|-- DeformasjonMåling
+GeotekniskObservasjon_NADAG <|-- GeotekniskObservasjon
+GeotekniskObservasjon *-> GeotekniskBorehull: tilhørerGB
+GeovitenskapeligObservasjon <|-- GeotekniskObservasjon_NADAG
+Supertype_Geotekn_obj_pkt <|-- GeovitenskapeligObservasjon
+GeovitenskapligBorehull <|-- GeotekniskBorehull
 GeotekniskBorehull *-> "*" GeotekniskBorehullUnders: harUndersøkelse
 GeotekniskBorehull *-> "*" GeotekniskUnders: undersOmr
+Supertype_Geotekn_obj_pkt <|-- GeovitenskapligBorehull
+GeovitenskapligBorehullUndersøkelse <|-- GeotekniskBorehullUnders
 GeotekniskBorehullUnders *-> "*" Geotekniskmetode: metode
 GeotekniskBorehullUnders *-> GeotekniskBorehull: undersPkt
+Supertype_Geotekn_obj_pkt <|-- GeovitenskapligBorehullUndersøkelse
+GeovitenskapeligUndersøkelse <|-- GeotekniskUnders
 GeotekniskUnders *-> "*" GeotekniskBorehull: undersPkt
+Supertype_Geotekn_obj_omr <|-- GeovitenskapeligUndersøkelse
+GeotekniskInsituTest <|-- DilatometerTest
+Geotekniskmetode <|-- GeotekniskInsituTest
+GeotekniskSondering <|-- DynamiskSondering
+Geotekniskmetode <|-- GeotekniskSondering
+GeotekniskInsituTest <|-- GassMåling
+GeotekniskPrøvetaking <|-- GassPrøve
 GeotekniskDokument *-> GeotekniskFeltUnders: tilhørerFeltUnders
 GeotekniskDokument *-> GeotekniskUnders: tilhørerGU
 GeotekniskDokument *-> GeotekniskBorehull: tilhørerGB
 GeotekniskDokument *-> GeotekniskBorehullUnders: tilhørerGBU
 GeotekniskFeltUnders *-> GeotekniskUnders: tilhørerGU
+GeotekniskPrøvetaking <|-- GeotekniskPrøveserie
 GeotekniskTolketLag *-> GeotekniskTolketPunkt: tilhørerTolketPunkt
 GeotekniskTolketPunkt *-> GeotekniskUnders: tilhørerGU
 GeotekniskTolketPunkt *-> GeotekniskBorehull: tilhørerGB
+GeovitenskapeligUndersøkelseGrense <|-- GeotekniskUndersøkelseGrense
+GeotekniskPrøvetaking <|-- GravePrøve
+GeotekniskInsituTest <|-- GrunnvannMåling
+GeotekniskInsituTest <|-- HydrauliskTest
+GeotekniskPrøvetaking <|-- KannePrøve
+GeotekniskPrøvetaking <|-- KjerneBoring
+GeotekniskPrøvetaking <|-- KjernePrøve
+GeotekniskSondering <|-- KombinasjonSondering
+GeotekniskPrøvetaking <|-- MiljøUndersøkelse
+GeotekniskPrøvetaking <|-- NaverPrøve
+GeotekniskInsituTest <|-- Platebelastning
+GeotekniskInsituTest <|-- PoretrykkMåling
+GeotekniskPrøvetaking <|-- RamPrøve
+GeotekniskPrøvetaking <|-- SedimentPrøve
+GeotekniskPrøvetaking <|-- SkovlPrøve
+GeotekniskSondering <|-- StatiskSondering
+GeotekniskPrøvetaking <|-- StempelPrøve
+GeotekniskInsituTest <|-- Trykksondering
+GeotekniskPrøvetaking <|-- VannPrøve
+GeotekniskInsituTest <|-- Vingeboring
 @enduml

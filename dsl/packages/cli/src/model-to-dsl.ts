@@ -81,7 +81,7 @@ async function writeDslFile(model: GeoForgeModel | GeoForgePackage, sourceFilePa
 function extractDestinationAndName(filePath: string, destination: string | undefined): { destination: string; name: string } {
   const absolute = path.resolve(filePath);
   return {
-    destination: destination ?? path.join(path.dirname(absolute), 'generated'),
+    destination: destination ?? path.dirname(absolute),
     name: path.basename(absolute, path.extname(absolute))
   };
 }
@@ -188,8 +188,9 @@ function renderPropertyKind(kind: CompositeTypeProperty['kind']): string {
     case 'container':
       return 'parent';
     case 'containment':
-    default:
       return 'child';
+    default:
+      return '';
   }
 }
 

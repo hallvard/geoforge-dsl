@@ -1,0 +1,70 @@
+@startuml "Nadag: overview"
+class BlokkPrøve {
+}
+class DeformasjonMåling {
+}
+class GeotekniskBorehull {
+}
+class GeotekniskBorehullUnders {
+}
+class GeotekniskUnders {
+}
+class DilatometerTest {
+}
+class DynamiskSondering {
+}
+class GassMåling {
+}
+class GassPrøve {
+}
+class GeotekniskDokument {
+}
+class GeotekniskFeltUnders {
+}
+class GeotekniskPrøveserie {
+}
+class GeotekniskTolketLag {
+}
+class GeotekniskTolketPunkt {
+}
+class GeotekniskUndersøkelseGrense {
+}
+class GravePrøve {
+}
+class GrunnvannMåling {
+}
+class HydrauliskTest {
+}
+class KannePrøve {
+}
+class KjerneBoring {
+}
+class KjernePrøve {
+}
+class KombinasjonSondering {
+}
+class MiljøUndersøkelse {
+}
+class NaverPrøve {
+}
+class Platebelastning {
+}
+class PoretrykkMåling {
+}
+class RamPrøve {
+}
+class SedimentPrøve {
+}
+class SkovlPrøve {
+}
+class StatiskSondering {
+}
+class StempelPrøve {
+}
+class Trykksondering {
+}
+class VannPrøve {
+}
+class Vingeboring {
+}
+@enduml

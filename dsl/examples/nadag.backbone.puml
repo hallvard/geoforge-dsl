@@ -1,0 +1,15 @@
+@startuml "Nadag: Backbone"
+abstract class Geotekniskmetode {
+}
+class GeotekniskBorehull {
+}
+class GeotekniskBorehullUnders {
+}
+class GeotekniskUnders {
+}
+GeotekniskBorehull *-> "*" GeotekniskBorehullUnders: harUndersøkelse
+GeotekniskBorehull *-> "*" GeotekniskUnders: undersOmr
+GeotekniskBorehullUnders *-> "*" Geotekniskmetode: metode
+GeotekniskBorehullUnders *-> GeotekniskBorehull: undersPkt
+GeotekniskUnders *-> "*" GeotekniskBorehull: undersPkt
+@enduml

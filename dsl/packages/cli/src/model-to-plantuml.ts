@@ -1,10 +1,7 @@
 import chalk from 'chalk';
-import { toString } from 'langium/generate';
-import * as fsSync from 'node:fs';
 import * as fs from 'node:fs/promises';
-import * as path from 'node:path';
 import type { GeoForgeModel } from 'geoforge-model/model';
-import { generatePlantuml } from 'geoforge-model/plantuml-generator';
+import { generatePlantumlFiles } from './plantuml-options.js';
 
 export type ModelToPlantumlOptions = {
   destination?: string;
@@ -12,8 +9,9 @@ export type ModelToPlantumlOptions = {
 
 export const modelToPlantumlAction = async (fileName: string, opts: ModelToPlantumlOptions): Promise<void> => {
   const model = await readModelFile(fileName);
-  const generatedFilePath = await writePlantumlFile(model, fileName, opts.destination);
-  console.log(chalk.green(`PlantUML generated to ${generatedFilePath}`));
+  for (const generatedFilePath of generatePlantumlFiles(model, fileName, opts.destination)) {
+    console.log(chalk.green(`PlantUML generated to ${generatedFilePath}`));
+  }
 };
 
 async function readModelFile(fileName: string): Promise<GeoForgeModel> {
@@ -47,26 +45,4 @@ function isGeoForgeModel(value: unknown): value is GeoForgeModel {
   }
   const candidate = value as { elementType?: unknown; name?: unknown; types?: unknown };
   return candidate.elementType === 'model' && Array.isArray(candidate.name) && Array.isArray(candidate.types);
-}
-
-async function writePlantumlFile(model: GeoForgeModel, sourceFilePath: string, destination?: string): Promise<string> {
-  const data = extractDestinationAndName(sourceFilePath, destination);
-  const outputBaseName = data.name.endsWith('.geoforge') ? data.name : `${data.name}.geoforge`;
-  const generatedFilePath = path.join(data.destination, `${outputBaseName}.puml`);
-
-  await fs.mkdir(data.destination, { recursive: true });
-
-  generatePlantuml(model, (fileNode) => {
-    fsSync.writeFileSync(generatedFilePath, toString(fileNode), 'utf-8');
-  });
-
-  return generatedFilePath;
-}
-
-function extractDestinationAndName(filePath: string, destination: string | undefined): { destination: string; name: string } {
-  const absolute = path.resolve(filePath);
-  return {
-    destination: destination ?? path.dirname(absolute),
-    name: path.basename(absolute, path.extname(absolute))
-  };
 }

@@ -4,7 +4,6 @@ entry Namespace: Package | Model;
 
 Text returns string: STRING;
 
-
 Package: (description=Text)? 'package' NamespaceFragment;
 Model: (description=Text)? 'model' NamespaceFragment;
 
@@ -81,7 +80,8 @@ EnumType:
   'codelist'
   name = Name
   TagsFragment
-  (sourceUrl = STRING)?
+  ('import' sourceUrl = STRING)?
+  (asDictionary ?= 'as-dictionary')?
   '{'
     (properties += EnumProperty)*
   '}'

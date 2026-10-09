@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://geoforge.example/schemas/puml-options.schema.json",
+  "title": "GeoForge PlantUML options",
+  "description": "Describes the PlantUML diagrams generated from the model '<model>.geoforge' by the file '<model>.puml-options.json'. One '<model>.<name>.puml' is written per diagram.",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "diagrams": {
+          "$ref": "#/definitions/diagrams"
+        }
+      },
+      "required": [
+        "diagrams"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "$ref": "#/definitions/diagrams"
+    }
+  ],
+  "definitions": {
+    "diagrams": {
+      "type": "array",
+      "description": "The diagrams to generate from the model.",
+      "items": {
+        "$ref": "#/definitions/diagram"
+      }
+    },
+    "diagram": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Names the diagram: it is written to '<model>.<name>.puml'. Defaults to 'diagram<n>'.",
+          "pattern": "^[^/\\\\]+$"
+        },
+        "title": {
+          "type": "string",
+          "description": "Diagram title. Defaults to the model's name."
+        },
+        "selection": {
+          "$ref": "#/definitions/selection"
+        },
+        "diagram": {
+          "$ref": "#/definitions/diagramOptions"
+        }
+      },
+      "additionalProperties": false
+    },
+    "patterns": {
+      "description": "A regular expression, or a list of them of which any may match.",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "regex"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "regex"
+          }
+        }
+      ]
+    },
+    "selection": {
+      "type": "object",
+      "description": "Which types become classes in the diagram. Patterns are JavaScript regular expressions, matched unanchored (use ^ and $ to anchor). Applied in order: (1) the 'include*' options (all must match; with none, every type -- or none if only 'include-related' is given); (2) the 'exclude*' options remove matching types; (3) 'include-related' adds types (not subject to the excludes in 2); (4) 'exclude-related' removes types.",
+      "properties": {
+        "include-package": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Include types whose package (qualified name without the type's own name, dotted) matches any of these."
+        },
+        "exclude-package": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Exclude types whose package matches any of these."
+        },
+        "include": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Include types whose qualified (dotted) or simple name matches any of these."
+        },
+        "exclude": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Exclude types whose qualified (dotted) or simple name matches any of these."
+        },
+        "include-kind": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Include types whose kind matches any of these: feature, datatype, codelist or builtin (e.g. 'feature|datatype'). Only feature and datatype types are drawn as classes."
+        },
+        "exclude-kind": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Exclude types whose kind matches any of these: feature, datatype, codelist or builtin."
+        },
+        "include-related": {
+          "type": "array",
+          "description": "Add the named types and the types related to them. Added after the excludes, so they are not affected by them.",
+          "items": {
+            "$ref": "#/definitions/related"
+          }
+        },
+        "exclude-related": {
+          "type": "array",
+          "description": "Remove the named types and the types related to them. Applied last.",
+          "items": {
+            "$ref": "#/definitions/related"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "related": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Pattern(s) selecting the starting types (matched against qualified or simple name). The starting types themselves are included (or excluded). If left out, the starting types are those selected by the include*/exclude* options, before any *-related is applied.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ]
+        },
+        "relations": {
+          "type": "array",
+          "description": "Relations to follow, named like the keywords in the language. Default: all. 'extends': the supertype; 'parent', 'child', 'relation': the type of a property of that kind (a plain property of a feature type is a 'relation'). Only properties of feature types are followed; properties of datatypes, codelists and builtins are attributes.",
+          "items": {
+            "enum": [
+              "extends",
+              "parent",
+              "child",
+              "relation"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "direction": {
+          "enum": [
+            "out",
+            "in",
+            "both"
+          ],
+          "default": "both",
+          "description": "'out' follows from the type (to its supertype, to the types of its properties); 'in' follows towards it (to its subtypes, to the types referring to it)."
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": -1,
+          "default": -1,
+          "description": "Number of relation steps to follow from the starting types. -1 (the default) for unlimited."
+        }
+      },
+      "additionalProperties": false
+    },
+    "diagramOptions": {
+      "type": "object",
+      "description": "Show/hide of properties, by simple name (regular expressions) and kind. A property is shown if it matches all given 'show-*' options (none: all) and no 'hide-*' option. A hidden property is also left out as a relation.",
+      "properties": {
+        "show-property": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Show only properties whose name matches any of these."
+        },
+        "hide-property": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Hide properties whose name matches any of these."
+        },
+        "show-property-kind": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Show only properties whose kind matches any of these: identity, geometry, parent, child or relation (e.g. 'parent|child'). A property without a keyword is a 'relation' if its type is a feature type, otherwise implicitly a 'child'."
+        },
+        "hide-property-kind": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Hide properties whose kind matches any of these: identity, geometry, parent, child or relation."
+        },
+        "unselected-references": {
+          "enum": [
+            "hide",
+            "field"
+          ],
+          "default": "hide",
+          "description": "What to do with a property whose type is a feature type that is not selected: 'hide' it, or show it as a 'field' instead of as a relation."
+        },
+        "show-property-type-kind": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Show only properties whose type's kind matches any of these: feature, datatype, codelist or builtin. A property of a selected feature type is drawn as an arrow, one of any other type as a field, so 'feature' leaves only the arrows."
+        },
+        "hide-property-type-kind": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/patterns"
+            }
+          ],
+          "description": "Hide properties whose type's kind matches any of these: feature, datatype, codelist or builtin. 'datatype|codelist|builtin' hides the fields and keeps the arrows."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

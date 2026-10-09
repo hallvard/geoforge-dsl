@@ -1,0 +1,2092 @@
+{
+  "elementType": "package",
+  "name": [
+    "no",
+    "ngu",
+    "nadag",
+    "abstrakte_featurtyper"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeotekniskInsituTest"
+      ],
+      "description": "metode som brukes i en geoteknisk borhullundersøkelse for å observere og måle egenskaper til de forskjellige jordlag <engelsk>method used in a geotechnical borehole investigation to observe and measure properties of the different soil layers</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeotechnicalInsituTest"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Geotekniskmetode"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "fraBorlengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tilBorlengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "insituTestStartTidspunkt"
+          ],
+          "description": "tidspunkt for start av in situ prøvningen<engelsk>start time for in situ testing</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "investigationStartDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "insituTestSluttTidspunkt"
+          ],
+          "description": "tidspunkt for stopp av in situ prøvningen<engelsk>stop time for in situ testing</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "investigationEndDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "Geotekniskmetode"
+      ],
+      "description": "Abstrakt objekttype for å samle felles-egenskaper for en del geotekniske prøver.",
+      "tags": [],
+      "abstract": true,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "description": "unik identifikasjon av et objekt",
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Identifikasjon"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeotekniskObservasjon"
+      ],
+      "description": "geografisk punkt hvor det er utført målinger <engelsk> geographical location where measurements have been performed </engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "Observation"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "GeotekniskObservasjon_NADAG"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tilhørerGB"
+          ],
+          "tags": [],
+          "kind": "container",
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "GeotekniskBorehull"
+            ],
+            "sourceFile": "nadag.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeotekniskObservasjon_NADAG"
+      ],
+      "description": "geografisk punkt hvor det er utført observasjoner <engelsk>geographical location where observations have been carried out</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeotechnicalBoreholeInvestigation"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "GeovitenskapeligObservasjon"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boreBeskrivelse"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "description"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretAzimuth"
+          ],
+          "description": "vinkelen mellom en referansevektor i et referanseplan og en annen vektor i det samme planet som peker mot noe av interesse",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretHelningsgrad"
+          ],
+          "description": "helning hvor  90 grader er vertikalt , 0 grader er horisontalt",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "inclination, slope"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "boringLength (Depth),"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengdeTilBerg"
+          ],
+          "description": "dybde til fjell som ikke er målt men basert på tolkning",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "BorlengdeTilBerg"
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeFraGittPosisjon"
+          ],
+          "description": "avstanden fra måleutstyret og ned til det punkt på jordoverflaten hvor boring/måling faktisk starter\r\n\r\nMerknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er utført fra flåte,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da være avstanden fra måleutstyrets senter (0 dybde) og ned til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen faktisk starter fra).\r\n\r\n<engelsk>\r\ndistance from the drill or measure equipment down to the vertical level where the borehole/measurement actually begins\r\n\r\nNote: This is important to specify if the drilling/sounding is performed from e.g. a raft, ship or from ice. The depth will then be the depth from the measuring equipments origin (0 depth) and down to where drilling/sounding actually begins (on the sea surface, bottom of a lake or river, etc.)\r\n\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depthFromRaft"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeFraVannoverflaten"
+          ],
+          "description": "den lengden hvor sonderingsutstyret befinner seg i vann",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "freeWaterDepth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "lenkeTilTileggsinfo"
+          ],
+          "description": "Lenke til mer informasjon (URL)",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "værforholdVedBoring"
+          ],
+          "description": "beskrivelse av værforhold under utførelsen av borehullundersøkelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "weatherConditions"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "høyde"
+          ],
+          "description": "Høyde for observasjon ved start observasjon [m]",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "høydeReferanse"
+          ],
+          "description": "Referansesystem for høydeangivelse, som EPSG-kode.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "NADAG_Høyderef"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersøkelseNr"
+          ],
+          "description": "Nummer på observasjon benyttet i den geotekniske undersøkelsen",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "surveyNo"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "eksternIdentifikasjon"
+          ],
+          "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige levernadør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "EksternIdentifikasjon"
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opprettetDato"
+          ],
+          "description": "Når objektet ble opprettet i database (Nadag)",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeGrunnvannstand"
+          ],
+          "description": "dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the level in the ground where all voids are saturated with water, and where the pore pressure starts to increase</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "groundWaterDept, groundWaterLevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "forboretDiameter"
+          ],
+          "description": "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter (mm)     of a predrilled hole in a borehole investigation</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "preBoringDiameter"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "forboretLengde"
+          ],
+          "description": "Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of a predrilled borehole in a borehole investigation<engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "preBoringLength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "forboringMetode"
+          ],
+          "description": "metode brukt til boring uten registrering av data<engelsk>pre boring method</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "preBoringmethod"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "stoppKode"
+          ],
+          "description": "tosifret tall som benyttes for å angi årsak til avslutning av borehullundersøkelse<engelsk>code used to explain the reason for termination of a borehole investigation<engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "terminationCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "GeotekniskStoppkode"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "forboretStartLengde"
+          ],
+          "description": "startlengde[m] for hvor forboring startet i en borhullundersøkelse <engelsk>start depth[m] where the predrilling in the  borehole investigation started<engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "preBoringStartLength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapeligObservasjon"
+      ],
+      "description": "andre typer observasjoner som ikke er samlet inn via fysiske borehull\r\n\r\n<engelsk>\r\nobservations collected by other features, i.e. not borehole.\r\n</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificObservation"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Supertype_Geotekn_obj_pkt"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "posisjon"
+          ],
+          "description": "sted objektet eksisterer på\r\n\r\n<engelsk>\r\nthe actual position determined by measuring device\r\n</engelsk>",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Punkt"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonStart"
+          ],
+          "description": "startdato for observasjon\r\n\r\n<engelsk>\r\nstarting date of the observation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonSlutt"
+          ],
+          "description": "sluttdato for observasjon\r\n\r\n<engelsk>\r\nending date of the observation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observatør"
+          ],
+          "description": "identifikasjon av operatøren som utfører observasjonen\r\n\r\n<engelsk>\r\nIdentification of the operator performing the observation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opphav"
+          ],
+          "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\n\r\n<engelsk>\r\nreference to copyright, source, organization/publication source\r\n\r\nNote: May also include name of person and cause of update\r\n\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "Supertype_Geotekn_obj_pkt"
+      ],
+      "description": "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.",
+      "tags": [],
+      "abstract": true,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "datafangstdato"
+          ],
+          "description": "dato når objektet siste gang ble registrert/observert/målt i terrenget\r\n\r\nMerknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.\r\nVed førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "digitaliseringsmålestokk"
+          ],
+          "description": "kartmålestokk registreringene/ datene er hentet fra/ registrert på\r\n\r\nEksempel: 1:50 000 = 50000.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "description": "unik identifikasjon av et objekt \r\n\r\nMerknad: Bør bruke UUID.  se http://en.wikipedia.org/wiki/UUID\r\nDe som ikke benytter UUID må selv sørge for at denne er globalt unik.",
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Identifikasjon"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "kvalitet"
+          ],
+          "description": "beskrivelse av kvaliteten på stedfestingen",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "PosisjonskvalitetNADAG"
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "oppdateringsdato"
+          ],
+          "description": "dato for siste endring på objektetdataene \r\n\r\nMerknad: \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeotekniskPrøvetaking"
+      ],
+      "description": "innsamling av fysisk prøvemateriale som inndeles i prøvedeler hvor det for hver prøvedel kan utføres ett eller flere geotekniske laboratorieforsøk <engelsk>sampling of physical material separated into sample parts, where one or several laboratory tests can be carried out on each part</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeotechnicalSampling"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Geotekniskmetode"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "fraBorlengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tilBorlengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prøvetype"
+          ],
+          "description": "klassifisering av fysisk prøvemateriale, avhengig av type prøvetaking og jordart<engelsk>classification of sampled material, depending on type of sampling and soil type</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "PrøvetakingType"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "densitetPrøvetaking"
+          ],
+          "description": "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space (kg/m3)</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "miljøtekniskUndersøkelse"
+          ],
+          "description": "beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description and results from environmental investigation<engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeotekniskSondering"
+      ],
+      "description": "metode som brukes i en grunnundersøkelse for å måle penetrasjonsmotstanden i de forskjellige jordlag <engelsk>method used in a ground investigation to measure the penetration resistance of various soil layers</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeotechnicalSounding"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Geotekniskmetode"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "fraBorlengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tilBorlengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "torvTykkelse"
+          ],
+          "description": "tykkelse på torvlag i meter [m] <engelsk>thickness of peat in meter</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapeligUndersøkelse"
+      ],
+      "description": "geovitenskaplig undersøkelse som utføres innen for et gitt område og tidsperiode og som ofte er knyttet til et prosjekt \r\n\r\n<engelsk>\r\nsoil geoscientific investigation of a given area and time period and usually with a connection to a specific project \r\n</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificInvestigation"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Supertype_Geotekn_obj_omr"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "beskrivelse"
+          ],
+          "description": "beskrivelse av de geovitenskaplige undersøkelsene\r\n\r\n<engelsk>\r\ndescription of the geoscientific investigations\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "område"
+          ],
+          "description": "areal som er gjenstand for undersøkelse\r\n\r\n<engelsk> \r\narea coverd by the investigation \r\n</engelsk>",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "GM_Surface"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "oppdragsgiver"
+          ],
+          "description": "identifikasjon av bestiller (kunde) og dennes organisasjon\r\n\r\n<engelsk>\r\nidentifikation of the the customer organisation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "oppdragstaker"
+          ],
+          "description": "identifikasjon av utførende organisasjon\r\n\r\n<engelsk>\r\nidentification of the the organisation responsible for carrying out the project\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prosjektNavn"
+          ],
+          "description": "prosjekt navn og/eller nummer\r\n\r\n<engelsk>\r\nname or number of the project - e.g. projectnumber\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersøkelsePeriodeFra"
+          ],
+          "description": "startdato for undersøkelsen\r\n\r\n<engelsk>\r\nstarting date of the investigation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sammensattområde"
+          ],
+          "description": "areal som er gjenstand for undersøkelse\r\n\r\n<engelsk> \r\narea coverd by the investigation \r\n</engelsk>",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "GM_MultiSurface"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersøkelsePeriodeTil"
+          ],
+          "description": "sluttdato for undersøkelsen\r\n\r\n<engelsk>\r\nending date of the investigation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "Supertype_Geotekn_obj_omr"
+      ],
+      "description": "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.",
+      "tags": [],
+      "abstract": true,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "description": "unik identifikasjon av et objekt \r\n\r\nMerknad: Bør bruke UUID.  se http://en.wikipedia.org/wiki/UUID\r\nDe som ikke benytter UUID må selv sørge for at denne er globalt unik.",
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Identifikasjon"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "oppdateringsdato"
+          ],
+          "description": "dato for siste endring på objektetdataene \r\n\r\nMerknad: \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapeligUndersøkelseDelområde"
+      ],
+      "description": "del av et undersøkelsesområde hvor det pågår, skal gjøres eller er gjort geovitenskapelige undersøkelser  \r\n\r\nMerknad: Typisk brukt offshore hvor et undersøkelsesområde er delt i flere mindre lokaliteter.  \r\n\r\n<engelsk> area where geoscientific investigations are planned, in progress or performed. Note: This feature is typically used offshore where an investigation is split into smaller parts</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificInvestigationSubarea"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Supertype_Geotekn_obj_omr"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "beskrivelse"
+          ],
+          "description": "forklaring til objektet\r\n<engelsk>\r\ndescription of object\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "område"
+          ],
+          "description": "objektets utstrekning\r\n<engelsk>\r\nextent of object\r\n</engelsk>",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Flate"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapeligUndersøkelseDelområdeGrense"
+      ],
+      "description": "avgrensning av et delområde innenfor en geovitenskapelig undersøkelse\r\n\r\n<engelsk>boundary of a subarea within a geoscientific investigation</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificInvestigationSubareaBorder"
+        }
+      ],
+      "abstract": true,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "grense"
+          ],
+          "description": "forløp som følger overgang mellom ulike fenomener",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Kurve"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapeligUndersøkelseGrense"
+      ],
+      "description": "avgrensning av et område for en geovitenskapelig undersøkelse \r\n\r\n<engelsk>boundary of geoscientific investigation</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificInvestigationBorder"
+        }
+      ],
+      "abstract": true,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "grense"
+          ],
+          "description": "forløp som følger overgang mellom ulike fenomener",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Kurve"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapligBorehull"
+      ],
+      "description": "område representert ved et punkt hvor det skal foretas en eller flere borehullundersøkelser - også kalt logisk borehull i motsetning til borhullundersøkelse som representerer hvert fysiske borehull\r\n\r\nMerknad: Det logiske borehullet har en posisjon som representerer de fysiske borhullundersøkelsene foretatt i området \r\n\r\n<engelsk>\r\nborehole consists of one or more physical borehole investigations. The borehole has a position, representing a collection of borehole investigations. The position of the borehole is often given the same position as one of the asscoated borehole investigations. The associated borehole investigations should be in a reasonable short distance (e.g. 0,5 m) from the position of the borehole.\r\n</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificBorehole"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Supertype_Geotekn_obj_pkt"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "antallBorehullUndersøkelser"
+          ],
+          "description": "antall borehullsundersøkeelser i borehullets område \r\n\r\nMerknad: Borhullet er et logisk borhull hvor det innen et lite område er foretatt flere fysiske borhullsundersøkelser som tilhører det samme borehull.\r\n\r\n<engelsk>\r\nNumber of boreholeInvestigations (virtual boreholes) performed at the location of the borehole\r\n\r\nNote: A virtual borehole is a fictitious feature for all boreholes/soundings performed within an reasonable small area (e.g. <5 m or so)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "numberOfBoreholeInvestigations"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "beskrivelse"
+          ],
+          "description": "forklaring til objektet og undersøkelser utført på lokaliteten\r\n\r\n<engelsk>\r\na short description of the investigations at the location of the borehole</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengdeTilBerg"
+          ],
+          "description": "dybde til berg som ikke er målt men basert på tolkning\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "BorlengdeTilBerg"
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "gjennomboretMedium"
+          ],
+          "description": "material som er gjennomboret \r\n\r\nMerknad: spesifisert ved å bruke kodeliste GjennomboretMedium. \r\n\r\n<engelsk>\r\nmaterial penetrated by the borehole\r\n\r\nNote: Specified by using codes from codelist: GjennomboretMedium\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "examinedMaterial, drilledMaterial .."
+            }
+          ],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "GjennomboretMedium"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": -1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "posisjon"
+          ],
+          "description": "sted objektet eksisterer på bestemt av måleutstyr\r\n\r\n<engelsk>\r\nthe actual position of the object determined by a measuring device</engelsk>",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Punkt"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "abstrakte_featurtyper",
+        "GeovitenskapligBorehullUndersøkelse"
+      ],
+      "description": "et enkelt fysisk undersøkelsespunkt som inneholder beskrivelsen av borehullforløpet  \r\n\r\nMerknad: Flere undersøkelser kan tilhøre det samme borehullet, men det er undersøkelsen som representerer de enkelte sonderinger / boringer. \r\n\r\n<engelsk>a pysical borehole which contain a description of the borehole geometry Note: Several investigations can belong to the same borehole, and it is the investigation which contain the geometry along the borehole. </engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeoScientificBoreholeInvestigation"
+        }
+      ],
+      "abstract": true,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "Supertype_Geotekn_obj_pkt"
+        ]
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "posisjon"
+          ],
+          "description": "objektets utstrekning gitt i x,y,z. \r\n\r\nMerknad: Den virkelige posisjonen til denne borehullsundersøkelsen.\r\n\r\n<engelsk>\r\nThe position of the investigation, determined by its x,y and z. \r\n\r\nNote: The origin (coordinate system/projection) of the position must be specified.\r\n</engelsk>",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Punkt"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boreBeskrivelse"
+          ],
+          "description": "forklaring av hva som er utført og/eller observert i denne undersøkelsen\r\n\r\n<engelsk>\r\na general description of actions performed and/or observed in this investigation\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "description"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "borehullForløp"
+          ],
+          "description": "detaljert beskrivelse av borhullets geometri, dvs. et en-dimensjonalt referansesystem nedover i senterlinjen av borehullet\r\n\r\n<engelsk>\r\ndetailed description of the borehole geometry, i.e. a one-dimensional reference system along the borehole centerline\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "drilledCurve,  geometryCurve..."
+            }
+          ],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Kurve"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretAzimuth"
+          ],
+          "description": "vinkelen mellom en referansevektor i et referanseplan og en annen vektor i det samme planet som peker mot noe av interesse [°]\r\n\r\n<engelsk>\r\nThe vector from an observer (origin) to a point of interest is projected perpendicularly onto a reference plane, the angle between the projected vector and the reference vector on the reference plane is called the azimuth\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretHelningsgrad"
+          ],
+          "description": "helning hvor 90 grader er vertikalt, 0 grader er horisontalt [°]\r\n\r\n<engelsk>\r\nthe inclination of the borehole\r\n\r\nNote: 90 degrees represent the vertical inclination and 0 degrees the horizontal\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "inclination, slope"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]\r\n\r\n<engelsk>\r\ntotal length of the investigation in the physical borehole, the same as depth in a vertical borehole\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "boringLength (Depth),"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengdeTilBerg"
+          ],
+          "description": "dybde til fjell som ikke er målt men basert på tolkning\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "BorlengdeTilBerg"
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeFraGittPosisjon"
+          ],
+          "description": "avstanden fra måleutstyret og ned til det punkt på jordoverflaten hvor boring/måling faktisk starter [m]\r\n\r\nMerknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er utført fra flåte,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da være avstanden fra måleutstyrets senter (0 dybde) og ned til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen faktisk starter fra).\r\n\r\n<engelsk>\r\ndistance from the drill or measure equipment down to the vertical level where the borehole/measurement actually begins\r\n\r\nNote: This is important to specify if the drilling/sounding is performed from e.g. a raft, ship or from ice. The depth will then be the depth from the measuring equipments origin (0 depth) and down to where drilling/sounding actually begins (on the sea surface, bottom of a lake or river, etc.)\r\n\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depthFromRaft"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeFraVannoverflaten"
+          ],
+          "description": "den lengden hvor sonderingsutstyret befinner seg i vann [m]\r\n\r\nMerknad: Av spesiell interesse hvis boring er utført fra is eller fra flåte/skip.\r\n\r\n<engelsk>\r\nfree water depth at the location of the sounding [m] \r\n\r\nNote: Of special interest if drilling is performed from raft or ice.\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "freeWaterDepth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "lenkeTilTileggsinfo"
+          ],
+          "description": "lenke til hvor en finner tilleggsinformasjon om borehullsundersøkelsen\r\n\r\nMerknad: URL/URI for aktuelt dokument, bilde, video etc. \r\n\r\n<engelsk>\r\nlink to extra information about the borehole investigation\r\nNote: URL/URI for the particular document, picture, video \r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opphav"
+          ],
+          "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\n\r\n<engelsk>\r\nreference to copyright, source, organization/publication source\r\n\r\nNote: May also include name of person and cause of update\r\n\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "serialNumber"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersøkelseSlutt"
+          ],
+          "description": "tidspunkt for stopp av undersøkelsen\r\n<engelsk>\r\nend time/date for the investigation\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "investigationEndDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersøkelseStart"
+          ],
+          "description": "tidspunkt for start av undersøkelsen\r\n<engelsk>\r\nstart time/date for the investigation\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "investigationStartDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "værforholdVedBoring"
+          ],
+          "description": "beskrivelse av værforhold under utførelsen av borehullundersøkelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "weatherConditions"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

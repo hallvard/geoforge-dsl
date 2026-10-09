@@ -1,0 +1,37 @@
+@startuml "Nadag: Sondering"
+class DynamiskSondering {
+    antPrøveuttakForstyrretMatr: Integer
+    dynamiskSonderingObservasjon*: DynamiskSonderingData
+}
+class GeotekniskSondering {
+    fraBorlengde: Real
+    tilBorlengde: Real
+    torvTykkelse: Real
+}
+class DynamiskSonderingData {
+    boretLengde: Real
+    dreieMoment: Real
+    fallHøyde: Real
+    harRotasjon: Boolean
+    nedpressingTid: Integer
+    observasjonKode: CharacterString
+    observasjonMerknad: CharacterString
+    prøveuttakNummer: CharacterString
+    ramMotstand: Real
+    rotasjonHastighet: Real
+    slagFrekvens: Real
+}
+class KombinasjonSondering {
+    boretLengdeIBerg: Real
+    boretLengdeTilBerg: BorlengdeTilBerg
+    maksLast: Real
+    kombinasjonSonderingObservasjon*: KombinasjonSonderingData
+}
+class StatiskSondering {
+    telenivå: Real
+    statiskSonderingObservasjon*: StatiskSonderingData
+}
+GeotekniskSondering <|-- DynamiskSondering
+GeotekniskSondering <|-- KombinasjonSondering
+GeotekniskSondering <|-- StatiskSondering
+@enduml

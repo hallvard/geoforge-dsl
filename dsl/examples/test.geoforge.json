@@ -1,0 +1,197 @@
+{
+  "elementType": "model",
+  "name": [
+    "ngu",
+    "nadag"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "codeListType",
+      "name": [
+        "ngu",
+        "nadag",
+        "HoleType"
+      ],
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "UNKNOWN"
+          ],
+          "tags": [],
+          "value": "0"
+        },
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "DRILLED"
+          ],
+          "tags": [],
+          "value": "1"
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "ngu",
+        "nadag",
+        "GeotekniskUnders"
+      ],
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Identifikasjon"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "område"
+          ],
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Areal"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "borehull"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "ngu",
+              "nadag",
+              "GB"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": -1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "ngu",
+        "nadag",
+        "GB"
+      ],
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Identifikasjon"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "holeType"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "ngu",
+              "nadag",
+              "HoleType"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opprettetDato"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "posisjon"
+          ],
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Posisjon"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

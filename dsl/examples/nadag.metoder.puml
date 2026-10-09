@@ -1,0 +1,88 @@
+@startuml "Nadag: Metoder"
+class BlokkPrøve {
+}
+abstract class GeotekniskPrøvetaking {
+}
+abstract class Geotekniskmetode {
+}
+class DilatometerTest {
+}
+abstract class GeotekniskInsituTest {
+}
+class DynamiskSondering {
+}
+abstract class GeotekniskSondering {
+}
+class GassMåling {
+}
+class GassPrøve {
+}
+class GeotekniskPrøveserie {
+}
+class GravePrøve {
+}
+class GrunnvannMåling {
+}
+class HydrauliskTest {
+}
+class KannePrøve {
+}
+class KjerneBoring {
+}
+class KjernePrøve {
+}
+class KombinasjonSondering {
+}
+class MiljøUndersøkelse {
+}
+class NaverPrøve {
+}
+class Platebelastning {
+}
+class PoretrykkMåling {
+}
+class RamPrøve {
+}
+class SedimentPrøve {
+}
+class SkovlPrøve {
+}
+class StatiskSondering {
+}
+class StempelPrøve {
+}
+class Trykksondering {
+}
+class VannPrøve {
+}
+class Vingeboring {
+}
+GeotekniskPrøvetaking <|-- BlokkPrøve
+Geotekniskmetode <|-- GeotekniskPrøvetaking
+GeotekniskInsituTest <|-- DilatometerTest
+Geotekniskmetode <|-- GeotekniskInsituTest
+GeotekniskSondering <|-- DynamiskSondering
+Geotekniskmetode <|-- GeotekniskSondering
+GeotekniskInsituTest <|-- GassMåling
+GeotekniskPrøvetaking <|-- GassPrøve
+GeotekniskPrøvetaking <|-- GeotekniskPrøveserie
+GeotekniskPrøvetaking <|-- GravePrøve
+GeotekniskInsituTest <|-- GrunnvannMåling
+GeotekniskInsituTest <|-- HydrauliskTest
+GeotekniskPrøvetaking <|-- KannePrøve
+GeotekniskPrøvetaking <|-- KjerneBoring
+GeotekniskPrøvetaking <|-- KjernePrøve
+GeotekniskSondering <|-- KombinasjonSondering
+GeotekniskPrøvetaking <|-- MiljøUndersøkelse
+GeotekniskPrøvetaking <|-- NaverPrøve
+GeotekniskInsituTest <|-- Platebelastning
+GeotekniskInsituTest <|-- PoretrykkMåling
+GeotekniskPrøvetaking <|-- RamPrøve
+GeotekniskPrøvetaking <|-- SedimentPrøve
+GeotekniskPrøvetaking <|-- SkovlPrøve
+GeotekniskSondering <|-- StatiskSondering
+GeotekniskPrøvetaking <|-- StempelPrøve
+GeotekniskInsituTest <|-- Trykksondering
+GeotekniskPrøvetaking <|-- VannPrøve
+GeotekniskInsituTest <|-- Vingeboring
+@enduml

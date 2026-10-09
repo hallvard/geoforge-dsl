@@ -1,0 +1,126 @@
+{
+  "elementType": "package",
+  "name": [
+    "geoforge",
+    "lib"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "long"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "String"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Date"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Areal"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "builtinType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Posisjon"
+      ],
+      "tags": [],
+      "params": []
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "geoforge",
+        "lib",
+        "Identifikasjon"
+      ],
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "id"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "String"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "namespace"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "String"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "version"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "long"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

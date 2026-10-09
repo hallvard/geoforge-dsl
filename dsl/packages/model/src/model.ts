@@ -80,7 +80,23 @@ export interface LayerType extends CompositeType<LayerType> {
   elementType: 'layerType';
 }
 
+/** Empty (undefined) on a property written without a keyword -- see {@link effectivePropertyKind} for what generators should treat it as. */
 export type PropertyKind = 'id' | 'geometry' | 'containment' | 'container';
+
+/** A property's role: its explicit {@link PropertyKind}, or `relation` for a plain property of a feature type. */
+export type EffectivePropertyKind = PropertyKind | 'relation';
+
+/**
+ * The role of `prop` as generators should treat it: the explicit kind if there is one, else
+ * implied by the type of the property -- `container` and `containment` are only meaningful for
+ * feature types, so a property of any other type (datatype, codelist, builtin) is implicitly a
+ * `containment` (contained value), while a plain property of a feature type is a `relation`.
+ * `propType` is the resolved type of `prop`; if it can't be resolved, the property is treated as
+ * a `containment`.
+ */
+export function effectivePropertyKind(prop: CompositeTypeProperty, propType: GeoForgeType | undefined): EffectivePropertyKind {
+  return prop.kind ?? (isLayerType(propType) ? 'relation' : 'containment');
+}
 
 export interface CompositeTypeProperty extends ModelElement {
   elementType: 'compositeTypeProperty';
@@ -92,6 +108,14 @@ export interface CompositeTypeProperty extends ModelElement {
 
 export interface Ref<T extends ModelElement = ModelElement> {
   qName: QName;
+  /**
+   * Base filename (no directory) of the .geoforge source declaring the referenced element, e.g.
+   * "nadag-datatyper.geoforge". Absent when the element is declared in the same model/package as
+   * this Ref. Files that cross-reference each other are expected to live in the same directory,
+   * with their compiled "<name>.geoforge.json" siblings alongside them -- see
+   * geoforge-model/model-index and the cli's model-loader.
+   */
+  sourceFile?: string;
   element: T | undefined;
 }
 
@@ -118,6 +142,9 @@ export interface BuiltinParam {
 export interface CodeListType extends GeoForgeType {
   elementType: 'codeListType';
   items: CodeListItem[];
+  /** Present when this codelist's values come from an external register rather than being enumerated here. */
+  sourceUrl?: string;
+  asDictionary?: boolean;
 }
 
 export interface CodeListItem extends ModelElement {

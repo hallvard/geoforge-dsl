@@ -21,6 +21,14 @@
             "types": "./out/model.d.ts",
             "default": "./out/model.js"
         },
+        "./model-index": {
+            "types": "./out/model-index.d.ts",
+            "default": "./out/model-index.js"
+        },
+        "./model-selection": {
+            "types": "./out/model-selection.d.ts",
+            "default": "./out/model-selection.js"
+        },
         "./plantuml-generator": {
             "types": "./out/plantuml-generator.d.ts",
             "default": "./out/plantuml-generator.js"
@@ -30,6 +38,12 @@
         "*": {
             "model": [
                 "out/model"
+            ],
+            "model-index": [
+                "out/model-index"
+            ],
+            "model-selection": [
+                "out/model-selection"
             ],
             "plantuml-generator": [
                 "out/plantuml-generator"

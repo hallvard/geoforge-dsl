@@ -1,0 +1,289 @@
+{
+  "elementType": "model",
+  "name": [
+    "PlanleggingIgangsatt"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "codeListType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "Kommunenummer"
+      ],
+      "description": "ekstern kodeliste for kommunenummer\nKoder med status Gyldig refererer til dagens kommuner, mens koder med status Utgått referer til utgåtte kommunenummer",
+      "tags": [],
+      "items": [],
+      "sourceUrl": "https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer",
+      "asDictionary": true
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "Landkode"
+      ],
+      "description": "alfanumerisk kode for nasjonalt nivå / Norge.\nAvledet fra \"ISO 3166 Codes for the representation of names of countries and their subdivisions\"",
+      "tags": [],
+      "items": [
+        {
+          "elementType": "codeListItem",
+          "name": [
+            "NO"
+          ],
+          "description": "Norge. Aktuell kode for administrativ enhet for statlig vedtatte planer",
+          "tags": [],
+          "value": "NO"
+        }
+      ],
+      "asDictionary": false
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "RpPlantype"
+      ],
+      "description": "ekstern kodeliste for type reguleringsplan (pbl. §§ 12-2 og 12-3) ihht til gjeldende lov. Angir om planen er en områdeplan eller detaljplan.",
+      "tags": [],
+      "items": [],
+      "sourceUrl": "https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/rpplantype",
+      "asDictionary": true
+    },
+    {
+      "elementType": "codeListType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "Lovreferanse"
+      ],
+      "description": "ekstern kodeliste for gjeldende pbl.",
+      "tags": [],
+      "items": [],
+      "sourceUrl": "https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/lovreferanse",
+      "asDictionary": true
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "NasjonalArealplanId"
+      ],
+      "description": "landsdekkende entydig og unik identifikasjon av en arealplan (pbl. §§ 6-4, 9-1, og 12-1, samt kart- og planforskriften § 9 andre og sjette ledd).\n\nDenne identifikatoren tildeles planen når planprosessen starter, og den kan ikke endres undervegs av forslagstiller.",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "kommunenummer"
+          ],
+          "description": "kode som viser til offisiell nummerering av kommuner\nMerknad: Det presiseres at kommunenummer alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommunenummer benyttes for kobling mot en rekke andre registre som også benytter 4 siffer.",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "PlanleggingIgangsatt",
+              "Kommunenummer"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "landkode"
+          ],
+          "description": "landkode = NO anvendes kun av statlig vedtaksmyndighet",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "PlanleggingIgangsatt",
+              "Landkode"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "planid"
+          ],
+          "description": "entydig identifikasjon av en plan innen vedkommende administrative enhet (pbl. §§ 9-1, 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "builtins",
+              "CharacterString"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "Arealplan"
+      ],
+      "description": "dataobjekt for igangsatt planlegging etter pbl",
+      "tags": [],
+      "abstract": false,
+      "superType": {
+        "qName": [
+          "Fellesegenskaper",
+          "Fellesegenskaper"
+        ],
+        "sourceFile": "Fellesegenskaper.geoforge"
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nasjonalArealplanId"
+          ],
+          "description": "landsdekkende entydig og unik identifikasjon av en arealplan (pbl. §§ 6-4, 9-1, og 12-1, samt kart- og planforskriften § 9 andre og sjette ledd).\n  Denne identifikatoren tildeles planen når planprosessen starter, og den kan ikke endres undervegs av forslagstiller.",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "PlanleggingIgangsatt",
+              "NasjonalArealplanId"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "plantype"
+          ],
+          "description": "type reguleringsplan (pbl. §§ 12-2 og 12-3)",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "PlanleggingIgangsatt",
+              "RpPlantype"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "plannavn"
+          ],
+          "description": "planens offisielle navn",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "builtins",
+              "CharacterString"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "lovreferanse"
+          ],
+          "description": "kode for hvilken lov planen vedtas etter\n  For reguleringsplanforslag og planlegging igangsatt skal lovreferanse = 6 (pbl 2008)",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "PlanleggingIgangsatt",
+              "Lovreferanse"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "planleggingIgangsatt"
+          ],
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "PlanleggingIgangsatt",
+              "Planområde"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": -1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "PlanleggingIgangsatt",
+        "Planområde"
+      ],
+      "description": "område for planlegging igangsatt etter pbl 2008.\nOmrådet skal være sammenhengende i grunnriss, men kan dekke flere vertikalnivåer",
+      "tags": [],
+      "abstract": false,
+      "superType": {
+        "qName": [
+          "Fellesegenskaper",
+          "Fellesegenskaper"
+        ],
+        "sourceFile": "Fellesegenskaper.geoforge"
+      },
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "område"
+          ],
+          "description": "planens utstrekning i grunnriss uavhengig av vertikalnivå",
+          "tags": [],
+          "kind": "geometry",
+          "type": {
+            "qName": [
+              "builtins",
+              "GM_Surface"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

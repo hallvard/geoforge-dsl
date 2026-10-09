@@ -1,0 +1,132 @@
+{
+  "elementType": "package",
+  "name": [
+    "Fellesegenskaper"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "dataType",
+      "name": [
+        "Fellesegenskaper",
+        "Identifikasjon"
+      ],
+      "description": "unik identifikasjon av et dataobjekt\nFølger dataobjektet og identifiserer det i hele dets levetid.",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "lokalId"
+          ],
+          "description": "lokal identifikator av et objekt.\n  Skal være en uuid, slik at den er unik, uavhengig av navnerommet",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "builtins",
+              "CharacterString"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "navnerom"
+          ],
+          "description": "navnerom som unikt identifiserer datakilden til et objekt.\n  Navnerom anbefales å være en http-URI og må være registrert i data.geonorge.no\n  For plan anbefales navnerommet http://data.geonorge.no/sosi/plan",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "builtins",
+              "CharacterString"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "versjonId"
+          ],
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans)",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "builtins",
+              "CharacterString"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "Fellesegenskaper",
+        "Fellesegenskaper"
+      ],
+      "description": "abstrakt objekttype som bærer de egenskapene fra SOSI_Fellesegenskaper som er anvendt på objekttypene i denne modellen.",
+      "tags": [],
+      "abstract": true,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "identifikasjon"
+          ],
+          "description": "unik identifikasjon av et dataobjekt\n  Følger dataobjektet og identifiserer det i hele dets levetid.",
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "Fellesegenskaper",
+              "Identifikasjon"
+            ]
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "oppdateringsdato"
+          ],
+          "description": "tidspunkt for siste endring på dataobjektet",
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "builtins",
+              "DateTime"
+            ],
+            "sourceFile": "builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

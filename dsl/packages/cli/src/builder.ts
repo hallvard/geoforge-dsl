@@ -1,3 +1,5 @@
+import { AstUtils } from "langium";
+import * as path from "node:path";
 import {
   BuiltinParamValue,
   BuiltinType,
@@ -24,8 +26,8 @@ import {
   isZeroOrMoreMultiplicity,
   isZeroOrOneMultiplicity,
   LiteralValue,
-  Model,
   Multiplicity,
+  Namespace,
   Property,
   Tag,
   TypeDef
@@ -39,16 +41,20 @@ import {
   isCompositeType as isCompositegeoforgeType,
   nameString,
   PropertyKind,
+  Ref,
   SimpleType,
   BuiltinParam as geoforgeBuiltinParam,
   Multiplicity as geoforgeMultiplicity,
   GeoForgeModel,
+  GeoForgePackage,
   Tag as geoforgeTag,
   GeoForgeType
 } from "geoforge-model/model";
 
 interface BuilderContext {
   typeMap: Map<string, GeoForgeType>;
+  documentUri: string;
+  documentDir: string;
 }
 
 function typeQname(type: TypeDef): string[] {
@@ -63,15 +69,47 @@ function typeQname(type: TypeDef): string[] {
   return [localTypeName];
 }
 
-export function buildModel(model: Model): GeoForgeModel {
-  const context: BuilderContext = { typeMap: new Map<string, GeoForgeType>() };
-  return {
-    elementType: 'model',
-    name: string2Qname(model.name),
-    description: model.description,
-    tags: buildTags(model.tags),
-    types: model.types.map(type => buildReferencedType(type, context))
+export function buildNamespace(namespace: Namespace): GeoForgeModel | GeoForgePackage {
+  const documentUri = AstUtils.getDocument(namespace).uri;
+  const context: BuilderContext = {
+    typeMap: new Map<string, GeoForgeType>(),
+    documentUri: documentUri.toString(),
+    documentDir: path.dirname(documentUri.fsPath)
   };
+  namespace.types.forEach(type => buildReferencedType(type, context));
+  return {
+    elementType: isPackage(namespace) ? 'package' : 'model',
+    name: string2Qname(namespace.name),
+    description: namespace.description,
+    tags: buildTags(namespace.tags),
+    types: Array.from(context.typeMap.values())
+  };
+}
+
+/**
+ * Builds a Ref to `type`. A type declared in the same document as the one currently being
+ * compiled is fully built and included in `context.typeMap`, same as a locally-declared type. One
+ * declared in a different document (reached via a cross-file `extends` or property type) is left
+ * unbuilt -- only its qName and owning file are recorded -- so compiling one file never pulls in
+ * another file's whole type graph; a consumer resolves it later via `Ref.sourceFile`
+ * (see geoforge-model/model-index).
+ */
+function resolveTypeRef(type: TypeDef, context: BuilderContext): Ref<GeoForgeType> {
+  const targetDocument = AstUtils.getDocument(type);
+  if (targetDocument.uri.toString() === context.documentUri) {
+    const geoforgeType = buildReferencedType(type, context);
+    return { qName: geoforgeType.name, element: geoforgeType };
+  }
+  return {
+    qName: typeQname(type),
+    sourceFile: relativePosixPath(context.documentDir, targetDocument.uri.fsPath),
+    element: undefined
+  };
+}
+
+/** A path from `fromDir` to `toPath`, with forward slashes so it's portable across platforms. */
+function relativePosixPath(fromDir: string, toPath: string): string {
+  return path.relative(fromDir, toPath).split(path.sep).join('/');
 }
 
 function string2Qname(str: string): string[] {
@@ -136,11 +174,12 @@ function buildCompositeType(type: CompositeType, context: BuilderContext): Compo
   context.typeMap.set(typeQNameString, compositeType);
 
   if (type.extends && isTypeDef(type.extends.ref)) {
-    const geoforgeType = buildReferencedType(type.extends.ref, context);
-    if (isCompositegeoforgeType(geoforgeType)) {
+    const superTypeRef = resolveTypeRef(type.extends.ref, context);
+    if (superTypeRef.element === undefined || isCompositegeoforgeType(superTypeRef.element)) {
       compositeType.superType = {
-        qName: geoforgeType.name,
-        element: geoforgeType
+        qName: superTypeRef.qName,
+        sourceFile: superTypeRef.sourceFile,
+        element: superTypeRef.element as CompositegeoforgeType | undefined
       };
     }
   }
@@ -150,19 +189,21 @@ function buildCompositeType(type: CompositeType, context: BuilderContext): Compo
 }
 
 function buildCompositeTypeProperty(prop: Property, context: BuilderContext): CompositeTypeProperty {
-  let propType: GeoForgeType | null = null;
+  let propTypeNode: TypeDef | null = null;
   if (isTypeRef(prop.type)) {
     if (isTypeDef(prop.type.typeRef.ref)) {
-      propType = buildReferencedType(prop.type.typeRef.ref, context);
+      propTypeNode = prop.type.typeRef.ref;
     }
   } else if (isTypeDef(prop.type)) {
-    propType = buildReferencedType(prop.type, context);
+    propTypeNode = prop.type;
   }
-  if (!propType) {
+  if (!propTypeNode) {
     throw new Error(`Property '${propertyName(prop)}' has an unresolved type.`);
   }
+  const typeRef = resolveTypeRef(propTypeNode, context);
 
-  let kind: PropertyKind = 'containment';
+  // No keyword means no kind: what a plain property is depends on its type (see effectivePropertyKind).
+  let kind: PropertyKind | undefined;
   if (prop.kind == 'geometry') {
     kind = 'geometry';
   } else if (prop.kind == 'identity') {
@@ -179,10 +220,7 @@ function buildCompositeTypeProperty(prop: Property, context: BuilderContext): Co
     description: prop.description,
     tags: buildTags(prop.tags),
     kind,
-    type: {
-      qName: propType.name,
-      element: propType
-    },
+    type: typeRef,
     multiplicity: buildMultiplicity(prop.multiplicity),
     defaultValue: buildSimpleValue(prop.defaultValue)
   };
@@ -241,7 +279,9 @@ function buildEnumType(type: EnumType, qName: string[]): CodeListgeoforgeType {
       description: prop.description,
       tags: buildTags(prop.tags),
       value: buildSimpleValue(prop.value)?.toString()
-    }))
+    })),
+    sourceUrl: type.sourceUrl,
+    asDictionary: type.asDictionary
   };
   return geoforgeType;
 }

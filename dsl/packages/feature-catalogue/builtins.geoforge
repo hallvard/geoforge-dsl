@@ -1,0 +1,25 @@
+package builtins
+
+builtin CharacterString
+
+builtin Integer
+
+builtin Real
+
+builtin Boolean
+
+builtin Date
+
+builtin DateTime
+
+builtin Punkt
+
+builtin Kurve
+
+builtin Flate
+
+builtin GM_Curve
+
+builtin GM_Surface
+
+builtin GM_MultiSurface

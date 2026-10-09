@@ -30,7 +30,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -57,7 +58,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskObservasjon"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -72,13 +74,13 @@
               "value": "absolutValues"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -92,13 +94,13 @@
           ],
           "description": "tidspunktet måleren ble installert<engelsk>time of installation for the settlement gauge</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -112,13 +114,13 @@
           ],
           "description": "dybdemåleren er installert i og det punkt der setningen måles (z-nivå installasjon) [m] <engelsk>depth of the settlement gauge where settlements are recorded (z-level installation)</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -132,13 +134,13 @@
           ],
           "description": "type setningsmåler (setningsplate, setningsbolt, slange)<engelsk>type of settlement gauge (settlement plate, bolt, settlement hose)</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -157,13 +159,13 @@
               "value": "measuringPoint"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -176,7 +178,6 @@
             "harOvervåkningObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -184,7 +185,8 @@
               "nadag",
               "datatyper",
               "DeformasjonOvervåkningData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -197,7 +199,6 @@
             "harSetningObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -205,7 +206,8 @@
               "nadag",
               "datatyper",
               "DeformasjonMåleData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -237,7 +239,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -247,13 +250,13 @@
           ],
           "description": "materialindeks<engelsk>material index</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -267,13 +270,13 @@
           ],
           "description": "horisontalspenning index<engelsk>horizontal stress index</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -287,13 +290,13 @@
           ],
           "description": "dilatometer modulus (enhetsløs) <engelsk>dilatometer modulus</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -306,7 +309,6 @@
             "dilatometerObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -314,7 +316,8 @@
               "nadag",
               "datatyper",
               "DilatometerTestData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -346,7 +349,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskSondering"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -356,13 +360,13 @@
           ],
           "description": "antall prøver av fysisk prøvemateriale som er tatt opp under sonderingen<engelsk>number of samples retrieved during sounding</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Integer"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -375,7 +379,6 @@
             "dynamiskSonderingObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -383,7 +386,8 @@
               "nadag",
               "datatyper",
               "DynamiskSonderingData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -415,7 +419,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -425,13 +430,13 @@
           ],
           "description": "beskrivelse av plassering<engelsk>description of location</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -445,13 +450,13 @@
           ],
           "description": "nummer som identifiserer bygg<engelsk>number that identifies building</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -464,7 +469,6 @@
             "gassObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -472,7 +476,8 @@
               "nadag",
               "datatyper",
               "GassData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -504,7 +509,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -531,7 +537,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeovitenskapligBorehull"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -546,13 +553,13 @@
               "value": "boreholeNr"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -566,13 +573,13 @@
           ],
           "description": "Terrenghøyde ved start borehull [m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -586,7 +593,6 @@
           ],
           "description": "Referansesystem for høydeangivelse, som EPSG-kode.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -594,7 +600,8 @@
               "nadag",
               "kodelister",
               "NADAG_Høyderef"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -613,13 +620,13 @@
               "value": "entryDate"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -633,7 +640,6 @@
           ],
           "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -641,7 +647,8 @@
               "nadag",
               "datatyper",
               "EksternIdentifikasjon"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -655,7 +662,6 @@
           ],
           "description": "Grad av sikkerhet for påvisning av kvikkleire (omrørt skjærfasthet mindre eller lik 0,5 kPa) eller sprøbruddmateriale (omrørt skjærfasthet mindre enn 2 kPa)",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -663,7 +669,8 @@
               "nadag",
               "kodelister",
               "KvikkleirePåvisningKode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -682,13 +689,13 @@
               "value": "originalGeotechnicalInvestigationID"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -702,13 +709,13 @@
           ],
           "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -722,13 +729,13 @@
           ],
           "description": "Lengste boret lengde for borehullsundersøkelsene i dette borhullet [m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -800,7 +807,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeovitenskapligBorehullUndersøkelse"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -810,13 +818,13 @@
           ],
           "description": "Terrenghøyde ved start borehullsundersøkelse [m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -830,7 +838,6 @@
           ],
           "description": "Referansesystem for høydeangivelse, som EPSG-kode.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -838,7 +845,8 @@
               "nadag",
               "kodelister",
               "NADAG_Høyderef"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -857,13 +865,13 @@
               "value": "surveyNo"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -877,7 +885,6 @@
           ],
           "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -885,7 +892,8 @@
               "nadag",
               "datatyper",
               "EksternIdentifikasjon"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -899,13 +907,13 @@
           ],
           "description": "Når objektet ble opprettet i database (Nadag)",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -919,7 +927,6 @@
           ],
           "description": "Metoder benyttet ved geotekniske borehullundersøkelser",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -927,7 +934,8 @@
               "nadag",
               "kodelister",
               "GeotekniskMetodeKode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -946,13 +954,13 @@
               "value": "groundWaterDept, groundWaterLevel"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -971,13 +979,13 @@
               "value": "preBoringDiameter"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -996,13 +1004,13 @@
               "value": "preBoringLength"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1021,13 +1029,13 @@
               "value": "preBoringmethod"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1046,7 +1054,6 @@
               "value": "terminationCode"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1054,7 +1061,8 @@
               "nadag",
               "kodelister",
               "GeotekniskStoppkode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1073,13 +1081,13 @@
               "value": "preBoringStartLength"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1100,7 +1108,8 @@
               "nadag",
               "abstrakte_featurtyper",
               "Geotekniskmetode"
-            ]
+            ],
+            "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1135,154 +1144,27 @@
         "no",
         "ngu",
         "nadag",
-        "GeotekniskDokument"
+        "GeotekniskUnders"
       ],
-      "description": "dokument(er) tilhørende geotekniske undersøkelsesområder og borehull <engelsk>accompanying documents to geotechnical investigation areas and boreholes</engelsk>",
-      "tags": [],
+      "description": "geografisk område hvor det finnes eller er planlagt geotekniske borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are planned geotechnical boreholes for a given project</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GeotechnicalInvestigation"
+        }
+      ],
       "abstract": false,
+      "superType": {
+        "qName": [
+          "no",
+          "ngu",
+          "nadag",
+          "abstrakte_featurtyper",
+          "GeovitenskapeligUndersøkelse"
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
+      },
       "properties": [
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "dokumentID"
-          ],
-          "description": "Unik nøkkel for dokument.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "dokumentNøkkel"
-          ],
-          "description": "Benyttes til å angi nøkkelverdi ved kall til Web-api.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "dokumentType"
-          ],
-          "description": "Type dokument. Feks. Geoteknisk rapport, Profilbilde",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "no",
-              "ngu",
-              "nadag",
-              "kodelister",
-              "NADAG_DokumentType"
-            ]
-          },
-          "multiplicity": {
-            "lower": 1,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "dokumentFilnavn"
-          ],
-          "description": "Filnavn på dokumentet.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "dokumentURL"
-          ],
-          "description": "Komplett URL for dokument med id.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "innholdType"
-          ],
-          "description": "Type dokumentformat, feks. Image/png, pdf",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "beskrivelse"
-          ],
-          "description": "Kort informasjon om dokumentet",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
         {
           "elementType": "compositeTypeProperty",
           "name": [
@@ -1290,7 +1172,6 @@
           ],
           "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1298,7 +1179,8 @@
               "nadag",
               "datatyper",
               "EksternIdentifikasjon"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1308,17 +1190,19 @@
         {
           "elementType": "compositeTypeProperty",
           "name": [
-            "dokumentNavn"
+            "representasjonKvalitet"
           ],
-          "description": "Navn på dokument",
+          "description": "Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse fysisk representerer.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "RepresentasjonKvalitet"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1337,13 +1221,316 @@
               "value": "entryDate"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prosjektNr"
+          ],
+          "description": "Nummer på prosjekt benyttet for den geotekniske undersøkelsen",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opphav"
+          ],
+          "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersøkelseÅrAntatt"
+          ],
+          "description": "Antatt år for gjennomføring av den geotekniske undersøkelsen. For største delen av de leverte dataene har det vært dårlig infomasjon i egenskapene for undersøkelseperiode og derfor utvides det med denne egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og avhengig av hva for leveranser det er varierer usikkerheten på på det antatte årstallet.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "undersPkt"
+          ],
+          "tags": [],
+          "kind": "containment",
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "GeotekniskBorehull"
             ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": -1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "GeotekniskDokument"
+      ],
+      "description": "dokument(er) tilhørende geotekniske undersøkelsesområder og borehull <engelsk>accompanying documents to geotechnical investigation areas and boreholes</engelsk>",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dokumentID"
+          ],
+          "description": "Unik nøkkel for dokument.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dokumentNøkkel"
+          ],
+          "description": "Benyttes til å angi nøkkelverdi ved kall til Web-api.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dokumentType"
+          ],
+          "description": "Type dokument. Feks. Geoteknisk rapport, Profilbilde",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "NADAG_DokumentType"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dokumentFilnavn"
+          ],
+          "description": "Filnavn på dokumentet.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dokumentURL"
+          ],
+          "description": "Komplett URL for dokument med id.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "innholdType"
+          ],
+          "description": "Type dokumentformat, feks. Image/png, pdf",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "beskrivelse"
+          ],
+          "description": "Kort informasjon om dokumentet",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "eksternIdentifikasjon"
+          ],
+          "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "EksternIdentifikasjon"
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dokumentNavn"
+          ],
+          "description": "Navn på dokument",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opprettetDato"
+          ],
+          "description": "Når objektet ble opprettet i database (Nadag)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "entryDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1357,13 +1544,13 @@
           ],
           "description": "Feks. rapportNr.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1382,13 +1569,13 @@
               "value": "dokumentDato"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1496,13 +1683,13 @@
           ],
           "description": "unik identifikasjon av et objekt",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Identifikasjon"
-            ]
+            ],
+            "sourceFile": "lib.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -1522,7 +1709,8 @@
               "geoforge",
               "lib",
               "Punkt"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -1536,7 +1724,6 @@
           ],
           "description": "Metoder benyttet ved geotekniske feltundersøkelser",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1544,7 +1731,8 @@
               "nadag",
               "kodelister",
               "GeotekniskFeltUndersMetodeKode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1558,7 +1746,6 @@
           ],
           "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1566,7 +1753,8 @@
               "nadag",
               "datatyper",
               "EksternIdentifikasjon"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1585,13 +1773,13 @@
               "value": "entryDate"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1604,7 +1792,6 @@
             "feltundersType"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1612,7 +1799,8 @@
               "nadag",
               "kodelister",
               "FeltUndersTypeKode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1626,7 +1814,6 @@
           ],
           "description": "Metoder benyttet for tolkning av geotekniske feltundersøkelser",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1634,7 +1821,8 @@
               "nadag",
               "kodelister",
               "TolkningMetodeKode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1648,13 +1836,13 @@
           ],
           "description": "Høyde på observert fjell [m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1668,13 +1856,13 @@
           ],
           "description": "Terrenghøyde ved start feltundersøkelse [m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1688,7 +1876,6 @@
           ],
           "description": "Referansesystem for høydeangivelse, som EPSG-kode.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1696,7 +1883,8 @@
               "nadag",
               "kodelister",
               "NADAG_Høyderef"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1710,13 +1898,13 @@
           ],
           "description": "Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1768,7 +1956,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -1783,13 +1972,13 @@
               "value": "hasPgData"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1808,13 +1997,13 @@
               "value": "hasPgDataOnly"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1833,13 +2022,13 @@
               "value": "hasSkvData"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1858,13 +2047,13 @@
               "value": "hasSkvDataOnly"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1883,13 +2072,13 @@
               "value": "isDisturbed"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1908,13 +2097,13 @@
               "value": "isUndisturbed"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1942,13 +2131,13 @@
           ],
           "description": "Unik nøkkel for tolktet lag",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1962,7 +2151,6 @@
           ],
           "description": "oversikt over klassifiseringsmetoder for bestemmelse av grunnforhold",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1970,7 +2158,8 @@
               "nadag",
               "kodelister",
               "KlassifiseringsMetode"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -1984,7 +2173,6 @@
           ],
           "description": "oversikt over lagdeling og jordart for klassifisering og identifisering av grunnforhold",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -1992,7 +2180,8 @@
               "nadag",
               "kodelister",
               "HovedLagKlassifisering"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2006,13 +2195,13 @@
           ],
           "description": "Beskrivelse av tolket lag feks. Sand",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2026,13 +2215,13 @@
           ],
           "description": "Hvem som har gjort tolkning",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2046,13 +2235,13 @@
           ],
           "description": "Når tolkning ble utført",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2066,13 +2255,13 @@
           ],
           "description": "Kommentar til tolkning",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2086,13 +2275,13 @@
           ],
           "description": "Navn på tolket lag",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2106,13 +2295,13 @@
           ],
           "description": "Om tolkning er på terrengoverflate",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2126,13 +2315,13 @@
           ],
           "description": "Hvor sikker tolkning er, med  0=Udefinert,5=Sikker og glidende skala imellom.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2146,13 +2335,13 @@
           ],
           "description": "Om tolkning er under terrengoverflate",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2166,7 +2355,6 @@
           ],
           "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -2174,7 +2362,8 @@
               "nadag",
               "datatyper",
               "EksternIdentifikasjon"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2194,7 +2383,8 @@
               "geoforge",
               "lib",
               "Punkt"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -2208,13 +2398,13 @@
           ],
           "description": "Laghøyde for tolkning [m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2228,7 +2418,6 @@
           ],
           "description": "referansesystem for høydeangivelse, som EPSG-kode.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -2236,7 +2425,8 @@
               "nadag",
               "kodelister",
               "NADAG_Høyderef"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2284,13 +2474,13 @@
           ],
           "description": "unik identifikasjon av et objekt",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Identifikasjon"
-            ]
+            ],
+            "sourceFile": "lib.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -2304,13 +2494,13 @@
           ],
           "description": "Hvem som har tolket punktet",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2324,13 +2514,13 @@
           ],
           "description": "Når tolkning ble utført",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2344,13 +2534,13 @@
           ],
           "description": "Navn på tolket punkt",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2370,7 +2560,8 @@
               "geoforge",
               "lib",
               "Punkt"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -2384,13 +2575,13 @@
           ],
           "description": "Terrenghøyde overflate for punkt med tolkning(/er)[m]",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -2404,7 +2595,6 @@
           ],
           "description": "Referansesystem for høydeangivelse, som EPSG-kode.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -2412,7 +2602,8 @@
               "nadag",
               "kodelister",
               "NADAG_Høyderef"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -2426,13 +2617,13 @@
           ],
           "description": "kartmålestokk registreringene/ datene er hentet fra/ registrert på\r\n\r\nEksempel: 1:50 000 = 50000.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Integer"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2446,7 +2637,6 @@
           ],
           "description": "beskrivelse av kvaliteten på stedfestingen",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -2454,7 +2644,8 @@
               "nadag",
               "datatyper",
               "PosisjonskvalitetNADAG"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2468,13 +2659,13 @@
           ],
           "description": "dato for siste endring på objektetdataene \r\n\r\nMerknad: \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2488,13 +2679,13 @@
           ],
           "description": "kort tilleggsinformasjon om punktet for tolkning/er \r\n<engelsk>\r\na short description</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2549,183 +2740,6 @@
         "no",
         "ngu",
         "nadag",
-        "GeotekniskUnders"
-      ],
-      "description": "geografisk område hvor det finnes eller er planlagt geotekniske borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are planned geotechnical boreholes for a given project</engelsk>",
-      "tags": [
-        {
-          "name": "alias",
-          "value": "GeotechnicalInvestigation"
-        }
-      ],
-      "abstract": false,
-      "superType": {
-        "qName": [
-          "no",
-          "ngu",
-          "nadag",
-          "abstrakte_featurtyper",
-          "GeovitenskapeligUndersøkelse"
-        ]
-      },
-      "properties": [
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "eksternIdentifikasjon"
-          ],
-          "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør, som kan benyttes av eksterne applikasjoner som referanse til objektet.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "no",
-              "ngu",
-              "nadag",
-              "datatyper",
-              "EksternIdentifikasjon"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "representasjonKvalitet"
-          ],
-          "description": "Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse fysisk representerer.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "no",
-              "ngu",
-              "nadag",
-              "kodelister",
-              "RepresentasjonKvalitet"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "opprettetDato"
-          ],
-          "description": "Når objektet ble opprettet i database (Nadag)",
-          "tags": [
-            {
-              "name": "alias",
-              "value": "entryDate"
-            }
-          ],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "DateTime"
-            ]
-          },
-          "multiplicity": {
-            "lower": 1,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "prosjektNr"
-          ],
-          "description": "Nummer på prosjekt benyttet for den geotekniske undersøkelsen",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "opphav"
-          ],
-          "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "CharacterString"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "undersøkelseÅrAntatt"
-          ],
-          "description": "Antatt år for gjennomføring av den geotekniske undersøkelsen. For største delen av de leverte dataene har det vært dårlig infomasjon i egenskapene for undersøkelseperiode og derfor utvides det med denne egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og avhengig av hva for leveranser det er varierer usikkerheten på på det antatte årstallet.",
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "geoforge",
-              "lib",
-              "Integer"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": 1
-          }
-        },
-        {
-          "elementType": "compositeTypeProperty",
-          "name": [
-            "undersPkt"
-          ],
-          "tags": [],
-          "kind": "containment",
-          "type": {
-            "qName": [
-              "no",
-              "ngu",
-              "nadag",
-              "GeotekniskBorehull"
-            ]
-          },
-          "multiplicity": {
-            "lower": 0,
-            "upper": -1
-          }
-        }
-      ]
-    },
-    {
-      "elementType": "layerType",
-      "name": [
-        "no",
-        "ngu",
-        "nadag",
         "GeotekniskUndersøkelseGrense"
       ],
       "description": "avgrensning av et område for geotekniske undersøkelser. Merk: Benyttes kun for de formater som krever egen geometri for avgrensning av flate. <engelsk>demarcation of an area with soil investigations. Only used for delivery formats that requier it.</engelsk>",
@@ -2743,7 +2757,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeovitenskapeligUndersøkelseGrense"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -2770,7 +2785,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -2797,7 +2813,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -2812,13 +2829,13 @@
               "value": "isLongTimeObservation"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Boolean"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 1,
@@ -2837,13 +2854,13 @@
               "value": "filterLength"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2862,13 +2879,13 @@
               "value": "filterLength"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2887,13 +2904,13 @@
               "value": "filterType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2912,7 +2929,6 @@
               "value": "groundWaterAquifer"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -2920,7 +2936,8 @@
               "nadag",
               "kodelister",
               "AkviferType"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2939,13 +2956,13 @@
               "value": "bottomOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2964,13 +2981,13 @@
               "value": "topOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -2989,13 +3006,13 @@
               "value": "pipeType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3008,7 +3025,6 @@
             "grunnvannObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3016,7 +3032,8 @@
               "nadag",
               "datatyper",
               "GrunnvannData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3029,7 +3046,6 @@
             "overvåkningObervasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3037,7 +3053,8 @@
               "nadag",
               "datatyper",
               "OvervåkningData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3069,7 +3086,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -3084,13 +3102,13 @@
               "value": "bottomOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3109,13 +3127,13 @@
               "value": "topOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3134,13 +3152,13 @@
               "value": "pipeType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3153,7 +3171,6 @@
             "hydrauliskObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3161,7 +3178,8 @@
               "nadag",
               "datatyper",
               "HydrauliskeData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3193,7 +3211,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -3220,7 +3239,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -3230,7 +3250,6 @@
           ],
           "description": "dybde til bergoverflaten som ikke er målt men basert på tolkning<engelsk>depth to the rock surface based on interpretation and not measurements\r\n</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3238,7 +3257,8 @@
               "nadag",
               "datatyper",
               "BorlengdeTilBerg"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3251,7 +3271,6 @@
             "harData"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3259,7 +3278,8 @@
               "nadag",
               "datatyper",
               "KjerneBoringData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3291,7 +3311,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -3301,7 +3322,6 @@
           ],
           "description": "dybde til bergoverflaten som ikke er målt men basert på tolkning<engelsk>depth to the rock surface based on interpretation and not measurements\r\n</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3309,7 +3329,8 @@
               "nadag",
               "datatyper",
               "BorlengdeTilBerg"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3341,7 +3362,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskSondering"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -3356,13 +3378,13 @@
               "value": "drillDepthRock"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3376,7 +3398,6 @@
           ],
           "description": "dybde til bergoverflaten som ikke er målt men basert på tolkning [m] <engelsk>depth to the rock surface based on interpretation and not measurements</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3384,7 +3405,8 @@
               "nadag",
               "datatyper",
               "BorlengdeTilBerg"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3403,13 +3425,13 @@
               "value": "maxLoad"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3422,7 +3444,6 @@
             "kombinasjonSonderingObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3430,7 +3451,8 @@
               "nadag",
               "datatyper",
               "KombinasjonSonderingData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3462,7 +3484,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -3489,7 +3512,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -3516,7 +3540,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -3526,13 +3551,13 @@
           ],
           "description": "antall belastningstrinn i en målesekvens<engelsk>number of load steps in a test sequence</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Integer"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3546,13 +3571,13 @@
           ],
           "description": "areal av skruplate for fordeling av tilleggslast [m2]<engelsk>area of screw plate for distribution of additional load</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3565,7 +3590,6 @@
             "platebelastningObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3573,7 +3597,8 @@
               "nadag",
               "datatyper",
               "PlatebelastningData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3605,7 +3630,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -3615,13 +3641,13 @@
           ],
           "description": "tidspunktet poretrykksmåleren ble installert<engelsk>time of installation of the pore pressure device</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3640,13 +3666,13 @@
               "value": "filterLength"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3665,13 +3691,13 @@
               "value": "depthPointFilter"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3690,13 +3716,13 @@
               "value": "filterType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3715,13 +3741,13 @@
               "value": "topOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3735,13 +3761,13 @@
           ],
           "description": "høyde z-verdi ved slangens topp i forhold til vertikal referanse [m] \r\n\r\n<engelsk>\r\nheight Z-level at the top of tube in relation to vertical reference (m)  </engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3760,13 +3786,13 @@
               "value": "topOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3785,13 +3811,13 @@
               "value": "bottomOfTube"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3810,13 +3836,13 @@
               "value": "measurePointNumber"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3835,7 +3861,6 @@
               "value": "measureType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3843,7 +3868,8 @@
               "nadag",
               "kodelister",
               "PoretrykkMåleKategori"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3862,13 +3888,13 @@
               "value": "measureType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3881,7 +3907,6 @@
             "poretrykkObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -3889,7 +3914,8 @@
               "nadag",
               "datatyper",
               "PoretrykkData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -3921,7 +3947,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -3948,7 +3975,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -3975,7 +4003,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -4002,7 +4031,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskSondering"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -4017,13 +4047,13 @@
               "value": "groundFrostDepth"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4036,7 +4066,6 @@
             "statiskSonderingObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4044,7 +4073,8 @@
               "nadag",
               "datatyper",
               "StatiskSonderingData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4076,7 +4106,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": []
     },
@@ -4103,7 +4134,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -4113,13 +4145,13 @@
           ],
           "description": "arealforhold for trykksonde for korreksjon av målt spissmotstand for poretrykkseffekter<engelsk>area ratio for CPT probe for correction of measured cone resistance for pore pressure effects</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4138,13 +4170,13 @@
               "value": "initialFrictionalResistance (?)"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4163,13 +4195,13 @@
               "value": "filterType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4188,13 +4220,13 @@
               "value": "initialPointPressure"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4213,13 +4245,13 @@
               "value": "saturationMedium"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4233,7 +4265,6 @@
           ],
           "description": "kapasitet for anvendt nedpressingsutstyr [kN] <engelsk>capacity for applied thrust machine</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4241,7 +4272,8 @@
               "nadag",
               "kodelister",
               "NedpressingsKapasitet"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4260,13 +4292,13 @@
               "value": "rateOfPenetration"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4285,13 +4317,13 @@
               "value": "initialPorePressure, zeroPointCorrection,"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4310,13 +4342,13 @@
               "value": "mantelareaFaktor,sleeveAreaFactor"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4335,13 +4367,13 @@
               "value": "sideFrictionCorrection"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4355,13 +4387,13 @@
           ],
           "description": "identifikasjon av trykksonde ved hjelp av ID-nummer <engelsk>identification of probe by an ID-number</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4375,13 +4407,13 @@
           ],
           "description": "dato for kalibrering av trykksonde, oppgis på kalibreringssertifikat<engelsk>date for calibration of probe, given on the calibration certificate</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "DateTime"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4395,7 +4427,6 @@
           ],
           "description": "kvalitetsklasse for målenøyaktighet for en trykksonde ved gjennomføring av anbefalt prøvingsprosedyre <engelsk>application class for test accuracy for test performance according to a recommended test procedure</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4403,7 +4434,8 @@
               "nadag",
               "kodelister",
               "SondeKvalitetsKlasse"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4422,13 +4454,13 @@
               "value": "pointAreaFactor"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4447,13 +4479,13 @@
               "value": "pointType"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4472,13 +4504,13 @@
               "value": "AtmosphericPressureCorrection"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4497,13 +4529,13 @@
               "value": "sleeveDistanceCorrection"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4516,7 +4548,6 @@
             "inSituPoretrykkObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4524,7 +4555,8 @@
               "nadag",
               "datatyper",
               "PoretrykkDataInsitu"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4537,7 +4569,6 @@
             "trykksonderingObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4545,7 +4576,8 @@
               "nadag",
               "datatyper",
               "TrykksonderingData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4558,7 +4590,6 @@
             "dissipasjonObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4566,7 +4597,8 @@
               "nadag",
               "datatyper",
               "DissipasjonData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4598,7 +4630,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskPrøvetaking"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -4608,7 +4641,6 @@
           ],
           "description": "angir kilden til vannprøve<engelsk>define the source of the water sample</engelsk>",
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4616,7 +4648,8 @@
               "nadag",
               "kodelister",
               "VannPrøveKilde"
-            ]
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4648,7 +4681,8 @@
           "nadag",
           "abstrakte_featurtyper",
           "GeotekniskInsituTest"
-        ]
+        ],
+        "sourceFile": "nadag-abstrakte-featurtyper.geoforge"
       },
       "properties": [
         {
@@ -4663,13 +4697,13 @@
               "value": "waterLevelBoreHole"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4688,13 +4722,13 @@
               "value": "vaneDiameter"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4713,13 +4747,13 @@
               "value": "vaneHight"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "Real"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4738,13 +4772,13 @@
               "value": "vaneIdentity"
             }
           ],
-          "kind": "containment",
           "type": {
             "qName": [
               "geoforge",
               "lib",
               "CharacterString"
-            ]
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
           },
           "multiplicity": {
             "lower": 0,
@@ -4757,7 +4791,6 @@
             "vingeboringObservasjon"
           ],
           "tags": [],
-          "kind": "containment",
           "type": {
             "qName": [
               "no",
@@ -4765,7 +4798,8 @@
               "nadag",
               "datatyper",
               "VingeboringData"
-            ]
+            ],
+            "sourceFile": "nadag-datatyper.geoforge"
           },
           "multiplicity": {
             "lower": 0,

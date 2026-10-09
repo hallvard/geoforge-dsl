@@ -1,68 +1,74 @@
 model PlanleggingIgangsatt
 
+import builtins
 import Fellesegenskaper
 
-builtin GM_Surface
-
-codelist "ekstern kodeliste for kommunenummer
+"ekstern kodeliste for kommunenummer
 Koder med status Gyldig refererer til dagens kommuner, mens koder med status Utgått referer til utgåtte kommunenummer"
-  $asDictionary=true $codeList="https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer"
-  Kommunenummer {
+codelist Kommunenummer
+  import "https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer"
+  as-dictionary
+{
 }
 
-codelist 'alfanumerisk kode for nasjonalt nivå / Norge.
-
+'alfanumerisk kode for nasjonalt nivå / Norge.
 Avledet fra "ISO 3166 Codes for the representation of names of countries and their subdivisions"'
-  Landkode {
+codelist Landkode {
   "Norge. Aktuell kode for administrativ enhet for statlig vedtatte planer"
   NO = "NO"
 }
 
-codelist "ekstern kodeliste for type reguleringsplan (pbl. §§ 12-2 og 12-3) ihht til gjeldende lov. Angir om planen er en områdeplan eller detaljplan."
-  $asDictionary=true $codeList="https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/rpplantype"
-  RpPlantype {
+"ekstern kodeliste for type reguleringsplan (pbl. §§ 12-2 og 12-3) ihht til gjeldende lov. Angir om planen er en områdeplan eller detaljplan."
+codelist RpPlantype
+  import "https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/rpplantype"
+  as-dictionary
+   {
 }
 
-codelist "ekstern kodeliste for gjeldende pbl."
-  $asDictionary=true $codeList="https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/lovreferanse"
-  Lovreferanse {
+"ekstern kodeliste for gjeldende pbl."
+codelist Lovreferanse
+  import "https://register.geonorge.no/sosi-kodelister/plan/reguleringsplanforslag/lovreferanse"
+  as-dictionary
+
+   {
 }
 
-datatype "landsdekkende entydig og unik identifikasjon av en arealplan (pbl. §§ 6-4, 9-1, og 12-1, samt kart- og planforskriften § 9 andre og sjette ledd).
+"landsdekkende entydig og unik identifikasjon av en arealplan (pbl. §§ 6-4, 9-1, og 12-1, samt kart- og planforskriften § 9 andre og sjette ledd).
 
 Denne identifikatoren tildeles planen når planprosessen starter, og den kan ikke endres undervegs av forslagstiller."
-  NasjonalArealplanId {
+datatype NasjonalArealplanId {
   "kode som viser til offisiell nummerering av kommuner
-
 Merknad: Det presiseres at kommunenummer alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommunenummer benyttes for kobling mot en rekke andre registre som også benytter 4 siffer."
-    kommunenummer?: Kommunenummer
+  kommunenummer?: Kommunenummer
+  
   "landkode = NO anvendes kun av statlig vedtaksmyndighet"
-    landkode?: Landkode
+  landkode?: Landkode
+  
   "entydig identifikasjon av en plan innen vedkommende administrative enhet (pbl. §§ 9-1, 12-1, samt kart- og planforskriften § 9 andre og sjette ledd)"
-    planid: CharacterString
+  planid: CharacterString
 }
 
-layer "dataobjekt for igangsatt planlegging etter pbl"
-  Arealplan extends Fellesegenskaper {
+"dataobjekt for igangsatt planlegging etter pbl"
+feature Arealplan extends Fellesegenskaper {
   "landsdekkende entydig og unik identifikasjon av en arealplan (pbl. §§ 6-4, 9-1, og 12-1, samt kart- og planforskriften § 9 andre og sjette ledd).
-
-Denne identifikatoren tildeles planen når planprosessen starter, og den kan ikke endres undervegs av forslagstiller."
-    nasjonalArealplanId: NasjonalArealplanId
+  Denne identifikatoren tildeles planen når planprosessen starter, og den kan ikke endres undervegs av forslagstiller."
+  nasjonalArealplanId: NasjonalArealplanId
+  
   "type reguleringsplan (pbl. §§ 12-2 og 12-3)"
-    plantype: RpPlantype
+  plantype: RpPlantype
+  
   "planens offisielle navn"
-    plannavn?: CharacterString
+  plannavn?: CharacterString
+  
   "kode for hvilken lov planen vedtas etter
-
-For reguleringsplanforslag og planlegging igangsatt skal lovreferanse = 6 (pbl 2008)"
+  For reguleringsplanforslag og planlegging igangsatt skal lovreferanse = 6 (pbl 2008)"
     lovreferanse: Lovreferanse
   planleggingIgangsatt+: Planområde
 }
 
-layer "område for planlegging igangsatt etter pbl 2008.
-
+"område for planlegging igangsatt etter pbl 2008.
 Området skal være sammenhengende i grunnriss, men kan dekke flere vertikalnivåer"
-  Planområde extends Fellesegenskaper {
+feature Planområde extends Fellesegenskaper {
   "planens utstrekning i grunnriss uavhengig av vertikalnivå"
-    geometry område: GM_Surface
+  geometry område: GM_Surface
 }

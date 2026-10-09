@@ -1,0 +1,5555 @@
+{
+  "elementType": "package",
+  "name": [
+    "no",
+    "ngu",
+    "nadag",
+    "datatyper"
+  ],
+  "tags": [],
+  "types": [
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "BorlengdeTilBerg"
+      ],
+      "description": "dybde til fjell som ikke er målt men basert på tolkning\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "borlengdeKvalitet"
+          ],
+          "description": "beskriver om dybden til berg er antatt eller påvist med en sikker metode\r\n\r\n<engelsk> \r\ndefines the quality of the depth information either assumed or confirmed by a secure method\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "KvalitetBorlengdeTilBerg"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "borlengdeTilBerg"
+          ],
+          "description": "dybde til fjell som ikke er målt men basert på tolkning [m]\r\n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "DeformasjonMåleData"
+      ],
+      "description": "data fra måling av setning ved angitt måletidspunkt<engelsk>data from measurements of settlements at a given time</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "SettingMesurementData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleDato"
+          ],
+          "description": "dato for utførelse av målingen<engelsk>date for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "observationDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleTidspunkt"
+          ],
+          "description": "tidspunkt for gjennomføring av målingen<engelsk>time for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "observationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "deformasjonObservasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i setningsmålingen<engelsk>observation codes for marking of incidents during the measurements</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "DeformasjonObservasjonKode"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i setningsmålingen<engelsk>remarks to observations made during the measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "setning"
+          ],
+          "description": "vertikal komponent av målt deformasjon. observert høydenivå (z) for setningsmåling [m] <engelsk>vertical component of measured deformation. observed reference level (z) for the settlements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "setting"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "deformasjonX"
+          ],
+          "description": "deformasjonskomponent i x-retning. observert høydenivå (z) for setningen [m]<engelsk>deformation component in x-direction. observed reference level (z) for the settlements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "setting"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "deformasjonY"
+          ],
+          "description": "deformasjonskomponent i y-retning. observert høydenivå (z) for setningen [m]<engelsk>deformation component in y-direction. observed reference level (z) for the settlements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "setting"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "deformasjonZ"
+          ],
+          "description": "deformasjonskomponent i z-retning. observert høydenivå (z) for setningen [m]<engelsk>deformation component in z-direction. observed reference level (z) for the settlements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "setting"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "erGyldig"
+          ],
+          "description": "gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity of data, if false only to be used as information</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "isValid"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "length"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "DeformasjonOvervåkningData"
+      ],
+      "description": "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or any other supervision data</engelsk>",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedreAlarmNivå"
+          ],
+          "description": "kriterium for alarmtilstand, nedre grense for måleverdi [m] <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "alarmLowerLevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "øvreAlarmNivå"
+          ],
+          "description": "kriterium for alarmtilstand, øvre grense for måleverdi [m] <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "alarmUpperlevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleDato"
+          ],
+          "description": "dato for utførelse av målingen\r\n<engelsk>date for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "observationDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleTidspunkt"
+          ],
+          "description": "tidspunkt for gjennomføring av målingen<engelsk>time for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "observationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i setningsmålingen<engelsk>remarks to observations made during the measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "akvifer"
+          ],
+          "description": "grunnvannsmagasin <engelsk>aquifer (ground water reservoir)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "aquifer"
+            }
+          ],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "AkviferType"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "DilatometerTestData"
+      ],
+      "description": "en enkel innretning, formet som et flatt blad designet for å trykkes ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\n<engelsk>a simple device, shaped in the form of a flat blade designed to be pushed into the ground Note: It was developed to evaluate the soil modulus.</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "DilatometerTestData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretDybde"
+          ],
+          "description": "dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon er satt til 0. Angir hvor dypt det er boret [m] \r\n<engelsk>depth from zero level, the z value of investigation start point is 0. drilling depth\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "tekst som beskriver observasjonen <engelsk>description of the observation</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "kode som angir observasjonen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "kontaktTrykkP0"
+          ],
+          "description": "gasstrykk når membran ikke lenger har kontakt [kPa] <engelsk>membrane lift-off pressure</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "ekspansjonTrykkP1"
+          ],
+          "description": "gasstrykk når senter av membran har flyttet seg 1,1 mm [kPa] <engelsk>gass pressure when membrane has moved 1,1 mm</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "horisontalKraft"
+          ],
+          "description": "horisontal last [kN] <engelsk>horizontal load</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "sidePressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk"
+          ],
+          "description": "trykket i porevannet angitt som kraft pr. flateenhet, med atmosfæretrykket som nullpunkt [kPa]\r\n<engelsk>registered pore pressure (kPa)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porePressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "DissipasjonData"
+      ],
+      "description": "data fra måling av dissipasjon (drenasje) i felt, aktuelt ved utførelse av dissipasjonstest i CPTU<engelsk>data fra måling av dissipasjon (drenasje) i felt, aktuelt ved utførelse av dissipasjonstest i CPTU</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "DissipationData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretDybde"
+          ],
+          "description": "nivå for utførelse av dissipasjonstest [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dissipasjonsPoretrykkU1"
+          ],
+          "description": "reduksjon av poretrykk i filterposisjon 1 (spiss) som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure at filter location 1 (tip) as a function of time in a dissipation test</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "dissipationPorePressureU1"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dissipasjonsPoretrykkU2"
+          ],
+          "description": "reduksjon av poretrykk i filterposisjon 2 (bak spiss) som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure at filter location 2 (behind the tip) as a function of time in a dissipation test</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "dissipationPorePressureU2"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dissipasjonsPoretrykkU3"
+          ],
+          "description": "reduksjon av poretrykk i filterposisjon 3 (bak friksjonshylse) som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure at filter location 3 (behind the friction sleeve) as a function of time in a dissipation test</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "dissipationPorePressureU3"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dissipasjonsTidspunkt"
+          ],
+          "description": "angitt tidspunkt i dissipasjonstest<engelsk>given time in a dissipation test</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "dissipationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "friksjon"
+          ],
+          "description": "målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av friksjonshylse) [kPa] <engelsk>measured sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "frictionalResistance"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i dissipasjonstesten. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during dissipation. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i dissipasjonstesten <engelsk>remarks to observations made during dissipation</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk1"
+          ],
+          "description": "poretrykk som utvikles i filterposisjon 1 (spiss) ved nedpressing av trykksonde [kPa] <engelsk>pore pressure generated at filter position 1 (tip) during penetration of the probe</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porePressure1"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk2"
+          ],
+          "description": "poretrykk som utvikles i filterposisjon 2 (bak spiss) ved nedpressing av trykksonde [kPa] <engelsk>pore pressure generated at filter position 2 (behind the tip) during penetration of the probe</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porePressure2"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk3"
+          ],
+          "description": "poretrykk som utvikles i filterposisjon 3 (bak friksjonshylse) ved nedpressing av trykksonde  [kPa] <engelsk>pore pressure generated at filter position 3 (behind the sleeve) during penetration of the probe</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porepressure3"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "spissmotstand"
+          ],
+          "description": "målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured cone resistance during penetration of the probe (point load divided by cross-sectional area of probe)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "pointPressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "DynamiskSonderingData"
+      ],
+      "description": "innsamlede data for utførelse og registrering ved gjennomføring av slagsondering\r\n<engelsk>collected data for performance of and recordings during percussion sounding</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "DynamicSoundingData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dreieMoment"
+          ],
+          "description": "anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av stangsystemet [kNm] <engelsk>torque applied on the rod system during penetration and rotation of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "torsionMoment"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "fallHøyde"
+          ],
+          "description": "høyde for slagenhet over topp av stangsystemet i sonderingen [m] <engelsk>level of the percussive unit above the top of the rod system during sounding</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "harRotasjon"
+          ],
+          "description": "markering av rotasjon ved penetrasjon av borstreng\r\n<engelsk>marking of rotation during penetration of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "hasTurning"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingTid"
+          ],
+          "description": "tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m] <engelsk> time record during penetration of the rod system, referring to the previous depth /engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "penetrationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i sonderingen\r\n<engelsk>remarks to observations made during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark, obervationRemark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prøveuttakNummer"
+          ],
+          "description": "markering av prøvenummer ved opptak av fysisk prøvemateriale under sonderingen<engelsk>marking of sample number in collection of sampled material during sounding</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "ramMotstand"
+          ],
+          "description": "penetrasjonsmotstand mot ramming av borstrengen uttrykt i synk per antall påførte slag [slag/0,2m] <engelsk>penetration resistance on the hammered drill string expressed in sink per number of applied strokes</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "rotasjonHastighet"
+          ],
+          "description": "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit during penetration of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfTurning"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "slagFrekvens"
+          ],
+          "description": "slagfrekvens ved anvendelse av slag på borstrengen [slag/min] <engelsk>stroke frequency during application of strokes on the drill string in rock control mode, defined by the number of strokes per time unit</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPiling ..."
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "EksternIdentifikasjon"
+      ],
+      "description": "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør inn til NADAG.",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "Identification"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "eksternId"
+          ],
+          "description": "lokal identifikator, tildelt av ekstern leverendør. \r\nDet er data leverendørens ansvar å sørge for at denne eksterne identifikatoren er unik innenfor navnerommet.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "externalId"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "eksternNavnerom"
+          ],
+          "description": "navnerom som identifiserer datakilden/leverandør til objektet",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "externalNamespace"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "eksternVersjonId"
+          ],
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt  Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "externalVersionid"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "eksternLeveringDato"
+          ],
+          "description": "Når objektet ble levert til database (Nadag)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "externalDeliveryDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "GassData"
+      ],
+      "description": "resultater fra gassmålinger<engelsk>results from gas measurements</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GasData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "CH4"
+          ],
+          "description": "innhold av metangass i poreluften<engelsk>content of methane gass in pore air</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "HG"
+          ],
+          "description": "innhold av kvikksølv i poreluften<engelsk>content of mercury in pore air</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "layerType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "GeotekniskPrøveseriedel"
+      ],
+      "description": "delprøve av en  prøveserie<engelsk> Soil test part </engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "SoilTestPart"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prøveMetode"
+          ],
+          "description": "metode benyttet for å ta prøven<engelsk>method identifier</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "method"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prøveseriedelNavn"
+          ],
+          "description": "navn på prøveseriedelen<engelsk>name</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "name"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "fraLengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>the start length, the depth at top of the specimen[m]</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "startLength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tilLengde"
+          ],
+          "description": "lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m] <engelsk>the length of the stop, the lower depth limitation of the sample [m]</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "stopLength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prøveseriedelId"
+          ],
+          "description": "Primærnøkkel for relasjon",
+          "tags": [],
+          "kind": "id",
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tilhørerPrøveserie"
+          ],
+          "tags": [],
+          "kind": "container",
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "GeotekniskPrøveserie"
+            ],
+            "sourceFile": "nadag.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "harData"
+          ],
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "datatyper",
+              "GeotekniskPrøveseriedelData"
+            ]
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": -1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "GeotekniskPrøveseriedelData"
+      ],
+      "description": "Data som tilhører en geoteknisk prøveseriedel <engelsk>Data for a soil test part </engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "SoilTestPartProtocolData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "lagPosisjon"
+          ],
+          "description": "i hvilken del av prøvedelen som det er gjort undersøkelser",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "layerComposition"
+            }
+          ],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "LagPosisjon"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "prøveMetode"
+          ],
+          "description": "metode benyttet for å ta prøven<engelsk>method identifier</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "method"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "aksielDeformasjon"
+          ],
+          "description": "angis i [%] <engelsk> the axial deformation (bruddef) %</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "axialDeformation"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "skjærfasthetUdrenert"
+          ],
+          "description": "bestemmelse av udrenert skjærfasthet ved enaksial trykkprøving i laboratoriet [kPa] <engelsk>the axial shear strength, the undrained shear strength by unconfined compression testing (sue) [kPa].</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "axialShearStrength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "detaljertLagSammensetning"
+          ],
+          "description": "tekst som beskriver lagsammensetningen <engelsk>the detailed layer composition, a text containing a detailed layer composition</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "detailedLayerComposition"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "skjærfasthetOmrørt"
+          ],
+          "description": "skjærfasthet for en kohesjonsjordart med fullstendig omrørt struktur [kPa] <engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "disturbedShearStrength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "densitetPrøvetaking"
+          ],
+          "description": "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space (kg/m3)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "gravity"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "erOmrørt"
+          ],
+          "description": "om prøvserien er omrørt<engelsk>indicating whether a soil test is disturbed</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "isDistubed"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "labAnalyse"
+          ],
+          "description": "om prøven har blitt analysert på laboratorium\r\n<engelsk> indicating whether the soil test has been analyzed at laboratory</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "isLab"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "flyteGrense"
+          ],
+          "description": "bestemmelse av flytegrense ved hjelp av støt- eller konusmetode i laboratoriet [%] Merknad: Flytegrensen angir det vanninnhold der en omrørt leire går over fra å være flytende til å bli plastisk (formbar) <engelsk>determination of liquid limit flytegrense by percussionor fall cone method in the laboratory Note:The liquid limit corresponds to a water content where the remoulded material goes from a liquid to a plastic state</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "liquidLimit"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "glødeTap"
+          ],
+          "description": "angis i [%] <engelsk>the loss on ignition, the loss of mass (% left of initial mass) due to heating</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "lossOfIgnition"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "plastitetsGrense"
+          ],
+          "description": "bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode [%]  Merknad: Også kalt utrullingsgrense som angir det vanninnhold der en omrørt leire går over fra plastisk (formbar) til smuldrende konsistens <engelsk>determination of the plasticity limit by a hand rolling method Note: Expresses the water content where a remoulded clay leaves the plastic state and starts to crumble</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "plasticityLimit"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sensitivitet"
+          ],
+          "description": "forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive soils</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "sensitivity"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "skjærfasthetUforstyrret"
+          ],
+          "description": "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt struktur [kPa] <engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "undisturbedShearStrength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "boret lengde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "length"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "vanninnhold"
+          ],
+          "description": "undersøkelse for bestemmelse av prøvematerialets vanninnhold ved tørking. Angir forholdet mellom masse vann og masse fast stoff [%] <engelsk>determination of the water content of the sample by oven drying. Corresponds to the ratio between mass of water and the mass of solid particles</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "waterContent"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "GrunnvannData"
+      ],
+      "description": "data fra måling av grunnvannstand, med observasjonskoder, kommentarer og tidsstempel for angitt måletidspunkt<engelsk>data from measurement of ground water level, with observation codes, comments and time for measurements</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "GroundWaterMeasurementData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleDato"
+          ],
+          "description": "dato for utførelse av grunnvannsmålingen<engelsk>date for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "measureDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeGrunnvannstand"
+          ],
+          "description": "angivelse av vannstand i grunnen og/eller i målerør (z-nivå) [m] <engelsk>water level in the ground and / or inside a measurement tube (z-level)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "groundWaterDept, groundWaterLevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleTidspunkt"
+          ],
+          "description": "tidspunkt for gjennomføring av grunnvannsmålingen<engelsk>time for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "measureTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i grunnvannsmålingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation codes for marking of incidents during ground water measurements. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i grunnvannsmålingen<engelsk>remarks to observations made during ground water measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "pH"
+          ],
+          "description": "surhetsgrad <engelsk><measure of acidity>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "ledningsevne"
+          ],
+          "description": "hydraulisk ledningsevne [uS/cm] <engelsk>hydraulic conductivity</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "oksygenInnhold"
+          ],
+          "description": "innhold av oksygen [ml] <engelsk>oxygen content</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "temperatur"
+          ],
+          "description": "temperatur [°C] <engelsk>temperature [°C]</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "redoks"
+          ],
+          "description": "red-oks-potensiale [mV] <engelsk>redox potential</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "turbiditet"
+          ],
+          "description": "angir gjennomsnittlig partikkelinnhold [NTU] <engelsk>average particle content</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "length"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "grunnvannObservasjonKode"
+          ],
+          "description": "observasjonskoder for grunnvann",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "GroundwaterObservationCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "GeotekniskGrunnvannObservasjonKode"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "erGyldig"
+          ],
+          "description": "gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity of data, if false only to be used as information</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "isValid"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "HydrauliskeData"
+      ],
+      "description": "data fra måling av vannstrømning, vannhastighetsbestemmelse og hydraulisk splitting i felt.             <engelsk>data from measurements of water flow, water velocity, pumping tests and hydraulic splitting in the field.                                                         </engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "HydraulicData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleDato"
+          ],
+          "description": "dato for utførelse av målingen<engelsk>date for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "measureDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleTidspunkt"
+          ],
+          "description": "tidspunkt for utførelse av målingen<engelsk>time for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "measureTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i hydraulisk test<engelsk>remarks to observations made during hydraulic testing</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "hydrauliskKonduktivitet"
+          ],
+          "description": "jordparameter som beskriver hydraulisk ledningsevne [m/s] <engelsk>soil parameter which describes hydraulic conductivity</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "HydrauliskKonduktivitet"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeGrunnvannstand"
+          ],
+          "description": "angivelse av vannstand i grunnen og/eller i målerør [m] <engelsk>water level in the ground and / or inside a measurement tube</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "groundWaterDept, groundWaterLevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "KjerneBoringData"
+      ],
+      "description": "Data som tilhører en Kjerneboring",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "KjerneBoringData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "boret lengde i forhold til terrengoverflaten eller annet angitt\r\nreferansenivå<engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "length"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "forvitringsgrad"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rockWeatheringDegree"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "geologiskMaterialTekst"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "materialText"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "geologiskMaterialType"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "materialType"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "kjerneOpptak_Prosent"
+          ],
+          "description": "Prosent av siste kjerne som er opptatt<engelsk> the total core recovery, percent received core of the previous section [%]</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "totalCoreRecovery"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "materialStruktur"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "materialStructure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "opptrekk"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "uptake"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_Ja"
+          ],
+          "description": "Tall for sprekkefylling",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_Ja"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_Jn"
+          ],
+          "description": "Tall for sprekkesett",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_Jn"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_Jr"
+          ],
+          "description": "Sprekkeruhetstall",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_Jr"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_Jw"
+          ],
+          "description": "Sprekkevannstall",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_Jw"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_Q"
+          ],
+          "description": "Q=(RQD/Jn)*(Jr/Ja)*(Jw/SRF)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_Q"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_QErBeregnet"
+          ],
+          "description": "om Q-verdiet er beregnet basert på de øvrige leverte verdier eller kommer fra annen kilde <engelsk>indicating whether the Q-value is computed from the associated values or is external</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_QIsComputed"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_RQD"
+          ],
+          "description": "Oppsprekkingstall (Rock Quality Designation)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_RQD"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "QVerdi_SRF"
+          ],
+          "description": "Spenningsfaktor (Stress Reduction Factor)",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "QValue_SRF"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "RockMassRating"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "RockMassRating"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "ruhetsindeks"
+          ],
+          "description": "indeks (1-10) som beskriver ruhet og friksjon<engelsk> the roughness and frictional characteristics [index (1-10)] </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "roughness"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sprekkeFrekvens"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "fractureFrequency"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sprekkeMaterialTekst"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "fractureFillingText"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sprekkeMaterialType"
+          ],
+          "tags": [
+            {
+              "name": "alias",
+              "value": "fractureFilling"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "strøkFall_Fall"
+          ],
+          "description": "Måleverdi for måling utført i bergartens vertikalplan (fallretning) Merknad: Målt i grader (0-90°) på observasjonspunkt. Enhet [°]. Verdien sees i sammenheng med måling av strøk i horisontalplanet.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "strikeDip_Dip"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "strøkFall_Strøk"
+          ],
+          "description": "Måleverdi for måling utført i bergartens horisontalplan (retning, strøk) Merknad: Målt i grader (0-360°) på observasjonspunkt, med eventuelt fall mot høyre. Enhet [°]. Verdien sees i sammenheng med måling av fall i vertikalplanet.",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "strikeDip_Strike"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "KombinasjonSonderingData"
+      ],
+      "description": "innsamlede data for utførelse og registrering ved gjennomføring av totalsondering<engelsk>collected data for performance of and recordings made during total sounding</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "CombinationSoundingData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "anvendtLast"
+          ],
+          "description": "anvendt nedpressingskraft registrert på overflaten under sonderingen [kN] <engelsk>applied penetration force recorded on the surface</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "appliedLoad"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dreieMoment"
+          ],
+          "description": "anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av stangsystemet [kNm] <engelsk>torque applied on the rod system during penetration and rotation of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "torsionMoment"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingHastighet"
+          ],
+          "description": "penetrasjonshastighet for stangsystemet ved nedpressing [m/min] <engelsk>penetration of the rod system per unit time (rate of penetration)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPenetration"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingKraft"
+          ],
+          "description": "nedpressingskraft påført stangsystemet ved penetrasjon og rotasjon av borstrengen [kN] <engelsk>penetration force applied on the rod system during penetration and rotation of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "penetrationPressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingTid"
+          ],
+          "description": "tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m] <engelsk> time record during penetration of the rod system, referring to the previous depth </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "penetrationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "rotasjonHastighet"
+          ],
+          "description": "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit during penetration of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfTurning"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "slagFrekvens"
+          ],
+          "description": "slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus, angitt ved antall slag per tidsenhet [slag/min] <engelsk>stroke frequency during application of strokes on the drill string in rock control mode, defined by the number of strokes per time unit</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPiling"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "spyleMengde"
+          ],
+          "description": "volum spylevæske ved anvendelse av spyling gjennom borkronen i fjellkontrollmodus [l/min] <engelsk>volume of flushing fluid when flushing through the drill bit in rock control mode</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "flushing<mediaFlow"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "spyleTrykk"
+          ],
+          "description": "trykk på spylevæske ved anvendelse av spyling gjennom borkronen i fjellkontrollmodus [MPa) <engelsk>pressure in the flushing fluid through the drill bit in rock control mode</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "flushingMediaPressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "OvervåkningData"
+      ],
+      "description": "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or any other supervision data</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "SurveilanceData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "akvifer"
+          ],
+          "description": "grunnvannsmagasin <engelsk>aquifer (ground water reservoir)</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "AkviferType"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleTidspunkt"
+          ],
+          "description": "tidspunkt for gjennomføring av målingen <engelsk>time for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "measureTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedreAlarmNivå"
+          ],
+          "description": "kriterium for alarmtilstand, nedre grense for måleverdi [m] <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "alarmLowerLevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "øvreAlarmNivå"
+          ],
+          "description": "kriterium for alarmtilstand, øvre grense for måleverdi [m] <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "alarmUpperlevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleDato"
+          ],
+          "description": "dato for utførelse av målingen\r\n<engelsk>date for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "observationDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or any other supervision data</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "PlatebelastningData"
+      ],
+      "description": "data fra måling av in situ deformasjons- og konsolideringsegenskaper i friksjonsjordarter.<engelsk>data from measurements of in situ deformation- and consolidation properties in friction soils.</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "PlateBearingData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tidFraStart"
+          ],
+          "description": "tid fra start av prøvingen [minutter]<engelsk>time from the start of testing (minutes)</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "anvendtLast"
+          ],
+          "description": "last overført til skruplate gjennom stangsystemet [kN]<engelsk>load transferred to the screw plate through the rod system</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "appliedLoad,belastning"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingHastighet"
+          ],
+          "description": "nedpressingshastighet av skruplate ved gjennomføring av prøving [m/min] <engelsk>settlement rate for the screw plate during testing</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPenetration"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "deformasjon"
+          ],
+          "description": "endring i form som følge av tilført kraft [mm] <engelsk>change in shape because of force </engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "PoretrykkData"
+      ],
+      "description": "data fra måling av poretrykk <engelsk>data from measurements of pore pressure</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "PorePressureData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "avlesing0Kontroll"
+          ],
+          "description": "nullavlesning for poretrykksmåler [kPa] <engelsk>zero reading for pore pressure transducer</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "reading0Control"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "avlesingEtter0Kontroll"
+          ],
+          "description": "kontrollverdi for nullavlesning etter utført måling [kPa] <engelsk>control value for zero reading after completed test\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "readingAfter0Control"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "avlesingFør0Kontroll"
+          ],
+          "description": "kontrollverdi for nullavlesning før utført måling [kPa] <engelsk>control value of zero reading before testing</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "readingBefore0Control"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "avstandManometerFilterspiss"
+          ],
+          "description": "distanse mellom manometer (trykkmåler) på toppen av røret og filterspiss [m] <engelsk>distance between manometer (pressure gauge) on top of the measuring hose and the filter tip</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "heightManometerFilterPoint"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "avstandToppSlangeTilVannstand"
+          ],
+          "description": "distanse mellom topp måleslange til vannstand i slangen [m]\r\n<engelsk>distance between top of measuring hose and the water level in the hose</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "heightTopTubeWater.."
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "barometerTrykk"
+          ],
+          "description": "trykkmåler for avlesning av lufttrykk (atmosfæretrykk) [kPa] \r\n<engelsk>pressure gauge for recording of atmospheric pressure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "barometerPressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "dybdeGrunnvannstand"
+          ],
+          "description": "dybde til grunnvannsnivå (vannstand i slangen), regnet fra terrengnivå eller annet angitt referansenivå [m]\r\n<engelsk>depth to the ground water table (water level in the hose), referring to the terrain level or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "groundWaterDept, groundWaterLevel"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleDato"
+          ],
+          "description": "dato for utførelse av målingen\r\n<engelsk>date for measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "oservationDate"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Date"
+            ],
+            "sourceFile": "lib.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "måleTidspunkt"
+          ],
+          "description": "tidspunkt for gjennomføring av målingen\r\n<engelsk>time for measurements</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "DateTime"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore pressure measurements. The codes are (0..*)     numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode, observationCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i poretrykksmålingen\r\n<engelsk>remarks to observations made during pore pressure measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark, observationRemark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk"
+          ],
+          "description": "vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa] <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porePressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "trykkhøyde"
+          ],
+          "description": "stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge av trykknivå i porevannet, gitt ved avstand mellom vannstand i slangen og filternivå [mm] <engelsk>Elevation head (mm water column) in an open water pipe due to the pressure level in the pore water, defined by the distance between the water level in the hose and the filter level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "pressureHeight.."
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "PoretrykkDataInsitu"
+      ],
+      "description": "data fra måling av trykktilstanden i porevannet, angitt som kraft pr. flateenhet og med atmosfæretrykket som referanse<engelsk>data from measurements of pore pressure, given as force per area unit, with the atmospheric pressure as reference</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "PorePressureInsituData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretDybde"
+          ],
+          "description": "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>\r\n\r\n<engelsk>\r\ndepth from zero level, the z value of investigation start point is 0. drilling depth[m]\r\n</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "enhetsvekt"
+          ],
+          "description": "<engelsk></engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "?"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore pressure measurements. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "kodelister",
+              "GeotekniskBoreObservasjonskode"
+            ],
+            "sourceFile": "nadag-kodelister.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i poretrykksmålingen\r\n<engelsk>remarks to observations made during pore pressure measurements</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk"
+          ],
+          "description": "vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa] <engelsk>pore water pressure in the ground, with the atmospheric pressure as reference</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porePressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "length"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "tyngde"
+          ],
+          "description": "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space (kN/m3)",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "PosisjonskvalitetNADAG"
+      ],
+      "description": "Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for Grunnundersøkelser).\r\n(En realisering av den generelle Posisjonskvalitet)",
+      "tags": [],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "målemetode"
+          ],
+          "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "generelle_typer",
+              "Målemetode"
+            ],
+            "sourceFile": "nadag-generelle-typer.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "målemetodeHøyde"
+          ],
+          "description": "metode for å måle høyden",
+          "tags": [],
+          "type": {
+            "qName": [
+              "no",
+              "ngu",
+              "nadag",
+              "generelle_typer",
+              "MålemetodeHøyde"
+            ],
+            "sourceFile": "nadag-generelle-typer.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nøyaktighet"
+          ],
+          "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\r\nMerknad:\r\nOppgitt i [cm]",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nøyaktighetHøyde"
+          ],
+          "description": "nøyaktighet for høyden i [cm]",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "StatiskSonderingData"
+      ],
+      "description": "innsamlede data for utførelse og registrering ved gjennomføring av statisk sondering <engelsk>collected data for performance and recordings in static sounding</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "StaticSoundingData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "anvendtlast"
+          ],
+          "description": "anvendt nedpressingskraft registrert på overflaten under sonderingen [kN] <engelsk>applied penetration force recorded on the surface during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "appliedLoad"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "halveOmdreininger"
+          ],
+          "description": "antall halve omdreininger av stangsystemet, regnet fra forrige dybde <engelsk>number of half turns of the rod system, referring to the previous depth</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "halfTurns"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "medSlag"
+          ],
+          "description": "markering av slag på borstrengen under sonderingen<engelsk>marking of strokes on the drill rods during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "hasPiling"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingTid"
+          ],
+          "description": "tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m] <engelsk> time record during penetration of the rod system, referring to the previous depth </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "penetrationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedsynkningHastighet"
+          ],
+          "description": "nedpressing av stangsystemet per tidsenhet [m/min] <engelsk>penetration of the rod system per unit time (rate of penetration)  </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPiling"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode. \r\n<engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i sonderingen<engelsk>remarks to observations made during sounding</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "rotasjonHastighet"
+          ],
+          "description": "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit, during penetration of the drill string</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfTurning"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "harRotasjon"
+          ],
+          "description": "<engelsk>Gets or sets the has turning, that indicates if rotation is logged while penetration of soil.\r\n@value The has turning.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "hasTurning"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Boolean"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sideFriksjon"
+          ],
+          "description": "<engelsk>Gets or sets the sleeve friction, the measured sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve [kPa].</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "sleeveFriction"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "slagFrekvens"
+          ],
+          "description": "slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus, angitt ved antall slag per tidsenhet [slag/m]",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPiling"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "TrykksonderingData"
+      ],
+      "description": "data fra utførelse av trykksondering (med poretrykksmåling) CPT(U)<engelsk>data fra performance of cone penetration test (with pore pressure measurements) CPT(U)</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "PressureSoundingData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "anvendtLast"
+          ],
+          "description": "anvendt last på overflaten for nedpressing av trykksonde med stenger [kN] <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "appliedLoad"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretDybde"
+          ],
+          "description": "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "lengde langs borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>length along the physical borehole, the same as depth in a vertical borehole</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "friksjon"
+          ],
+          "description": "målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av friksjonshylse) [kPa] <engelsk>measured sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "frictionalresistance"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "helning"
+          ],
+          "description": "vinkelavvik mellom nedpressingsretning for trykksonde og vertikalaksen [°] <engelsk>deviation between the penetration axis and the vertical axis</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "inclination,slope"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "initieltPoretrykk"
+          ],
+          "description": "initielt poretrykk ved start av dissipasjonstest i CPTU [kPa] <engelsk>initial pore pressure at the start of the dissipation test in CPTU</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "initialPorePressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "resistivitet"
+          ],
+          "description": "elektrisk motstand når den går gjennom et materiale, måles ved gjennomføring av RCPTU-forsøk. Måles i [Ωm] (ohm-meter). <engelsk>electrical resistivity, measured in a RCPTU-test (?m) </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "resistivity"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "korrigertFriksjon"
+          ],
+          "description": "korrigert sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av friksjonshylse, korrigert for poretrykkseffekter) [MPa] <engelsk>corrected sleeve friction during penetration of the probe (friction sleeve force divided by area of the friction sleeve, corrected for pore pressure effects)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "correctedFrictionalResistance"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "korrigertNedpressningsKraft"
+          ],
+          "description": "korrigert last på overflaten for nedpressing av trykksonde med stenger [kN] <engelsk>corrected load on the surface for penetration of the test rods and probe</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "correctedPointPressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingHastighet"
+          ],
+          "description": "nedpressingsdistanse for trykksonde per tidsenhet (standard er 2 cm/sek) [m/min] <engelsk>penetration rate for probe (2 cm/sec)</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPenetration"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingsKraft"
+          ],
+          "description": "anvendt last på overflaten for nedpressing av trykksonde med stenger [kN] <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "rateOfPenetration"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingsTid"
+          ],
+          "description": "tid for nedpressing av sonden til ønsket eller annen angitt dybde, regnet fra forrige dybde [sek]\r\n<engelsk>time for penetration of the probe to the requested or any other given depth. Referring to the previous depth</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "penetrationTime"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Integer"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i trykksonderingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.  <engelsk>observation codes for marking of incidents during penetration. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i trykksonderingen <engelsk>remarks to observations made during penetration</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remark"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "poretrykk"
+          ],
+          "description": "vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa] <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "porePressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "skjærbølgeHastighet"
+          ],
+          "description": "hastighet til s-bølge [m/s] <engelsk>velocity of s-wave</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "temperatur"
+          ],
+          "description": "temperatur i jord og/eller luft ved gjennomføring av trykksonderingen [°C] <engelsk>temperature in soil and/or air during the testing</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "temperature"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "nedpressingTrykk"
+          ],
+          "description": "målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured cone resistance during penetration of the probe (point load divided by cross-sectional area of probe) [MPa].</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "PenetrationPressure"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    },
+    {
+      "elementType": "dataType",
+      "name": [
+        "no",
+        "ngu",
+        "nadag",
+        "datatyper",
+        "VingeboringData"
+      ],
+      "description": "data fra utførelse og tolkning av vingeboring<engelsk>data from performance and interpretation of vane tests</engelsk>",
+      "tags": [
+        {
+          "name": "alias",
+          "value": "VaneTestData"
+        }
+      ],
+      "abstract": false,
+      "properties": [
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretDybde"
+          ],
+          "description": "boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>\r\n<engelsk> depth from zero level, the z value of investigation start point is 0. drilling depth[m]</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "depth"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "effektivDensitet"
+          ],
+          "description": "densitet for jordlagene, redusert for oppdriftseffekter [kg/m3] <engelsk>density for soil layers, reduced for buoyancy effects</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "effectiveDensity"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "korrigertSkjærfasthet"
+          ],
+          "description": "skjærfasthet korrigert for plastisitet og effektivt overlagringstrykk [kPa] <engelsk>shear strength corrected for plasticity and effective overburden stress</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "correctedShearStrength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonKode"
+          ],
+          "description": "observasjonskoder for markering av hendelser i vingeboringen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\n<engelsk>observation codes for marking of incidents during vane testing. The codes are (0..*) numeric codes given in a text string with spaces between each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "remarkCode"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "observasjonMerknad"
+          ],
+          "description": "merknad til observasjoner i vingeboringen\r\n<engelsk>remarks to observations made during vane testing</engelsk>",
+          "tags": [],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "CharacterString"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "omrørtSkjærfasthet"
+          ],
+          "description": "skjærfasthet for en kohesjonsjordart med fullstendig omrørt struktur [kPa] <engelsk>shear strength for a cohesive soil with completely remoulded structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "disturbedShearStrength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "omrørtTorsjonMoment"
+          ],
+          "description": "målt vridningsmoment ved måling av vingeborrotasjon i en kohesjonsjordart med fullstendig omrørt struktur [kNm] <engelsk>measured torque during vane rotation in cohesive soil with completely remoulded structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "disturbedTorsionMoment"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "sensitivitet"
+          ],
+          "description": "forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for kohesjonsjord  <engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive soil</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "sensitivity"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "uomrørtSkjærfasthet"
+          ],
+          "description": "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt struktur [kPa] <engelsk>shear strength for a cohesive soil with intact, undisturbed structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "undisturbedShearStrength"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "uomrørtTorsjonMoment"
+          ],
+          "description": "målt vridningsmoment ved måling av vingeborrotasjon i en kohesjonsjordart med uforstyrret, intakt struktur [kNm] <engelsk>measured torque during vane rotation in cohesive soil with intact, undisturbed structure</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "undisturbedTorsionMoment"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "boretLengde"
+          ],
+          "description": "total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m] <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical borehole</engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "length"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        {
+          "elementType": "compositeTypeProperty",
+          "name": [
+            "plastisitetIndeks"
+          ],
+          "description": "Numerisk forskjell mellom flyte- og plastisitetsgrense for finstoffholdige jordarter, angir utstrekningen på det plastiske området for jordarten i prosent vanninnhold [%] <engelsk>Gets or sets the index of the plasticy, the difference between the liquid and plastic limits for a remoulded clay sample, which defines the plastic area of the clay in % water content </engelsk>",
+          "tags": [
+            {
+              "name": "alias",
+              "value": "plasticyIndex"
+            }
+          ],
+          "type": {
+            "qName": [
+              "geoforge",
+              "lib",
+              "Real"
+            ],
+            "sourceFile": "nadag-builtins.geoforge"
+          },
+          "multiplicity": {
+            "lower": 0,
+            "upper": 1
+          }
+        }
+      ]
+    }
+  ]
+}
